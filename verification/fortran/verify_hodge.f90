@@ -31,11 +31,11 @@ program verify_hodge
     call check_int('N=30: h(30) = 276', census_d(30, 30), 276_int64, passes, fails)
 
     ! ─── 2. Klein quartic ───
-    call check_int('Klein j = -c4^3/Delta = -3375 = -15^3', -105**3 / 343, -3375_int64, passes, fails)
+    call check_int('Klein j = -c4^3/Delta = -3375 = -15^3', -105_int64**3 / 343_int64, -3375_int64, passes, fails)
     call check_int('Klein 343 * 3375 = 105^3', 343_int64 * 3375_int64, 1157625_int64, passes, fails)
 
     ! ─── 3. Discriminant and SNF ───
-    call check_int('disc = 3^4*5^6 = 1265625', 3**4 * 5**6, 1265625_int64, passes, fails)
+    call check_int('disc = 3^4*5^6 = 1265625', 3_int64**4 * 5_int64**6, 1265625_int64, passes, fails)
     call check_int('sqrt(disc) = 1125', isqrt(1265625_int64), 1125_int64, passes, fails)
     prod = 1_int64
     do i = 1, 8
@@ -44,10 +44,10 @@ program verify_hodge
     call check_int('SNF product = 1265625', prod, 1265625_int64, passes, fails)
 
     ! ─── 4. Ladder and denominators ───
-    call check_int('Q_stand = 2*30*8 = 480', 2 * 30 * 8, 480_int64, passes, fails)
-    call check_int('E8: even(Arf=0) = 36 @ g=3', 2**2 * (2**3 + 1), 36_int64, passes, fails)
-    call check_int('E8: odd(Arf=1) = 28 @ g=3', 2**2 * (2**3 - 1), 28_int64, passes, fails)
-    call check_int('E8: total = 64', 36 + 28, 64_int64, passes, fails)
+    call check_int('Q_stand = 2*30*8 = 480', 2_int64 * 30 * 8, 480_int64, passes, fails)
+    call check_int('E8: even(Arf=0) = 36 @ g=3', 2_int64**2 * (2**3 + 1), 36_int64, passes, fails)
+    call check_int('E8: odd(Arf=1) = 28 @ g=3', 2_int64**2 * (2**3 - 1), 28_int64, passes, fails)
+    call check_int('E8: total = 64', 36_int64 + 28, 64_int64, passes, fails)
 
     ! ─── 5. Flow termination (E4) ───
     call check_int('t*(48,48,1,1) = 48', tstar(48, 48, 1, 1), 48_int64, passes, fails)
@@ -55,13 +55,13 @@ program verify_hodge
     call check_int('t*(12,12,4,6) = 6', tstar(12, 12, 4, 6), 6_int64, passes, fails)
 
     ! ─── 6. K3: stand numbers ───
-    call check_int('K3: 22 = 1+7+7+7', 1 + 7 + 7 + 7, 22_int64, passes, fails)
-    call check_int('K3: det = 64 = 8^2', 8 * 8, 64_int64, passes, fails)
-    call check_int('K3: rank 20 = 1+19', 1 + 19, 20_int64, passes, fails)
+    call check_int('K3: 22 = 1+7+7+7', 1_int64 + 7 + 7 + 7, 22_int64, passes, fails)
+    call check_int('K3: det = 64 = 8^2', 8_int64 * 8, 64_int64, passes, fails)
+    call check_int('K3: rank 20 = 1+19', 1_int64 + 19, 20_int64, passes, fails)
 
     ! ─── 7. Genus of the Fermat curve ───
-    call check_int('g(15) = 91', (15 - 1) * (15 - 2) / 2, 91_int64, passes, fails)
-    call check_int('g(30) = 406', (30 - 1) * (30 - 2) / 2, 406_int64, passes, fails)
+    call check_int('g(15) = 91', (15_int64 - 1) * (15 - 2) / 2, 91_int64, passes, fails)
+    call check_int('g(30) = 406', (30_int64 - 1) * (30 - 2) / 2, 406_int64, passes, fails)
 
     print '(/a, i0, a, i0, a)', new_line('a')//'  VERDICT: ', passes, &
         ' PASS, ', fails, ' FAIL'
@@ -118,7 +118,7 @@ contains
     integer(int64) function isqrt(n)
         integer(int64), intent(in) :: n
         integer(int64) :: r
-        r = int(sqrt(real(n)))
+        r = int(sqrt(real(n, kind=8)), kind=int64)
         do while (r * r > n)
             r = r - 1
         end do
@@ -130,7 +130,7 @@ contains
 
     integer(int64) function tstar(W, H, a, b)
         integer, intent(in) :: W, H, a, b
-        tstar = lcm64(W / igcd(a, W), H / igcd(b, H))
+        tstar = lcm64(int(W / igcd(a, W), int64), int(H / igcd(b, H), int64))
     end function
 
     integer(int64) function lcm64(a, b)

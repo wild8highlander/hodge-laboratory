@@ -32,7 +32,7 @@ from datetime import datetime
 from math import gcd
 from typing import Iterable, Sequence
 
-__version__ = '1.1.1'
+__version__ = '1.1.2'
 
 try:
     from mpmath import arg as mp_arg

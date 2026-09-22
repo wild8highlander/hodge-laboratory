@@ -1,6 +1,6 @@
 [project]
 name = "hodge-laboratory"
-version = "1.1.1"
+version = "1.1.2"
 description = "The Dynamic Principle Laboratory — ladder of stands, certificates A–H, closed theorem system, 5-language + Lean 4 verification"
 readme = "README.md"
 requires-python = ">=3.10"

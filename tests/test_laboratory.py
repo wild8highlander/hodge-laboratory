@@ -348,3 +348,13 @@ def test_lean_panel_g2_arf_count_matches_formula():
             'HodgeLaboratory.lean').read_text(encoding='utf-8')
     assert '2^1 * (2^2 + 1) = 10' in lean
     assert '2^0 * (2^2 + 1)' not in lean
+
+
+def test_lean_panel_g1_arf_count_matches_formula():
+    """Regression (v1.1.2): the Lean panel asserted 2^1*(2^1+1)=3 for g=1,
+    a false proposition (2*3=6) that the kernel would reject; the closed
+    formula gives 2^0*(2^1+1)=3."""
+    lean = (REPO / 'verification' / 'lean' /
+            'HodgeLaboratory.lean').read_text(encoding='utf-8')
+    assert '2^0 * (2^1 + 1) = 3' in lean
+    assert '2^1 * (2^1 + 1)' not in lean

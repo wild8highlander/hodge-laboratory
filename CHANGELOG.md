@@ -3,6 +3,56 @@
 All notable changes to Hodge Laboratory are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.2] — 2026-09-22
+
+### Fixed
+
+* **`verification/fortran/verify_hodge.f90`** — the file did not
+  compile with gfortran ≥ 8, so the CI "Fortran verification" step
+  failed on every run (`Error: Type mismatch in argument …; passed
+  INTEGER(4) to INTEGER(8)`): twelve call sites passed default-kind
+  integer expressions into `integer(int64)` dummies. The literals in
+  the Klein / SNF / ladder / K3 / genus checks now carry the `_int64`
+  suffix, `tstar` converts its reduced dimensions with
+  `int(…, int64)` before calling `lcm64`, and `isqrt` computes its
+  seed in double precision. 24 checks, all pass.
+* **`verification/julia/verify_hodge.jl`** — the script had never run
+  to completion: Base Julia has no `gamma` (it lives in the external
+  SpecialFunctions.jl), so the first period check crashed with
+  `UndefVarError: gamma not defined`. Log-Γ is now evaluated
+  self-containedly by the Stirling series with argument shifting,
+  with the Bernoulli numbers from the exact `Rational{BigInt}`
+  recurrence. Two soft-scope bugs made the `worst`/`ph_dev`/`eq`
+  accumulators local to their loops, so the corresponding checks
+  compared the untouched global 0.0 — vacuous passes; the
+  accumulators are now declared `global`. The tanh–sinh quadrature
+  at 41 nodes was far from its 1e-25 threshold (measured worst
+  1.2e-7); the grid 2·125+1 nodes, h = 0.048 brings the worst case
+  down to 5.8e-35. 14 checks, all pass (Julia 1.11).
+* **`verification/lean/HodgeLaboratory.lean`** — the panel could not
+  elaborate at all under the advertised "Lean 4 kernel only, no
+  Mathlib" setup: it used the Mathlib notations `ℕ`/`ℤ` as the types,
+  which plain core Lean does not equip with arithmetic instances —
+  dozens of `failed to synthesize OfNat ℕ …` errors on essentially
+  every line.  All type ascriptions now use the core names `Nat` /
+  `Int`, and the panel is kernel-checked end-to-end (Lean 4.21,
+  exit 0).  Additionally the g = 1 even theta-characteristic example
+  asserted `2^1·(2^1+1) = 3`, a false proposition (2·3 = 6) that the
+  kernel rejects; it now verifies the correct `2^0·(2^1+1) = 3`,
+  matching the closed formula 2^(g−1)(2^g+1) used by every other
+  stack.
+* **`.github/workflows/ci.yml`** — actions bumped past the Node 20
+  deprecation (`checkout@v4` → `v7`, `setup-python@v5` → `v7`,
+  `upload-artifact@v4` → `v7`) and the runner is pinned to
+  `ubuntu-24.04` ahead of the ubuntu-latest → Ubuntu 26 migration
+  (announced for October 2026), silencing the three warnings and
+  three notices shown on every run.
+
+### Added
+
+* regression test for the Lean g = 1 Arf count (29 → 30 pytest
+  tests).
+
 ## [1.1.1] — 2026-09-22
 
 ### Fixed
@@ -175,6 +225,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   laboratory with the V1–V9 protocol, stands and certificates A–H,
   five-language verification stack and the Lean 4 kernel panel.
 
+[1.1.2]: https://github.com/wild8highlander/hodge-laboratory/releases/tag/v1.1.2
 [1.1.1]: https://github.com/wild8highlander/hodge-laboratory/releases/tag/v1.1.1
 [1.1.0]: https://github.com/wild8highlander/hodge-laboratory/releases/tag/v1.1.0
 [1.0.0]: https://github.com/wild8highlander/hodge-laboratory/releases/tag/v1.0.0
