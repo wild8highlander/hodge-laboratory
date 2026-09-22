@@ -1,0 +1,176 @@
+{
+ "meta": {
+  "dps": 35,
+  "timestamp": "2026-09-22 01:11:04",
+  "language": "en",
+  "version": "1.1.0",
+  "author": "Исаев Исхак Хамзатович / Isaev Iskhak Khamzatovich"
+ },
+ "checks": {
+  "V1_census": {
+   "pass": true,
+   "data": {
+    "15": {
+     "h_d": {
+      "3": 1,
+      "5": 6,
+      "15": 84
+     },
+     "genus": 91,
+     "total": 91,
+     "mobius_match": true
+    },
+    "30": {
+     "h_d": {
+      "3": 1,
+      "5": 6,
+      "6": 9,
+      "10": 30,
+      "15": 84,
+      "30": 276
+     },
+     "genus": 406,
+     "total": 406,
+     "mobius_match": true
+    }
+   }
+  },
+  "V2V3_certB": {
+   "pass": true,
+   "data": {
+    "max_rel_err": 3.853710440091966e-36,
+    "max_phase_dev": 7.52316384526264e-37,
+    "n_tests": 69
+   }
+  },
+  "V4_certC": {
+   "pass": true,
+   "data": {
+    "max_rel_err": 4.3763094108442054e-36
+   }
+  },
+  "V5_chain": {
+   "pass": true,
+   "data": {
+    "max_rel": 2.8578948291111995e-36
+   }
+  },
+  "V6_reflection": {
+   "pass": true,
+   "data": {
+    "max_rel_err": 7.01288058796896e-36
+   }
+  },
+  "V7_rank": {
+   "pass": true,
+   "data": {
+    "skipped": true
+   }
+  },
+  "V8_dft": {
+   "pass": true,
+   "data": {
+    "diag": 1.0666600203457015e-36,
+    "offdiag": 4.0036581597109073e-36
+   }
+  },
+  "V9_deep": {
+   "pass": true,
+   "data": {
+    "rel_err": 1.258720039947873e-71
+   }
+  },
+  "_protocol_time_s": 5.6
+ },
+ "stands": {
+  "torus": {
+   "pass": true,
+   "data": {
+    "Delta": 39.48799539346835
+   }
+  },
+  "k3": {
+   "pass": true,
+   "data": {
+    "rank": 20,
+    "det": 64
+   }
+  },
+  "klein": {
+   "pass": true,
+   "data": {
+    "j": -3375
+   }
+  },
+  "errata_e8": {
+   "pass": true,
+   "data": {
+    "table": {
+     "1": [
+      4,
+      3,
+      1
+     ],
+     "2": [
+      16,
+      10,
+      6
+     ],
+     "3": [
+      64,
+      36,
+      28
+     ],
+     "4": [
+      256,
+      136,
+      120
+     ]
+    }
+   }
+  },
+  "binary_code": {
+   "pass": true,
+   "data": {
+    "visited": 48,
+    "tstar": 48
+   }
+  }
+ },
+ "certificates": {
+  "A": {
+   "pass": true,
+   "data": {
+    "kernel": 29
+   }
+  },
+  "B": {
+   "pass": true,
+   "data": null
+  },
+  "C": {
+   "pass": true,
+   "data": null
+  },
+  "D": {
+   "pass": true,
+   "data": null
+  },
+  "E": {
+   "pass": true,
+   "data": null
+  },
+  "F": {
+   "pass": true,
+   "data": null
+  },
+  "G": {
+   "pass": true,
+   "data": null
+  },
+  "H": {
+   "pass": true,
+   "data": null
+  }
+ }
+}

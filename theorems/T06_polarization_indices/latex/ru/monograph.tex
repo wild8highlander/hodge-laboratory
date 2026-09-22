@@ -1,0 +1,151 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Теорема 3: поляризация и индексы решётки Ходжа}\\[0.4em]
+{\large главная поляризация и вычислимость индексов по блокам}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 6/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+Форма пересечений $J$ на $H_1(C_N,\ZZ)$ --- не просто топологический
+инвариант: она является поляризацией структуры Ходжа веса $1$ и
+позволяет определить индексы решётки Ходжа по блокам проводников ---
+целочисленные инварианты, вычислимые алгоритмически.
+
+\begin{definition}[поляризация]
+Для замкнутых форм $\widetilde E([\alpha],[\beta])
+=\iint_{C_N}\alpha\wedge\beta$; поляризационная форма на
+$H_1(C_N,\ZZ)$ --- форма пересечений $E:=J$.
+\end{definition}
+
+\begin{theorem}[$J$ --- поляризация веса 1]\label{th:pol}
+Относительно разложения Ходжа
+$H^1=H^{1,0}\oplus H^{0,1}$ выполнены соотношения Римана--Ходжа:
+(1) $\widetilde E(\omega,\omega')=0$ для голоморфных форм;
+(2) $-\frac1{2i}\widetilde E(\omega,\overline{\omega})
+=\int_{C_N}|g|^2dxdy>0$ для $0\ne\omega=g\,dz$.
+Следовательно, $\Jac(C_N)=H^1/H_1$ с поляризацией $J$ ---
+главное поляризованное абелево многообразие.
+\end{theorem}
+
+\begin{proof}
+(i) На кривой нет ненулевых голоморфных 2-форм:
+$\Omega^2_{C_N}=0$, поэтому $\omega\wedge\omega'=0$ --- это первое
+соотношение Римана, прочитанное на билинейном тождестве.
+(ii) $\omega\wedge\overline{\omega}=-2i|g|^2dx\wedge dy$, откуда
+$-\frac1{2i}\widetilde E(\omega,\overline{\omega})
+=\int_{C_N}|g|^2dxdy>0$ при $\omega\ne0$.
+Унимодулярность $J$ (симплектический базис) даёт главность
+поляризации.
+\end{proof}
+
+\begin{definition}[индексы по блокам]
+По проводнику $d\mid N$: решётка блока
+$\Lambda_d$ --- изотипная компонента характеров с проводником $d$;
+насыщение $\Lambda_d^{sat}$; индекс блока
+$\Ind(\Lambda_d)=[\Lambda_d^{sat}:\Lambda_d]$. Данные блока: ранг,
+сигнатура $E|_{\Lambda_d}$, определитель, индекс.
+\end{definition}
+
+\begin{theorem}[вычислимость индексов]\label{th:indcomp}
+Все величины конечны и вычисляются алгоритмически из замкнутых форм:
+насыщение --- приведением Эрмита--Смита; сигнатура и определитель ---
+из комбинаторной матрицы пересечений с фильтрацией по характерам;
+индекс --- отношение определителей. Число собственных форм по блокам
+даёт перепись $h_d$: $1+6+84=91$ ($N=15$);
+$1+6+9+30+84+276=406$ ($N=30$).
+\end{theorem}
+
+\begin{proof}
+Конечность: $H_1(C_N,\ZZ)$ --- свободная абелева группа ранга $2g$.
+Вычислимость: изотипная компонента определена над $\QQ(\zeta_N)$;
+её пересечение с целочисленной решёткой --- целочисленная
+подрешётка; базис насыщения --- алгоритм Эрмита--Смита по таблице
+действия $\mu_N\times\mu_N$ (комбинаторика листов). Ограничение
+поляризации: $E=J$, матрица комбинаторна. Перепись $h_d$ ---
+приложение монографии; суммы совпадают с родом (V1).
+\end{proof}
+
+\begin{databox}[числа --- сертификат H]
+Тип поляризации стенда (SNF): $(1,1,5,5,15,15,15,15)$;
+произведение инвариантных множителей $=1265625=3^4\cdot5^6
+=1125^2$ --- целочисленное согласование с дискриминантом;
+$\mathrm{vol}_h=1125$.
+\end{databox}
+
+\begin{statusbox}[итог]
+Поляризация доказана (Римана--Ходжа); вычислимость индексов
+доказана алгоритмически; сертификат H реализует вычисление с точной
+целочисленной сертификацией --- индексы не только вычислимы, но и
+вычислены.
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+\texttt{python3 laboratory.py} $\to$ <<Сертификаты $\to$ H1>>;
+Lean: \texttt{snf\_product} и \texttt{stand\_disc} --- машинные
+доказательства $1265625=1125^2$ и произведения SNF.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (пункт <<Стенды>>/<<Сертификаты>>),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

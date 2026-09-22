@@ -1,0 +1,134 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Certificate F: Rationalization}\\[0.4em]
+{\large the a priori denominator bound and exact LLL}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 14/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+Certificate F solves rationalization: recover exact rational values
+from numerical measurements with an a priori uniqueness guarantee.
+The key is the denominator bound computed before the measurements.
+
+\begin{theorem}[F1--F4]\label{th:Fstand}
+\begin{enumerate}[leftmargin=2em]
+\item[(F1)] Uniqueness: if $2\varepsilon<1/Q^2$ with $Q$ the
+denominator bound, an interval of width $2\varepsilon$ contains at
+most one rational with denominator $\le Q$. At $100$ digits the
+certified bound is $Q<7.07\cdot10^{49}$.
+\item[(F2)] The a priori bound is computed from geometry: K3 ---
+$4|\det G_8|=256$ (Cramer), torus --- $1$, Klein --- $2$ (in the
+$\tau$-basis) and $1$ (over integers).
+\item[(F3)] The integer $q$-scan recovers values without floating
+point: complexity $O(nQ)$, acceptance $d_q\le q/2$.
+\item[(F4)] Exact LLL: $\im\tau=\sqrt7/2$ recovered with the minimal
+polynomial $4X^2-7$; degree-2 polynomials are unique.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(F1) The diophantine estimate: two distinct reduced fractions with
+denominators $\le Q$ differ by at least $\frac1{qQ'}\ge\frac1{Q^2}$;
+an interval of width $<1/Q^2$ cannot contain both.
+(F2) By Cramer's rule the target coordinates are ratios of
+determinants built from the exact intersection matrix; denominators
+divide $\det G_8=64$; the bound $4\cdot64=256$ has margin.
+(F3) For each candidate $q\le Q$: $d_q=\min_n|qx-n|$ in integer
+multiplications; accept at $2d_q\le1$.
+(F4) LLL on the Klein period lattice: exact operations in
+$\QQ(\sqrt{-7})$ give $\im\tau=\sqrt7/2$; the polynomial $4X^2-7$ is
+unique; $j(\tau)=-3375$ with deviation $1.99\cdot10^{-117}$.
+\end{proof}
+
+\begin{databox}[the end-to-end K3 run]
+$49$ measurements $\to$ recovery $[Z]=[target]$ exact; maximal
+denominator $4$; the a priori bound $Q=256$ (margin $\times64$);
+torus: degrees $(2,2)$; Klein: $\re\tau=1/2$, $\im\tau=\sqrt7/2$,
+$\mathrm{tr}\,t=-1$, $\mathrm{norm}\,t=2$, $j=-3375$; the
+$\im\tau$ residual $7.75\cdot10^{-121}$. Negative test: the value
+$4\pi^2$ is \emph{rejected} by the scan --- consistent with
+Lindemann transcendence.
+\end{databox}
+
+\begin{remark}[the role of the negative test]
+The rejection of $4\pi^2$ is a power control: the scan does not
+accept ``similar'' values. The agreement with Lindemann's theorem
+(the transcendence of $\pi$) independently confirms the correctness
+of the acceptance criterion.
+\end{remark}
+
+\begin{statusbox}[summary]
+Certificate F accepted ($5/5$): rationalization with a guaranteed
+bound works end-to-end; the negative test passes.
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+\texttt{python3 laboratory.py} $\to$ ``Certificates $\to$ F''; the
+designer: an arbitrary value and bound $Q$ --- the lab recovers and
+prints the verdict.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

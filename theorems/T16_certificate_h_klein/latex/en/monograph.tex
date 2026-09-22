@@ -1,0 +1,162 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Certificate H and the Klein Stand}\\[0.4em]
+{\large the Gross Gamma-normalization, the volume 1125, and the heptad arithmetic}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 16/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+Certificate H --- the summit of the program arch: the full Gross
+$\Ga$-normalization on the $N=15/30$ stand, closing the
+$\Ga$-remainder of certificate G. The third stand --- the Klein
+quartic Jacobian with its arithmetic --- is assembled here as well.
+
+\begin{theorem}[H1 --- the cyclotomic lattice]\label{th:H1stand}
+The CM lattice: $\QQ(\zeta_{30})=\QQ(\zeta_{15})$ --- one stand,
+two $\Ga$-levels. The Riemann form is integral (Ramanujan sums);
+the polarization type (SNF) is $(1,1,5,5,15,15,15,15)$; the
+discriminant is $3^4\cdot5^6=1265625=1125^2$.
+\end{theorem}
+
+\begin{proof}
+The Ramanujan form is integral; the SNF is computed by the exact
+integer algorithm; the product of invariant factors
+$1\cdot1\cdot5\cdot5\cdot15^4=1265625$ matches $3^4\cdot5^6$ ---
+verified by factorization. The field: $\phi(30)=\phi(15)=8$; the
+isomorphism $\zeta_{30}\mapsto-\zeta_{15}^8$.
+\end{proof}
+
+\begin{theorem}[H2 --- the $\Ga$-volume]\label{th:H2stand}
+\[
+  \mathrm{vol}_h=(2\pi)^{32}\prod_{k=1}^{N-1}\Ga(k/N)^{-c_k}=1125
+  \qquad (N=15\ \text{and}\ 30),
+\]
+the exponents $c_k$ exact (for $N=15$: $c_k=4$ at ten values of $k$,
+$c_k=6$ at $k=3,6,9,12$); the residual $1.01\cdot10^{-119}$;
+$\det V^2=1265625/256$; PSLQ deflation ($N=15$) recovers the integer
+exponent vector; $N=30$ certified by the sine count.
+\end{theorem}
+
+\begin{proof}
+The Chowla--Selberg product over characters: the exponents collect
+the conductor multiplicities $h_d$. Computation at $dps=120$ gives
+$1125$ with residual $10^{-119}$; the agreement with
+$\sqrt{\disc}$ of H1 is exact. The sine count:
+$\Ga(k/30)\Ga((30-k)/30)=\pi/\sin(\pi k/30)$ closes the identity at
+even $k$ without PSLQ.
+\end{proof}
+
+\begin{theorem}[H3--H6]\label{th:H36}
+\emph{(H3)} Every Fermat period is the $\Ga$-monomial
+$\frac1N\zeta^{ra+sb}\Ga(a/N)\Ga(b/N)/\Ga((a+b)/N)$ ($91/406$
+periods; quadratures $10^{-121}$); level $30$ with odd $k$ is not
+reducible to $15$.
+\emph{(H4)} The moduli $|\omega(\tau_i)^2|$ are $\Ga$-monomials; the
+phase $\psi=\frac{(1+3\sqrt5)+i(\sqrt{15}-\sqrt3)}8=R/|R|$ is
+recovered by LLL; $|R|=3-\sqrt5$ is a unit of $\QQ(\sqrt5)$.
+\emph{(H5)} The ladder $\pi/7$, $\pi/15$, $\pi/30$ --- rungs of one
+$\mu_N$-quantum ladder; the weights $4\sin(\pi k/N)$ agree.
+\emph{(H6)} The denominator bound $Q_{\text{stand}}=2N\max s_i=480$;
+the F rationalization closes without a scan.
+\end{theorem}
+
+\begin{proof}
+(H3) --- the closed period form + certificate B ($69$ tests,
+$3.9\cdot10^{-36}$) + deep quadratures ($10^{-121}$);
+non-reducibility: $\Ga(1/30)$ is not reduced by the inventory to
+denominator $15$. (H4) --- LLL in $\QQ(\sqrt{-3},\sqrt5)$ recovers
+the exact coordinates; $R\bar R=(3-\sqrt5)^2$ exact.
+(H5) --- the phases $\pi/7$ (Klein), $\pi/15$, $\pi/30$ are levels
+of the construction $\delta=\pi/N$; the weights agree with the
+Ramanujan tables. (H6) --- $2\cdot30\cdot8=480$; all measurements
+inside the F1 uniqueness intervals.
+\end{proof}
+
+\begin{databox}[Klein --- the stand within H]
+Smoothness: $28(xyz)^3=0$; genus $3$; $\Delta=-343=-7^3$;
+$c_4=105$; $j=-3375=-15^3$; the form $W^2=v^3-35v-98$; roots $7,
+\frac{-7\pm\sqrt{-7}}2$; $\Omega=1.9333117056\ldots$ (three
+schemes, agreement $1.4\cdot10^{-32}$); $\tau=(1+\sqrt{-7})/2$;
+$j(\tau)=-3375$ from the period ($57$ digits, anchor $j(i)=1728$);
+$\zeta+\zeta^2+\zeta^4=\tau-1$; isotypy $(1,1,0,1)$;
+$\lambda_1$(Heawood)$=\sqrt2$, multiplicity $6$; the Fano code
+$C_7+\mu_4$.
+\end{databox}
+
+\begin{statusbox}[summary]
+Certificate H accepted ($6/6$): the cyclotomic lattice, the volume
+$1125$ in the full $\Ga$-normalization, the $\Ga$-monomial periods,
+the Gross normalization, the ladder, the denominators --- the arch
+of the program is closed. Runtime $\sim$2 minutes.
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+\texttt{python3 laboratory.py} $\to$ ``Certificates $\to$ H'';
+``Stands $\to$ Klein''; Lean: \texttt{stand\_disc},
+\texttt{snf\_product}, \texttt{klein\_integers}.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

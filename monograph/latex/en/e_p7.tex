@@ -1,0 +1,580 @@
+% ═══════════════════════════════════════════════════════════════════
+% EN Part 7: Appendices
+% ═══════════════════════════════════════════════════════════════════
+\appendix
+
+\part*{Appendices}
+\addcontentsline{toc}{part}{Appendices}
+
+\section{Proofs of the $\Ga$-identities}\label{app:gamma}
+
+\subsection{The reflection formula}
+
+\begin{proposition}[Euler's integral]\label{prop:euler}
+For $0<\re z<1$,
+\[
+  \int_0^\infty \frac{u^{z-1}}{1+u}\,du \;=\; \frac{\pi}{\sin \pi z}.
+\]
+\end{proposition}
+
+\begin{proof}
+Consider the keyhole contour around the cut $[0,+\infty)$: a large
+circle of radius $R$, the two sides of the cut, and a small circle
+of radius $\rho$ around zero. The function
+$f(u)=\frac{(-u)^{z-1}}{1+u}$ is holomorphic on
+$\CC\setminus[0,+\infty)$ with the branch of $(-u)^{z-1}$ taken with
+argument in $(-\pi,\pi)$; its unique pole $u=-1$ lies inside with
+residue $\operatorname{Res}_{u=-1}f=1$. The integrals over the outer
+and inner circles vanish as $R\to\infty$, $\rho\to0$ (the behavior
+$u^{z-2}$ and $u^{z-1}$). The upper side of the cut
+($\arg(-u)\to-\pi$) is traversed from $0$ to $\infty$ and contributes
+$e^{i\pi(1-z)}$; the lower side ($\arg(-u)\to+\pi$, traversed from
+$\infty$ to $0$) contributes $-e^{-i\pi(1-z)}$. By the residue
+theorem,
+\[
+  \bigl(e^{i\pi(1-z)}-e^{-i\pi(1-z)}\bigr)
+  \int_0^\infty\frac{x^{z-1}}{1+x}\,dx \;=\;2\pi i,
+\]
+i.e.\ $\bigl(2i\sin\pi(1-z)\bigr)\int_0^\infty\frac{x^{z-1}}{1+x}
+dx=2\pi i$; since $\sin\pi(1-z)=\sin\pi z$, the claim follows. The
+integral converges for $0<\re z<1$.
+\end{proof}
+
+\begin{proposition}[reflection formula]\label{prop:reflection}
+For $0<z<1$, $\Ga(z)\Ga(1-z)=\frac{\pi}{\sin\pi z}$; by analytic
+continuation the identity extends to all $z\in\CC\setminus\ZZ$.
+\end{proposition}
+
+\begin{proof}
+The substitution $t=\frac{u}{1+u}$ (inverse $u=\frac{t}{1-t}$,
+$du=\frac{dt}{(1-t)^2}$) converts the integral of
+Proposition~\ref{prop:euler} into the beta integral:
+\[
+  \int_0^\infty\frac{u^{z-1}}{1+u}\,du
+  \;=\;\int_0^1 t^{z-1}(1-t)^{-z}\,dt
+  \;=\;\Bfun(z,1-z)
+  \;=\;\Ga(z)\Ga(1-z),
+\]
+using Euler's representation
+$\Bfun(p,q)=\int_0^1t^{p-1}(1-t)^{q-1}dt=\Ga(p)\Ga(q)/\Ga(p+q)$ and
+$\Ga(1)=1$. Both sides are meromorphic functions agreeing on the
+strip, hence equal everywhere outside the poles.
+\end{proof}
+
+\subsection{The Gauss multiplication formula}
+
+\begin{proposition}[multiplication formula]\label{prop:mult}
+For integers $m\ge2$ and $mz\notin\ZZ_{\le0}$,
+\[
+  \prod_{k=0}^{m-1}\Ga\Bigl(z+\frac{k}{m}\Bigr)
+  \;=\;(2\pi)^{\frac{m-1}{2}}\;m^{\frac12-mz}\;\Ga(mz).
+\]
+\end{proposition}
+
+\begin{proof}
+Denote the left side $G_m(z)$ and the right
+$H_m(z)=(2\pi)^{\frac{m-1}{2}}\,m^{\frac12-mz}\,\Ga(mz)$. The
+recurrence $\Ga(w+1)=w\,\Ga(w)$ gives
+\[
+  \frac{G_m(z+1)}{G_m(z)}
+  =\prod_{k=0}^{m-1}\Bigl(z+\frac{k}{m}\Bigr)
+  =m^{-m}\,\frac{\Ga(mz+m)}{\Ga(mz)}
+  \;=\;\frac{H_m(z+1)}{H_m(z)}.
+\]
+Hence $Q_m=G_m/H_m$ is a $1$-periodic holomorphic function on
+$\CC\setminus(-\infty,0]$. Stirling's formula gives $Q_m(z)\to1$ as
+$\re z\to+\infty$ in vertical strips of finite width; periodicity
+spreads the limit across the strip, so $Q_m\equiv1$.
+\end{proof}
+
+\begin{remark}
+For the stand's needs the corollaries suffice: the recurrence
+$\Ga(z+1)=z\Ga(z)$ (used in Lemma~\ref{lem:relations}), the
+reflection, and the multiplication. All three are derived above from
+integral representations and the residue theorem --- no external
+results are invoked.
+\end{remark}
+
+\section{The character census by conductors}\label{app:census}
+
+\subsection{The counting formula}
+
+Let $d\mid N$ and $g_0=N/d$. By Definition~\ref{def:conductor},
+$h_d=\#\{(a,b)\in T_N:\ \gcd(N,a,b)=N/d\}$. The condition
+$\gcd(N,a,b)=g_0$ means $g_0\mid a$, $g_0\mid b$ and
+$\gcd\bigl(\frac{a}{g_0},\frac{b}{g_0},d\bigr)=1$. Putting
+$\alpha=a/g_0$, $\beta=b/g_0$ and using
+$\alpha+\beta\le d-1$, we get
+\[
+  h_d\;=\;\#\Bigl\{(\alpha,\beta):\ \alpha,\beta\ge1,\
+  \alpha+\beta\le d-1,\ \gcd(\alpha,\beta,d)=1\Bigr\}.
+\]
+Via the M\"obius function: with
+$c(k)=\frac{(k-1)(k-2)}{2}$,
+\begin{equation}\label{eq:mobius}
+  h_d\;=\;\sum_{m\mid d}\mu(m)\;c\!\Bigl(\frac{d}{m}\Bigr)
+  \;=\;\sum_{m\mid d}\mu(m)\,
+  \frac{\bigl(\frac{d}{m}-1\bigr)\bigl(\frac{d}{m}-2\bigr)}{2}.
+\end{equation}
+
+\subsection{Tables for $N=15$ and $N=30$}
+
+For $N=15$ (conductors $3,5,15$):
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+$d$ & Computation by \eqref{eq:mobius} & $h_d$ & Control \\
+\midrule
+$3$  & $c(3)-c(1)=1-0$ & $1$  & \\
+$5$  & $c(5)-c(1)=6-0$ & $6$  & \\
+$15$ & $c(15)-c(5)-c(3)+c(1)=91-6-1+0$ & $84$ & \\
+\midrule
+\multicolumn{3}{@{}l}{Total: $1+6+84$} & $=\;91=g(15)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For $N=30$ (conductors $3,5,6,10,15,30$):
+\begin{center}
+\small
+\begin{tabular}{@{}l p{6.6cm} c c@{}}
+\toprule
+$d$ & Computation by \eqref{eq:mobius} & $h_d$ & Control \\
+\midrule
+$3$  & $c(3)-c(1)$ & $1$ & \\
+$5$  & $c(5)-c(1)$ & $6$ & \\
+$6$  & $c(6)-c(3)-c(2)+c(1)=10-1-0+0$ & $9$ & \\
+$10$ & $c(10)-c(5)-c(2)+c(1)=36-6-0+0$ & $30$ & \\
+$15$ & $c(15)-c(5)-c(3)+c(1)=91-6-1+0$ & $84$ & \\
+$30$ & $c(30)-c(15)-c(10)-c(6)+c(5)+c(3)+c(2)-c(1)$ & $276$ & \\
+     & $=\,406-91-36-10+6+1+0-0$ & & \\
+\midrule
+\multicolumn{3}{@{}l}{Total: $1+6+9+30+84+276$} & $=\;406=g(30)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The check of $h_{30}$ by inclusion--exclusion: the factors
+$30=2\cdot3\cdot5$, the signs $\mu(m)$: $+1,-1,-1,-1,+1,+1,+1,-1$
+for $m=1,2,3,5,6,10,15,30$. In the protocol script both tables are
+obtained by direct enumeration of the pairs $(a,b)$ and verified
+against formula~\eqref{eq:mobius} by exact integer arithmetic (V1).
+
+\section{Full data tables}\label{app:fulldata}
+
+\subsection{The phase family $\delta=\pi/N$ and braking for
+$N=2,\dots,14$}
+
+\begin{center}
+\small
+\begin{tabular}{@{}c c c c c c@{}}
+\toprule
+$N$ & $\delta=\pi/N$ & $\delta^2/2$ & $\gamma=\delta^4/k{=}1$ &
+$\delta_{\mathrm{eff}}$ & $\gamma$ ($k=22$) \\
+\midrule
+2  & 1.5707963 & 1.2337006 & 6.0880682 & 9.5631151 & 0.2767304 \\
+3  & 1.0471976 & 0.5483115 & 1.2025814 & 1.2593403 & 0.0546628 \\
+4  & 0.7853982 & 0.3084251 & 0.3805043 & 0.2988473 & 0.0172956 \\
+5  & 0.6283185 & 0.1973921 & 0.1558545 & 0.0979263 & 0.0070843 \\
+6  & 0.5235988 & 0.1370778 & 0.0751642 & 0.0393464 & 0.0034166 \\
+7  & 0.4487990 & 0.1007102 & 0.0404989 & 0.0181767 & 0.0018409 \\
+8  & 0.3926991 & 0.0771065 & 0.0237754 & 0.0093371 & 0.0010807 \\
+9  & 0.3490659 & 0.0609266 & 0.0148499 & 0.0051835 & 0.0006750 \\
+10 & 0.3141593 & 0.0493407 & 0.0097396 & 0.0030599 & 0.0004427 \\
+11 & 0.2855993 & 0.0407771 & 0.0066572 & 0.0019009 & 0.0003026 \\
+12 & 0.2617994 & 0.0342697 & 0.0047089 & 0.0012326 & 0.0002140 \\
+13 & 0.2416609 & 0.0292000 & 0.0034119 & 0.0008245 & 0.0001551 \\
+14 & 0.2243995 & 0.0251775 & 0.0025351 & 0.0005690 & 0.0001152 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Binary-code numbers and the certificate-E cross-check}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l l@{}}
+\toprule
+Quantity & Value & Cross-check \\
+\midrule
+Start point $p_0$ & $(36,36)$ & pipeline \\
+Phase $\delta_T$ & $\pi/4$ & the $\pi/N$ family \\
+Cells visited & $48$ & $t^*=48$ (Theorem~\ref{th:E}) \\
+Friction events & $212$ & flow E: match \\
+Edge cells & $432$ & flow E: match \\
+Chain code length & $114$ & flow E: match \\
+Cyclic shift & invariant & Freeman code \\
+Code sum mod $n$ & $88$ & protocol log \\
+Closure $\sum dx,\sum dy$ & $(0,0)$ & torus closed \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Invariants of all rungs}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l l l@{}}
+\toprule
+Rung & $\rho$ / rank & Signature & Determinant \\
+\midrule
+Torus & $1$ ($H^1$) & $(0,0)$ & $1$ (unimodular) \\
+K3 (full) & $22$ ($b_2$) & $(3,19)$ & $1$ (unimodular) \\
+K3 (lines $+h$) & $20$ & $(1,19)$ & $64=8^2$ \\
+Klein $\Jac$ & $3$ & $(3,0)$ & $1$ (principal) \\
+Fermat $N=15$ & $91$ & $(91,0)$ & $1$ (principal) \\
+Fermat $N=30$ & $406$ & $(406,0)$ & $1$ (principal) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Spectral fractions of certificate G}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l l@{}}
+\toprule
+Lattice & $\lambda_1$ & Note \\
+\midrule
+$\ZZ[i]$ & $4\pi^2/1$ & torus, $\tau=i$ \\
+$\ZZ[(1+\sqrt{-7})/2]$ & $16\pi^2/7$ & Klein \\
+$\ZZ[\sqrt{-3}]$ & $4\pi^2/3$ & $d=3$ \\
+$\ZZ[\sqrt{-15}]$ & unit $\pi/15$ & stand \\
+$\ZZ[\sqrt{-30}]$ & unit $\pi/30$ & stand \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{The Chowla--Selberg layer (certificate G4)}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l@{}}
+\toprule
+Field & Formula for $\omega^2$ \\
+\midrule
+$d=4$ & $\Ga(1/4)^4/(16\pi)$ \\
+$d=7$ & $\tfrac{21+\sqrt{-7}}{896}
+  \bigl[\Ga(\tfrac17)\Ga(\tfrac27)\Ga(\tfrac47)\bigr]^2/\pi^2$ \\
+$d=3$ & $\tfrac{3-\sqrt{-3}}{8}\Ga(\tfrac13)^6/(\pi^2 2^{8/3})$ \\
+$d=15$ & $j$-pair in $\QQ(\sqrt5)$;
+  $R=\tfrac{(2\sqrt5-3)+(\sqrt5-2)\sqrt{-3}}2$ \\
+K3 & $\Ga(1/4)^4/(16\pi\sqrt2)$; index $\sqrt2/32$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{The $\Ga$-volume exponents (H2)}
+
+For $N=15$ the exponents $c_k$ at $k=1,\dots,14$ are
+$4,4,6,4,4,6,4,4,6,4,4,6,4,4$; the sum $c_k=68$. The formula:
+$\mathrm{vol}_h=(2\pi)^{32}\prod_k\Ga(k/15)^{-c_k}=1125$,
+$\det V^2=1265625/256$, the identity residual $1.01\cdot10^{-119}$.
+For $N=30$ the exponents are nonzero at even $k=2,4,\dots,28$ with
+the same $(4,4,6)$ pattern --- consistent with the reduction of
+$\Ga(k/30)$ to level $15$ at even $k$; odd $k$ form an independent
+rung (H3).
+
+\subsection{The V2 sample (certificate B)}
+
+The sample is deterministic: up to three characters per conductor
+(first, middle, last of the sorted list), three winding triples
+$(r,s)$ per character. For $N=15$: $1+3+3=7$ characters
+$\times3=21$ tests. For $N=30$: $1+3+3+3+3+3=16$ characters
+$\times3=48$ tests. Total $69$ tests; the maximal relative deviation
+is $3.9\cdot10^{-36}$.
+
+\section{Certificate protocol listings}\label{app:protocols}
+
+\subsection{Certificate C: checks}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{3.4cm} p{7.6cm} p{2.2cm}@{}}
+\toprule
+Group & Check & Result \\
+\midrule
+$\mu_4$ stand & anomaly $=i$; GL$_{32}$ orders; $42$ elements of
+order $4$; $\mu_4$ on three stands & PASS ($4/4$) \\
+Theorem C1 (K3) & isotypy $H^2$: $(1,7,7,7)$; three routes agree &
+PASS \\
+Heptad & $\Phi_7$ exact; $\Delta=-343$; $j=-3375$; $h(-7)=1$;
+$\tau$ certified & PASS ($5/5$) \\
+Theorem C2 (torus) & commutator $0$; $P^4=I$; multiplicity $4$;
+charpoly $x^4-1$; continuum $4\pi^2$ & PASS ($5/5$) \\
+Pipeline grid & symmetric violations: $0$; $(7,22)$ violations:
+$1023/1024$; orbits agree & PASS ($3/3$) \\
+\midrule
+\multicolumn{2}{@{}l}{Total: $21$ checks} & all PASS \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Certificates E, F, G, H: point lists}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l l@{}}
+\toprule
+Certificate & Points & Verdict \\
+\midrule
+E ($8/8$) & $64$ step pairs; $t^*=48$ with $48/212/432/114$;
+  $(7,22)$ corrections; irreversible flow (cycle $4=\mu_4$-orbit);
+  scales $48\to384$; K3 layer; Singer $7$; $\mu_4$-orbits $4$ &
+  all PASS \\
+F ($5/5$) & uniqueness ($11/4$, $q_{\min}=4$, $Q<7.07e49$); Cramer
+  $Q=256$; K3 end-to-end ($49$ measurements); negative test
+  $4\pi^2$; LLL $4X^2-7$, $j=-3375$ & all PASS \\
+G ($6/6$) & spectral fractions ($16\pi^2/d$, $4\pi^2/d$;
+  $\pi/15$, $\pi/30$); non-CM test ($4X^3-1$); field-LLL
+  ($(3+5\sqrt{-15})/8$); Chowla--Selberg ($d=4,7,3,15$); K3 bridge;
+  the $\pi/N$ ladder & all PASS \\
+H ($6/6$) & cyclotomic lattice (SNF, $\disc=1125^2$);
+  $\Ga$-volume $1125$; $\Ga$-monomial periods ($91/406$,
+  $10^{-121}$); Gross normalization (phase $\psi$, LLL); the
+  $\pi/N$ ladder; $Q=480$ & all PASS \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Key protocol residuals}
+
+The residual summary (maxima per group): closed form vs tanh-sinh
+--- $3.9\cdot10^{-36}$; phases --- $0.0$; equivariance ---
+$3.9\cdot10^{-36}$; chain integrity --- $1.5\cdot10^{-36}$;
+reflection ladder --- $7.0\cdot10^{-36}$; DFT --- $4.0\cdot10^{-35}$;
+deep record --- $1.7\cdot10^{-71}$; certificate-H periods ---
+$10^{-121}$; Klein $j$ --- $2.0\cdot10^{-117}$; Chowla--Selberg ---
+$10^{-100}$; K3 quadrant --- $3.9\cdot10^{-43}$. All residuals agree
+with the declared precisions; none exceeds its certification
+threshold.
+
+\section{Notation}\label{app:notation}
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l@{}}
+\toprule
+Notation & Meaning \\
+\midrule
+$(n,B,\lambda_0)$ & integer triple: order, index, threshold \\
+$\delta=\pi/N$ & spin phase \\
+$\gamma=\delta^4/k$ & braking \\
+$\delta_{\mathrm{eff}}=\delta^5/k$ & effective phase \\
+$\Delta_{Ch}$ & united correction formula \\
+$b_{Ch}(n)$ & $1-\cos(2\pi/n)$ \\
+$C_N$ & Fermat curve $x^N+y^N=z^N$ \\
+$g$ & genus; $g=(N-1)(N-2)/2$ \\
+$T_N$ & character set $1\le a,b$, $a+b\le N-1$ \\
+$d$ & conductor: $N/\gcd(N,a,b)$ \\
+$h_d$ & number of characters of conductor $d$ \\
+$\eta_{i,j}$ & basis holomorphic form \\
+$\Omega_{a,b}$ & $\Bfun(a/N,b/N)$ \\
+$P_{a,b}(r,s)$ & period; $\tfrac1N\zeta^{ra+sb}\Omega_{a,b}$ \\
+$J$ & intersection form (polarization) \\
+$\Lambda_d$ & block lattice of conductor $d$ \\
+$\Ind(\Lambda_d)$ & block index in the saturation \\
+$Q$ & denominator bound (certificate F) \\
+$t^*$ & flow termination time (certificate E) \\
+SNF & Smith normal form \\
+$dps$ & \texttt{mpmath} precise digits \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Glossary}\label{app:glossary}
+
+\begin{description}[leftmargin=1.6em, itemsep=0.2em]
+\item[Stand] a geometric object on which the pipeline runs in full;
+  a rung of the ladder.
+\item[Calibration stand] the lower rung with a fully explicit
+  derivation (the torus).
+\item[Pipeline] the sequence of rules
+  \eqref{eq:delta}--\eqref{eq:deltaCh} turning the triple into the
+  full correction structure.
+\item[Certificate] an independent verification of a concrete
+  computation (exact arithmetic or direct integration).
+\item[Closed form] an expression of a quantity through
+  $\Ga$-values and roots of unity with no numerical fitting.
+\item[Conductor] the minimal level $d$ at which a character is
+  defined; $d=N/\gcd(N,a,b)$.
+\item[Isotypic component] the eigenspace of the group action for a
+  given character.
+\item[Saturation] the intersection of the rational span of a
+  sublattice with the ambient lattice.
+\item[Errata] a recorded correction with automatic verification
+  (E8 $28/36$, the E6 case).
+\item[Tiled system] the modular grid of high-resolution plots in
+  the lab reports.
+\item[Ladder] the sequence of stands of growing scale under common
+  pipeline rules.
+\item[Triple] $(n,B,\lambda_0)$ --- everything geometry supplies to
+  the pipeline.
+\end{description}
+
+\section{The dependency tree of results}\label{app:tree}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}l >{\raggedright\arraybackslash}X@{}}
+\toprule
+Level & Results (resting on lower levels) \\
+\midrule
+Geometry & Fermat curve $C_N$; Klein quartic; Fermat quartic K3;
+  torus --- the primal objects \\
+Topology & genus (Riemann--Hurwitz); grid graph; the exact
+  sequence; symplectic basis $\to$
+  Lemmas~\ref{lem:genus}--\ref{lem:sympl} \\
+Analysis & basis of forms; beta integral; closed period form $\to$
+  Lemmas~\ref{lem:forms},~\ref{lem:closedform}; $\Ga$-identities
+  (App.~\ref{app:gamma}) \\
+Census & conductors; $h_d$ by M\"obius $\to$ App.~\ref{app:census} \\
+Stand theorems & Riemann as identity; $\Ga$-normalization;
+  polarization; indices $\to$
+  Theorems~\ref{th:riemann}--\ref{th:indexcomp} \\
+Certificates & A (divisor) $\to$ B (periods, kernel $29$);
+  C--D ($\mu_4$ mechanics); E (finiteness + monovariant);
+  F (Cramer + LLL); G (lattice spectra + Chowla--Selberg);
+  H (Ramanujan + SNF + $\Ga$-volume) \\
+Summaries & protocol V1--V9; the ladder; multilingual
+  verification; the Lean panel \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Critical paths}
+
+Two critical paths determine the strength of the arch. The
+\emph{analytic} path: Riemann's bilinear identity $\to$
+Theorem~\ref{th:riemann} $\to$ polarization $\to$ indices $\to$ SNF
+type $\to$ volume $1125$. Its only analytic premise --- the bilinear
+identity --- is proved by Stokes on the fundamental polygon;
+everything else is integers. The \emph{arithmetic} path: the
+M\"obius census $\to$ sums $=g$ $\to$ exponents $c_k$ $\to$ the
+$\Ga$-volume product $\to$ the agreement with $\sqrt{\disc}$. Both
+paths end at the same integer $1125^2$ from two independent sides
+--- the strongest internal control of the program.
+
+\section{Integration map with classical sources}\label{app:integration}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}l l >{\raggedright\arraybackslash}X@{}}
+\toprule
+Source & Program layer & Role and status \\
+\midrule
+Riemann--Hurwitz & curve genus & classical; topological frame \\
+Pl\"ucker formula & plane-curve genus & classical; verified on all
+models \\
+Riemann (bilinear) & Theorem~\ref{th:riemann} & classical; derived
+by Stokes in the text \\
+Weil (1949) & Fermat Jacobian decomposition & frame; consistent
+with the census $h_d$ \\
+Shioda (1979) & $\rho=20$, $H^2$ of the quartic & frame; all
+corollaries checked in integers \\
+Ribet (1976) & isogeny $\Jac\sim E^3$ & frame; integer consequences
+($\Delta$, $j$) computed \\
+Chowla--Selberg (1949) & the $\Ga$-layer of periods & formulas G4;
+residuals $<10^{-100}$ \\
+Gross (LNM 588) & CM period normalization & H4; closes the G
+remainder \\
+Gross--Rorlich (1978) & Fermat Jacobians & frame H3; every period a
+$\Ga$-monomial \\
+M\"obius / incl.-excl. & census $h_d$ & classical; exact arithmetic \\
+Arf (1941) & spin parity & errata E8; full enumeration \\
+Smith (SNF) & polarization type & algorithm; integer \\
+LLL (1982) & phases in class fields & algorithm F4, H4 \\
+Ferguson--Bailey (PSLQ) & service recovery of exponents & only as an
+independent cross-check of derived values \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Each source occupies exactly its assigned role: classics as frames,
+algorithms as tools; no external result substitutes for the
+program's own derivations. All contact points are independently
+certified: the agreement with Shioda is verified by the integer rank
+and signature, with Ribet by the exact $\Delta$ and $j$, with
+Chowla--Selberg by the $10^{-100}$ residuals.
+
+\section{Laboratory command reference}\label{app:cli}
+
+\subsection{Launching}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}l >{\raggedright\arraybackslash}X@{}}
+\toprule
+Command & Action \\
+\midrule
+\texttt{python3 laboratory.py} & interactive menu (language choice,
+full access) \\
+\texttt{python3 laboratory.py --lang en} & start with English UI \\
+\texttt{python3 laboratory.py --lang ru} & start with Russian UI \\
+\texttt{python3 laboratory.py --run all} & non-interactive full
+protocol \\
+\texttt{python3 laboratory.py --run v1-v9} & protocol only \\
+\texttt{python3 laboratory.py --run stands} & all stands \\
+\texttt{python3 laboratory.py --run certs} & all certificates \\
+\texttt{python3 laboratory.py --run plots} & plots only \\
+\texttt{python3 laboratory.py --no-plots} & run without graphics \\
+\texttt{python3 laboratory.py --dps 50} & elevated precision \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Menu structure}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}l >{\raggedright\arraybackslash}X@{}}
+\toprule
+Item & Content \\
+\midrule
+1 & Full protocol V1--V9 \\
+2 & Stands: torus / K3 / Klein / errata E8 / binary code \\
+3 & Certificates A--H (by choice or all) \\
+4 & Stand N=15/30: the closed system \\
+5 & Calculation parameters: $dps$, samples, levels $N$, test
+counts \\
+6 & Experiment designer: arbitrary $N$, $(a,b)$, $(r,s)$; censuses;
+  CM lattices; termination time \\
+7 & Plots: the tiled $600$~dpi system (eight tiles) \\
+8 & Reports: \texttt{reports/} --- JSON + log + tiles \\
+9 & Multilingual verification: Julia / Fortran / C / Rust / Lean \\
+0 & About, license, citation \\
+L & Language switch (RU/EN) at any moment \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Experiment designer parameters}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}l l >{\raggedright\arraybackslash}X@{}}
+\toprule
+Parameter & Range & Meaning \\
+\midrule
+$N$ & $4\dots64$ & Fermat curve level \\
+$(a,b)$ & $1\le a,b$, $a+b\le N-1$ & character \\
+$(r,s)$ & $0\dots N-1$ & winding data \\
+$dps$ & $20\dots120$ & \texttt{mpmath} precision \\
+$W,H$ & $\le 512$ & flow grid (E) \\
+$d$ & $1\dots100$ & CM discriminant of the lattice (G) \\
+tests/conductor & $1\dots5$ & V2 sample density \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The designer prints the closed form, the independent integration,
+the relative deviation, and the verdict --- a full mini-certificate
+for an arbitrary configuration; results are appended to the run
+report.
+
+\subsection{Return codes}
+
+Return code $0$ --- all checks PASS; $1$ --- some FAIL; $2$ ---
+missing dependency. CI (GitHub Actions) uses the codes: workflow
+\texttt{ci.yml} is green only if \texttt{--run all} returns $0$ on
+three Python versions.

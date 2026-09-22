@@ -1,0 +1,147 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Theorem 3: Polarization and Hodge Lattice Indices}\\[0.4em]
+{\large the principal polarization and computability of block indices}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 6/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+The intersection form $J$ on $H_1(C_N,\ZZ)$ is not merely a
+topological invariant: it is a polarization of the weight-1 Hodge
+structure and defines the Hodge lattice indices per conductor
+blocks --- integer invariants computable algorithmically.
+
+\begin{definition}[polarization]
+For closed forms $\widetilde E([\alpha],[\beta])
+=\iint_{C_N}\alpha\wedge\beta$; the polarization form on
+$H_1(C_N,\ZZ)$ is the intersection form $E:=J$.
+\end{definition}
+
+\begin{theorem}[$J$ is a weight-1 polarization]\label{th:pol}
+With respect to the Hodge decomposition
+$H^1=H^{1,0}\oplus H^{0,1}$ the Riemann--Hodge relations hold:
+(1) $\widetilde E(\omega,\omega')=0$ for holomorphic forms;
+(2) $-\frac1{2i}\widetilde E(\omega,\overline{\omega})
+=\int_{C_N}|g|^2dxdy>0$. Hence $\Jac(C_N)$ with $J$ is a principally
+polarized abelian variety.
+\end{theorem}
+
+\begin{proof}
+(i) A curve has no nonzero holomorphic 2-forms, so
+$\omega\wedge\omega'=0$ --- the first Riemann relation read on the
+bilinear identity. (ii)
+$\omega\wedge\overline{\omega}=-2i|g|^2dx\wedge dy$ gives
+$-\frac1{2i}\widetilde E(\omega,\overline{\omega})
+=\int_{C_N}|g|^2dxdy>0$. The unimodularity of $J$ gives the
+principality.
+\end{proof}
+
+\begin{definition}[block indices]
+For a conductor $d\mid N$: the block lattice $\Lambda_d$ --- the
+isotypic component of characters with conductor $d$; the saturation
+$\Lambda_d^{sat}$; the block index
+$\Ind(\Lambda_d)=[\Lambda_d^{sat}:\Lambda_d]$. Block data: rank,
+signature of $E|_{\Lambda_d}$, determinant, index.
+\end{definition}
+
+\begin{theorem}[computability of the indices]\label{th:indcomp}
+All quantities are finite and computed algorithmically from the
+closed forms: the saturation by Hermite--Smith reduction; the
+signature and determinant from the combinatorial intersection
+matrix filtered by characters; the index as a determinant ratio.
+The counts per block: $1+6+84=91$ ($N=15$);
+$1+6+9+30+84+276=406$ ($N=30$).
+\end{theorem}
+
+\begin{proof}
+Finiteness: $H_1(C_N,\ZZ)$ is free abelian of rank $2g$.
+Computability: the isotypic component is defined over
+$\QQ(\zeta_N)$; its intersection with the integer lattice is an
+integer sublattice; the saturation basis by the Hermite--Smith
+algorithm on the $\mu_N\times\mu_N$-action table (sheet
+combinatorics). The restricted polarization: $E=J$, a combinatorial
+matrix. The census sums match the genera (V1).
+\end{proof}
+
+\begin{databox}[numbers --- certificate H]
+The stand polarization type (SNF): $(1,1,5,5,15,15,15,15)$; the
+product of invariant factors $=1265625=3^4\cdot5^6=1125^2$ ---
+exact integer agreement with the discriminant; $\mathrm{vol}_h=1125$.
+\end{databox}
+
+\begin{statusbox}[summary]
+The polarization is proved (Riemann--Hodge); the computability is
+proved algorithmically; certificate H implements the computation
+with exact integer certification --- the indices are not only
+computable but computed.
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+\texttt{python3 laboratory.py} $\to$ ``Certificates $\to$ H1'';
+Lean: \texttt{snf\_product}, \texttt{stand\_disc}.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

@@ -1,0 +1,132 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Сертификат E: завершимость потока}\\[0.4em]
+{\large точное время t* = lcm и терминальный цикл}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 13/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+Сертификат E доказывает завершимость дискретного потока конвейера и
+определяет точное время завершения. Любой эксперимент лаборатории
+заведомо обрывается --- фундаментальное свойство устойчивости.
+
+\begin{theorem}[E1--E4: завершимость]\label{th:Estand}
+\begin{enumerate}[leftmargin=2em]
+\item[(E1)] Пространство состояний потока конечно.
+\item[(E2)] Существует моновариант открытия: каждая итерация либо
+открывает новое состояние, либо переводит поток в терминальный
+режим.
+\item[(E3)] По принципу Дирихле поток завершается; терминальное
+состояние --- цикл.
+\item[(E4)] Точное время завершимости
+$t^*=\lcm\bigl(W/\gcd(a,W),\,H/\gcd(b,H)\bigr)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(E1) Состояния --- пары (позиция, фаза) на конечной решётке с
+конечной группой фаз: не более $4WH$ состояний.
+(E2) Моновариант --- множество посещённых ячеек: строго растёт в
+режиме открытия, ограничен размером сетки.
+(E3) Строгий рост конечного моноварианта обрывается; обрыв ---
+циклическое повторение конфигурации по определению перехода.
+(E4) Возврат по горизонтали --- через $W/\gcd(a,W)$ шагов, по
+вертикали --- через $H/\gcd(b,H)$; совместный возврат --- НОК.
+Подстановка эталона ($48\times48$, шаг $(1,1)$) даёт $t^*=48$ ---
+и поток завершается ровно за $48$ шагов с полной сверкой
+координатной кривой $48/212/432/114$.
+\end{proof}
+
+\begin{databox}[восемь пунктов протокола]
+E-1: перебор $64$ пар шага --- моновариант растёт, поток
+завершается. E-2: конвейер $48\times48$: $t^*=48$; сверка
+$48/212/432/114$ полная. E-3: поправочный шаг $(7,22)$ ---
+завершимость на правилах поправок. E-4: терминальный цикл длины
+$4$ --- $\mu_4$-орбита шага. E-5: масштабы $48\to384$ ---
+формула $t^*$ сохраняется. E-6: K3-слой (отражения с торможением)
+завершим. E-7: Клейн-слой: Зингер-порождение порядка $7$. E-8:
+Клейн-слой: $\mu_4$-орбиты длины $4$. Вердикт: $8/8$ PASS.
+\end{databox}
+
+\begin{remark}[цикл --- теорема, не гипотеза]
+Циклическая структура терминального состояния --- следствие
+конечности и периодичности шага; длина цикла $4$ --- в точности
+$\mu_4$-орбита. Это пример теоремы о \emph{структуре} терминального
+режима, а не только о его существовании.
+\end{remark}
+
+\begin{statusbox}[итог]
+Сертификат E принят ($8/8$): поток завершается, время завершимости
+вычисляется точно, терминальная структура описана.
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+\texttt{python3 laboratory.py} $\to$ <<Сертификаты $\to$ E>>;
+конструктор: произвольная сетка $W\times H$ и шаг $(a,b)$ ---
+лаборатория печатает $t^*$ и проверяет перебором.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (пункт <<Стенды>>/<<Сертификаты>>),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

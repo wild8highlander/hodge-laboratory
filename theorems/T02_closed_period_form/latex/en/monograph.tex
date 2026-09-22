@@ -1,0 +1,141 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries The Closed Form of the Period}\\[0.4em]
+{\large the beta integral, the phase lattice, and equivariance}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 2/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+The periods of the Fermat curve --- integrals of holomorphic forms
+over cycles --- admit a closed form: the transcendental part (a beta
+integral) and the algebraic part (a root of unity) separate
+explicitly. This separation is the technical foundation of the
+whole $\Ga$-normalization.
+
+\begin{lemma}[basis of holomorphic forms]\label{lem:forms}
+The forms $\eta_{i,j}=\frac{x^i y^j dx}{y^{N-1}}$,
+$i,j\ge0$, $i+j\le N-3$, are holomorphic on $C_N$; their number is
+$g$, and they form a basis of $H^0(C_N,\Omega^1)$. Each
+$\eta_{i,j}$ is an eigenform of the $\mu_N\times\mu_N$-action with
+character $(a,b)=(i+1,j+1)$.
+\end{lemma}
+
+\begin{lemma}[closed form of the period]\label{lem:closedform}
+In the coordinate $t=x^N$,
+$\eta_{i,j}=\frac1N t^{\frac aN-1}(1-t)^{\frac bN-1}dt$. For a lift
+$\gamma$ with winding data $(r,s)\in(\ZZ/N)^2$ the period is
+\[
+  P_{a,b}(r,s)=\frac1N\zeta_N^{ra+sb}\Omega_{a,b},
+  \qquad
+  \Omega_{a,b}=\frac{\Ga(\frac aN)\Ga(\frac bN)}{\Ga(\frac{a+b}N)}>0,
+\]
+and the image of the period functional lies in
+$\frac{\Omega_{a,b}}{N}\ZZ[\zeta_N]$.
+\end{lemma}
+
+\begin{proof}
+The substitution $t=x^N$ gives $dt=Nx^{N-1}dx$ and
+$x^i\,dx=\tfrac1Nt^{\frac{i+1}N-1}dt$; and
+$y^j/y^{N-1}=(1-t)^{\frac{j+1}N-1}$ since $y^N=1-t$. Each loop
+around $t=0$ multiplies the branch $t^{1/N}$ by $\zeta_N$ --- the
+integral by $\zeta_N^a$; a loop around $t=1$ gives $\zeta_N^b$. A
+path with data $(r,s)$ carries $\zeta_N^{ra+sb}$ on the reference
+integral $\frac1N\Bfun(a/N,b/N)$. Holomorphy: at $(\zeta,0)$,
+$dx\sim-\zeta y^{N-1}dy$; at infinity in $u=X/Y$, $v=Z/Y$ the form
+is $u^i(v\,du-u\,dv)v^{N-3-i-j}$, regular at $i+j\le N-3$.
+Independence: forms of distinct characters are independent
+(projection operators). Lattice: every cycle is an integer
+combination of closed chains; the edge integral is a difference of
+two closed-form values.
+\end{proof}
+
+\begin{corollary}[equivariance]
+Translating a cycle by $(\zeta^u,\zeta^v)$ multiplies the period of
+the eigenform $(a,b)$ by $\zeta_N^{ua+vb}$.
+\end{corollary}
+
+\begin{databox}[numbers]
+$N=15$, $(a,b)=(1,1)$: $\Omega_{1,1}=246.897\ldots$;
+$N=15$, $(7,8)$: $\Omega_{7,8}=\pi/\sin84^\circ=3.16298\ldots$ ---
+a pure fractional share of $\pi$. Certificate B (V2): maximal
+relative deviation from independent tanh-sinh over $69$ tests ---
+$3.9\cdot10^{-36}$; phases (V3) --- deviation $0.0$.
+\end{databox}
+
+\begin{statusbox}[summary]
+The closed form is proved by substitution and branch analysis;
+equivariance is a direct corollary. The phase is fixed explicitly ---
+no ``global phase'' is sought or postulated.
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+\texttt{python3 laboratory.py} $\to$ ``Stand N=15/30 $\to$
+V2/V3/V4''; the experiment designer accepts arbitrary $N$, $(a,b)$,
+$(r,s)$ and prints the closed form, the independent integral, and
+the verdict.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

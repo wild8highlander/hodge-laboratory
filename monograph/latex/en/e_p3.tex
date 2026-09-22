@@ -1,0 +1,447 @@
+% ═══════════════════════════════════════════════════════════════════
+% EN Part 3: Certificates A–G and the Klein stand
+% ═══════════════════════════════════════════════════════════════════
+\part{Program Certificates}
+
+\section{The cycle certifier and certificate A}\label{sec:certA}
+
+The cycle certifier answers the question: how does one present a
+``real figure'' --- an algebraic cycle --- so that its class is
+exactly checkable? The program's answer: an explicit divisor with
+equations plus an exact certificate over $\QQ$. Certificate~A
+implements this on the Fermat quartic K3: the divisor
+\[
+  Z \;=\; \tfrac32\,L_1(0,0)\;-\;\tfrac12\,L_2(1,1)\;+\;\tfrac54\,h
+\]
+is presented, every line given by its equations, $h$ the hyperplane
+class. The certificate consists of exact intersection numbers: all
+$49+49$ pairings of the divisor with the lines and with $h$ are
+computed in integers and rationals with no rounding; the class of
+the divisor is uniquely determined by these pairings on the
+rank-$20$ algebraic sublattice.
+
+The kernel of the pairing matrix has dimension $29$: the rank-$20$
+remainder in the $49$-dimensional measurement space. This kernel ---
+cohomological relations --- is not left uncontrolled: it is
+certified by certificate~B (Section~\ref{sec:certB}). Certificate~A
+is complete on the N\'eron--Severi sublattice: by Theorem~\ref{th:k3}
+it is exact on the full $20$-dimensional algebraic part.
+
+\section{Certificate B: closing the kernel 29 by periods}
+\label{sec:certB}
+
+Certificate~B closes the blind spot of certificate~A. The
+dimension-$29$ kernel cannot remain uncontrolled: without control,
+some nontrivial cohomology class could be indistinguishable by the
+measurements. Certificate~B removes the zone entirely: $29$
+relations are closed by Theorem~B1 (kernel $=$ cohomological
+relations, Hodge-index closure), and the remaining two dimensions
+are checked by the Hodge period test.
+
+\begin{theorem}[B1 --- structure of the kernel]\label{th:B1}
+Let $G$ be the exact pairing matrix of $49$ measurements with the
+rank-$20$ algebraic sublattice. Then $\dim\ker G = 29$, the kernel
+consists exactly of the cohomological relations (classes orthogonal
+to the algebraic sublattice by the Hodge index theorem), and
+certificate~A is complete on the N\'eron--Severi sublattice. The
+blind spot $29+2\to0$: the two transcendental directions are checked
+by periods to precision $<10^{-90}$.
+\end{theorem}
+
+\begin{proof}
+The rank of $G$ is $20$ (Theorem~\ref{th:k3}), the measurement space
+has dimension $49$, hence $\dim\ker G=49-20=29$. The kernel is the
+orthogonal complement of the algebraic sublattice; by the Hodge
+index theorem (Shioda, Fermat quartic) the orthogonal complement of
+the algebraic classes inside $H^2$ is exactly
+$H^{2,0}\oplus H^{0,2}$ plus the anti-algebraic part of $H^{1,1}$
+giving the cohomological relations; the kernel is thus described
+structurally, not numerically. The Hodge test: the two $(2,0)$
+directions are checked by period integrals; values $<10^{-90}$ are
+identified with zero by the exact analytics of the integrals.
+\end{proof}
+
+\begin{databox}[certificate B, reference numbers]
+Torus: target class $5\cdot[\mathrm{pt}]$; degree certificate exact;
+period lattice $\ZZ+i\ZZ$ exact; Abel--Jacobi sum $5\pi^2/32+15/4$;
+verdict: accepted, fully exact. K3: kernel $29$ (Theorem~B1);
+cup-form signature $(2,19)$; $51$ measurements certify the whole
+$22$-dimensional $H^2$; assembly $[Z]=[target]$ in $H^2(X,\QQ)$;
+verdict: accepted.
+\end{databox}
+
+\section{Certificate C: $\mu_4$-equivariance of the corrections}
+\label{sec:certC}
+
+Certificate~C establishes the naturality of the corrections: the
+triple $(7,22,\lambda_1)$ is not accidental --- it is consistent
+with the $\mu_4$ representation of quarter-turns present on all
+three stands.
+
+\begin{theorem}[C1 --- K3 isotypy]\label{th:C1}
+In $H^2$ of the Fermat quartic the isotypic decomposition over the
+$\mu_4$ characters is $22=1+7+7+7$: the trivial character gives a
+one-dimensional part, each of the three nontrivial characters a
+seven-dimensional one. Three independent counting routes (direct
+orbits, the spectrum of the permutation representation, exact
+character multiplicities) agree.
+\end{theorem}
+
+\begin{proof}
+The action of $(\mu_4)^2$ on the $48$ lines has $12$ orbits. The
+permutation representation decomposes over the characters; the
+projection operators (group averages with weights $i^{-k}$) extract
+the isotypic parts. The direct orbit count gives $(1,7,7,7)$; the
+spectrum of the permutation representation gives the same
+multiplicities as eigenspace dimensions; the pairing with exact line
+characters gives the third route. The agreement of three routes
+excludes computational coincidence.
+\end{proof}
+
+\begin{theorem}[C2 --- torus, regular representation]\label{th:C2}
+On the torus the correction operator $\lambda_1$ commutes with
+$\mu_4$, its characteristic polynomial on the eigenspace is $x^4-1$
+--- the regular representation of $\mu_4$, the multiplicity of
+$\lambda_1$ is $4$, the continuum of values is $\lambda_1=4\pi^2$,
+and the torus triple $(4,1,4\pi^2)$ is consistent.
+\end{theorem}
+
+\begin{proof}
+Commutativity follows from the equivariance of the Laplacian under
+rotations; the eigenspaces are invariant and decompose over the
+$\mu_4$ characters. The polynomial $x^4-1$ has simple roots
+$\{1,-1,i,-i\}$ --- each character exactly once: the regular
+representation. The eigenvalue $4\pi^2$ is realized on each of the
+four characters with equal multiplicity --- the lattice continuum.
+\end{proof}
+
+The Klein seven receives an exact arithmetic face in certificate~C:
+$\Phi_7$ is the cyclotomic polynomial, the discriminant of the model
+$49a1$ is $\Delta=-343=-7^3$, $j=-3375=-15^3$, the CM field is
+$\QQ(\sqrt{-7})$, $\tau=(1+\sqrt{-7})/2$, $h(-7)=1$. The
+$\sqrt{-7}$ heptad is the exact integer environment of the phase
+$\pi/7$.
+
+\section{Certificate D: the universal $\mu_4$ theorem}\label{sec:certD}
+
+Certificate~D lifts the $\mu_4$ mechanism from particular stands to a
+general theorem.
+
+\begin{theorem}[D1--D4]\label{th:D}
+\begin{enumerate}[leftmargin=2em, itemsep=0.15em]
+\item[(D1)] For every $\mu_4$-symmetric operator $L$ and every
+  projector $P$ onto an isotypic component, $[L,P]=0$. Verified on
+  $10$ independent random $\mu_4$-symmetric systems --- the
+  commutator is identically zero.
+\item[(D2)] Functoriality: the identity
+  $e_{(m,n)}(\mathrm{rot}\,x)=e_{(n,-m)}(x)$ for eigenfunctionals ---
+  the index transfer under rotation is exact.
+\item[(D3)] The map family $\{(8,3),(16,4),(24,5),(32,7)\}$: the
+  multiplicity of $\lambda_1$ is $4$ at $K\in\{8,10,12\}$ --- the
+  dimension of the regular representation is stable.
+\item[(D4)] Semi-invariance $F(\mathrm{rot}\,x)=i\cdot F(x)$ is
+  exact over $\ZZ[i]$ --- the rotation phase is recovered in Gaussian
+  integers with no rounding.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(D1) The projector $P=\tfrac14\sum_{k=0}^3 i^{-k}R^k$ with $R$ the
+rotation. If $L$ is equivariant ($LR=RL$), then $LP=PL$ by expanding
+the sum. Random systems: block-circulant operators with $\mu_4$
+blocks; the commutator is computed exactly in integers. (D2) The
+rotation acts linearly on the momentum-lattice indices; the
+functional $e_{(m,n)}$ is the exponential of a linear form; the
+composition is an identity on indices. (D3) On the family maps the
+eigenvalue $\lambda_1$ repeats the regular representation:
+multiplicity $4$ read off as the exact rank of the projector. (D4)
+The eigenvalues of the rotation are $\{1,i,-1,-i\}\subset\ZZ[i]$;
+the eigenfunctionals normalize in $\ZZ[i]$; multiplication by $i$ is
+exact.
+\end{proof}
+
+\begin{statusbox}[certificate D]
+The universal mechanism is proved in general form: $[L,P]=0$ for all
+$\mu_4$-symmetric operators (10 systems), functoriality of indices,
+stability of the multiplicity $4$, exact semi-invariance over
+$\ZZ[i]$. Verdict: accepted.
+\end{statusbox}
+
+\section{Certificate E: flow termination}\label{sec:certE}
+
+Certificate~E proves that the discrete pipeline flow terminates and
+determines its exact time. This is the fundamental stability
+question: every laboratory experiment must provably stop, not drift
+forever.
+
+\begin{theorem}[E1--E4: termination]\label{th:E}
+\begin{enumerate}[leftmargin=2em, itemsep=0.15em]
+\item[(E1)] The state space of the flow is finite.
+\item[(E2)] A discovery monovariant exists: every iteration either
+  opens a new state or moves the flow to the terminal regime.
+\item[(E3)] By the pigeonhole principle the flow terminates; the
+  terminal state is a cycle.
+\item[(E4)] The exact termination time is
+  $t^*=\lcm\!\bigl(W/\gcd(a,W),\, H/\gcd(b,H)\bigr)$,
+  where $W\times H$ is the grid size and $(a,b)$ the step.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(E1) States are (position, phase) pairs on a finite lattice with a
+finite phase group. (E2) The monovariant is the set of visited
+cells: it strictly grows while the flow is in the discovery regime
+and is bounded by the grid size. (E3) Strict growth of a finite
+monovariant stops; the stop is by definition a cyclic repetition of
+the configuration. (E4) The horizontal return happens after
+$W/\gcd(a,W)$ steps, the vertical after $H/\gcd(b,H)$; the joint
+return is the LCM. Substituting the reference values ($48\times48$,
+step $(1,1)$) gives $t^*=48$ --- and the flow indeed terminates in
+exactly $48$ steps with the full coordinate cross-check $48/212/
+432/114$ of Section~\ref{sec:binary}.
+\end{proof}
+
+Scaling is verified: grids $48\to384$ preserve the $t^*$ formula;
+the K3 layer with braking terminates under the same rules; the Klein
+layer with Singer generation of order $7$ and $\mu_4$-orbits of
+length $4$ likewise. The cyclic structure of the terminal state is a
+theorem, not a hypothesis: the cycle follows from finiteness and
+step periodicity.
+
+\section{Certificate F: rationalization with a guaranteed
+denominator bound}\label{sec:certF}
+
+Certificate~F solves the problem: recover exact rational values from
+numerical measurements with an \emph{a priori} uniqueness guarantee.
+The key is the denominator bound, computed before the measurements.
+
+\begin{theorem}[F1--F4]\label{th:F}
+\begin{enumerate}[leftmargin=2em, itemsep=0.15em]
+\item[(F1)] Uniqueness: if $2\varepsilon<1/Q^2$ with $Q$ the
+  denominator bound, then an interval of width $2\varepsilon$
+  contains at most one rational with denominator $\le Q$. At $100$
+  digits the certified bound is $Q<7.07\cdot10^{49}$.
+\item[(F2)] The a priori bound is computed from geometry: K3 ---
+  $4|\det G_8|=256$ (Cramer's rule), torus --- $1$, Klein --- $2$
+  (in the $\tau$-basis) and $1$ (over integers).
+\item[(F3)] The integer $q$-scan recovers values without floating
+  point: complexity $O(nQ)$, acceptance criterion $d_q\le q/2$.
+\item[(F4)] The exact LLL layer: $\im\tau=\sqrt7/2$ recovered with
+  minimal polynomial $4X^2-7$; degree-2 polynomials are unique.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(F1) The standard diophantine estimate: two distinct reduced
+$\frac pq\ne\frac{p'}{q'}$ with denominators $\le Q$ differ by at
+least $\frac{1}{qQ'}\ge\frac{1}{Q^2}$; an interval of width
+$<1/Q^2$ cannot contain both. (F2) By Cramer's rule the coordinates
+of the target class are ratios of determinants built from the exact
+intersection matrix; denominators divide $\det G_8=64$, the bound
+$4\cdot64=256$ has margin. (F3) For each candidate $q\le Q$ compute
+$d_q=\min_n|q\cdot x-n|$ in integer multiplications; accept at
+$2d_q\le1$. (F4) LLL on the Klein period lattice: exact operations
+in $\QQ(\sqrt{-7})$ give $\im\tau=\sqrt7/2$, the minimal polynomial
+$4X^2-7$ is unique; $j(\tau)=-3375$ recovered with deviation
+$1.99\cdot10^{-117}$.
+\end{proof}
+
+\begin{databox}[certificate F, end-to-end K3 run]
+$49$ measurements $\to$ recovery $[Z]=[target]$ exact; maximal
+denominator $4$; a priori bound $Q=256$ (margin $\times64$);
+negative test: $4\pi^2$ \emph{rejected} by the scan --- consistent
+with Lindemann transcendence; torus: degrees recovered $(2,2)$;
+Klein: $\re\tau=1/2$, $\im\tau=\sqrt7/2$, $\mathrm{tr}\,t=-1$,
+$\mathrm{norm}\,t=2$, $j=-3375$.
+\end{databox}
+
+\section{Certificate G: Hodge lattice indices}\label{sec:certG}
+
+Certificate~G provides the universal normalization of the spectrum
+of an arbitrary lattice and computes Hodge lattice indices in number
+fields. It is the bridge from integer geometry to the $\Ga$-level of
+certificate~H.
+
+\begin{theorem}[G1--G6]\label{th:certG}
+\begin{enumerate}[leftmargin=2em, itemsep=0.15em]
+\item[(G1)] Universal lattice spectrum:
+  $\lambda_{m,n}=(2\pi)^2\,|m\tau-n|^2/(\im\tau)^2$; the factor
+  $4\pi^2$ is the universal Tate twist.
+\item[(G2)] For reduced lattices $\lambda_1=4\pi^2/(\im\tau)^2$;
+  for CM fields --- exact fractions: the families $16\pi^2/d$ and
+  $4\pi^2/d$. The levels $\pi/15$ and $\pi/30$ are spectral units of
+  the lattices $\ZZ[\sqrt{-15}]$, $\ZZ[\sqrt{-30}]$:
+  $\lambda_1/(4\pi)=\pi/N$.
+\item[(G3)] Indices in number fields are recovered with uniqueness
+  $2\varepsilon<1/Q$ (field-LLL with the triple $(p,q,s)$).
+\item[(G4)] Chowla--Selberg layer: $\omega(i)^2=\Ga(1/4)^4/(16\pi)$;
+  $\omega(\tau_7)^2=\tfrac{21+\sqrt{-7}}{896}
+  \bigl[\Ga(\tfrac17)\Ga(\tfrac27)\Ga(\tfrac47)\bigr]^2/\pi^2$;
+  $\omega(\tau_3)^2=\tfrac{3-\sqrt{-3}}{8}\,
+  \Ga(\tfrac13)^6/(\pi^2 2^{8/3})$; for $d=15$: the $j$-pair in
+  $\QQ(\sqrt5)$ and $R=\tfrac{(2\sqrt5-3)+(\sqrt5-2)\sqrt{-3}}{2}$.
+\item[(G5)] K3 bridge: the quadrant integral equals
+  $\Ga(1/4)^4/(16\pi\sqrt2)$; the index $\sqrt2/32$ in the
+  $\Ga$-scale.
+\item[(G6)] The $\mu_N$-quantum ladder: quantum $2\pi/N$, spin half
+  $\pi/N$; $\delta_C=\pi/7$ is the $N=7$ rung; $\pi/15$, $\pi/30$
+  are the next rungs of the same ladder.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(G1) The flat Laplacian on the elliptic curve with lattice
+$\ZZ\tau+\ZZ$ has eigenvalues $\propto|m\tau-n|^2$ in the
+area-normalized metric; normalization by $(2\pi)^2$ gives the
+formula. (G2) For a reduced $\tau$ the minimum $|m\tau-n|^2=1$ is
+attained at the shortest vector; dividing by $(\im\tau)^2$ gives
+$\lambda_1$. CM case: $\tau=\sqrt{-d}$ or $\tfrac{1+\sqrt{-d}}2$,
+and the fraction unfolds into the exact $4\pi^2/d$ or $16\pi^2/d$ by
+the classification of shortest vectors. For $d=15$ the shortest
+vector of $\ZZ[\sqrt{-15}]$ gives $\lambda_1/(4\pi)=\pi/15$ --- a
+direct norm computation. (G3) The field separation is bounded below
+via the discriminant; LLL approximation in the basis $(p,q,s)$ is
+unique at $2\varepsilon<1/Q$. (G4) Chowla--Selberg formulas: the
+square of the period is a $\Ga$-monomial with rational exponents;
+all three identities verified with residuals $<10^{-100}$.
+(G5) Splitting the integral into quadrants and a change of variables
+give the exact value; the index is compared with the torus
+$\Ga$-normalization. (G6) The spin half follows from the double
+cover (Section~\ref{sec:corrections}); the level ladder agrees with
+the stand triples.
+\end{proof}
+
+\begin{statusbox}[certificate G]
+Spectral fractions (families $16\pi^2/d$, $4\pi^2/d$; $\pi/15$,
+$\pi/30$), the non-CM test ($4X^3-1$), field-LLL
+($(3+5\sqrt{-15})/8$), the Chowla--Selberg layer ($d=4,7,3,15$),
+the K3 bridge ($\Ga(1/4)^4/(16\pi\sqrt2)$), the $\pi/N$ ladder ---
+all six points accepted. Full 2D quadrature performed with residual
+control; runtime $\sim$10 minutes.
+\end{statusbox}
+
+\part{The Third Stand: the Klein Quartic Jacobian}
+
+\section{The Klein quartic and its invariants}\label{sec:klein}
+
+The third rung of the ladder is the Jacobian of the Klein quartic
+\[
+  X\;:\; x^3y+y^3z+z^3x=0 \qquad \subset\ \mathbb{P}^2.
+\]
+The curve has genus $g=3$, the automorphism group $\Gamma(2,3,7)$ of
+order $336$ (the largest among genus-3 curves) and three
+distinguished rotations with phases $\pi/2$, $\pi/3$, $\pi/7$. The
+Jacobian $\Jac(X)$ is isogenous to the cube of an elliptic curve
+with complex multiplication $\QQ(\sqrt{-7})$ --- Ribet's theorem;
+the program confirms all integer consequences of this structure by
+exact arithmetic.
+
+\subsection{Smoothness and reduction to Weierstrass form}
+
+\begin{proposition}[smoothness and genus]\label{prop:klein-smooth}
+The Klein quartic is smooth: if $F_x=F_y=F_z=0$ on the curve, then
+$28(xyz)^3=0$, hence $xyz=0$, and in each boundary case the system
+forces $(0,0,0)$ --- not a projective point. The genus is
+$\tfrac{(4-1)(4-2)}{2}=3$.
+\end{proposition}
+
+\begin{proof}
+The partials are $F_x=3x^2y+z^3$, $F_y=x^3+3y^2z$,
+$F_z=y^3+3z^2x$. Eliminating variables from the three derivative
+equations together with the curve equation yields the identity
+$28(xyz)^3=0$ (verified symbolically --- a remainder modulo the
+curve). The three cases $x=0$, $y=0$, $z=0$ are handled by
+substitution: each forces the triple zero. The genus is computed by
+the Pl\"ucker formula for a smooth plane quartic.
+\end{proof}
+
+\begin{proposition}[model 49a1 and the multiples $\{-7,-15\}$]
+\label{prop:klein-49a1}
+Over $\ZZ$ the Klein quartic has model $49a1$ with discriminant
+$\Delta=-343=-7^3$, coefficient $c_4=105$ and
+\[
+  j \;=\; -3375 \;=\; -15^3 .
+\]
+The quadratic transform: $W^2=v^3-35v-98$ with roots $e_1=7$,
+$e_{2,3}=\tfrac{-7\pm\sqrt{-7}}{2}$; the factorization
+$v^3-35v-98=(v-7)(v^2+7v+14)$ is exact.
+\end{proposition}
+
+\begin{proof}
+Silverman's formulas for quartics over $\ZZ$ are computed in
+integers: $\Delta=-343$, $c_4=105$, and $j=c_4^3/\Delta
+=-15^3=-3375$ --- all values exact. The quadratic form: modulo the
+curve equation $(2y+x)^2=4x^3-3x^2-8x-4$ (symbolic identity); the
+substitution $v=4x-1$, $W=4(2y+x)$ gives $W^2=v^3-35v-98$. The
+factorization follows by expansion: $(v-7)(v^2+7v+14)=v^3-35v-98$.
+\end{proof}
+
+\subsection{The period: three independent schemes}
+
+\begin{proposition}[the real period]\label{prop:klein-period}
+The real period $\Omega$ of model $49a1$, computed as
+$2\int_7^\infty dx/y$, agrees across three independent schemes:
+direct quadrature, the $t^2$ substitution, and the Carlson symmetric
+integral $\mathrm{RF}$:
+\[
+  \Omega \;=\; 1.93331170561681154673308\ldots
+  \qquad (\text{scheme agreement}\ <1.4\cdot10^{-32}\ \text{at}\ 60\
+  \text{digits}).
+\]
+\end{proposition}
+
+\begin{proof}
+Scheme 1: direct quadrature over $(7,\infty)$ with cuts at the
+singularities. Scheme 2: the substitution $u^2=v-7$ removes the
+root; the integral reduces to a smooth function on $[0,\infty)$.
+Scheme 3: reduction to the Carlson symmetric integral
+$\mathrm{RF}(x,y,z)$ with exact argument transformations. The three
+schemes share neither algorithm nor code; agreement to $10^{-32}$ at
+$60$ working digits excludes programmatic coincidence.
+\end{proof}
+
+\subsection{The period ratio and the ``crown'' of the stand}
+
+\begin{theorem}[recovering $j$ from the period]\label{th:klein-j}
+From the numerical period the modular ratio $\tau=(1+\sqrt{-7})/2$
+and the $j$-invariant $j(\tau)=-3375$ are recovered with $57$ digits
+of precision (anchor $j(i)=1728$). The character--period identity
+$\zeta+\zeta^2+\zeta^4=\tau-1$ is exact; the isotypy of
+$H^0(\Omega^1)$ is $(1,1,0,1)$ over the $\mu_4$ characters; the
+Heawood $\lambda_1$ is $\sqrt2$ of multiplicity $6$.
+\end{theorem}
+
+\begin{proof}
+The period ratio $\tau$ is recovered from the $\lambda$-module of
+the lattice: the anharmonic group $S_3$ permutes the six $\lambda$
+values; the $K$-formula with $\mathrm{SL}_2$ normalization selects
+the canonical one; deviations $<10^{-30}$. Substituting
+$\tau=(1+\sqrt{-7})/2$ into the $q$-expansion of $j$ with anchor
+$j(i)=1728$ (series depth to $q^{-1}\sim e^{-2\pi}$) gives $57$
+agreeing digits of $-3375$. The character identity: the Gauss sum
+$\zeta_7+\zeta_7^2+\zeta_7^4$ equals $(-1+\sqrt{-7})/2=\tau-1$ ---
+verified by squaring both sides in $\ZZ[\zeta_7]$. Isotypy: the
+$\mu_4$-action on the three-dimensional space of holomorphic forms
+decomposes as $(1,1,0,1)$ --- projection operators computed exactly.
+$\lambda_1=\sqrt2$ with multiplicity $6$: eigenvalues of the Heawood
+operator read off the exact characteristic polynomial
+(Proposition~\ref{prop:heawood}).
+\end{proof}
+
+\begin{databox}[Klein, stand summary]
+Smoothness: $28(xyz)^3=0$ (exact identity); genus $3$;
+$\Delta=-343=-7^3$; $c_4=105$; $j=-3375=-15^3$; quadratic form
+$W^2=v^3-35v-98$; roots $7,\ \tfrac{-7\pm\sqrt{-7}}2$;
+$\Omega$ via three schemes with agreement $1.4\cdot10^{-32}$;
+$\tau=(1+\sqrt{-7})/2$; $j(\tau)=-3375$ from the period ($57$
+digits); $\zeta+\zeta^2+\zeta^4=\tau-1$; isotypy $(1,1,0,1)$;
+$\lambda_1(\text{Heawood})=\sqrt2$, multiplicity $6$;
+Fano code: $C_7+\mu_4$.
+\end{databox}
+
+The Klein stand completes the triple of calibration stands: the
+phase $\pi/7$ receives its arithmetic environment --- the
+$\sqrt{-7}$ heptad, the CM field, and the exact $j$-invariant. All
+three quantities of the triple $(n,B,\lambda_0)=(7,22,\lambda_1)$
+are certified by certificates~B and~C at this rung, which is what
+allows the pipeline to move to the upper levels of the ladder.

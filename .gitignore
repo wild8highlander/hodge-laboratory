@@ -1,0 +1,15 @@
+reports/plots/*.png
+reports/*.json.tmp
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+verify_hodge
+verify_hodge_f
+verify_hodge_c
+verify_hodge_rs
+*.o
+*.mod
+.venv/
+venv/

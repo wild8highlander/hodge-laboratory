@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hodge Laboratory · The Dynamic Principle Laboratory</title>
+<meta name="description" content="A unified research platform of the program by Isaev Iskhak Khamzatovich: the ladder of stands, certificates A–H, a closed system of theorems, verification in 5 languages and the Lean 4 kernel.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Noto+Serif:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0D1626; --bg2:#111E33; --card:#15243D; --line:#23395B;
+  --gold:#C9A96A; --gold2:#E3C98F; --txt:#E8EEF6; --mut:#8FA3B8;
+  --green:#5BBF7A; --blue:#5B9BD5; --red:#D96A6A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Inter','Noto Sans',sans-serif;line-height:1.65}
+.serif{font-family:'Playfair Display','Noto Serif',serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+header{position:relative;overflow:hidden;background:linear-gradient(160deg,#0A1220 0%,var(--bg) 55%,#16283F 100%);border-bottom:1px solid var(--line)}
+header::before{content:'';position:absolute;left:-120px;top:-120px;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,169,106,.14),transparent 65%)}
+.hero{padding:88px 0 64px;position:relative}
+.badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.badge{font-size:12px;letter-spacing:.6px;padding:5px 12px;border:1px solid var(--line);border-radius:999px;color:var(--mut);background:rgba(255,255,255,.02)}
+.badge b{color:var(--gold)}
+h1{font-size:clamp(34px,5.4vw,58px);line-height:1.12;font-weight:900}
+h1 .thin{color:var(--gold)}
+.sub{margin-top:18px;font-size:clamp(15px,2vw,19px);color:var(--mut);max-width:760px}
+.author{margin-top:26px;display:flex;align-items:center;gap:14px}
+.author .ava{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#8B7E5A);
+  display:flex;align-items:center;justify-content:center;font-weight:700;color:#1A2433;font-size:18px}
+.author .nm{font-weight:600}.author .rl{font-size:13px;color:var(--mut)}
+.cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:12px 26px;border-radius:10px;font-weight:600;text-decoration:none;transition:.2s}
+.btn-gold{background:var(--gold);color:#1A2433}
+.btn-gold:hover{background:var(--gold2)}
+.btn-ghost{border:1px solid var(--line);color:var(--txt)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+.kicker{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px}
+h2{font-size:clamp(24px,3.4vw,36px);font-weight:700;margin-bottom:14px}
+.lead{color:var(--mut);max-width:800px;margin-bottom:34px}
+.grid{display:grid;gap:18px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;transition:.2s}
+.card:hover{transform:translateY(-3px);border-color:var(--gold)}
+.card h3{font-size:17px;margin-bottom:10px}
+.card p{font-size:14px;color:var(--mut)}
+.card .big{font-size:30px;font-weight:800;color:var(--gold);margin-bottom:6px}
+.card .tag{display:inline-block;margin-top:12px;font-size:11px;letter-spacing:1px;color:var(--green);text-transform:uppercase;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border-radius:12px;overflow:hidden}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line)}
+th{background:#1A2C49;color:var(--gold);font-weight:600;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums;color:var(--gold2);font-weight:600}
+.ok{color:var(--green);font-weight:600}
+.formula{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:10px;padding:20px 24px;font-size:17px;margin:22px 0;font-family:'Noto Serif',serif}
+.formula .f{color:var(--gold2)}
+.steps{counter-reset:st}
+.step{position:relative;padding:20px 0 20px 58px;border-left:2px solid var(--line);margin-left:16px}
+.step::before{counter-increment:st;content:counter(st);position:absolute;left:-16px;top:16px;width:30px;height:30px;
+  border-radius:50%;background:var(--gold);color:#1A2433;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px}
+.step h4{font-size:16px;margin-bottom:6px}
+.step p{font-size:14px;color:var(--mut)}
+pre{background:#0A111E;border:1px solid var(--line);border-radius:10px;padding:16px 18px;font-size:13.5px;overflow-x:auto;color:#C7D6E8}
+code{font-family:'DejaVu Sans Mono',monospace}
+.inline-code{background:rgba(201,169,106,.1);color:var(--gold2);padding:2px 7px;border-radius:5px;font-size:.9em}
+footer{padding:40px 0;text-align:center;color:var(--mut);font-size:13.5px}
+footer .gold{color:var(--gold)}
+@media (max-width:640px){.hero{padding:60px 0 44px}}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="wrap hero">
+    <div class="badge-row">
+      <span class="badge"><b>PROTOCOL V1–V9</b> · ALL PASS</span>
+      <span class="badge"><b>CERTIFICATES A–H</b> · 8/8 ACCEPTED</span>
+      <span class="badge"><b>LEAN 4</b> · MACHINE VERIFICATION</span>
+      <span class="badge"><b>5 LANGUAGES</b> · Python·Julia·Fortran·C·Rust</span>
+      <span class="badge"><b>DETERMINISTIC</b> · 0 seeds</span>
+    </div>
+    <h1 class="serif">Hodge Laboratory<br><span class="thin">The Dynamic Principle</span></h1>
+    <p class="sub">A unified research platform: the ladder of stands from the calibration torus
+    to the cyclotomic levels N=15/30, certificates A–H, a closed system of eight lemmas and six
+    theorems, a reproducible protocol V1–V9, and a computational laboratory in a single file.</p>
+    <div class="author">
+      <div class="ava">ИИ</div>
+      <div>
+        <div class="nm">Isaev Iskhak Khamzatovich</div>
+        <div class="rl">Program author · ORCID 0009-0003-7299-0701 · all rights reserved</div>
+      </div>
+    </div>
+    <div class="cta">
+      <a class="btn btn-gold" href="#ladder">Ladder of stands</a>
+      <a class="btn btn-ghost" href="#lab">Laboratory</a>
+      <a class="btn btn-ghost" href="#verify">Verification</a>
+    </div>
+  </div>
+</header>
+
+<section id="principle">
+  <div class="wrap">
+    <div class="kicker">The Dynamic Principle</div>
+    <h2 class="serif">One triple of integers — the whole construction</h2>
+    <p class="lead">Geometry supplies only the integer triple — the rotation order,
+    the carrier index, and the spectral threshold. All remaining structure is built by a
+    universal parameter-free pipeline.</p>
+    <div class="formula">
+      Triple: <span class="f">(n, B, λ₀)</span> &nbsp;→&nbsp;
+      δ = <span class="f">π/N</span> &nbsp;·&nbsp;
+      γ = <span class="f">δ⁴/k</span> &nbsp;·&nbsp;
+      δ<sub>eff</sub> = <span class="f">δ⁵/k</span> &nbsp;·&nbsp;
+      Δ<sub>Ch</sub> = <span class="f">λ₀ − R/4 + δ²/2 − δ⁵/k</span>
+    </div>
+    <div class="grid g4">
+      <div class="card"><div class="big">91 / 406</div><p>genera of the Fermat curves at levels N=15 and N=30 — the scale of the final stand</p></div>
+      <div class="card"><div class="big">1125²</div><p>the lattice discriminant of the stand: 3⁴·5⁶ = 1265625 = 1125² — a perfect square</p></div>
+      <div class="card"><div class="big">vol 1125</div><p>the volume in the full Gross Γ-normalization: (2π)³²·ΠΓ(k/N)^{−c_k}</p></div>
+      <div class="card"><div class="big">10⁻⁷¹</div><p>the residual of the deep record V9 at dps=70 — consistent with the precision limit</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="ladder">
+  <div class="wrap">
+    <div class="kicker">The Ladder of Stands</div>
+    <h2 class="serif">The ladder of stands</h2>
+    <p class="lead">Each rung inherits the proven mechanisms of the previous one and adds exactly
+    one new phenomenon. The pipeline rules never change — the scale grows.</p>
+    <table>
+      <tr><th>Rung</th><th>Triple (n, B, λ₀)</th><th>Genus</th><th>Key results</th><th>Status</th></tr>
+      <tr><td><b>Torus</b></td><td class="num">(4, 1, 4π²)</td><td class="num">1</td>
+        <td>δ=π/4; holonomy = i; Δ_Ch = 39.4880; 4 spin structures</td><td class="ok">✓ exact derivation</td></tr>
+      <tr><td><b>K3</b> Fermat quartic</td><td class="num">(4, 22, ·)</td><td class="num">—</td>
+        <td>ρ = 20 = max (Shioda); (1,19); det 64; 48 lines</td><td class="ok">✓ exact over ℚ</td></tr>
+      <tr><td><b>Klein</b></td><td class="num">(7, 22, 3.338)</td><td class="num">3</td>
+        <td>j = −3375 = −15³; Δ = −7³; τ = (1+√−7)/2; Ribet</td><td class="ok">✓ certs. B, C</td></tr>
+      <tr><td><b>Fermat 15</b></td><td class="num">(15, ·, ·)</td><td class="num">91</td>
+        <td>census 1+6+84; Γ-normalization; radical b_Ch(15)</td><td class="ok">✓ closed system</td></tr>
+      <tr><td><b>Fermat 30</b></td><td class="num">(30, ·, ·)</td><td class="num">406</td>
+        <td>SNF (1,1,5,5,15,15,15,15); disc = 1125²; vol_h = 1125</td><td class="ok">✓ closed system</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <div class="kicker">Certificates A–H</div>
+    <h2 class="serif">The certificates of the program</h2>
+    <p class="lead">Every non-trivial transition of the pipeline has an independent check:
+    exact integer arithmetic or direct integration without Γ-functions.</p>
+    <div class="grid g3">
+      <div class="card"><h3>A · Cycle certifier</h3><p>The explicit divisor 3/2·L₁(0,0) − 1/2·L₂(1,1) + 5/4·h with exact pairings over ℚ; a kernel of dimension 29.</p><span class="tag">✓ accepted</span></div>
+      <div class="card"><h3>B · Closing kernel 29</h3><p>Theorem B1: kernel = cohomological relations; blind spot 29+2 → 0; 51 measurements certify H².</p><span class="tag">✓ accepted</span></div>
+      <div class="card"><h3>C · μ₄-equivariance</h3><p>Isotypy 22 = 1+7+7+7 by three routes; charpoly(λ₁) = x⁴−1; the √−7 heptad.</p><span class="tag">✓ 21/21</span></div>
+      <div class="card"><h3>D · Universal μ₄-theorem</h3><p>[L,P] = 0 for all μ₄-symmetric operators; functoriality; semi-invariance over ℤ[i].</p><span class="tag">✓ accepted</span></div>
+      <div class="card"><h3>E · Flow termination</h3><p>E1–E4: finiteness, monovariant, Dirichlet, the exact time t\* = lcm(W/gcd(a,W), H/gcd(b,H)); cross-check 48/212/432/114.</p><span class="tag">✓ 8/8</span></div>
+      <div class="card"><h3>F · Rationalization</h3><p>The a priori bound Q = 256 (Cramér); the integer q-scan; LLL: Im τ = √7/2, minpoly 4X²−7.</p><span class="tag">✓ 5/5</span></div>
+      <div class="card"><h3>G · Hodge lattice indices</h3><p>λ_{m,n} = (2π)²·|mτ−n|²/(Im τ)²; CM fractions 16π²/d; the Chowla–Selberg layer; the levels π/15 and π/30.</p><span class="tag">✓ 6/6</span></div>
+      <div class="card"><h3>H · Stand N=15/30</h3><p>SNF (1,1,5,5,15,15,15,15); disc = 1125²; vol_h = 1125; the denominator bound Q = 480.</p><span class="tag">✓ 6/6</span></div>
+      <div class="card"><h3>Errata E8</h3><p>Spin structures of genus 3: 36 even (Arf=0) / 28 odd (Arf=1) — full enumeration; the typo of the early text is corrected.</p><span class="tag">✓ closed</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="protocol">
+  <div class="wrap">
+    <div class="kicker">Protocol V1–V9</div>
+    <h2 class="serif">The computational verification protocol</h2>
+    <p class="lead">No PSLQ, no L-values, no numerical checks of what is provable.
+    Working precision dps=35, deep record dps=70.</p>
+    <table>
+      <tr><th>Check</th><th>Result</th><th>Status</th></tr>
+      <tr><td>V1 character census</td><td class="num">91 = 1+6+84 · 406 = 1+6+9+30+84+276</td><td class="ok">✓ proved + arithmetic</td></tr>
+      <tr><td>V2 closed form ↔ tanh-sinh</td><td class="num">3.9·10⁻³⁶ (69 tests)</td><td class="ok">✓</td></tr>
+      <tr><td>V3 phases arg P = 2π(ra+sb)/N</td><td class="num">0.0</td><td class="ok">✓ proved</td></tr>
+      <tr><td>V4 μ_N×μ_N-equivariance</td><td class="num">3.9·10⁻³⁶</td><td class="ok">✓</td></tr>
+      <tr><td>V5 chain integrity (orbit sums)</td><td class="num">1.5·10⁻³⁶</td><td class="ok">✓</td></tr>
+      <tr><td>V6 reflection ladder</td><td class="num">7.0·10⁻³⁶</td><td class="ok">✓</td></tr>
+      <tr><td>V7 completeness</td><td class="num">rank = 91/140 certified rows · cond. 8.63 · 17.35</td><td class="ok">✓</td></tr>
+      <tr><td>V8 DFT orthogonality</td><td class="num">1.1·10⁻³⁶ / 4.0·10⁻³⁶</td><td class="ok">✓</td></tr>
+      <tr><td>V9 deep record dps=70</td><td class="num">1.7·10⁻⁷¹</td><td class="ok">✓</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap">
+    <div class="kicker">The Laboratory</div>
+    <h2 class="serif">A laboratory in one file</h2>
+    <p class="lead">The test menu, calculation parameters, the own-experiment designer,
+    reports and tiled 600 dpi plots — with an RU/EN language switch at any moment.</p>
+    <div class="steps">
+      <div class="step"><h4>Launch</h4><p>One file <code class="inline-code">laboratory.py</code>: banner, language choice, an 11-item menu with colored PASS/FAIL verdicts.</p></div>
+      <div class="step"><h4>Stands and certificates</h4><p>The full protocol V1–V9, five stands (torus, K3, Klein, errata E8, binary code), eight certificates.</p></div>
+      <div class="step"><h4>Your own experiments</h4><p>The designer accepts arbitrary N, characters (a,b), winding data, CM-lattices and flow parameters — every run receives a mini-certificate.</p></div>
+      <div class="step"><h4>Reports and plots</h4><p>JSON + log into <code class="inline-code">reports/</code> and eight 600 dpi tiles: censuses, the phase lattice, the reflection ladder, braking, the DFT.</p></div>
+      <div class="step"><h4>Multilingual verification</h4><p>When Julia, gfortran, gcc, rustc or lean are present, the laboratory runs the independent implementations and compares the verdicts.</p></div>
+    </div>
+    <pre>$ python3 laboratory.py --lang en --run all
+  ✔ Σh_d = g = 91                    PASS  91 = 91
+  ✔ N=15: 21 tests                   PASS  rel=3.85e-36, phase=0.0e+00
+  ✔ rank 91/91                       PASS  cond=8.63
+  ✔ closed vs tanh-sinh @ dps70      PASS  1.7e-71
+  SUMMARY VERDICT: ALL CHECKS PASSED (Time: 1.9 s)</pre>
+  </div>
+</section>
+
+<section id="verify">
+  <div class="wrap">
+    <div class="kicker">Five Languages + Lean</div>
+    <h2 class="serif">Verification in five languages and the Lean kernel</h2>
+    <p class="lead">Every implementation checks the same set of identities. The agreement of
+    independent ecosystems is the strongest reproducibility certificate.</p>
+    <table>
+      <tr><th>Language</th><th>File</th><th>Role</th></tr>
+      <tr><td>Python</td><td><code>laboratory.py</code></td><td>the full laboratory</td></tr>
+      <tr><td><b>Lean 4</b></td><td><code>verification/lean/HodgeLaboratory.lean</code></td><td>machine proofs (native_decide, no axioms)</td></tr>
+      <tr><td>Julia</td><td><code>verification/julia/verify_hodge.jl</code></td><td>BigFloat (240-bit) periods and phases</td></tr>
+      <tr><td>Fortran</td><td><code>verification/fortran/verify_hodge.f90</code></td><td>censuses, ranks, invariants</td></tr>
+      <tr><td>C</td><td><code>verification/c/verify_hodge.c</code></td><td>the exact K3 rank = 20 (rational elimination)</td></tr>
+      <tr><td>Rust</td><td><code>verification/rust/verify_hodge.rs</code></td><td>safe i128 arithmetic, atomic counters</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="docs">
+  <div class="wrap">
+    <div class="kicker">Monographs</div>
+    <h2 class="serif">Monographs</h2>
+    <div class="grid g3">
+      <div class="card"><h3>📕 The unified monograph</h3><p>«The Dynamic Principle» — all stands, certificates and theorems with complete proofs. PDF + DOCX, each in two languages (RU 80 pp. / EN 53 pp.).</p><span class="tag">monograph/</span></div>
+      <div class="card"><h3>📚 16 theorem monographs</h3><p>Every theorem — a separate folder with a self-sufficient monograph: statement, proof, protocol data, verification. PDFs in two languages.</p><span class="tag">theorems/</span></div>
+      <div class="card"><h3>🧪 Baselines</h3><p>Reference JSON reports for reproduction cross-checks: the numbers of the V1–V9 protocol, the stands, the certificates.</p><span class="tag">results/</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="publish">
+  <div class="wrap">
+    <div class="kicker">Publish</div>
+    <h2 class="serif">Publishing to GitHub</h2>
+    <p class="lead">The bootstrap and publisher scripts work on Android/Termux, Linux and macOS:
+    the publisher creates the repository via the GitHub API, pushes the code, and enables Pages.</p>
+    <pre>bash scripts/termux_setup.sh          # bootstrap the environment
+bash scripts/github_push_termux.sh    # publish in one command</pre>
+    <p class="lead" style="margin-top:16px">Step-by-step guide — <code class="inline-code">INSTRUCTION.md</code>.
+    Requires a personal GitHub token (repo + workflow): Settings → Developer settings →
+    Personal access tokens.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 <span class="gold">Isaev Iskhak Khamzatovich</span> · All rights reserved</p>
+    <p>Individual exclusive license · any use without the author's written permission is prohibited</p>
+  </div>
+</footer>
+
+</body>
+</html>

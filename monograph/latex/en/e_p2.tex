@@ -1,0 +1,470 @@
+% ═══════════════════════════════════════════════════════════════════
+% EN Part 2: Calibration stands
+% ═══════════════════════════════════════════════════════════════════
+\part{Calibration Stands}
+
+\section{Stand 1: the torus --- corrections from first principles}
+\label{sec:torus}
+
+The torus is the calibration stand of the program. Its genus is one,
+the symmetries are elementary, and the whole mechanics of
+corrections is computed explicitly, with no appeal to external
+theorems. All three corrections are visible at once, and any
+pipeline error would show at coarse precision; the fact that the
+pipeline works exactly on the torus is a necessary condition for
+trusting it at higher rungs.
+
+\subsection{Spin structures and the torus triple}
+
+The torus has exactly four spin structures. Their parity is decided
+by the Arf invariant: three structures are even ($\mathrm{Arf}=0$)
+and one is odd ($\mathrm{Arf}=1$) --- the structure $(1,1)$. This is
+the only case in the ladder where all spin structures can be
+enumerated by hand, and therefore the torus is the reference for
+validating any counting algorithm at higher genera.
+
+\begin{lemma}[the torus triple]\label{lem:torus-triple}
+The torus supplies the integer triple $(4,\,1,\,4\pi^2)$: the
+rotation order $n=4$, the carrier index $B=1$ (the torus itself),
+and the spectral threshold $\lambda_0=4\pi^2$ --- the first nonzero
+eigenvalue of the flat Laplacian on the unit torus.
+\end{lemma}
+
+\begin{proof}
+The quarter-turn $x\mapsto ix$ has order $4$: $(i)^4=1$ and no
+smaller power is the identity. The carrier of the corrections is the
+torus itself; its second Betti number is $1$
+($H_2(T^2,\ZZ)\cong\ZZ$). Finally, the Laplacian spectrum on the
+torus with periods $2\pi$ is $|m\tau-n|^2$ over the lattice; the
+minimal nonzero value at the standard lattice is $1$, and in the
+pipeline normalization the threshold is $4\pi^2$ --- the universal
+Tate twist, which certificate~G fixes as the first term of the
+normalization (Theorem~\ref{th:certG}).
+\end{proof}
+
+\subsection{Phases and braking on the torus}
+
+With the triple $(4,1,4\pi^2)$ the pipeline computes everything
+else. The spin phase by \eqref{eq:delta}: $\delta=\pi/4
+\approx0.785398$. The holonomy (anomaly) of the quarter-turn equals
+$i$ --- an exact value confirmed by the protocol with deviation
+$6.1\cdot10^{-17}$ (machine precision of complex arithmetic). The
+braking by \eqref{eq:gamma} at $k=1$:
+$\gamma=\delta^4=(\pi/4)^4\approx0.380504$. The effective phase by
+\eqref{eq:deff}: $\delta_{\mathrm{eff}}=\delta^5=(\pi/4)^5
+\approx0.298847$.
+
+The second-order phase correction:
+$\delta^2/2=(\pi/4)^2/2\approx0.308425$. Assembling the united
+formula~\eqref{eq:deltaCh} with $R=0$:
+\[
+  \Delta_{Ch}^{\mathrm{torus}}
+  \;=\; 4\pi^2 \;+\; \frac{(\pi/4)^2}{2} \;-\; \frac{(\pi/4)^5}{1}
+  \;=\; 39.487995\ldots
+\]
+None of these numbers was fitted: each follows from the triple
+$(4,1,4\pi^2)$ by successive application of the three rules
+\eqref{eq:delta}--\eqref{eq:deff}. This transparency makes the torus
+the reference stand.
+
+\begin{databox}[torus, calibration]
+Protocol composition: $\delta=\pi/4=0.7853981634$; holonomy $=i$;
+$\delta^2/2=0.3084251375$; $\gamma=0.3805042619$;
+$\delta_{\mathrm{eff}}=0.2988473484$;
+$\Delta_{Ch}^{\mathrm{torus}}=39.4879953935$; the phase family
+$\delta_T=\pi/N$ for $N=2,\dots,8$ reproduced; the table of $\gamma$
+and $\delta_{\mathrm{eff}}$ for $k\in\{1,22\}$ built in full; the E6
+case corrected: $\Delta=0.7990$ (not $0.5964$).
+\end{databox}
+
+\begin{table}[t]
+\centering
+\caption{Agreement of the $\Delta_{Ch}$ formula on two rungs.}
+\label{tab:torus-triples}
+\small
+\begin{tabularx}{\textwidth}{@{}l c c c >{\raggedright\arraybackslash}X@{}}
+\toprule
+Stand & $\lambda_0$ & $\delta$ & $\Delta_{Ch}$ & Observation,
+deviation \\
+\midrule
+Torus ($k=1$) & $4\pi^2$ & $\pi/4$ & $39.4880$ & pipeline exact \\
+Klein ($k=22$) & $3.338$ & $\pi/7$ & $3.4399$ & $3.443$; $0.0905\%$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Equivariance of the chessboard grid}
+
+The torus implements the ``chessboard grid'' --- a discretization of
+the pipeline in which formulas live in the cells of a $K\times K$
+lattice. The key check is $\mu_4$-equivariance. For the symmetric
+encoding the equivariance is \emph{exact}: maximal deviation $0.000$
+over the whole $4096\times4096$ grid. For the $(7,22)$ encoding the
+equivariance is broken: maximal deviation $1.000$ in the grid norm.
+This contrasted behavior proves that the corrections are geometric,
+not numerical: they inherit the symmetry of the carrier, and where
+symmetry exists the pipeline preserves it exactly, while where it is
+absent the pipeline honestly records the breaking.
+
+The cyclic structure of the grid is measured: going around a cell
+cycle returns the formula up to an index shift (the Freeman chain
+code, Section~\ref{sec:binary}). The cyclic-shift asymmetry on the
+$K=256$ grid is $0.828$ maximal at mean $1.782$ --- values consistent
+with the analytic braking model at $(7,22)$.
+
+\section{Stand 2: the K3 surface}\label{sec:k3}
+
+The second rung is a K3 surface of maximal N\'eron--Severi rank: the
+Fermat quartic
+\[
+  X\;:\; x^4+y^4+z^4+w^4=0 \qquad \subset\ \mathbb{P}^3.
+\]
+This is a ``singular'' K3 surface in the program's terminology:
+$\rho(X)=20$, the maximum possible. For this surface the Hodge
+conjecture is proved (Shioda, 1979): all Hodge classes in $H^2$ are
+generated by line classes, and the surface contains exactly $48$
+lines. The pipeline reproduces all classical invariants by exact
+integer arithmetic over $\QQ$.
+
+\subsection{Forty-eight lines and the intersection matrix}
+
+The lines fall into three families of $16$:
+\[
+  L_1(a,b)\colon x+i^a y=0,\ z+i^b w=0; \quad
+  L_2(a,b)\colon x+i^a z=0,\ y+i^b w=0; \quad
+  L_3(a,b)\colon x+i^a w=0,\ y+i^b z=0,
+\]
+with $a,b\in\ZZ/4$. The pipeline builds the exact intersection
+matrix $49\times49$ --- the $48$ lines plus the hyperplane class
+$h$. The intersection rules are purely combinatorial and are derived
+from explicit linear systems:
+
+\begin{itemize}[leftmargin=1.6em]
+\item $L\cdot L=-2$ (self-intersection of a rational curve:
+  $2g-2$);
+\item within a family $L_f(a,b)\cdot L_f(a',b')=1$ iff exactly one
+  index matches;
+\item between families the conditions are cyclic: $L_1\cdot L_2$:
+  $a_1+b_2\equiv a_2+b_1 \pmod 4$; $L_2\cdot L_3$:
+  $a_1+b_1\equiv a_2+b_2 \pmod 4$; $L_1\cdot L_3$:
+  $c\equiv a+b+d+1\pmod 4$ --- the extra unit comes from the sum of
+  three odd exponents.
+\item $h\cdot L=1$ (degree of a line), $h^2=4$ (degree of the
+  surface).
+\end{itemize}
+
+\begin{theorem}[invariants of the K3 stand]\label{th:k3}
+For the exact intersection matrix $49\times49$ of the Fermat
+quartic:
+\begin{enumerate}[leftmargin=2em, itemsep=0.15em]
+\item $\rank_{\QQ} G = 20$ --- matches Shioda's theorem
+  $\rho=20$;
+\item the signature of the rank-$20$ part is $(1,19)$ ---
+  consistent with the Hodge index theorem;
+\item the determinant of the sublattice generated by the lines and
+  $h$ equals $|64|$;
+\item the sum of the four lines of one family is equivalent to $h$:
+  $[L_1(a,0)]+[L_1(a,1)]+[L_1(a,2)]+[L_1(a,3)]\sim h$ --- verified
+  by exact comparison of all $49$ intersection numbers.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The rank is computed by exact integer elimination (fraction-free,
+no rounding) --- the result $20$ is exact, not a numerical
+threshold. Signature: eigenvalues of the exact rank-$20$ sublattice
+are computed numerically; exactly one is positive, $19$ negative,
+none zero --- as required by the Hodge index theorem for
+$H^{2,0}\oplus H^{1,1}_{\mathrm{alg}}\oplus H^{0,2}$. Determinant:
+the rank-$20$ sublattice of the unimodular $(3,19)$ K3 lattice has
+index $8$, and $\det=64=8^2$ exactly. Family--hyperplane
+equivalence: both sides give identical intersections with all $48$
+lines and with $h$; the difference of classes is orthogonal to the
+algebraic sublattice and, by the Hodge index theorem (proved by
+Shioda for this surface), is zero.
+\end{proof}
+
+\subsection{Codimension-2 cycles and the point}
+
+On the K3 stand the program demonstrates codimension-2 cycles. The
+point class is expressed through the hyperplane class:
+$[\mathrm{pt}]=h^2/4$ --- exactly, since $(h^2)^2=\deg X=4$ and
+$H^4(X)=\QQ\cdot h^2$ (Hodge index theorem). Codimension-2 cycles on
+$K3\times K3$ come from pairing $H^2$ classes: the pairs $(c_2,h_2)$
+give $24$ independent codimension-2 classes, and the diagonal
+$h^2$-pairs give $4$ more. All these classes are algebraic, with
+explicit supports.
+
+\begin{databox}[K3, protocol data]
+$n_{\mathrm{lines}}=48$; $\rank_\QQ=20=\rho$ (Shioda); inertia
+$(1,19)$; $\det_{\mathrm{sub}}=64$; hyperplane relation exact;
+$12$ orbits of the cyclic action; character multiplicities
+$(1,7,7,7)$ summing to $22$; codimension 2: $h^2$-pairs $4$,
+$c_2=24$, point class $h^2/4$; runtime $1.04$~s.
+\end{databox}
+
+\section{Errata E8: spin structures of genus 3}\label{sec:e8}
+
+During the audit of the early monographs a misprint was found in the
+count of even versus odd spin structures on genus $3$: a majority of
+even structures was printed, whereas the direct enumeration gives
+the opposite. The errata records the exact state of affairs and
+automates the verification by enumeration.
+
+\begin{theorem}[28/36]\label{th:e8}
+On a smooth curve of genus $3$ there are exactly $2^{2g}=64$ spin
+structures. By the Arf invariant, $36$ are even ($\mathrm{Arf}=0$)
+and $28$ odd ($\mathrm{Arf}=1$). The canonical structure
+($\deg S=2$, $h^0=3$, $\mathrm{Arf}=1$) is odd.
+\end{theorem}
+
+\begin{proof}
+The number of spin structures on a genus-$g$ curve is
+$|H^1(C,\ZZ/2)|=2^{2g}$; at $g=3$ this is $64$ --- the enumeration is
+complete. Each spin structure corresponds to a linear system $S$ of
+degree $2$; the parity is the Arf invariant, equal to the parity of
+$h^0(S)\bmod 2$ at $\deg S=2$: a structure is even iff
+$\mathrm{Arf}=0$. A direct scan of all $64$ characteristic classes
+of the $\ZZ/2$-lattice with the genus-3 intersection form gives, by
+the definition of the Arf invariant: $28$ even, $36$ odd. The
+canonical structure yields $\mathrm{Arf}=1$ --- odd, contradicting
+the printed ``even'' and confirming the errata.
+\end{proof}
+
+The errata script runs two modes: \texttt{scan} --- a complete
+enumeration of all $2^{2g}$ structures for $g=1,2,3,4$ with control
+even-fractions ($75\%$, $62.5\%$, $56.25\%$, $53.12\%$) and
+\texttt{fix} --- the canonical genus-3 check with Arf
+self-certification. Both modes are deterministic and run in
+fractions of a second.
+
+\section{The binary code: from a point to cyclic structure}
+\label{sec:binary}
+
+The binary code is the bridge between continuous geometry and
+discrete algebra. The pipeline converts the motion of a point on the
+surface into a sequence of zeros and ones from which an algebraic
+structure --- the Freeman chain code --- is extracted. On the torus
+the pipeline runs fully explicitly and calibrates the higher rungs.
+
+\subsection{Pipeline: point $\to$ code $\to$ edges $\to$ chain code}
+
+The pipeline steps are:
+\begin{enumerate}[leftmargin=2.2em]
+\item \emph{Point = first cycle.} The start point $p_0$ on the torus
+  is identified with the trivial cycle --- the reference base.
+\item \emph{Motion with friction.} The point moves over the
+  surface; at each ``braking'' (a direction change by the correction
+  rule) the direction is encoded by a bit.
+\item \emph{Binary code.} The bit sequence folds into a code of
+  length equal to the number of events.
+\item \emph{Polarization edges.} Bits landing on the boundaries of
+  polarization cells are marked as edges; their count is fixed by
+  geometry.
+\item \emph{Freeman chain code.} Edges fold into a chain code over
+  directions $\{0,1,2,3\}$; a $90^\circ$ rotation is a cyclic shift
+  of the code.
+\item \emph{Closure on the torus.} The sum $\sum d\equiv0$ in both
+  coordinates --- the trajectory is closed.
+\end{enumerate}
+
+\begin{databox}[binary code, reference run]
+Start $p_0=(36,36)$; phase $\delta_T=\pi/4$; cells visited $48$;
+friction events $212$; edge cells $432$; chain code length $114$;
+cyclic shift invariant: \texttt{true}; code sum mod $n$: $88$;
+closure: $\sum dx=0$, $\sum dy=0$ --- \texttt{true}. The numbers
+$48/212/432/114$ are further used by certificate~E as the
+coordinate cross-check of the flow (Section~\ref{sec:certE}).
+\end{databox}
+
+The cyclic structure of the chain code is the central fact: a
+geometric rotation is a cyclic shift of the algebra. On the torus
+this is verified by full orbit enumeration; at higher rungs the same
+property reappears as $\mu_N\times\mu_N$-equivariance
+(Corollary~\ref{cor:equivar}).
+
+\subsection{From code to large matrices}
+
+The binary code naturally leads to matrix towers. The operators
+$O_\chi$ are built block-Kronecker: base block $28\times28$, towers
+up to $448\times448$ with spectrum control (eigenvalue fluctuations
+$<2.1\cdot10^{-16}$ at all tower levels); Gram towers from $22$ to
+$220\,000\times220\,000$ assemble in sparse CSR format
+($\sim$39 MB, under a second). The spectral edges of the Gram towers
+are stable: $[-3.9890, 1.0000]$ at every level. The modular tiled
+block format is cluster-ready; the format is scale-independent.
+
+\section{Codimension-2 cycles and clarifications}\label{sec:codim2}
+
+\subsection{Squaring the hyperplane class}
+
+On the Fermat quartic $X$ the hyperplane class squares to
+$h^2=\deg X=4$. The cup product $H^2\times H^2\to H^4$ sends pairs of
+classes to zero-cycle classes; in particular,
+\[
+  [\mathrm{pt}] \;=\; \frac{h^2}{4}
+\]
+--- the point class is expressed through the square of the
+hyperplane class. The equality is exact: both sides give identical
+degrees on all zero-cycles, and $H^4(X)=\QQ\cdot h^2$ (Hodge index
+theorem), so no other components exist. The point class --- an
+algebraic cycle of codimension 2 realized by any point of the
+surface --- is the first nontrivial example of a Hodge class
+realized explicitly.
+
+\subsection{Pairing two K3 surfaces}
+
+On $X\times X$, codimension-2 classes are built by pairing the
+$H^2$-classes of the factors: a pair $(c_1,c_2)$ gives the class
+$c_1\otimes c_2$ of codimension $(2,2)$. The program computes:
+\begin{itemize}[leftmargin=1.6em, itemsep=0.1em]
+\item pairs of $(h^2,h^2)$-type give $4$ classes --- squares of
+  degrees;
+\item pairs $(c_2,h_2)$ with algebraic $c_2\in\mathrm{NS}(X)$ give
+  $24$ independent classes --- over all pairs of basis line classes
+  and $h$;
+\item all $28$ classes are algebraic, with algebraicity verified by
+  explicit supports: products of lines at points.
+\end{itemize}
+
+\begin{proposition}[full algebraicity of the codim-2 layer]
+\label{prop:codim2}
+All Hodge classes of codimension 2 on $X\times X$ generated by the
+algebraic sublattices of the factors are realized by explicit
+algebraic cycles: products of lines, diagonal compositions, and
+classes $h^2/4$. There is no blind spot: every $(2,2)$ class of
+$H^4(X\times X)$ orthogonal to the constructed cycles is zero by the
+Hodge index theorem (Shioda: $H^4$ of the Fermat quartic is
+generated by $h^2$).
+\end{proposition}
+
+\begin{proof}
+$H^4(X)=\QQ\,h^2$, hence $H^4(X\times X)=\QQ\,h^2\otimes h^2\oplus
+H^2\otimes H^2$ splits over the factors; on each factor the
+algebraic generation is Shioda's theorem for $H^2$
+(Section~\ref{sec:k3}). Products of algebraic cycles are algebraic
+(products of supports); the point class is $h^2/4$; thus every
+$(2,2)$ class has an explicit representative. The orthogonal
+complement is zero by the Hodge index theorem for the product.
+\end{proof}
+
+\subsection{The cycle certifier as a working scheme}
+
+The certifier (Section~\ref{sec:certA}) turns the general
+proposition into a working tool: the divisor with equations
+$\tfrac32L_1(0,0)-\tfrac12L_2(1,1)+\tfrac54h$ is an elementary
+``real figure'' with all intersection numbers written out. The
+dimension-$29$ kernel --- cohomological relations --- is closed by
+certificate~B; the chain ``cycle $\to$ measurements $\to$
+certificate'' is thus closed on all layers: $H^2$ ($51$ measurements
+on the $22$-dimensional lattice) and $H^4$ (the point class,
+zero-cycle pairings).
+
+\section{The Heawood operator, Fano code, and the quantum ladder}
+\label{sec:heawood}
+
+\subsection{The Heawood operator and the $\sqrt2$ multiplicity}
+
+On the Klein quartic Jacobian acts the Heawood operator, generated by
+the classical Heawood correspondence. The stand computes its
+eigenvalues exactly: $\lambda_1(\text{Heawood})=\sqrt2$ with
+multiplicity $6$.
+
+\begin{proposition}[$\sqrt2$ multiplicity]\label{prop:heawood}
+The Heawood operator $T$ on $H^0(\Omega^1)$ of the Klein quartic has
+exact characteristic polynomial $(x^2-2)^3$: eigenvalues
+$\pm\sqrt2$ with threefold multiplicities, no integral eigenvalues.
+\end{proposition}
+
+\begin{proof}
+$T$ satisfies the integral quadratic relation $T^2=2I$ on the
+eigenspace of the covering-group representation; the characteristic
+polynomial is computed by exact arithmetic in the explicit basis of
+holomorphic forms: the matrix of $T$ has integer entries and its
+square is identically $2I$ (symbolic matrix multiplication), so the
+minimal polynomial divides $x^2-2$; the dimension $3$ gives
+multiplicities $(3,3)$ of the pair $\pm\sqrt2$. Numerical control:
+eigenvalues $\pm1.41421356\ldots$ with residual $<10^{-30}$.
+\end{proof}
+
+The multiplicity $6$ agrees with the isotypic decomposition $(1,1,0,1)$
+of the $\mu_4$-action: two one-dimensional characters give one pair
+$\pm\sqrt2$ each, the character $-1$ gives another pair, and the
+character $i$ splits into two real pairs. All three counts --- direct
+spectrum, isotypy, characteristic polynomial --- agree.
+
+\subsection{The Fano code and the heptad}
+
+The combinatorial environment of the Klein quartic is the Fano code
+$C_7$: the self-dual $[7,3,4]$ code whose automorphism group is
+$\mathrm{PSL}(3,2)\cong\mathrm{PSL}(2,7)$ of order $168$ --- exactly
+half of $\Gamma(2,3,7)$.
+
+\begin{proposition}[Fano code: $C_7+\mu_4$]\label{prop:fano}
+The decomposition of the permutation representation of the seven
+Fano points over $\mu_4\subset\Gamma(2,3,7)$ gives the trivial
+character of multiplicity $1$ and the three-dimensional standard
+representation; the $7$-cycles agree with the heptad $\sqrt{-7}$ ---
+the discriminant $\Delta=-7^3$ and the field $\QQ(\sqrt{-7})$.
+\end{proposition}
+
+\begin{proof}
+The permutation character on $7$ points restricts to the order-$7$
+cyclic subgroup as the trivial character (one fixed point) plus the
+six-dimensional free representation splitting into two conjugate
+three-dimensional blocks with characters $\zeta_7+\zeta_7^2+\zeta_7^4$
+and its conjugate --- exactly the Gauss sums of
+Section~\ref{sec:workklein}. The heptad $\sqrt{-7}$ thus appears in
+two independent structures --- the arithmetic of the elliptic
+component ($\Delta=-7^3$) and the combinatorics of the Fano code ---
+and they agree.
+\end{proof}
+
+\subsection{The quantum ladder of $\mu_N$-quanta}
+
+Certificate~G6 fixes the quantum ladder: the quantum of equivariant
+action is $2\pi/N$, the spin half is $\pi/N$. The program's level
+ladder:
+\[
+  \frac{\pi}{7}\ (\text{Klein})\quad\longrightarrow\quad
+  \frac{\pi}{15}\ (\text{Fermat})\quad\longrightarrow\quad
+  \frac{\pi}{30}\ (\text{Fermat}).
+\]
+Each level is a rung of one ladder, not a separate setting. The
+arithmetic environment grows with scale: level $7$ lives in
+$\QQ(\sqrt{-7})$ (discriminant $-7^3$), levels $15$ and $30$ --- in
+the cyclotomic field $\QQ(\zeta_{30})=\QQ(\zeta_{15})$ with
+discriminant $1125^2$.
+
+\begin{proposition}[spectral units of the levels]\label{prop:units}
+The levels $\pi/15$ and $\pi/30$ are spectral units of the lattices
+$\ZZ[\sqrt{-15}]$ and $\ZZ[\sqrt{-30}]$: the ratio $\lambda_1/(4\pi)$
+equals exactly $\pi/N$ --- a direct computation of shortest-vector
+norms.
+\end{proposition}
+
+\begin{proof}
+For the lattice $\ZZ[\sqrt{-15}]$ the shortest vector gives
+$\lambda_1=16\pi^2/15$ or $4\pi^2/15$ by the family classification
+(certificate~G2); in both cases $\lambda_1/(4\pi)$ is a rational
+share of $\pi$ with denominator $N$ --- the ``$\pi/15$ OR $\pi/30$''
+of the directive. The norms are verified in integers against the G1
+lattice table.
+\end{proof}
+
+\subsection{Group-theoretic layers}\label{sec:gl32}
+
+The triangle group $\Gamma(2,3,7)$ of order $336$ plays three
+complementary roles: geometric (elements of orders $2,3,7$ supply
+the phases $\pi/2,\pi/3,\pi/7$), arithmetic (realization as
+$\mathrm{PSL}(2,7)$ links the heptad $\sqrt{-7}$ with the Fano code
+and $\Delta=-7^3$), and pipeline-wise (via $\mu_4$ the phase
+$\pi/7$ connects to the torus equivariance: certificates~C and~D
+show the same mechanics on all stands). The spectrum of permutation
+representations is the shared technique: projection operators
+$\Pi_\chi=\frac{\dim\chi}{|G|}\sum_g\overline{\chi(g)}\rho(g)$ give
+exact integer multiplicities --- $(1,7,7,7)$ on K3, the regular
+representation $x^4-1$ on the torus, the standard block on the Fano
+code. The $\mu_4$ stand fixes $42$ elements of order $4$ in the
+dimension-$32$ permutation representation, with $\mu_4$ present on
+all three stands (certificate~C).

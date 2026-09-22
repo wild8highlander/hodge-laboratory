@@ -1,0 +1,127 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries The Genus of the Fermat Curve}\\[0.4em]
+{\large the topological foundation of the cyclotomic stands}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 1/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+The Fermat curve $C_N=\{x^N+y^N=z^N\}\subset\mathbb{P}^2$ is the
+basic object of the cyclotomic stands. Its topology is determined by
+a single integer $N$, and the first pipeline step --- the genus $g$
+--- is purely topological: no analysis, no spectral theory. The
+genus determines the dimension of the space of holomorphic forms,
+the size of the period matrix, and ultimately the scale of the whole
+construction.
+
+\begin{lemma}[genus of the Fermat curve]\label{lem:genus}
+Let $N\ge 4$. The projection $\pi_x\colon C_N\to\mathbb{P}^1$ is a
+morphism of degree $N$, unramified over $\infty$ and ramified
+exactly over the $N$ points $\zeta_N^k$, with ramification index $N$
+at each $P_k=(\zeta_N^k,0)$. The genus equals
+$g=\frac{(N-1)(N-2)}{2}$; in particular $g(15)=91$, $g(30)=406$.
+\end{lemma}
+
+\begin{proof}
+Over any $x_0\in\mathbb{P}^1$ the equation $y^N=1-x_0^N$ has exactly
+$N$ solutions with multiplicity, hence $\deg\pi_x=N$. At $P_k$ the
+local expansion $1-x^N=-N\zeta_N^{k(N-1)}(x-\zeta_N^k)+\dots$ gives
+$y^N=c\,(x-\zeta_N^k)$ with $c\ne0$: the parameter is $y$ and
+$x-\zeta_N^k\sim c^{-1}y^N$, so the ramification index is $N$. Over
+$\infty$ there is no ramification: at $z=0$ the equation
+$X^N+Y^N=0$ has $N$ distinct solutions with unramified projection.
+The Riemann--Hurwitz formula gives
+$2g-2=-2N+N(N-1)=N^2-3N$, hence
+$g=(N-1)(N-2)/2$: $91$ and $406$ at $N=15,30$.
+\end{proof}
+
+\begin{remark}
+The same Pl\"ucker formula for a smooth plane curve of degree $m$
+gives $\tfrac{(m-1)(m-2)}2$ --- the agreement of the two readings
+serves as a built-in control: at $N=4$ both give $3$ (the Klein
+quartic is also a genus-3 curve, but a \emph{different} curve).
+\end{remark}
+
+\begin{databox}[numbers]
+$g(15)=91$; period matrix $91\times182$; $g(30)=406$; period matrix
+$406\times812$; for comparison: $g(4)=3$, $g(7)=15$, $g(22)=231$.
+\end{databox}
+
+\begin{statusbox}[summary]
+The genus is proved from Riemann--Hurwitz with all components
+explicit. Consequences: the character censuses $91=1+6+84$ and
+$406=1+6+9+30+84+276$ agree with the genera (check V1, exact
+integer arithmetic).
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+\texttt{python3 laboratory.py} $\to$ ``Stand N=15/30 $\to$ V1
+census''; Lean: \texttt{genus\_fermat} in
+\texttt{HodgeLaboratory.lean} --- machine proofs of
+$(15-1)(15-2)/2=91$ and $(30-1)(30-2)/2=406$.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

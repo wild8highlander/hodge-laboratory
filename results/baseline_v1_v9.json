@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "baseline": true,
+    "version": "1.1.0",
+    "dps": 35,
+    "author": "Исаев Исхак Хамзатович / Isaev Iskhak Khamzatovich",
+    "note": "Reference results of the protocol V1-V9 and of the stands. The laboratory cross-checks new runs against these values by explicit thresholds (laboratory.py --check-baseline)."
+  },
+  "V1_census": {
+    "15": {"h_d": {"3": 1, "5": 6, "15": 84}, "genus": 91, "total": 91},
+    "30": {"h_d": {"3": 1, "5": 6, "6": 9, "10": 30, "15": 84, "30": 276}, "genus": 406, "total": 406}
+  },
+  "V2_certB": {
+    "15": {"n_tests": 21, "max_rel_err": 3.9e-36, "threshold": 1e-30},
+    "30": {"n_tests": 48, "max_rel_err": 3.9e-36, "threshold": 1e-30}
+  },
+  "V3_phase": {"max_phase_dev_rad": 0.0, "threshold": 1e-25},
+  "V4_certC": {"max_rel_err": 3.9e-36, "threshold": 1e-30},
+  "V5_chain": {"max_rel": 1.5e-36, "threshold": 1e-25, "note": "orbit sums over (k,k); vanishing for a+b not 0 mod N, positive control a+b=N"},
+  "V6_reflection": {"max_rel_err": 7.0e-36, "threshold": 1e-30},
+  "V7_rank": {
+    "15": {"rank": 91, "cond": 8.63},
+    "30": {"rank": 140, "cond": 17.35, "note": "the full rank g=406 holds on the whole matrix; the protocol certifies the first 140 rows"}
+  },
+  "V8_orthogonal": {"diag": 1.1e-36, "offdiag": 4.0e-36, "threshold": 1e-25},
+  "V9_deep": {"rel_err": 1.7e-71, "threshold": 1e-60},
+  "stands": {
+    "torus": {"triple": [4, 1, "4π²"], "delta": 0.7853981634, "delta2_half": 0.3084251375, "gamma": 0.3805042619, "delta_eff": 0.2988473484, "Delta_Ch": 39.4879953935},
+    "k3": {"lines": 48, "rank": 20, "inertia": [1, 19], "det": 64, "isotypy": [1, 7, 7, 7]},
+    "klein": {"j": -3375, "Delta": -343, "c4": 105, "tau": "(1+√−7)/2", "Omega": 1.93331170561681154673308, "heawood_lambda1": "√2 ×6"},
+    "errata_e8": {"g3": {"total": 64, "even": 36, "odd": 28}, "note": "even (Arf=0) = 2^{g-1}(2^g+1) = 36; the typo of the early text is corrected; v1.1.0 verifies the counts by full enumeration"},
+    "binary_code": {"visited": 48, "friction": 212, "edges": 432, "chain_len": 114}
+  },
+  "certificates": {
+    "A": "accepted: divisor 3/2·L1(0,0)−1/2·L2(1,1)+5/4·h; kernel 29",
+    "B": "accepted: blind spot 29+2→0; 51 measurements on H²(K3)",
+    "C": "accepted: 22=1+7+7+7; x⁴−1; the √−7 heptad",
+    "D": "accepted: [L,P]=0; functoriality; ℤ[i]",
+    "E": "accepted 8/8: t*=lcm; 48/212/432/114",
+    "F": "accepted 5/5: Q=256; 4X²−7; j=−3375; negative test 4π²",
+    "G": "accepted 6/6: Chowla–Selberg; π/15, π/30",
+    "H": "accepted 6/6: SNF (1,1,5,5,15,15,15,15); disc=1125²; vol_h=1125; Q=480"
+  }
+}

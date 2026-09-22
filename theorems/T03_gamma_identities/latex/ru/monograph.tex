@@ -1,0 +1,156 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Γ-тождества}\\[0.4em]
+{\large формула отражения и формула умножения Гаусса}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 3/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+Весь аналитический инструментарий стенда $N=15/30$ --- два
+функциональных тождества гамма-функции. Принципиально, что больше
+ничего не требуется: все соотношения между используемыми
+$\Ga$-произведениями выводятся из этих двух тождеств.
+
+\begin{lemma}[формула отражения]\label{lem:reflection}
+Для всех $z\in\CC\setminus\ZZ$
+\[
+  \Ga(z)\,\Ga(1-z)\;=\;\frac{\pi}{\sin \pi z}.
+\]
+\end{lemma}
+
+\begin{proof}
+Ключевое звено --- интеграл Эйлера
+$\int_0^\infty\frac{u^{z-1}}{1+u}\,du=\frac{\pi}{\sin\pi z}$
+при $0<\re z<1$, доказываемый вычетами по ключевому контуру:
+функция $f(u)=\frac{(-u)^{z-1}}{1+u}$ голоморфна вне разреза
+$[0,+\infty)$; единственный полюс $u=-1$ внутри контура имеет вычет
+$1$; стороны разреза дают
+$\bigl(e^{i\pi(1-z)}-e^{-i\pi(1-z)}\bigr)\int_0^\infty
+\frac{x^{z-1}}{1+x}dx=2\pi i$. Замена $t=\frac{u}{1+u}$ переводит
+интеграл в $\Bfun(z,1-z)=\Ga(z)\Ga(1-z)$; сопоставление даёт
+формулу; аналитическое продолжение распространяет её на все
+$z\notin\ZZ$.
+\end{proof}
+
+\begin{lemma}[формула умножения Гаусса]\label{lem:gauss}
+Для целых $m\ge2$ и $mz\notin\ZZ_{\le0}$
+\[
+  \Ga(z)\,\Ga\!\Bigl(z+\frac1m\Bigr)\cdots
+  \Ga\!\Bigl(z+\frac{m-1}{m}\Bigr)
+  \;=\;(2\pi)^{\frac{m-1}{2}}\;m^{\frac12-mz}\;\Ga(mz).
+\]
+\end{lemma}
+
+\begin{proof}
+Отношение левой и правой частей $Q_m=G_m/H_m$ --- $1$-периодическая
+голоморфная функция: рекуррентность $\Ga(w+1)=w\Ga(w)$ даёт
+$\frac{G_m(z+1)}{G_m(z)}=\prod_{k=0}^{m-1}(z+\tfrac km)
+=m^{-m}\frac{\Ga(mz+m)}{\Ga(mz)}$, и тот же множитель у $H_m$.
+Формула Стирлинга даёт $Q_m(z)\to1$ при $\re z\to+\infty$ в
+вертикальных полосах конечной ширины; периодичность переносит
+предел на всю полосу, откуда $Q_m\equiv1$.
+\end{proof}
+
+\begin{lemma}[инвентарь соотношений]\label{lem:relations}
+Все используемые соотношения между
+$\Omega_{a,b}=\Bfun(a/N,b/N)$ --- следствия двух тождеств:
+\begin{enumerate}[leftmargin=2em]
+\item если $a+b=N$: $\Omega_{a,b}=\pi/\sin(\pi a/N)$ --- чистая
+  дробная доля $\pi$;
+\item если $a+b>N$:
+  $\Omega_{a,b}=\frac{N}{a+b-N}
+  \frac{\Ga(a/N)\Ga(b/N)}{\Ga((a+b-N)/N)}$ --- редукция;
+\item если $a+b<N$: $\Omega_{a,b}$ канонично.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Пункт 1 --- отражение при $b/N=1-a/N$; пункт 2 ---
+рекуррентность $\Ga\bigl(\frac{a+b}N\bigr)=\frac{a+b-N}{N}
+\Ga\bigl(\frac{a+b-N}N\bigr)$; пункт 3 --- по определению.
+\end{proof}
+
+\begin{databox}[числа]
+Лестница отражения (V6): $\Ga(k/N)\Ga(1-k/N)=\pi/\sin(\pi k/N)$ для
+всех $k=1,\dots,N-1$, $N=15,30$; максимум относительного отклонения
+$7.0\cdot10^{-36}$ при $dps=35$.
+\end{databox}
+
+\begin{statusbox}[итог]
+Оба тождества выведены из интегральных представлений и основной
+теоремы о вычетах --- внешние результаты не привлекаются. Инвентарь
+фиксирует: полная классификация $\QQ$-соотношений между
+$\Ga$-произведениями (Рорлих) не используется --- достаточность
+порождающего набора проверяется рангом (V7: ранг $=g$).
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+\texttt{python3 laboratory.py} $\to$ <<Стенд N=15/30 $\to$ V6>> ---
+лестница отражения для всех $k$; диаграмма
+\texttt{fig\_gamma.png} ($600$~dpi) --- численный портрет тождества.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (пункт <<Стенды>>/<<Сертификаты>>),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

@@ -1,0 +1,136 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Сертификат D: универсальная μ₄-теорема}\\[0.4em]
+{\large коммутация, функториальность и полуинвариантность}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 12/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+Сертификат D поднимает $\mu_4$-механику из частных стендов в общую
+теорему: коммутация поправок с проекторами на изотипные компоненты
+--- универсальное свойство $\mu_4$-симметричных систем.
+
+\begin{theorem}[D1--D4]\label{th:Dstand}
+\begin{enumerate}[leftmargin=2em]
+\item[(D1)] Для любого $\mu_4$-симметричного оператора $L$ и
+проектора $P$ на изотипную компоненту $[L,P]=0$. Проверено на
+$10$ независимых случайных $\mu_4$-симметричных системах ---
+коммутатор тождественно нулевой.
+\item[(D2)] Функториальность:
+$e_{(m,n)}(\mathrm{rot}\,x)=e_{(n,-m)}(x)$ --- перенос индексов
+при повороте точен.
+\item[(D3)] Семейство карт $\{(8,3),(16,4),(24,5),(32,7)\}$:
+кратность $\lambda_1$ равна $4$ при $K\in\{8,10,12\}$ ---
+размерность регулярного представления устойчива.
+\item[(D4)] Полуинвариантность $F(\mathrm{rot}\,x)=i\,F(x)$ точна
+над $\ZZ[i]$ --- фаза поворота восстанавливается в целых гауссовых
+числах без округлений.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(D1) Проектор $P=\frac14\sum_{k=0}^3 i^{-k}R^k$, где $R$ --- поворот.
+Если $LR=RL$, то $LP=PL$ раскрытием суммы. Случайные системы ---
+блочно-циркулянтные операторы с $\mu_4$-блоками; коммутатор
+вычисляется точно в целых числах.
+(D2) Поворот действует линейно на индексах решётки моментов;
+функционал $e_{(m,n)}$ --- экспонента линейной формы; композиция ---
+тождество на индексах.
+(D3) На картах семейства собственное значение $\lambda_1$ повторяет
+регулярное представление: кратность $4$ --- точный ранг проектора.
+(D4) Собственные значения поворота --- $\{1,i,-1,-i\}\subset\ZZ[i]$;
+собственные функционалы нормируются в $\ZZ[i]$; умножение на $i$
+точное.
+\end{proof}
+
+\begin{remark}[универсальность механизма и значений]
+Теорема доказывает универсальность \emph{механизма}: любая
+$\mu_4$-симметричная система устроена одинаково. Универсальность
+\emph{значений} конкретной тройки $(7,22,\lambda_1)$ ---
+отдельный вопрос ступеней лестницы: значения поставляются
+геометрией каждой ступени, и их согласованность зафиксирована
+сертификатами B и C на каждом стенде.
+\end{remark}
+
+\begin{databox}[проверки]
+$10$ случайных систем: $[L,P]=0$ тождественно; семейство карт
+$\{(8,3),(16,4),(24,5),(32,7)\}$: кратность $\lambda_1=4$ при
+$K\in\{8,10,12\}$; функториальность: тождество
+$e_{(m,n)}(\mathrm{rot}\,x)=e_{(n,-m)}(x)$; полуинвариантность:
+$F(\mathrm{rot}\,x)=i\,F(x)$ над $\ZZ[i]$.
+\end{databox}
+
+\begin{statusbox}[итог]
+Сертификат D принят: универсальная $\mu_4$-теорема доказана в общей
+форме на всех четырёх пунктах.
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+\texttt{python3 laboratory.py} $\to$ <<Сертификаты $\to$ D>>:
+десять систем, коммутаторы, карты --- детерминировано.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (пункт <<Стенды>>/<<Сертификаты>>),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

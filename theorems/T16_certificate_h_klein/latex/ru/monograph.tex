@@ -1,0 +1,161 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Сертификат H и стенд Клейна}\\[0.4em]
+{\large Γ-нормировка Гросса, объём 1125 и арифметика гептады}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 16/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+Сертификат H --- вершина арки программы: полная $\Ga$-нормировка
+Гросса на стенде $N=15/30$, закрывающая $\Ga$-остаток сертификата G.
+Вместе с ним здесь собран и третий стенд --- якобиан квартики
+Клейна с его арифметикой.
+
+\begin{theorem}[H1 --- циклотомическая решётка]\label{th:H1stand}
+CM-решётка стенда: $\QQ(\zeta_{30})=\QQ(\zeta_{15})$ --- один
+стенд, два $\Ga$-уровня. Форма Римана целочисленна (суммы
+Рамануджана); тип поляризации (SNF) $(1,1,5,5,15,15,15,15)$ ---
+целые индексы; $\disc=3^4\cdot5^6=1265625=1125^2$.
+\end{theorem}
+
+\begin{proof}
+Форма Рамануджа целочисленна; SNF вычислена точным целочисленным
+алгоритмом; произведение инвариантных множителей
+$1\cdot1\cdot5\cdot5\cdot15^4=1265625$ совпадает с $3^4\cdot5^6$
+--- разложение проверено. Поле: $\phi(30)=\phi(15)=8$;
+изоморфизм $\zeta_{30}\mapsto-\zeta_{15}^8$.
+\end{proof}
+
+\begin{theorem}[H2 --- $\Ga$-нормировка объёма]\label{th:H2stand}
+\[
+  \mathrm{vol}_h=(2\pi)^{32}\prod_{k=1}^{N-1}\Ga(k/N)^{-c_k}=1125
+  \qquad (N=15\ \text{и}\ 30),
+\]
+показатели $c_k$ точны (для $N=15$: $c_k=4$ при десяти $k$,
+$c_k=6$ при $k=3,6,9,12$); остаток $1.01\cdot10^{-119}$;
+$\det V^2=1265625/256$; дефляция PSLQ ($N=15$) восстанавливает
+целочисленный вектор показателей; $N=30$ сертифицирован
+синус-подсчётом.
+\end{theorem}
+
+\begin{proof}
+Произведение Коула--Селберга по характерам: показатели собирают
+кратности проводников $h_d$. Вычисление при $dps=120$ даёт $1125$ с
+остатком $10^{-119}$; согласование с $\sqrt{\disc}$ из H1 точное.
+Синус-подсчёт: $\Ga(k/30)\Ga((30-k)/30)=\pi/\sin(\pi k/30)$
+замыкает тождество для чётных $k$ без PSLQ.
+\end{proof}
+
+\begin{theorem}[H3--H6]\label{th:H36}
+\emph{(H3)} Каждый период Ферма --- $\Ga$-мономиал
+$\frac1N\zeta^{ra+sb}\Ga(a/N)\Ga(b/N)/\Ga((a+b)/N)$ ($91/406$
+периодов; квадратуры $10^{-121}$); уровень $30$ с нечётными $k$ не
+сводим к $15$.
+\emph{(H4)} Модули $|\omega(\tau_i)^2|$ --- $\Ga$-мономиалы;
+фаза $\psi=\frac{(1+3\sqrt5)+i(\sqrt{15}-\sqrt3)}8=R/|R|$
+восстановлена LLL; $|R|=3-\sqrt5$ --- единица $\QQ(\sqrt5)$.
+\emph{(H5)} Лестница $\pi/7$, $\pi/15$, $\pi/30$ --- ступени одной
+лестницы $\mu_N$-квантов; веса $4\sin(\pi k/N)$ согласованы.
+\emph{(H6)} Граница знаменателей $Q_{\text{стенд}}=2N\max s_i=480$;
+рационализация F замыкается без скана.
+\end{theorem}
+
+\begin{proof}
+(H3) --- замкнутая форма периода + сертификат B ($69$ тестов,
+$3.9\cdot10^{-36}$) + глубокие квадратуры ($10^{-121}$);
+несводимость: $\Ga(1/30)$ не редуцируется инвентарём соотношений к
+знаменателю $15$. (H4) --- LLL в $\QQ(\sqrt{-3},\sqrt5)$
+восстанавливает точные координаты; $R\bar R=(3-\sqrt5)^2$ точное.
+(H5) --- фазы $\pi/7$ (Клейн), $\pi/15$, $\pi/30$ --- уровни
+конструкции $\delta=\pi/N$; веса согласованы с таблицами
+Рамануджа. (H6) --- $2\cdot30\cdot8=480$; все измерения внутри
+интервалов единственности F1.
+\end{proof}
+
+\begin{databox}[Клейн --- стенд в составе H]
+Гладкость: $28(xyz)^3=0$; род $3$; $\Delta=-343=-7^3$; $c_4=105$;
+$j=-3375=-15^3$; форма $W^2=v^3-35v-98$; корни $7,
+\frac{-7\pm\sqrt{-7}}2$; $\Omega=1.9333117056\ldots$ (три схемы,
+согласие $1.4\cdot10^{-32}$); $\tau=(1+\sqrt{-7})/2$;
+$j(\tau)=-3375$ из периода ($57$ знаков, якорь $j(i)=1728$);
+$\zeta+\zeta^2+\zeta^4=\tau-1$; изотипика $(1,1,0,1)$;
+$\lambda_1$(Хивуд)$=\sqrt2$, кратность $6$; код Фано $C_7+\mu_4$.
+\end{databox}
+
+\begin{statusbox}[итог]
+Сертификат H принят ($6/6$): циклотомическая решётка, объём
+$1125$ в полной $\Ga$-нормировке, $\Ga$-мономиальные периоды,
+Гросс-нормировка, лестница, знаменатели --- арка программы
+замкнута. Время счёта ~2 минуты.
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+\texttt{python3 laboratory.py} $\to$ <<Сертификаты $\to$ H>>;
+<<Стенды $\to$ Клейн>>; Lean: \texttt{stand\_disc},
+\texttt{snf\_product}, \texttt{klein\_integers}.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (пункт <<Стенды>>/<<Сертификаты>>),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

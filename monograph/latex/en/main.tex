@@ -1,0 +1,112 @@
+% !TeX program = tectonic
+% ═══════════════════════════════════════════════════════════════════════
+% THE DYNAMIC PRINCIPLE: UNIFIED MONOGRAPH (English edition)
+% Author: Isaev Iskhak Khamzatovich
+% ═══════════════════════════════════════════════════════════════════════
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+\setlength{\headheight}{14pt}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\usepackage{fancyhdr}
+
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{rowlight}{HTML}{F2F6FA}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{darkink}{HTML}{1A2433}
+\definecolor{goldacc}{HTML}{8B7E5A}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=linkblue,
+    citecolor=darkink,
+    urlcolor=linkblue,
+    bookmarks=true,
+    bookmarksnumbered=true,
+    unicode=true
+]{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5, colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1}, fonttitle=\small, boxrule=0.7pt,
+  arc=2pt, breakable}
+\newtcolorbox{keybox}[1][]{colback=rowlight, colframe=linkblue,
+  title={#1}, fonttitle=\bfseries\small, boxrule=0.9pt, arc=2pt, breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6, colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1}, fonttitle=\small, boxrule=0.7pt,
+  arc=2pt, breakable}
+
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\itshape The Dynamic Principle: Unified Monograph}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+
+\tableofcontents
+\clearpage
+
+\input{e_p1}
+\input{e_p2}
+\input{e_p3}
+\input{e_p4}
+\input{e_p5}
+\input{e_p6}
+\input{e_p7}
+
+\hypersetup{
+  pdftitle={The Dynamic Principle: Unified Monograph},
+  pdfauthor={Isaev Iskhak Khamzatovich},
+  pdfsubject={Hodge conjecture program: ladder of stands, certificates, closed theorem system},
+  pdfkeywords={Hodge conjecture, Fermat curves, gamma normalization, Riemann relations, polarization, K3, Klein quartic, cyclotomic levels}
+}
+
+\end{document}

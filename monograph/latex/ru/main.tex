@@ -1,0 +1,144 @@
+% !TeX program = tectonic
+% ═══════════════════════════════════════════════════════════════════════
+% ДИНАМИЧЕСКИЙ ПРИНЦИП: ЕДИНАЯ МОНОГРАФИЯ
+% Полная унификация программы: лестница стендов, сертификаты A–H,
+% замкнутая система теорем стенда N=15/30, протокол V1–V9.
+% Автор: Исаев Исхак Хамзатович
+% Компиляция: tectonic main.tex
+% ═══════════════════════════════════════════════════════════════════════
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+\setlength{\headheight}{14pt}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins}
+\usepackage{fancyhdr}
+
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{rowlight}{HTML}{F2F6FA}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{darkink}{HTML}{1A2433}
+\definecolor{goldacc}{HTML}{8B7E5A}
+
+\usepackage[
+    colorlinks=true,
+    linkcolor=linkblue,
+    citecolor=darkink,
+    urlcolor=linkblue,
+    bookmarks=true,
+    bookmarksnumbered=true,
+    unicode=true
+]{hyperref}
+
+% ─── Теоремные окружения ───
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\newtheorem{example}[theorem]{Пример}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+
+% ─── Статусные боксы (сводка доказанного) ───
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5, colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1}, fonttitle=\small, boxrule=0.7pt,
+  arc=2pt, breakable}
+\newtcolorbox{keybox}[1][]{colback=rowlight, colframe=linkblue,
+  title={#1}, fonttitle=\bfseries\small, boxrule=0.9pt, arc=2pt, breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6, colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1}, fonttitle=\small, boxrule=0.7pt,
+  arc=2pt, breakable}
+
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+
+% ─── Обозначения ───
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\itshape Динамический принцип: единая монография}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+
+% Титульная страница собирается конвейером (HTML/Playwright) и
+% вставляется первой страницей; тело начинается с оглавления.
+\tableofcontents
+\clearpage
+
+\input{p_part1}
+\input{p_part1b}
+\input{p_part1c}
+\input{p_part2}
+\input{p_part3}
+\input{p_part4}
+\input{p_part5}
+\input{p_part5b}
+\input{p_part6}
+\input{p_part7}
+\input{p_part8}
+\input{p_part9}
+\input{p_part10}
+\input{p_part11}
+\input{p_part12}
+\input{p_part13}
+\input{p_part14}
+\input{p_part15}
+\input{p_part16}
+\input{p_appendix}
+\input{p_appendix2}
+\input{p_appendix3}
+\input{p_appendix4}
+\input{p_appendix5}
+
+\clearpage
+\addcontentsline{toc}{section}{Список диаграмм и таблиц}
+\section*{Список диаграмм и таблиц}
+\listoffigures
+\vspace{1em}
+\listoftables
+
+\hypersetup{
+  pdftitle={Динамический принцип: единая монография программы},
+  pdfauthor={Исаев Исхак Хамзатович},
+  pdfsubject={Программа решения гипотезы Ходжа: лестница стендов, сертификаты, замкнутая система теорем},
+  pdfkeywords={гипотеза Ходжа, кривые Ферма, гамма-нормировка, соотношения Римана, поляризация, K3, квартика Клейна, циклотомические уровни}
+}
+
+\end{document}

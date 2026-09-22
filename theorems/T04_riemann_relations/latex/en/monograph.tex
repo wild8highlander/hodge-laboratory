@@ -1,0 +1,135 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Theorem 1: The Riemann Relations as an Identity}\\[0.4em]
+{\large symmetry and positivity of the period matrix}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 4/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+The Riemann relations --- symmetry and positive definiteness of the
+imaginary part of the period matrix --- are proved on a curve
+\emph{identically}, with no numerical check: a numerical control of
+an identity would be weaker than the proof. For the $N=15/30$ stand
+this means: on the $91\times182$ and $406\times812$ matrices there
+is nothing to check numerically --- it is proved.
+
+\begin{definition}[normalized period matrix]
+In the symplectic basis
+$\mathfrak{B}=\{a_1,\dots,a_g,b_1,\dots,b_g\}$ normalize the forms by
+$\int_{a_i}\omega_j=\delta_{ij}$ and set
+$\Omega_{ij}=\int_{b_i}\omega_j$.
+\end{definition}
+
+\begin{theorem}[Riemann relations]\label{th:riemann}
+(1) $\Omega^{\mathsf{T}}=\Omega$; (2) $\im\Omega$ is positive
+definite: for every $0\ne\lambda\in\RR^g$,
+$\lambda^{\mathsf{T}}(\im\Omega)\lambda>0$.
+\end{theorem}
+
+\begin{proof}
+The tool is Riemann's bilinear identity: for the fundamental
+$4g$-gon $F$ and closed forms $\alpha,\beta$,
+\[
+  \iint_F \alpha\wedge\beta
+  =\sum_{i=1}^{g}\Bigl(
+    \int_{a_i}\alpha\int_{b_i}\beta
+    -\int_{b_i}\alpha\int_{a_i}\beta\Bigr).
+\]
+\emph{Symmetry:} at $\alpha=\omega_j$, $\beta=\omega_k$ the
+holomorphic $(2,0)$-object $\omega_j\wedge\omega_k$ vanishes
+($\Omega^2_{C_N}=0$), giving $\Omega_{jk}-\Omega_{kj}=0$.
+\emph{Positivity:} at $\alpha=\omega$, $\beta=\overline{\omega}$ we
+have $\omega\wedge\overline{\omega}=-2i|g|^2dx\wedge dy$; the left
+side is $-2i\int|g|^2dxdy$; the right is
+$-2i\lambda^T(\im\Omega)\overline{\lambda}^T$ (symmetry of part 1
+used). Canceling $-2i$: the quadratic form equals
+$\int_{C_N}|g|^2dxdy>0$.
+\end{proof}
+
+\begin{remark}[why no self-adjoint operator]
+``Symplectic'' refers exclusively to the skew intersection form $J$
+on the integer lattice $H_1(C_N,\ZZ)$ --- a topological object. The
+theorem involves exactly two constructed objects: the cycle lattice
+and the integrals of forms. The Riemann relations are an identity
+that our own period matrix must satisfy; the numbers remain a
+one-off sanity line outside the text.
+\end{remark}
+
+\begin{statusbox}[summary]
+The theorem is proved by Riemann's bilinear identity; the only
+analytic premise is Stokes' formula. Consequence: $J$ is a
+polarization --- the input of the Hodge lattice index module
+(theorem 3).
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+The identity nature means: verification is a machine proof of
+structure, not a numerical run. Lean checks the integer corollaries
+(ranks $91$, $406$); the laboratory runs the sanity line (V7: rank
+$=g$, condition numbers $8.63$, $18.17$).
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

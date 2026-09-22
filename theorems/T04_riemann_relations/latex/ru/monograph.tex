@@ -1,0 +1,144 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Теорема 1: соотношения Римана как тождество}\\[0.4em]
+{\large симметрия и положительность период-матрицы}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 4/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+Соотношения Римана --- симметрия и положительная определённость
+мнимой части период-матрицы --- на кривой доказываются
+\emph{тождественно}, без всякой численной проверки: численный
+контроль тождества был бы слабее доказательства. Для стенда
+$N=15/30$ это означает: на матрицах $91\times182$ и $406\times812$
+проверять числом нечего --- доказано.
+
+\begin{definition}[нормированная период-матрица]
+В симплектическом базисе
+$\mathfrak{B}=\{a_1,\dots,a_g,b_1,\dots,b_g\}$ нормируем формы
+условием $\int_{a_i}\omega_j=\delta_{ij}$ и положим
+$\Omega_{ij}=\int_{b_i}\omega_j$.
+\end{definition}
+
+\begin{theorem}[соотношения Римана]\label{th:riemann}
+Для период-матрицы выполнены:
+(1) $\Omega^{\mathsf{T}}=\Omega$;
+(2) $\im\Omega$ положительно определена: для любого
+$0\ne\lambda\in\RR^g$ имеет место
+$\lambda^{\mathsf{T}}(\im\Omega)\lambda>0$.
+\end{theorem}
+
+\begin{proof}
+Инструмент --- билинейное тождество Римана. Для фундаментального
+$4g$-угольника $F$ с рёбрами $a_i,b_i$ и замкнутых форм
+$\alpha,\beta$ формула Стокса с сокращением противоположных рёбер
+даёт
+\[
+  \iint_F \alpha\wedge\beta
+  =\sum_{i=1}^{g}\Bigl(
+    \int_{a_i}\alpha\int_{b_i}\beta
+    -\int_{b_i}\alpha\int_{a_i}\beta\Bigr).
+\]
+\emph{Симметрия:} при $\alpha=\omega_j$, $\beta=\omega_k$ голоморфный
+$(2,0)$-объект $\omega_j\wedge\omega_k=0$
+($\Omega^2_{C_N}=0$), и тождество даёт $\Omega_{jk}-\Omega_{kj}=0$.
+\emph{Положительность:} при
+$\alpha=\omega=\sum\lambda_k\omega_k$,
+$\beta=\overline{\omega}$ имеем
+$\omega\wedge\overline{\omega}=|g|^2dz\wedge d\bar z
+=-2i|g|^2dx\wedge dy$; левая часть
+$=-2i\int_{C_N}|g|^2dxdy$; правая с учётом
+$\int_{a_i}\omega=\lambda_i$, $\int_{b_i}\omega=(\Omega\lambda^T)_i$
+равна $-2i\lambda^T(\im\Omega)\overline{\lambda}^T$ (использована
+симметрия пункта 1). Сокращая $-2i$:
+$\lambda^T(\im\Omega)\overline{\lambda}^T=\int_{C_N}|g|^2dxdy>0$
+--- для вещественного $\lambda\ne0$ это утверждение 2.
+\end{proof}
+
+\begin{remark}[почему не нужен самосопряжённый оператор]
+<<Симплектический>> относится исключительно к косой форме
+пересечений $J$ на целочисленной решётке $H_1(C_N,\ZZ)$ ---
+объекту топологическому. В теореме участвуют ровно два построенных
+объекта: решётка циклов и интегралы форм. Соотношения Римана ---
+тождество, которое наша собственная период-матрица обязана
+выполнять. Числа --- лишь одноразовая санити-строка вне текста.
+\end{remark}
+
+\begin{statusbox}[итог]
+Теорема доказана билинейным тождеством Римана; единственная
+аналитическая посылка --- формула Стокса. Следствие для программы:
+форма $J$ --- поляризация, вход модуля индексов решётки Ходжа
+(теорема 3).
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+Тождественная природа теоремы означает: верификация ---
+машинное доказательство структуры, а не численный прогон. Lean-панель
+проверяет целочисленные следствия (ранги $91$, $406$); лаборатория
+--- санити-строку (V7: ранг $=g$, обусловленности $8.63$, $18.17$).
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (пункт <<Стенды>>/<<Сертификаты>>),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

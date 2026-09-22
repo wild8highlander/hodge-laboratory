@@ -1,0 +1,133 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries The K3 Stand: Neron–Severi Rank 20}\\[0.4em]
+{\large forty-eight lines and the exact intersection matrix}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 8/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+The Fermat quartic $x^4+y^4+z^4+w^4=0\subset\mathbb{P}^3$ is a K3
+surface of maximal N\'eron--Severi rank. The Hodge conjecture for it
+is proved (Shioda, 1979); the program reproduces all invariants by
+exact integer arithmetic over $\QQ$.
+
+\begin{theorem}[invariants of the K3 stand]\label{th:k3stand}
+For the exact intersection matrix $49\times49$ (48 lines + the
+hyperplane class $h$): (1) $\rank_\QQ G=20$ --- matches Shioda's
+$\rho=20$; (2) the signature is $(1,19)$; (3) the sublattice
+determinant is $64=8^2$; (4) the sum of the four lines of one family
+is equivalent to $h$.
+\end{theorem}
+
+\begin{proof}
+The lines: three families of $16$: $L_1(a,b)\colon x+i^ay=0$,
+$z+i^bw=0$; $L_2$: $x+i^az=0$, $y+i^bw=0$; $L_3$: $x+i^aw=0$,
+$y+i^bz=0$, $a,b\in\ZZ/4$. The rules are combinatorial:
+$L\cdot L=-2$; within a family $1$ iff exactly one index matches;
+between families cyclic conditions ($L_1\cdot L_2$:
+$a_1+b_2\equiv a_2+b_1$; $L_2\cdot L_3$: $a_1+b_1\equiv a_2+b_2$;
+$L_1\cdot L_3$: $c\equiv a+b+d+1$ --- the extra unit from three odd
+exponents); $h\cdot L=1$, $h^2=4$. Rank: exact fraction-free
+elimination --- $20$ nonzero rows; double registration via Smith
+minors. Signature: one positive, $19$ negative eigenvalues, none
+zero (separation threshold $0.1$). Determinant: the full K3 lattice
+is unimodular of signature $(3,19)$; the sublattice index is $8$,
+$\det=64=8^2$. Equivalence: the intersection vector of the sum
+equals that of $h$ componentwise (all $49$); the difference is
+orthogonal to the algebraic sublattice and lies in
+$H^{2,0}\oplus H^{0,2}$ by the Hodge index theorem; but it is
+algebraic, and algebraic classes pair trivially with $H^{2,0}$;
+hence zero.
+\end{proof}
+
+\begin{proposition}[codimension-2 cycles]
+The point class: $[\mathrm{pt}]=h^2/4$ --- exactly, since
+$(h^2)^2=\deg X=4$ and $H^4(X)=\QQ h^2$. On $K3\times K3$: the pairs
+$(c_2,h_2)$ give $24$ independent codim-$(2,2)$ classes, the
+diagonal $h^2$-pairs give $4$ more; all algebraic with explicit
+supports. No blind spot: every $(2,2)$ class orthogonal to them is
+zero by the Hodge index theorem.
+\end{proposition}
+
+\begin{databox}[numbers]
+$n_{\mathrm{lines}}=48$; $\rank=20=\rho$; inertia $(1,19)$;
+$\det=64$; hyperplane relation exact; $12$ orbits; character
+multiplicities $(1,7,7,7)$ summing to $22$; codim 2: $4+24$;
+runtime $1.04$~s.
+\end{databox}
+
+\begin{statusbox}[summary]
+All K3 invariants are computed exactly over $\QQ$; the agreement
+with Shioda is confirmed; the family--hyperplane equivalence is
+proved exactly.
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+\texttt{python3 laboratory.py} $\to$ ``Stands $\to$ K3'': the
+matrix, rank, signature, determinant --- within a second.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

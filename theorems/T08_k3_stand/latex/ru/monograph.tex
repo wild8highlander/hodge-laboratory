@@ -1,0 +1,139 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Стенд K3: ранг Нерона–Севери 20}\\[0.4em]
+{\large сорок восемь прямых и точная матрица пересечений}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 8/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+Фермат-квартика $x^4+y^4+z^4+w^4=0$ в $\mathbb{P}^3$ --- K3-поверхность
+максимального ранга Нерона--Севери. Гипотеза Ходжа для неё доказана
+(Шиода, 1979); программа воспроизводит все инварианты точной
+целочисленной арифметикой над $\QQ$.
+
+\begin{theorem}[инварианты K3-стенда]\label{th:k3stand}
+Для точной матрицы пересечений $49\times49$ (48 прямых + класс
+гиперплоскости $h$) Фермат-квартики выполнено:
+(1) $\rank_\QQ G=20$ --- совпадает с теоремой Шиода $\rho=20$;
+(2) сигнатура численной части равна $(1,19)$;
+(3) определитель подрешётки равен $64=8^2$;
+(4) сумма четырёх прямых одного семейства эквивалентна $h$:
+$[L_1(a,0)]+[L_1(a,1)]+[L_1(a,2)]+[L_1(a,3)]\sim h$.
+\end{theorem}
+
+\begin{proof}
+Прямые: три семейства по $16$:
+$L_1(a,b)\colon x+i^ay=0$, $z+i^bw=0$;
+$L_2(a,b)\colon x+i^az=0$, $y+i^bw=0$;
+$L_3(a,b)\colon x+i^aw=0$, $y+i^bz=0$, $a,b\in\ZZ/4$.
+Правила пересечений комбинаторны: $L\cdot L=-2$; внутри семейства
+пересечение $1$ iff ровно один индекс совпадает; между семействами
+циклические условия ($L_1\cdot L_2$: $a_1+b_2\equiv a_2+b_1$;
+$L_2\cdot L_3$: $a_1+b_1\equiv a_2+b_2$; $L_1\cdot L_3$:
+$c\equiv a+b+d+1$ --- лишняя единица из суммы трёх нечётных
+показателей); $h\cdot L=1$, $h^2=4$.
+Ранг: точное целочисленное приведение (фракционная элиминация без
+округлений) --- $20$ ненулевых строк; двойная регистрация через
+миноры Смит-нормы.
+Сигнатура: собственные значения --- одно положительное, $19$
+отрицательных, нулей нет (порог отделения $0.1$).
+Определитель: полная решётка K3 унимодулярна сигнатуры $(3,19)$;
+индекс подрешётки $8$, $\det=64=8^2$.
+Эквивалентность: вектор пересечений суммы прямых покомпонентно равен
+вектору $h$ (все $49$ компонент); разность ортогональна
+алгебраической подрешётке и лежит в $H^{2,0}\oplus H^{0,2}$ по
+индексу Ходжа; но разность алгебраична, а алгебраические классы
+ортогональны $H^{2,0}$; значит, разность нулевая.
+\end{proof}
+
+\begin{proposition}[циклы кодимерсии 2]
+Класс точки: $[\mathrm{pt}]=h^2/4$ --- точно, так как
+$(h^2)^2=\deg X=4$ и $H^4(X)=\QQ h^2$. На $K3\times K3$: пары
+$(c_2,h_2)$ дают $24$ независимых класса кодимерсии $(2,2)$,
+диагональные $h^2$-пары --- ещё $4$; все алгебраичны с явными
+носителями. Слепой зоны нет: каждый $(2,2)$-класс, ортогональный
+построенным циклам, нулевой по индексу Ходжа.
+\end{proposition}
+
+\begin{databox}[числа]
+$n_{\mathrm{lines}}=48$; $\rank=20=\rho$ (Шиода); инерция $(1,19)$;
+$\det=64$; гиперплоскостное соотношение точно; орбит $12$; кратности
+характеров $(1,7,7,7)$ --- суммарно $22$; кодимерсия 2: $4+24$;
+время счёта $1.04$~с.
+\end{databox}
+
+\begin{statusbox}[итог]
+Все инварианты K3-стенда вычислены точно над $\QQ$; совпадение с
+теоремой Шиода подтверждено; эквивалентность семейства и $h$
+доказана точно.
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+\texttt{python3 laboratory.py} $\to$ <<Стенды $\to$ K3>>: матрица
+$49\times49$, ранг, сигнатура, определитель --- за секунду.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (пункт <<Стенды>>/<<Сертификаты>>),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

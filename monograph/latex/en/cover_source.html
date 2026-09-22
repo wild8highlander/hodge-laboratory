@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Noto+Serif:wght@400;700;900&family=Inter:wght@300;400;500&family=Noto+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    @page { size: 794px 1123px; margin: 0; }
+    :root {
+      --c-bg: #101B2D;
+      --c-accent: #C9A96A;
+      --c-text: #FFFFFF;
+      --c-muted: #8FA3B8;
+      --c-footer: #5F7186;
+    }
+    html, body { margin: 0; padding: 0; width: 794px; height: 1123px; background: var(--c-bg); color: var(--c-text); font-family: 'Inter', 'Noto Sans', sans-serif; }
+    @media screen {
+      html { height: auto; display: flex; justify-content: center; min-height: 100vh; background: var(--c-bg); }
+      body { transform-origin: top center; scale: min(1, calc(100vw / 794), calc(100vh / 1123)); margin: 0 auto; box-shadow: 0 0 60px rgba(0,0,0,0.3); }
+    }
+    .cover { width: 794px; height: 1123px; position: relative; box-sizing: border-box; }
+    .vline { position: absolute; left: 57px; top: 76px; bottom: 76px; width: 2.5px; background: var(--c-accent); }
+    .content { position: absolute; left: 83px; right: 76px; top: 0; bottom: 0; }
+    .label { position: absolute; top: 128px; font-size: 9pt; color: var(--c-accent); letter-spacing: 4px; text-transform: uppercase; font-weight: 500; }
+    .title { position: absolute; top: 200px; font-size: 33pt; font-weight: 700; line-height: 1.28; font-family: 'Playfair Display', 'Noto Serif', serif; color: var(--c-text); max-width: 600px; }
+    .subtitle { position: absolute; top: 520px; font-size: 12pt; line-height: 1.65; color: var(--c-muted); max-width: 520px; }
+    .authors { position: absolute; top: 745px; font-size: 13pt; color: var(--c-text); font-weight: 500; letter-spacing: 0.5px; }
+    .institution { position: absolute; top: 790px; font-size: 10pt; color: var(--c-muted); line-height: 1.6; max-width: 520px; }
+    .meta-grid { position: absolute; top: 900px; display: flex; gap: 42px; }
+    .meta-item { font-size: 8.5pt; color: var(--c-muted); }
+    .meta-item b { display: block; color: var(--c-accent); font-size: 12pt; font-weight: 600; margin-bottom: 3px; font-family: 'Inter', 'Noto Sans', sans-serif; }
+    .footer { position: absolute; bottom: 76px; left: 0; right: 0; display: flex; justify-content: space-between; font-size: 9pt; color: var(--c-footer); }
+  </style>
+</head>
+<body>
+  <div class="cover">
+    <div class="vline"></div>
+    <div class="content">
+      <div class="label">UNIFIED MONOGRAPH · FULL UNIFICATION</div>
+      <div class="title">The Dynamic Principle:<br>the Ladder of Stands,<br>Certificates, and a Closed<br>System of Theorems</div>
+      <div class="subtitle">The integer triple (n, B, λ₀) as the sole input of the pipeline. Three corrections, the calibration stands of the torus, K3, and the Klein quartic, certificates A–H, and the N=15/30 stand in the full Γ-normalization with the Riemann relations as an identity. Complete derivations, the V1–V9 protocol, and a reproducible computational laboratory.</div>
+      <div class="authors">Isaev Iskhak Khamzatovich</div>
+      <div class="institution">The Dynamic Principle Program · hodge-laboratory</div>
+      <div class="meta-grid">
+        <div class="meta-item"><b>91 / 406</b>genera of stands N=15/30</div>
+        <div class="meta-item"><b>1125²</b>lattice discriminant</div>
+        <div class="meta-item"><b>8</b>certificates A–H</div>
+        <div class="meta-item"><b>10⁻⁷¹</b>deep record V9</div>
+      </div>
+      <div class="footer">
+        <span>Version 1.0 · 2026</span>
+        <span>hodge-laboratory</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Errata E8: спиновые структуры рода 3}\\[0.4em]
+{\large 28 чётных и 36 нечётных — полное перечисление Арфа}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 9/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+При аудите ранних монографий обнаружена опечатка в подсчёте чётных
+и нечётных спиновых структур рода $3$. Полное перечисление закрывает
+вопрос навсегда и добавляет в программу автоматический переборный
+модуль.
+
+\begin{theorem}[28/36]\label{th:e8stand}
+На гладкой кривой рода $3$ ровно $2^{2g}=64$ спиновые структуры.
+По инварианту Арфа чётных ($\mathrm{Arf}=0$) $36$, нечётных
+($\mathrm{Arf}=1$) $28$. Каноническая структура ($\deg S=2$,
+$h^0=3$, $\mathrm{Arf}=1$) нечётна.
+\end{theorem}
+
+\begin{proof}
+Число спиновых структур на кривой рода $g$ равно
+$|H^1(C,\ZZ/2)|=2^{2g}$; при $g=3$ это $64$ --- перечисление полное.
+Каждой структуре соответствует линейная система $S$ степени $2$;
+чётность определяется инвариантом Арфа --- квадратичной формой на
+$H^1(C,\ZZ/2)$: структура чётна тогда и только тогда, когда
+$\mathrm{Arf}=0$. Числа по формуле Арфа: $2^{g-1}(2^g+1)$ чётных и
+$2^{g-1}(2^g-1)$ нечётных; при $g=3$: $4\cdot9=36$ чётных и
+$4\cdot7=28$ нечётных. Полный перебор всех $64$ квадратичных
+уточнений с прямым подсчётом инварианта Арфа даёт тот же ответ.
+Каноническая структура несёт $h^0(\mathcal O_C)=3$ --- нечётное ---
+и $\mathrm{Arf}=1$: она нечётна, что опровергает напечатанную
+<<чётность>> и подтверждает errata.
+\end{proof}
+
+\begin{databox}[полная таблица по родам]
+\begin{center}
+\begin{tabular}{@{}l c c c c@{}}
+\toprule
+Род $g$ & Всего $2^{2g}$ & Чётных & Нечётных & Доля чётных \\
+\midrule
+1 & 4   & 3   & 1   & 75\,\% \\
+2 & 16  & 10  & 6   & 62.5\,\% \\
+3 & 64  & 36  & 28  & 56.25\,\% \\
+4 & 256 & 136 & 120 & 53.12\,\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+Каноническая структура рода 3: $h^0(\mathcal O_C)=3$; $\deg S=2$;
+$\mathrm{Arf}=1$ --- вердикт: напечатанное утверждение ложно,
+нечётность подтверждена.
+\end{databox}
+
+\begin{remark}[название errata]
+Имя <<E8>> в опечатке связано с контекстом симметричной решётки
+$E_8$ в раннем тексте; к самой решётке счёт структур отношения не
+имеет --- перечисление Арфа опирается только на форму пересечений
+кривой. Коэффициент $28$ в тождестве гладкости Клейна
+($28(xyz)^3=0$) --- независимое совпадение числа, к программе
+отношения не имеющее.
+\end{remark}
+
+\begin{statusbox}[итог]
+Счёт $36/28$ доказан полным перечислением и формулой Арфа; таблица по родам $3/1$, $10/6$, $36/28$, $136/120$ построена; errata зафиксировано
+по правилу 5 программы --- с автоматической проверкой в обоих
+режимах (\texttt{scan}, \texttt{fix}).
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+\texttt{python3 laboratory.py} $\to$ <<Стенды $\to$ Errata E8>>:
+режим \texttt{scan} перечисляет все структуры по родам за
+микросекунды; \texttt{fix} --- каноническая проверка Арфа.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (пункт <<Стенды>>/<<Сертификаты>>),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

@@ -1,0 +1,50 @@
+{
+  "title": "The Dynamic Principle: A Unified Monograph and Computational Laboratory",
+  "version": "v1.1.1",
+  "upload_type": "publication",
+  "publication_type": "workingpaper",
+  "access_right": "open",
+  "license": "other-open",
+  "creators": [
+    {
+      "name": "Isaev, Iskhak Khamzatovich",
+      "affiliation": "Independent researcher",
+      "orcid": "0009-0003-7299-0701"
+    }
+  ],
+  "description": "<p>A unified research program built on the dynamic principle: geometry supplies only the integer triple (n, B, &lambda;&#8320;); a universal parameter-free pipeline constructs the spin phases (&delta; = &pi;/N), the braking (&gamma; = &delta;&#8308;/k), the effective corrections (&delta;&#8337;&#8340;&#8308; = &delta;&#8309;/k), and the united formula &Delta;<sub>Ch</sub> = &lambda;&#8320; &minus; R/4 + &delta;&sup2;/2 &minus; &delta;&#8309;/k. The ladder of stands spans the calibration torus (4, 1, 4&pi;&sup2;), the Fermat-quartic K3 surface (N&eacute;ron&ndash;Severi rank 20 = max, Shioda), the Klein quartic Jacobian (j = &minus;3375), and the cyclotomic levels N = 15/30 (genera 91 and 406) with a closed system of eight lemmas and six theorems. Certificates A&ndash;H cover cycle certification, period-based kernel closure, &mu;&#8324;-equivariance, flow termination with the exact lcm time, rationalization with a priori denominator bounds, Hodge lattice indices with the Chowla&ndash;Selberg layer, and the full Gross &Gamma;-normalization (volume 1125 = &radic;(3&#8308;&middot;5&#8310;)). The protocol V1&ndash;V9 is fully reproducible in about two seconds; verification runs in Python (mpmath), Julia (BigFloat), Fortran, C, Rust, and the Lean 4 kernel.</p>",
+  "keywords": [
+    "Hodge conjecture",
+    "Fermat curves",
+    "cyclotomic levels",
+    "gamma normalization",
+    "K3 surfaces",
+    "Klein quartic",
+    "periods",
+    "polarization",
+    "computational verification",
+    "Lean 4",
+    "reproducibility"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/wild8highlander/hodge-laboratory",
+      "relation": "isSupplementTo",
+      "resource_type": "dataset"
+    },
+    {
+      "identifier": "https://github.com/wild8highlander/research-papers",
+      "relation": "references",
+      "resource_type": "dataset"
+    }
+  ],
+  "notes": "Individual exclusive license of Isaev Iskhak Khamzatovich: any use beyond reading and personal study requires the author's written permission (see LICENSE in the repository).",
+  "language": "eng",
+  "dates": [
+    {
+      "start": "2026-09-21",
+      "end": "2026-09-22",
+      "type": "Collected"
+    }
+  ]
+}

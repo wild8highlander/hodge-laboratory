@@ -1,0 +1,134 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries The Torus Triple and the Corrections}\\[0.4em]
+{\large the calibration stand from first principles}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 7/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+The torus is the calibration stand: its triple $(4,1,4\pi^2)$ and
+all derived quantities follow from first principles, with no
+external premise. The whole correction pipeline is visible at once,
+and any construction error would show at coarse precision.
+
+\begin{lemma}[the torus triple]\label{lem:torus}
+The torus supplies the integer triple $(4,1,4\pi^2)$: rotation
+order $n=4$, carrier index $B=1$, spectral threshold
+$\lambda_0=4\pi^2$.
+\end{lemma}
+
+\begin{proof}
+The rotation $x\mapsto ix$ has order $4$: $i^4=1$, $i^2=-1\ne1$.
+The carrier is the torus itself: $H_2(T^2,\ZZ)\cong\ZZ$. The flat
+Laplacian spectrum is $|m\tau-n|^2$; in the Tate normalization the
+threshold is $4\pi^2$ (certificate G1).
+\end{proof}
+
+\begin{theorem}[the corrections derived on the torus]\label{th:toruscorr}
+From $(4,1,4\pi^2)$ the pipeline rules give:
+$\delta=\pi/4=0.7853981634$; the rotation holonomy $=i$ (protocol
+deviation $6.1\cdot10^{-17}$ --- machine precision);
+$\delta^2/2=0.3084251375$; $\gamma=\delta^4=0.3805042619$;
+$\delta_{\mathrm{eff}}=\delta^5=0.2988473484$;
+$\Delta_{Ch}^{\mathrm{torus}}=39.4879953935$.
+\end{theorem}
+
+\begin{proof}
+Each quantity follows one rule: $\delta=\pi/N$ (the spin double
+cover); $\delta^2/2$ --- the main phase correction;
+$\gamma=\delta^4/k$ at $k=1$; $\delta_{\mathrm{eff}}
+=\delta\cdot\gamma$; the assembly by $\Delta_{Ch}$ at $R=0$. The
+holonomy: the lift of the rotation permutes the sheets; the
+eigenvalue on an eigenform is $i$. All digits reproduce at $dps=35$
+with zero last-digit discrepancy.
+\end{proof}
+
+\begin{remark}[chessboard equivariance]
+For the symmetric encoding the $\mu_4$-equivariance is exact
+(deviation $0.000$ over the $4096\times4096$ grid); for the $(7,22)$
+encoding it is broken ($1.000$). The contrast proves the corrections
+are geometric --- they inherit the carrier symmetry.
+\end{remark}
+
+\begin{databox}[numbers]
+The phase family $\delta_T=\pi/N$ reproduced for $N=2,\dots,8$; the
+$\gamma$, $\delta_{\mathrm{eff}}$ tables for $k\in\{1,22\}$ built in
+full; the E6 case corrected: $\Delta=0.7990$ (not $0.5964$); on
+Klein the same formula gives $\Delta_{Ch}\approx3.4399$ against the
+observed $3.443$ --- deviation $0.0905\%$.
+\end{databox}
+
+\begin{statusbox}[summary]
+The torus triple and all derivatives are derived from first
+principles; the exact torus run calibrates all higher rungs.
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+\texttt{python3 laboratory.py} $\to$ ``Stands $\to$ Torus''; the
+plot \texttt{fig\_torus.png}.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

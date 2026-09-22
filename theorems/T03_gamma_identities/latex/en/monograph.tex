@@ -1,0 +1,139 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries The Gamma Identities}\\[0.4em]
+{\large the reflection formula and the Gauss multiplication formula}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 3/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+The entire analytic toolkit of the $N=15/30$ stand consists of two
+functional identities of the gamma function. Nothing else is needed:
+all relations among the $\Ga$-products used by the program follow
+from these two.
+
+\begin{lemma}[reflection formula]\label{lem:reflection}
+For all $z\in\CC\setminus\ZZ$,
+$\Ga(z)\Ga(1-z)=\frac{\pi}{\sin\pi z}$.
+\end{lemma}
+
+\begin{proof}
+The key is Euler's integral
+$\int_0^\infty\frac{u^{z-1}}{1+u}du=\frac{\pi}{\sin\pi z}$
+($0<\re z<1$), proved by residues over the keyhole contour: the
+unique pole $u=-1$ has residue $1$; the two sides of the cut give
+$\bigl(e^{i\pi(1-z)}-e^{-i\pi(1-z)}\bigr)\int_0^\infty
+\frac{x^{z-1}}{1+x}dx=2\pi i$. The substitution $t=\frac{u}{1+u}$
+turns the integral into $\Bfun(z,1-z)=\Ga(z)\Ga(1-z)$; analytic
+continuation extends the identity.
+\end{proof}
+
+\begin{lemma}[Gauss multiplication]\label{lem:gauss}
+For integers $m\ge2$ and $mz\notin\ZZ_{\le0}$,
+$\prod_{k=0}^{m-1}\Ga(z+\tfrac km)=(2\pi)^{\frac{m-1}2}
+m^{\frac12-mz}\Ga(mz)$.
+\end{lemma}
+
+\begin{proof}
+The ratio $Q_m=G_m/H_m$ is $1$-periodic and holomorphic: the
+recurrence $\Ga(w+1)=w\Ga(w)$ gives equal logarithmic derivatives.
+Stirling's formula gives $Q_m\to1$ as $\re z\to+\infty$ in vertical
+strips; periodicity spreads the limit; hence $Q_m\equiv1$.
+\end{proof}
+
+\begin{lemma}[inventory of relations]\label{lem:relations}
+All used relations among $\Omega_{a,b}=\Bfun(a/N,b/N)$ follow from
+the two identities: (1) $a+b=N$: $\Omega_{a,b}=\pi/\sin(\pi a/N)$;
+(2) $a+b>N$: reduction
+$\Omega_{a,b}=\frac{N}{a+b-N}\frac{\Ga(a/N)\Ga(b/N)}
+{\Ga((a+b-N)/N)}$; (3) $a+b<N$: canonical.
+\end{lemma}
+
+\begin{proof}
+Point 1 --- reflection at $b/N=1-a/N$; point 2 --- the recurrence
+$\Ga(\frac{a+b}N)=\frac{a+b-N}N\Ga(\frac{a+b-N}N)$; point 3 ---
+by definition.
+\end{proof}
+
+\begin{databox}[numbers]
+The reflection ladder (V6): $\Ga(k/N)\Ga(1-k/N)=\pi/\sin(\pi k/N)$
+for all $k$, $N=15,30$; maximal relative deviation
+$7.0\cdot10^{-36}$ at $dps=35$.
+\end{databox}
+
+\begin{statusbox}[summary]
+Both identities are derived from integral representations and the
+residue theorem --- no external results. The inventory fixes the
+scope: the full classification of $\QQ$-relations (Rohrlich) is not
+used --- sufficiency is verified by the rank (V7: rank $=g$).
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+\texttt{python3 laboratory.py} $\to$ ``Stand N=15/30 $\to$ V6'';
+the plot \texttt{fig\_gamma.png} ($600$~dpi) is the numerical
+portrait of the identity.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

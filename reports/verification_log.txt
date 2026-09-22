@@ -1,0 +1,77 @@
+THE DYNAMIC PRINCIPLE LABORATORY
+the program of Isaev Iskhak Khamzatovich · hodge-laboratory
+2026-09-22 01:11:04
+============================================================
+
+[checks]
+  V1_census.data.15.genus                      91
+  V1_census.data.15.h_d.15                     84
+  V1_census.data.15.h_d.3                      1
+  V1_census.data.15.h_d.5                      6
+  V1_census.data.15.mobius_match               PASS
+  V1_census.data.15.total                      91
+  V1_census.data.30.genus                      406
+  V1_census.data.30.h_d.10                     30
+  V1_census.data.30.h_d.15                     84
+  V1_census.data.30.h_d.3                      1
+  V1_census.data.30.h_d.30                     276
+  V1_census.data.30.h_d.5                      6
+  V1_census.data.30.h_d.6                      9
+  V1_census.data.30.mobius_match               PASS
+  V1_census.data.30.total                      406
+  V1_census.pass                               PASS
+  V2V3_certB.data.max_phase_dev                7.52316384526264e-37
+  V2V3_certB.data.max_rel_err                  3.853710440091966e-36
+  V2V3_certB.data.n_tests                      69
+  V2V3_certB.pass                              PASS
+  V4_certC.data.max_rel_err                    4.3763094108442054e-36
+  V4_certC.pass                                PASS
+  V5_chain.data.max_rel                        2.8578948291111995e-36
+  V5_chain.pass                                PASS
+  V6_reflection.data.max_rel_err               7.01288058796896e-36
+  V6_reflection.pass                           PASS
+  V7_rank.data.skipped                         PASS
+  V7_rank.pass                                 PASS
+  V8_dft.data.diag                             1.0666600203457015e-36
+  V8_dft.data.offdiag                          4.0036581597109073e-36
+  V8_dft.pass                                  PASS
+  V9_deep.data.rel_err                         1.258720039947873e-71
+  V9_deep.pass                                 PASS
+  _protocol_time_s                             5.6
+
+[stands]
+  binary_code.data.tstar                       48
+  binary_code.data.visited                     48
+  binary_code.pass                             PASS
+  errata_e8.data.table.1                       (4, 3, 1)
+  errata_e8.data.table.2                       (16, 10, 6)
+  errata_e8.data.table.3                       (64, 36, 28)
+  errata_e8.data.table.4                       (256, 136, 120)
+  errata_e8.pass                               PASS
+  k3.data.det                                  64
+  k3.data.rank                                 20
+  k3.pass                                      PASS
+  klein.data.j                                 -3375
+  klein.pass                                   PASS
+  torus.data.Delta                             39.48799539346835
+  torus.pass                                   PASS
+
+[certificates]
+  A.data.kernel                                29
+  A.pass                                       PASS
+  B.data                                       None
+  B.pass                                       PASS
+  C.data                                       None
+  C.pass                                       PASS
+  D.data                                       None
+  D.pass                                       PASS
+  E.data                                       None
+  E.pass                                       PASS
+  F.data                                       None
+  F.pass                                       PASS
+  G.data                                       None
+  G.pass                                       PASS
+  H.data                                       None
+  H.pass                                       PASS
+
+VERDICT: ALL CHECKS PASSED

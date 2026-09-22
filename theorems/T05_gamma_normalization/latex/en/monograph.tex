@@ -1,0 +1,138 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Theorem 2: Gamma-Normalization and Fractional Pi}\\[0.4em]
+{\large algebraicity of normalized periods and the radical constants}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 5/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+The $\Ga$-normalization absorbs the transcendental factor of every
+period, turning normalized periods into algebraic numbers of the
+phase lattice $\frac1N\ZZ[\zeta_N]$. The program's requirement ---
+fractional shares of $\pi$ instead of $4\pi^2$-normalizations ---
+holds structurally on the stand.
+
+\begin{definition}[$\Ga$-normalization]
+For $P\in\frac{\Omega_{a,b}}{N}\ZZ[\zeta_N]$ the normalized period
+is $\widehat{P}=P/\Omega_{a,b}\in\frac1N\ZZ[\zeta_N]$.
+\end{definition}
+
+\begin{theorem}[$\Ga$-normalization and fractional $\pi$]\label{th:norm}
+Let $N\in\{15,30\}$. Then: (1) algebraicity:
+$\widehat P\in\frac1N\ZZ[\zeta_N]$ --- the phase lattice has
+denominator $N$; (2) reduction: each $\Omega_{a,b}$ is expressed
+through canonical $\Ga$-values and factors $\pi/\sin(\pi k/N)$; at
+$a+b=N$ --- a pure share of $\pi$; (3) no $4\pi^2$: $\pi$ enters
+only via $\pi/\sin(\pi k/N)$ and the multiplication formula; no
+power $4\pi^2$ arises in the normalization; (4) radicals:
+\begin{align}
+  b_{Ch}(15)&=1-\frac{1+\sqrt5+\sqrt3\,\sqrt{10-2\sqrt5}}{8},\\
+  b_{Ch}(30)&=1-\frac{\sqrt{30+6\sqrt5}+\sqrt5-1}{8}.
+\end{align}
+\end{theorem}
+
+\begin{proof}
+(1) --- dividing the lattice $\frac{\Omega}N\ZZ[\zeta_N]$ by
+$\Omega$. (2)--(3) --- the inventory: reflection introduces $\pi$
+only as $\pi/\sin(\pi k/N)$, multiplication only as
+$(2\pi)^{(m-1)/2}$ at integer $m$; the normalization is built from
+the periods themselves, so $4\pi^2$ is not generated. (4):
+$\cos24^\circ=\cos(60^\circ-36^\circ)$ with
+$\cos36^\circ=\frac{1+\sqrt5}4$,
+$\sin36^\circ=\frac{\sqrt{10-2\sqrt5}}4$ gives the level-15
+radical; $\cos12^\circ=\cos(30^\circ-18^\circ)$ with
+$\cos18^\circ=\frac{\sqrt{10+2\sqrt5}}4$,
+$\sin18^\circ=\frac{\sqrt5-1}4$ gives the level-30 one.
+Numerically: $0.086454$ and $0.021854$.
+\end{proof}
+
+\begin{remark}
+The share of $\pi$ is always rational with denominator $N$: the
+factor $\pi/\sin(\pi k/N)$ carries the angle $k\pi/N$; the phase
+lattice carries the denominator $N$ in algebra. A structural claim
+--- true for all blocks at once. The ladder $\pi/7$, $\pi/15$,
+$\pi/30$ is one $\mu_N$-quantum ladder (certificates G, H).
+\end{remark}
+
+\begin{databox}[numbers]
+$b_{Ch}(7)\approx0.7526$; $b_{Ch}(9)\approx0.1172$;
+$b_{Ch}(11)\approx0.0823$; $b_{Ch}(15)\approx0.086454$;
+$b_{Ch}(30)\approx0.021854$. The universal Tate twist $4\pi^2$ lives
+in the lattice spectra (G1), not in the period normalization.
+\end{databox}
+
+\begin{statusbox}[summary]
+The theorem fixes: the phase-lattice denominator equals the level
+$N$; the transcendental part reduces to fractional $\pi$; the
+radical constants are written in closed form.
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+\texttt{python3 laboratory.py} $\to$ ``Stand N=15/30''; Lean:
+\texttt{bch\_radicals}; the plot \texttt{fig\_bch.png}.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

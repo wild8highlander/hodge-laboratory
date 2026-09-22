@@ -1,0 +1,165 @@
+% ═══════════════════════════════════════════════════════════════════
+% ЧАСТЬ X. РУКОВОДСТВО ПО ВОСПРОИЗВЕДЕНИЮ
+% ═══════════════════════════════════════════════════════════════════
+\part{Руководство по воспроизведению}
+
+\section{Соответствие: раздел монографии $\leftrightarrow$ пункт
+лаборатории}\label{sec:labmap}
+
+Каждый численный результат монографии имеет прямой источник в меню
+лаборатории \texttt{laboratory.py}. Таблица соответствия:
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}l l >{\raggedright\arraybackslash}X@{}}
+\toprule
+Раздел монографии & Числа & Пункт лаборатории \\
+\midrule
+\ref{sec:torus} (тор) & $(4,1,4\pi^2)$; $\gamma$; $\Delta$ &
+«Стенды $\to$ Тор» \\
+\ref{sec:k3} (K3) & $\rho=20$; $(1,19)$; $64$ & «Стенды $\to$ K3» \\
+\ref{sec:e8} (errata) & $28/36$; $64$ & «Стенды $\to$ Errata E8» \\
+\ref{sec:binary} (код) & $48/212/432/114$ & «Стенды $\to$ Бинарный
+код» \\
+\ref{sec:certA}--\ref{sec:certB} & ядро $29$; сборка $[Z]$ &
+«Сертификаты $\to$ A, B» \\
+\ref{sec:certC}--\ref{sec:certD} & $22=1+7+7+7$; $[L,P]=0$ &
+«Сертификаты $\to$ C, D» \\
+\ref{sec:certE} & $t^*=48$ & «Сертификаты $\to$ E» \\
+\ref{sec:certF} & $Q=256$; $4X^2-7$ & «Сертификаты $\to$ F» \\
+\ref{sec:certG} & Коула--Селберг; $\pi/15$, $\pi/30$ & «Сертификаты
+$\to$ G» \\
+\ref{sec:klein} (Клейн) & $j=-3375$; $\Omega$ & «Стенды $\to$
+Клейн» \\
+\ref{sec:cycles}--\ref{sec:indices} & V1--V9; SNF; $\mathrm{vol}_h$
+& «Стенд N=15/30» (полный) \\
+\ref{sec:certH} (H) & H1--H6 & «Сертификаты $\to$ H» \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Быстрый старт воспроизведения}
+
+\begin{enumerate}[leftmargin=2em, itemsep=0.15em]
+\item Установить зависимости: \texttt{pip install mpmath numpy
+  matplotlib}.
+\item Запустить лабораторию: \texttt{python3 laboratory.py}.
+\item Выбрать язык интерфейса (русский/английский).
+\item Пункт «Полный протокол V1--V9» --- воспроизводит таблицу
+  \ref{tab:vprotocol} (~3 минуты).
+\item Пункт «Отчёты и диаграммы» --- создаёт \texttt{reports/}:
+  JSON-отчёты, текстовый журнал, плиточные диаграммы $600$~dpi.
+\item Пункт «Мультиязычная верификация» --- при наличии
+  \texttt{julia}, \texttt{gfortran/clang}, \texttt{cargo},
+  \texttt{lean} запускает параллельные реализации и сверяет вердикты.
+\end{enumerate}
+
+\subsection{Правила сравнения результатов}
+
+При сравнении чисел монографии с выводом лаборатории действует
+правило порога: значение считается воспроизведённым, если
+относительное отклонение не превышает заявленного порога протокола
+($10^{-30}$ для $dps=35$, $10^{-65}$ для $dps=70$, целые числа ---
+точное равенство). Пороги зашиты в отчёты; лаборатория печатает
+вердикт PASS/FAIL по каждой проверке автоматически, и сводный вердикт
+строки «все проверки PASS» эквивалентен воспроизведению раздела.
+
+\section{Верификация на пяти языках и ядро Lean}\label{sec:multilang}
+
+\subsection{Роли языков}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}l l >{\raggedright\arraybackslash}X@{}}
+\toprule
+Язык & Файл & Роль \\
+\midrule
+Python & \texttt{laboratory.py} & полная лаборатория: протоколы,
+отчёты, графики \\
+Julia & \texttt{verification/julia/verify\_hodge.jl} &
+высокоточные периоды и фазы \\
+Fortran & \texttt{verification/fortran/verify\_hodge.f90} &
+арифметика переписей и рангов \\
+C & \texttt{verification/c/verify\_hodge.c} & быстрые целочисленные
+проверки (Бареисс) \\
+Rust & \texttt{verification/rust/verify\_hodge.rs} & безопасная
+целочисленная арифметика \\
+Lean~4 & \texttt{verification/lean/HodgeLaboratory.lean} & точные
+тождества в ядре \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Каждая реализация проверяет один и тот же базовый набор тождеств:
+роды $91$ и $406$; переписи $1+6+84$ и $1+6+9+30+84+276$;
+дискриминант $1125^2$; SNF-произведение; $b_{Ch}$ радикалы;
+завершимость $t^*=\lcm$; сверки $48/212/432/114$; Клейн $j=-3375$.
+Согласие пяти независимых реализаций и ядра Lean --- сильнейшая форма
+сертификата воспроизводимости: ошибка компилятора или библиотеки,
+повторённая в пяти экосистемах одновременно, практически исключена.
+
+\subsection{Lean: что именно доказывает ядро}
+
+Файл \texttt{HodgeLaboratory.lean} содержит формализованные
+предложения, проверяемые ядром Lean~4 без аксиом сверх стандартных:
+\begin{itemize}[leftmargin=1.6em, itemsep=0.1em]
+\item род кривой Ферма: $(15-1)*(15-2)/2=91$,
+  $(30-1)*(30-2)/2=406$;
+\item переписи по проводникам: точные суммы Мёбиуса
+  $1+6+84=91$, $1+6+9+30+84+276=406$;
+\item дискриминант стенда $3^4*5^6=1265625=1125^2$;
+\item произведение SNF-типа $(1,1,5,5,15,15,15,15)$ равно
+  $1265625$;
+\item радикальные значения $b_{Ch}(15)$ и $b_{Ch}(30)$ как
+  выражения в $\sqrt5$, $\sqrt3$, $\sqrt{10\pm2\sqrt5}$;
+\item завершимость: $t^*=\lcm(W/g, H/g)$ и частные случаи
+  $t^*=48$ для сетки $48\times48$;
+\item сверка бинарного кода: $48,212,432,114$;
+\item целочисленные инварианты Клейна: $105^3=343*3375$,
+  $j=-3375=-15^3$.
+\end{itemize}
+Ядро Lean проверяет эти предложения полным перебором вычислений
+(\texttt{native\_decide}, \texttt{norm\_num}, \texttt{ring}) ---
+это машинная проверка в самом строгом смысле; запуск выполняется
+пунктом меню «Lean-верификация» либо командой
+\texttt{lean HodgeLaboratory.lean}.
+
+\subsection{Установка окружений (опционально)}
+
+Все пять дополнительных окружений опциональны: лаборатория
+функционирует полностью на Python; при наличии окружений она
+автоматически расширяет вердикты. Краткие команды установки:
+
+\begin{itemize}[leftmargin=1.6em, itemsep=0.1em]
+\item Julia: \texttt{juliaup} или пакетный менеджер дистрибутива;
+  запуск: \texttt{julia verification/julia/verify\_hodge.jl}.
+\item Fortran: \texttt{gfortran -O2 -o verify\_hodge
+  verify\_hodge.f90 \&\& ./verify\_hodge}.
+\item C: \texttt{gcc -O2 -o verify\_hodge verify\_hodge.c -lm
+  \&\& ./verify\_hodge}.
+\item Rust: \texttt{rustc -O verification/rust/verify\_hodge.rs -o
+  verify\_hodge \&\& ./verify\_hodge} (или \texttt{cargo run}).
+\item Lean: \texttt{elan} (пакет \texttt{leanprover/lean4:v4.x});
+  запуск: \texttt{lean verification/lean/HodgeLaboratory.lean}.
+\end{itemize}
+
+\section{Чек-лист полного воспроизведения}\label{sec:checklist}
+
+\begin{enumerate}[leftmargin=2em, itemsep=0.15em]
+\item \texttt{python3 laboratory.py} $\to$ выбрать «Полный
+  протокол» $\to$ сводный вердикт PASS.
+\item Отчёты в \texttt{reports/}: JSON-файлы совпадают с
+  эталонными в \texttt{results/} по ключам и порогам.
+\item Диаграммы \texttt{reports/plots/}: восемь плиток $600$~dpi
+  сгенерированы без ошибок.
+\item (Опционально) пять языков: все вердикты PASS, счётчики
+  совпадают.
+\item (Опционально) Lean: файл компилируется без ошибок,
+  все \texttt{example} приняты ядром.
+\item GitHub Actions (после пуша): workflow \texttt{ci.yml} зелёный
+  --- прогон Python-протокола на трёх версиях Python.
+\end{enumerate}
+
+После прохождения чек-листа монография полностью воспроизведена:
+каждое число таблиц \ref{tab:vprotocol}--\ref{tab:certs} и всех
+разделов подтверждено независимым прогоном.

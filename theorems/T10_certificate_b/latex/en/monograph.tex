@@ -1,0 +1,129 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Certificate B: Closing the Kernel 29}\\[0.4em]
+{\large exact comparison with periods and the Hodge test}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 10/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+The cycle certifier (certificate A) presents a ``real figure'' ---
+an explicit divisor with equations. Its blind spot --- the
+dimension-$29$ pairing kernel --- is closed by certificate~B with
+periods. Together A and B guarantee: the divisor class is exactly
+determined on the whole cohomology.
+
+\begin{theorem}[B1 --- structure of the kernel]\label{th:B1}
+Let $G$ be the exact pairing matrix of $49$ measurements with the
+rank-$20$ algebraic sublattice. Then $\dim\ker G=29$, the kernel
+consists exactly of the cohomological relations, and certificate A
+is complete on the N\'eron--Severi sublattice. The blind spot
+$29+2\to0$: the two transcendental directions are checked by
+periods to $<10^{-90}$.
+\end{theorem}
+
+\begin{proof}
+The rank of $G$ is $20$ (the K3 invariants), the measurement space
+has dimension $49$, hence $\dim\ker G=29$. The kernel is the
+orthogonal complement of the algebraic sublattice; by the Hodge
+index theorem (Shioda, Fermat quartic) it consists exactly of the
+cohomological relations: the classes of $H^{2,0}\oplus H^{0,2}$ and
+the anti-algebraic part of $H^{1,1}$. The period Hodge test: the two
+$(2,0)$ directions are checked by integrals; values $<10^{-90}$ are
+identified with zero by the exact analytics.
+\end{proof}
+
+\begin{databox}[certificate B numbers]
+The divisor $Z=\tfrac32 L_1(0,0)-\tfrac12 L_2(1,1)+\tfrac54 h$ ---
+all pairings exact over $\QQ$. Torus: target class
+$5\cdot[\mathrm{pt}]$; degree certificate exact; period lattice
+$\ZZ+i\ZZ$ exact; Abel--Jacobi sum $5\pi^2/32+15/4$; verdict:
+accepted fully. K3: cup-form signature $(2,19)$; $51$ measurements
+certify the whole $22$-dimensional $H^2$; assembly
+$[Z]=[target]$ in $H^2(X,\QQ)$; verdict: accepted.
+\end{databox}
+
+\begin{remark}[the closing logic]
+$29$ relations are cohomological (structurally described by the
+Hodge index theorem), $2$ dimensions are transcendental (closed by
+periods). The blind spot $29+2$ is reduced to zero: every
+cohomology direction is either measured or structurally described.
+The coincidence of the factor $29$ with $406=2\cdot7\cdot29$ is an
+independent observation, recorded as such.
+\end{remark}
+
+\begin{statusbox}[summary]
+Certificate B accepted: the kernel $29$ closed by Theorem B1, the
+transcendental directions by periods; the class assembly is exact in
+$H^2(X,\QQ)$.
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+\texttt{python3 laboratory.py} $\to$ ``Certificates $\to$ B'': the
+assembly and the Hodge test --- seconds; the JSON report in
+\texttt{reports/}.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

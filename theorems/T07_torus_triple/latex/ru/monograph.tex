@@ -1,0 +1,139 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Тройка тора и вывод поправок}\\[0.4em]
+{\large калибровочный стенд из первых принципов}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 7/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+Тор --- калибровочный стенд: его тройка $(4,1,4\pi^2)$ и все
+производные величины вычисляются из первых принципов, без единой
+внешней посылки. Именно на торе конвейер поправок виден целиком, и
+любая ошибка конструкции проявилась бы при грубом счёте.
+
+\begin{lemma}[тройка тора]\label{lem:torus}
+Тор поставляет целочисленную тройку $(4,\,1,\,4\pi^2)$: порядок
+поворота $n=4$, индекс носителя $B=1$, спектральный порог
+$\lambda_0=4\pi^2$.
+\end{lemma}
+
+\begin{proof}
+Поворот $x\mapsto ix$ имеет порядок $4$: $i^4=1$, $i^2=-1\ne1$.
+Носитель --- сам тор: $H_2(T^2,\ZZ)\cong\ZZ$, $b_2=1$. Спектр
+плоского лапласиана --- $|m\tau-n|^2$; в нормировке Tate порог
+равен $4\pi^2$ --- универсальный первый член нормировки
+(сертификат G1).
+\end{proof}
+
+\begin{theorem}[полный вывод поправок на торе]\label{th:toruscorr}
+Из тройки $(4,1,4\pi^2)$ правила конвейера дают:
+$\delta=\pi/4=0.7853981634$; голономия поворота $=i$ (отклонение
+протокола $6.1\cdot10^{-17}$ --- машинная точность);
+$\delta^2/2=0.3084251375$; $\gamma=\delta^4/1=0.3805042619$;
+$\delta_{\mathrm{eff}}=\delta^5=0.2988473484$;
+$\Delta_{Ch}^{\mathrm{torus}}=4\pi^2+\frac{\delta^2}2-\frac{\delta^5}1
+=39.4879953935$.
+\end{theorem}
+
+\begin{proof}
+Каждая величина --- по одному правилу: $\delta=\pi/N$
+(спиновое двойное накрытие); $\delta^2/2$ --- главная фазовая
+поправка; $\gamma=\delta^4/k$ при $k=1$; $\delta_{\mathrm{eff}}
+=\delta\cdot\gamma$; объединение --- по формуле $\Delta_{Ch}$ при
+$R=0$. Голономия: подъём поворота в спин-расслоение переставляет
+листы, собственное значение на собственной форме равно $i$.
+Все знаки воспроизводятся при $dps=35$ с нулевой невязкой
+последнего разряда.
+\end{proof}
+
+\begin{remark}[эквивариантность шахматной сетки]
+Для симметричной кодировки $\mu_4$-эквивариантность точная
+(отклонение $0.000$ по сетке $4096\times4096$); для кодировки
+$(7,22)$ --- нарушена ($1.000$). Контраст доказывает: поправки
+геометричны --- они наследуют симметрию носителя.
+\end{remark}
+
+\begin{databox}[числа]
+Семейство фаз $\delta_T=\pi/N$ воспроизведено для $N=2,\dots,8$;
+таблицы $\gamma$ и $\delta_{\mathrm{eff}}$ для $k\in\{1,22\}$
+построены полностью; кейс E6 исправлен: $\Delta=0.7990$
+(не $0.5964$); на Клейне та же формула даёт $\Delta_{Ch}\approx3.4399$
+при наблюдаемом $3.443$ --- отклонение $0.0905\%$.
+\end{databox}
+
+\begin{statusbox}[итог]
+Тройка тора и все производные величины выведены из первых принципов;
+конвейер на торе работает точно, что является калибровкой для всех
+верхних ступеней.
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+\texttt{python3 laboratory.py} $\to$ <<Стенды $\to$ Тор>>; таблица
+$\gamma,\delta_{\mathrm{eff}}$ --- пункт <<Таблицы>>;
+диаграмма \texttt{fig\_torus.png}.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (пункт <<Стенды>>/<<Сертификаты>>),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

@@ -1,0 +1,143 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Certificate G: Hodge Lattice Indices}\\[0.4em]
+{\large lattice spectra, CM fractions, and the Chowla–Selberg layer}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 15/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+Certificate G provides the universal normalization of the spectrum
+of an arbitrary lattice and computes Hodge lattice indices in
+number fields --- the bridge from integer geometry to the
+$\Ga$-levels of certificate H.
+
+\begin{theorem}[G1--G6]\label{th:Gstand}
+\begin{enumerate}[leftmargin=2em]
+\item[(G1)] Universal spectrum:
+$\lambda_{m,n}=(2\pi)^2|m\tau-n|^2/(\im\tau)^2$; the factor
+$4\pi^2$ is the universal Tate twist.
+\item[(G2)] For reduced lattices $\lambda_1=4\pi^2/(\im\tau)^2$;
+for CM fields --- exact fractions: the families $16\pi^2/d$ and
+$4\pi^2/d$. The levels $\pi/15$ and $\pi/30$ are spectral units of
+$\ZZ[\sqrt{-15}]$, $\ZZ[\sqrt{-30}]$: $\lambda_1/(4\pi)=\pi/N$.
+\item[(G3)] Indices in number fields are recovered with uniqueness
+$2\varepsilon<1/Q$ (field-LLL with the triple $(p,q,s)$).
+\item[(G4)] Chowla--Selberg layer: $\omega(i)^2=\Ga(1/4)^4/(16\pi)$;
+$\omega(\tau_7)^2=\frac{21+\sqrt{-7}}{896}
+\bigl[\Ga(\frac17)\Ga(\frac27)\Ga(\frac47)\bigr]^2/\pi^2$;
+$\omega(\tau_3)^2=\frac{3-\sqrt{-3}}8
+\Ga(\frac13)^6/(\pi^2 2^{8/3})$; $d=15$: the $j$-pair in
+$\QQ(\sqrt5)$ and $R=\frac{(2\sqrt5-3)+(\sqrt5-2)\sqrt{-3}}2$.
+\item[(G5)] K3 bridge: the quadrant integral
+$\Ga(1/4)^4/(16\pi\sqrt2)$; the index $\sqrt2/32$ in the
+$\Ga$-scale.
+\item[(G6)] The $\mu_N$-quantum ladder: quantum $2\pi/N$, spin half
+$\pi/N$; $\delta_C=\pi/7$ is the $N=7$ rung; $\pi/15$, $\pi/30$ ---
+the next rungs.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(G1) The flat Laplacian on the elliptic curve with lattice
+$\ZZ\tau+\ZZ$: eigenvalues $\propto|m\tau-n|^2$; normalization by
+$(2\pi)^2$.
+(G2) For a reduced $\tau$ the minimum $|m\tau-n|^2=1$ is attained at
+the shortest vector; the CM case: $\tau=\sqrt{-d}$ or
+$\frac{1+\sqrt{-d}}2$, the fraction unfolds into the exact
+$4\pi^2/d$ or $16\pi^2/d$ by the shortest-vector classification;
+for $d=15$ the norm computation gives $\lambda_1/(4\pi)=\pi/15$.
+(G3) The field separation is bounded below via the discriminant;
+LLL in the basis $(p,q,s)$ is unique at $2\varepsilon<1/Q$; the
+recovery residual $2.31\cdot10^{-102}$.
+(G4) Chowla--Selberg: the squared period is a $\Ga$-monomial with
+rational exponents; all identities verified with residuals
+$<10^{-100}$.
+(G5) The quadrant split and a change of variables give the exact
+value; residual $3.92\cdot10^{-43}$.
+(G6) The spin half follows from the double cover; the ladder agrees
+with the stand triples.
+\end{proof}
+
+\begin{databox}[numbers]
+The non-CM test: the minimal polynomial $4X^3-1$ --- field-LLL
+distinguishes CM from non-CM. Field-LLL $d=15$: the recovery of
+$\frac{3+5\sqrt{-15}}8$. The spectral fractions confirmed on the
+nine G1 lattices; the families $16\pi^2/d$, $4\pi^2/d$ --- exact.
+\end{databox}
+
+\begin{statusbox}[summary]
+Certificate G accepted ($6/6$): the universal normalization, exact
+fractionality, field-LLL, the Chowla--Selberg layer, the K3 bridge,
+the ladder --- all points certified.
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+\texttt{python3 laboratory.py} $\to$ ``Certificates $\to$ G''; the
+designer: an arbitrary $d$ --- the lab computes $\lambda_1$ and
+prints the fraction.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

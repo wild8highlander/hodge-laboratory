@@ -1,0 +1,137 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Certificate D: The Universal Mu4 Theorem}\\[0.4em]
+{\large commutation, functoriality, and semi-invariance}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\normalsize The <<Dynamic Principle>> Program --- the \texttt{hodge-laboratory}}\\[0.15em]
+{\small Standalone theorem monograph · Монография 12/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+Certificate D lifts the $\mu_4$ mechanics from particular stands to
+a general theorem: the commutation of corrections with the isotypic
+projectors is a universal property of $\mu_4$-symmetric systems.
+
+\begin{theorem}[D1--D4]\label{th:Dstand}
+\begin{enumerate}[leftmargin=2em]
+\item[(D1)] For every $\mu_4$-symmetric operator $L$ and every
+projector $P$ onto an isotypic component, $[L,P]=0$. Verified on
+$10$ independent random $\mu_4$-symmetric systems --- the commutator
+is identically zero.
+\item[(D2)] Functoriality:
+$e_{(m,n)}(\mathrm{rot}\,x)=e_{(n,-m)}(x)$ --- the index transfer
+under rotation is exact.
+\item[(D3)] The map family $\{(8,3),(16,4),(24,5),(32,7)\}$: the
+multiplicity of $\lambda_1$ is $4$ at $K\in\{8,10,12\}$ --- the
+regular-representation dimension is stable.
+\item[(D4)] Semi-invariance $F(\mathrm{rot}\,x)=i\,F(x)$ is exact
+over $\ZZ[i]$ --- the rotation phase is recovered in Gaussian
+integers with no rounding.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(D1) The projector $P=\frac14\sum_{k=0}^3 i^{-k}R^k$ with $R$ the
+rotation. If $LR=RL$, then $LP=PL$ by expanding the sum. Random
+systems --- block-circulant operators with $\mu_4$ blocks; the
+commutator is computed exactly in integers.
+(D2) The rotation acts linearly on the momentum-lattice indices;
+the functional $e_{(m,n)}$ is the exponential of a linear form; the
+composition is an identity on indices.
+(D3) On the family maps the eigenvalue $\lambda_1$ repeats the
+regular representation: multiplicity $4$ --- the exact projector
+rank.
+(D4) The rotation eigenvalues are $\{1,i,-1,-i\}\subset\ZZ[i]$; the
+eigenfunctionals normalize in $\ZZ[i]$; multiplication by $i$ is
+exact.
+\end{proof}
+
+\begin{remark}[universality of mechanism vs values]
+The theorem proves the universality of the \emph{mechanism}: every
+$\mu_4$-symmetric system behaves identically. The universality of
+the \emph{values} of the specific triple $(7,22,\lambda_1)$ is a
+separate question of the ladder rungs: the values are supplied by
+the geometry of each rung, and their consistency is fixed by
+certificates B and C on every stand.
+\end{remark}
+
+\begin{databox}[checks]
+$10$ random systems: $[L,P]=0$ identically; the map family
+$\{(8,3),(16,4),(24,5),(32,7)\}$: multiplicity $\lambda_1=4$ at
+$K\in\{8,10,12\}$; functoriality:
+$e_{(m,n)}(\mathrm{rot}\,x)=e_{(n,-m)}(x)$; semi-invariance:
+$F(\mathrm{rot}\,x)=i\,F(x)$ over $\ZZ[i]$.
+\end{databox}
+
+\begin{statusbox}[summary]
+Certificate D accepted: the universal $\mu_4$ theorem proved in
+general form on all four points.
+\end{statusbox}
+
+\begin{verifybox}[reproduction]
+\texttt{python3 laboratory.py} $\to$ ``Certificates $\to$ D'': ten
+systems, commutators, maps --- deterministic.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas, and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates''),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

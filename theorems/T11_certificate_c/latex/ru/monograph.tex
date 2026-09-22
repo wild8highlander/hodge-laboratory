@@ -1,0 +1,132 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Сертификат C: μ₄-эквивариантность поправок}\\[0.4em]
+{\large 22 = 1 + 7 + 7 + 7 и регулярное представление}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 11/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+Сертификат C устанавливает естественность поправок: тройка
+$(7,22,\lambda_1)$ согласована с представлением $\mu_4$ ---
+группы четверть-оборотов, присутствующей на всех трёх стендах.
+
+\begin{theorem}[C1 --- изотипика K3]\label{th:C1stand}
+В $H^2$ Фермат-квартики изотипное разложение по характерам $\mu_4$
+имеет вид $22=1+7+7+7$. Три независимых пути подсчёта (прямые
+орбиты, спектр перестановочного представления, точные кратности
+характеров) дают одинаковый ответ.
+\end{theorem}
+
+\begin{proof}
+Действие $(\mu_4)^2$ на $48$ прямых имеет $12$ орбит.
+Перестановочное представление раскладывается по характерам;
+проекционные операторы $\Pi_\chi=\frac14\sum_k i^{-k}R^k$
+выделяют изотипные части. Прямой подсчёт орбит даёт $(1,7,7,7)$;
+спектр перестановочного представления даёт те же кратности как
+размерности собственных пространств; спаривание с точными
+характерами прямых --- третий путь. Совпадение трёх путей исключает
+вычислительные совпадения.
+\end{proof}
+
+\begin{theorem}[C2 --- тор, регулярное представление]\label{th:C2stand}
+На торе оператор поправки $\lambda_1$ коммутирует с $\mu_4$,
+характеристический многочлен равен $x^4-1$ --- регулярному
+представлению, кратность $\lambda_1$ равна $4$, континуум значений
+$\lambda_1=4\pi^2$, тройка $(4,1,4\pi^2)$ согласована.
+\end{theorem}
+
+\begin{proof}
+Коммутация --- эквивариантность лапласиана относительно поворотов;
+собственные пространства инвариантны и раскладываются по характерам
+$\mu_4$. Многочлен $x^4-1$ имеет простые корни $\{1,-1,i,-i\}$ ---
+каждый характер ровно один раз: регулярное представление. Значение
+$4\pi^2$ реализуется на каждом характере --- континуум на решётке
+моментов.
+\end{proof}
+
+\begin{databox}[гептада Клейна]
+$\Phi_7$ --- циклотомический многочлен; $\Delta_{49a1}=-343=-7^3$;
+$j=-3375=-15^3$; CM-порядок $\ZZ[(1+\sqrt{-7})/2]$; $h(-7)=1$;
+$\tau$ сертифицирован. Гептада $\sqrt{-7}$ --- точное целочисленное
+окружение фазы $\pi/7$.
+$\mu_4$-стенд: аномалия $=i$; $42$ элемента порядка $4$ в
+перестановочном представлении размерности $32$; $\mu_4$ на всех
+трёх стендах. Сетка: нарушений симметричной кодировки $0$;
+нарушений $(7,22)$: $1023/1024$.
+\end{databox}
+
+\begin{statusbox}[итог]
+Сертификат C принят ($21/21$ проверка): изотипика $22=1+7+7+7$
+подтверждена тремя путями; тор даёт регулярное представление;
+семёрка получает точное арифметическое лицо.
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+\texttt{python3 laboratory.py} $\to$ <<Сертификаты $\to$ C>>:
+проекционные операторы, орбиты, спектр --- всё точно.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (пункт <<Стенды>>/<<Сертификаты>>),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

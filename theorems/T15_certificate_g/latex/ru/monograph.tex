@@ -1,0 +1,141 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\Bfun}{\mathrm{B}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\SNF}{\operatorname{SNF}}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Ind}{\operatorname{Index}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Сертификат G: индексы решётки Ходжа}\\[0.4em]
+{\large спектр решёток, CM-дроби и слой Коула–Селберга}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 15/16}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+Сертификат G даёт универсальную нормировку спектра произвольной
+решётки и вычисляет индексы решётки Ходжа в числовых полях ---
+мост от целочисленной геометрии к $\Ga$-нормировкам сертификата H.
+
+\begin{theorem}[G1--G6]\label{th:Gstand}
+\begin{enumerate}[leftmargin=2em]
+\item[(G1)] Универсальная нормировка спектра:
+$\lambda_{m,n}=(2\pi)^2|m\tau-n|^2/(\im\tau)^2$; множитель $4\pi^2$
+--- универсальный Tate-фактор.
+\item[(G2)] Для приведённых решёток $\lambda_1=4\pi^2/(\im\tau)^2$;
+для CM-полей --- точная дробь: семейства $16\pi^2/d$ и $4\pi^2/d$.
+Уровни $\pi/15$ и $\pi/30$ --- спектральные единицы решёток
+$\ZZ[\sqrt{-15}]$, $\ZZ[\sqrt{-30}]$: $\lambda_1/(4\pi)=\pi/N$.
+\item[(G3)] Индексы в числовых полях восстанавливаются с
+единственностью $2\varepsilon<1/Q$ (поле-LLL с тройкой $(p,q,s)$).
+\item[(G4)] Слой Коула--Селберга: $\omega(i)^2=\Ga(1/4)^4/(16\pi)$;
+$\omega(\tau_7)^2=\frac{21+\sqrt{-7}}{896}
+\bigl[\Ga(\frac17)\Ga(\frac27)\Ga(\frac47)\bigr]^2/\pi^2$;
+$\omega(\tau_3)^2=\frac{3-\sqrt{-3}}8
+\Ga(\frac13)^6/(\pi^2 2^{8/3})$; для $d=15$: $j$-пара в
+$\QQ(\sqrt5)$ и $R=\frac{(2\sqrt5-3)+(\sqrt5-2)\sqrt{-3}}2$.
+\item[(G5)] K3-мост: квадрант-интеграл $\Ga(1/4)^4/(16\pi\sqrt2)$;
+индекс $\sqrt2/32$ в $\Ga$-шкале.
+\item[(G6)] Лестница $\mu_N$-квантов: квант $2\pi/N$, спиновая
+половина $\pi/N$; $\delta_C=\pi/7$ --- ступень $N=7$; $\pi/15$,
+$\pi/30$ --- следующие ступени.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(G1) Плоский лапласиан на эллиптической кривой с решёткой
+$\ZZ\tau+\ZZ$: собственные значения $\propto|m\tau-n|^2$;
+нормировка на $(2\pi)^2$ даёт формулу.
+(G2) Для приведённого $\tau$ минимум $|m\tau-n|^2=1$ достигается на
+кратчайшем векторе; CM-случай: $\tau=\sqrt{-d}$ либо
+$\frac{1+\sqrt{-d}}2$, дробь раскрывается в точное $4\pi^2/d$ или
+$16\pi^2/d$ по классификации кратчайших векторов; для $d=15$
+прямое вычисление нормы даёт $\lambda_1/(4\pi)=\pi/15$.
+(G3) Разделение индексов в поле оценивается снизу через
+дискриминант; LLL в базисе $(p,q,s)$ уникальна при
+$2\varepsilon<1/Q$; остаток восстановления $2.31\cdot10^{-102}$.
+(G4) Формулы Коула--Селберга: квадрат периода --- произведение
+$\Ga$-значений с рациональными показателями; все тождества
+проверены с остатками $<10^{-100}$.
+(G5) Разбиение интеграла на квадранты и замена переменных дают
+точное значение; остаток $3.92\cdot10^{-43}$.
+(G6) Спиновая половина --- следствие двойного накрытия; лестница
+согласована с тройками стендов.
+\end{proof}
+
+\begin{databox}[числа]
+Не-CM тест: минимальный многочлен $4X^3-1$ --- поле-LLL отличает
+CM от не-CM. Поле-LLL $d=15$: восстановление
+$\frac{3+5\sqrt{-15}}8$. Спектральные дроби подтверждены на девяти
+решётках G1; семейства $16\pi^2/d$, $4\pi^2/d$ --- точные.
+\end{databox}
+
+\begin{statusbox}[итог]
+Сертификат G принят ($6/6$): универсальная нормировка, точные
+дробности, поле-LLL, слой Коула--Селберга, K3-мост, лестница ---
+все пункты сертифицированы.
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+\texttt{python3 laboratory.py} $\to$ <<Сертификаты $\to$ G>>;
+конструктор: произвольный $d$ --- лаборатория вычисляет
+$\lambda_1$ и печатает дробь.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (пункт <<Стенды>>/<<Сертификаты>>),
+Lean: \texttt{verification/lean/HodgeLaboratory.lean}.
+}
+\end{document}

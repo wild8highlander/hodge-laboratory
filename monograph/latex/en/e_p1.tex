@@ -1,0 +1,548 @@
+% ═══════════════════════════════════════════════════════════════════
+% EN Part 1: Introduction, principles, ladder, history, background
+% ═══════════════════════════════════════════════════════════════════
+\part{The Program and Its Principles}
+
+\section{Introduction: the dynamic principle}\label{sec:intro}
+
+This monograph unifies the results of a program developed step by
+step through a series of computational stands: the calibration torus,
+the K3 surface, the Klein quartic Jacobian, and the cyclotomic stand
+$N=15/30$ on Fermat curves. Each rung of this ladder was originally
+described in separate materials; here they are brought together,
+made mutually consistent, and supplied with complete derivations, so
+that the monograph reads as a single connected study --- from the
+ founding principle to a closed system of lemmas and theorems with a
+reproducible computational protocol. Every numerical statement is
+certified: either by exact integer arithmetic or by direct
+independent integration, reproducible with one command from the
+\texttt{laboratory.py} lab.
+
+The foundation of the program is the \emph{dynamic principle} ---
+the rule by which the entire correction structure is built from
+integer geometric data. The principle was fixed during the audit of
+the original monographs and has never been violated since; its
+formulation is simple.
+
+\begin{keybox}{The dynamic principle (main formulation)}
+\emph{Geometry supplies only the integer triple $(n,B,\lambda_0)$:
+the order $n$ of a distinguished symmetry element, the integer
+topological index $B$ of the carrier, and the spectral threshold
+$\lambda_0$. All the remaining structure --- phases, braking terms,
+effective corrections, normalizations, period lattices --- is built
+from this triple by pure algebra and contains no free parameters.}
+\end{keybox}
+
+The principle is powerful precisely because of its thriftiness:
+geometry does not ``guess'' or fit coefficients. It answers three
+questions only: what order the rotation has, what integer index the
+carrier has, and what the spectral threshold is. Everything else is
+handled by a universal algebraic pipeline, identical on every rung
+of the ladder. This is why the formulas on the torus, on K3, on the
+Klein quartic, and on the Fermat curves are uniform: the formulas do
+not repeat by analogy --- they are derived from one and the same
+triple by one and the same rules.
+
+A key methodological decision of the program is the rejection of
+techniques that could create an appearance of results where there
+are none. The final edition uses no PSLQ and no integer-relation
+fitting for the claims of the main text; no Hecke character
+L-values or externally postulated ``global phases''; no numerical
+checks of what is proved identically; no appeals to self-adjoint
+operators that never occur in the construction. Where numerical
+verification is needed, it is performed by an independent method ---
+direct quadrature over smooth pieces with no $\Ga$-functions at all
+--- and serves as a certificate, not as a proof.
+
+\subsection{What is proved and what is computed}
+
+The program has accumulated a closed system of results, each proved
+in the text of this monograph. For orientation, here is a summary;
+full statements and proofs occupy the corresponding sections.
+
+\begin{statusbox}[program summary]
+\begin{itemize}[leftmargin=1.4em, itemsep=0.15em]
+\item The Fermat curve genus $g=\tfrac{(N-1)(N-2)}{2}$ and the torus
+  triple $(4,1,4\pi^2)$ --- proved from first principles
+  (Sections~\ref{sec:torus},~\ref{sec:cycles}).
+\item The N\'eron--Severi rank $\rho=20$ for the Fermat quartic
+  $x^4+y^4+z^4+w^4=0$, signature $(1,19)$, sublattice determinant
+  $64$ --- computed exactly over $\QQ$ from the explicit
+  $49\times49$ intersection matrix (Section~\ref{sec:k3}).
+\item Errata E8: on genus $3$, of the $64$ spin structures $36$ are
+  even ($\mathrm{Arf}=0$) and $28$ odd ($\mathrm{Arf}=1$) --- proved by a complete Arf-invariant
+  enumeration (Section~\ref{sec:e8}).
+\item Certificates B, C, D, E, F, G, H --- accepted on all points of
+  their protocols: closing the kernel $29$ by periods;
+  $\mu_4$-equivariance $22=1+7+7+7$; the universal $\mu_4$ theorem
+  $[L,P]=0$; flow termination with exact time $t^*=\lcm(\dots)$;
+  rationalization with an a priori denominator bound $Q=256$; Hodge
+  lattice indices and the Chowla--Selberg layer; the $N=15/30$ stand
+  in the full Gross $\Ga$-normalization
+  (Sections~\ref{sec:certB}--\ref{sec:klein}).
+\item The closed period form $P_{a,b}(r,s)=\tfrac1N\zeta_N^{ra+sb}
+  \Omega_{a,b}$, the Riemann relations as an identity, the
+  $\Ga$-normalization with fractional shares of $\pi$, the
+  polarization and computability of indices --- a closed system of
+  lemmas and theorems of the $N=15/30$ stand
+  (Sections~\ref{sec:cycles}--\ref{sec:indices}).
+\item Protocol V1--V9: character census $91=1+6+84$ and
+  $406=1+6+9+30+84+276$; closed-form deviations $3.9\cdot10^{-36}$;
+  exact phases with deviation $0.0$; system rank $=g$ with condition
+  numbers $8.6$ and $18.2$; deep record at $dps=70$ with deviation
+  $1.7\cdot10^{-71}$ (Section~\ref{sec:protocol}).
+\end{itemize}
+\end{statusbox}
+
+\subsection{How the monograph is organized}
+
+The exposition is organized in large parts. Part~I (this section)
+introduces the principle, the three corrections, and the ladder
+methodology. Part~II describes the calibration stands: the torus,
+where the whole mechanics is explicit; the K3 surface with maximal
+N\'eron--Severi rank; the E8 errata on genus-3 spin structures; the
+binary code as the bridge between geometry and cyclic algebra.
+Part~III collects the program certificates --- from the cycle
+certifier (certificate~A) to certificate~G on Hodge lattice indices;
+the third stand, the Klein quartic Jacobian, is included here.
+Part~IV is devoted to the $N=15/30$ stand: the most mature part of
+the program, where the exposition is closed into a system of lemmas
+and theorems relying on nothing external. Part~V contains the
+V1--V9 protocol, summary tables, and appendices with complete
+derivations.
+
+A reader who wants to see the mechanics in action first should start
+with Section~\ref{sec:torus} on the torus: the correction pipeline
+takes a page and a half and every quantity is explicit. A reader
+interested in the foundations should read sequentially: the cycle
+combinatorics (Section~\ref{sec:cycles}) is built without any
+analysis and serves as the base of everything else.
+
+\section{The three corrections: origin and justification}
+\label{sec:corrections}
+
+The core of the framework consists of three corrections, each
+derived rather than postulated. This section fixes their
+definitions, justifies the origin of each, and assembles the united
+formula. None of the quantities is a fitted parameter: all are
+functions of the integer triple $(n,B,\lambda_0)$.
+
+\subsection{The spin phase $\delta=\pi/N$}
+
+The first correction is the spin phase. Suppose the geometry
+supplies a symmetry element of order $N$: a rotation permuting the
+sheets of the spin double cover. In the spin bundle, the lift of
+this rotation has order $2N$ and permutes the two sheets; the phase
+acquired by an eigenform upon going around the rotation axis is half
+the elementary angle:
+\begin{equation}\label{eq:delta}
+  \delta \;=\; \frac{\pi}{N}.
+\end{equation}
+The origin of the formula is the double cover: on the base curve the
+rotation has period $N$, but in the spin bundle a full circuit of
+the axis returns the sheet only after two base circuits, hence the
+elementary phase step is $\pi/N$, not $2\pi/N$. On the Klein curve
+the order of the generator $C$ of $\Gamma(2,3,7)$ is $7$, giving the
+phase $\delta_C=\pi/7$; on the torus the rotation order is $4$, so
+$\delta=\pi/4$; on the Fermat curves the level plays the role of
+$N$, and the phases are multiples of $\pi/15$ and $\pi/30$.
+
+\begin{remark}[why the phase is not fitted]
+Formula~\eqref{eq:delta} contains no free factors. Any deviation
+would mean that the symmetry element has an order other than $N$;
+but the order is an integer characteristic of the geometry. The
+spin phase thus inherits the integrality of geometry: all further
+corrections are built from $\delta=\pi/N$ algebraically.
+\end{remark}
+
+\subsection{Braking $\gamma=\delta^4/k$ and the effective phase
+$\delta_{\mathrm{eff}}=\delta^5/k$}
+
+The second correction is braking. The order-four phase correction
+is suppressed by the carrier: the divisor is the integer
+topological index $B$ --- the number $b_2$ of the carrier manifold
+or another integer index of the rung. Definition:
+\begin{equation}\label{eq:gamma}
+  \gamma \;=\; \frac{\delta^4}{k},
+  \qquad k = B\ \text{(carrier index)}.
+\end{equation}
+The universal choice of the framework is $k=b_2(K3)=22$: the second
+Betti number of the K3 surface is an integer constant shared by all
+rungs, since the K3 layer is present in the construction as the
+carrier of corrections. On the torus the carrier is the torus itself
+($k=1$), so $\gamma=\delta^4$; on the Klein curve $k=22$ is used; on
+the $N=15/30$ stand there are several indices --- one per conductor
+block --- and they are computed rather than postulated
+(Section~\ref{sec:indices}).
+
+The third correction combines the phase with braking into one
+effective quantity:
+\begin{equation}\label{eq:deff}
+  \delta_{\mathrm{eff}} \;=\; \frac{\delta^5}{k} \;=\; \delta\cdot\gamma.
+\end{equation}
+For the Klein curve $(\pi/7)^5/22\approx1/1200$ --- the correction
+is small, as required: the effective phase must be a perturbation,
+not a replacement of the main term. On the torus with $k=1$ the
+effective phase is large ($(\pi/4)^5\approx0.299$), and this is
+exactly why the torus serves as the calibration stand: all effects
+are visible at coarse precision and any construction error shows up
+immediately.
+
+\subsection{The united formula $\Delta_{Ch}$}
+
+The three corrections are assembled into one quantity together with
+the spectral threshold $\lambda_0$ and the rank term $R/4$:
+\begin{keybox}{The united formula}
+\begin{equation}\label{eq:deltaCh}
+  \Delta_{Ch} \;=\; \lambda_0 \;-\; \frac{R}{4}
+  \;+\; \frac{\delta^2}{2} \;-\; \frac{\delta^5}{k},
+  \qquad
+  b_{Ch}(n) \;=\; 1-\cos\frac{2\pi}{n}.
+\end{equation}
+Here $\lambda_0$ is the spectral threshold of the triple; $R$ is the
+integer rank parameter of the rung; $\delta=\pi/n$ is the spin
+phase; $k$ is the braking carrier index. The constant $b_{Ch}(n)$
+is the radical characteristic of the rotation of order $n$, taking
+exact radical values at the stand levels
+(Theorem~\ref{th:normalization}).
+\end{keybox}
+
+Each term of formula~\eqref{eq:deltaCh} has its own origin. The term
+$\lambda_0$ is the ``bare'' eigenvalue supplied by geometry; for the
+Klein curve it is $\lambda_1(D^2_{\sigma_0})=3.338$, for the torus
+$4\pi^2$. The term $-R/4$ is the rank term reflecting the size of
+the unsplit part of the carrier. The term $+\delta^2/2$ is the main
+second-order phase correction, universal for all rotations. The term
+$-\delta^5/k$ is the fifth-order braking: small but mandatory
+correction distinguishing the framework from a bare $\delta^2/2$.
+
+Agreement with observed values is verified at every rung. For the
+Klein curve the united formula gives $\Delta_{Ch}\approx3.4399$
+against the observed $3.443$ --- a deviation of $0.0905\%$, fixed in
+the protocol data (Table~\ref{tab:torus-triples}). The deviation is
+not removed by fitting: it is a consequence of the same rules for
+all rungs, and its smallness is evidence for the correctness of the
+rules, not of a tuning.
+
+\section{Ladder methodology}\label{sec:ladder}
+
+The ladder of stands is a sequence of geometric objects of growing
+complexity on which one and the same pipeline runs in full. Each
+rung inherits the verified mechanisms of the previous one and adds
+exactly one new phenomenon. This ordering guarantees that if
+something is broken at a lower rung it is visible immediately, and
+if a higher rung produces a surprise its source is localized by
+contrast.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}l l l >{\raggedright\arraybackslash}X@{}}
+\toprule
+Rung & $n$ & Genus & Constant and note \\
+\midrule
+Torus & $4$ & $1$ & triple $(4,1,4\pi^2)$; four spin structures;
+  phase $\pi/4$; corrections derived from first principles \\
+Klein curve & $7$ & $3$ & $b_{Ch}(7)\approx0.7526$; phases
+  $\pi/2,\pi/3,\pi/7$; $B=b_2(K3)=22$; $j=-3375$ \\
+Macbeath & $9$ & $7$ & $b_{Ch}(9)\approx0.1172$; Hurwitz tower \\
+Hurwitz$_3$ & $11$ & $14$ & $b_{Ch}(11)\approx0.0823$; row aligned
+  via $\mathrm{PSL}(2,13)$ \\
+\textbf{Fermat (stand)} & $\mathbf{15}$ & $\mathbf{91}$ &
+  $b_{Ch}(15)$ radical~\eqref{eq:b15}; phase lattice
+  $\tfrac1{15}\ZZ[\zeta_{15}]$ \\
+\textbf{Fermat (stand)} & $\mathbf{30}$ & $\mathbf{406}$ &
+  $b_{Ch}(30)$ radical~\eqref{eq:b30}; phase lattice
+  $\tfrac1{30}\ZZ[\zeta_{30}]$ \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The ladder demonstrates a steady growth of scale: the genus grows
+from $1$ to $406$, the phase lattices complicate from $\ZZ[i]$ to
+$\ZZ[\zeta_{30}]$, and the number of integer indices grows --- one
+per conductor block. The rules themselves never change: the spin
+phase is always $\pi/n$, the braking always $\delta^4/k$, the
+normalization always built from the periods themselves. The
+constancy of the rules under scale growth is the main methodological
+result of the ladder.
+
+\begin{remark}[on the role of computational certificates]
+Every quantitative statement of the monograph carries a certificate
+of one of two types. Type one --- exact integer arithmetic: censuses,
+ranks, determinants, indices are computed with no rounding and are
+verified by an independent algorithm. Type two --- direct
+independent integration: identities with $\Ga$-functions are checked
+against tanh-sinh quadrature over smooth pieces in which
+$\Ga$-functions never appear. The laboratory protocol reproduces all
+certificates with one command; there are no ``peeked'' constants in
+the code.
+\end{remark}
+
+\section{History of the program}\label{sec:history}
+
+The program developed in several stages, each adding a new layer of
+rigor. Understanding this evolution helps the reader see why the
+final edition looks the way it does: every methodological decision
+is dictated by specific control events recorded in the protocols.
+
+\subsection{Stage I: the three corrections}
+
+The original core was the set of three algebraic corrections
+(Section~\ref{sec:corrections}): the spin phase $\delta=\pi/N$, the
+braking $\gamma=\delta^4/k$, and the effective phase
+$\delta_{\mathrm{eff}}=\delta^5/k$ with the united formula
+\eqref{eq:deltaCh}. From the very start the integrality rule was in
+force: every quantity must trace back to an integer characteristic
+of the geometry. The rule was tested on the only rung available then
+--- the Klein curve, where the triple $(7,22,\lambda_1)$ was taken
+from the group $\Gamma(2,3,7)$ and the second coadjoint K3.
+
+\subsection{Stage II: calibration stands}
+
+The second stage added two calibration stands: the torus and K3. The
+torus gave the complete explicit derivation of the corrections from
+first principles (Section~\ref{sec:torus}) and revealed an important
+fact: the $\mu_4$-equivariance for the symmetric encoding is
+\emph{exact}, while for the $(7,22)$ encoding it is broken. This
+contrast showed that the corrections inherit the geometry of the
+carrier, and the naturality principle was formulated: a correction
+must commute with the symmetry group. The principle was proved in
+certificates~C and~D. The K3 stand (Section~\ref{sec:k3}) delivered
+the first large exact computation: rank $20$, signature $(1,19)$,
+determinant $64$ --- all over $\QQ$ with full control.
+
+\subsection{Stage III: certificates}
+
+The third stage introduced the institute of certificates: every
+nontrivial step of the pipeline must have an independent check ---
+either exact arithmetic or direct integration. The cycle certifier
+(A) and certificate~B appeared, closing the dimension-$29$ kernel by
+periods. Then followed C (naturality via $\mu_4$), D (the universal
+$\mu_4$ theorem), E (flow termination with exact time), F
+(rationalization with an a priori denominator bound), and G (Hodge
+lattice indices, the Chowla--Selberg layer). The certificate
+institute proved to be the most productive element of the program:
+it turns every ``seems right'' into ``verified to $10^{-36}$'' or
+``proved as an identity''.
+
+\subsection{Stage IV: the cyclotomic stand and the closed system}
+
+The fourth stage --- the $N=15/30$ stand (Part~V). Here the program
+reached full maturity: the exposition is closed into a system of
+lemmas and theorems relying neither on PSLQ, nor on L-values, nor on
+numerical checks of the provable. All phases are derived explicitly
+(Lemma~\ref{lem:closedform}), the Riemann relations are proved as an
+identity (Theorem~\ref{th:riemann}), the normalization is reduced to
+fractional shares of $\pi$ (Theorem~\ref{th:normalization}), and the
+Hodge lattice indices are computed exactly
+(Theorem~\ref{th:indexcomp}, certificate~H). Certificate~H completed
+the arch: the full Gross $\Ga$-normalization of the volume gave
+$\mathrm{vol}_h=1125=\sqrt{\disc}$ --- an integer, beautiful in its
+arithmetic $3^4\cdot5^6$.
+
+\subsection{Errata: two control events}
+
+The history of the program includes two honestly recorded
+corrections that themselves became results. First --- errata E8
+(Section~\ref{sec:e8}): on genus $3$ there are $36$ even and $28$ odd spin structures,
+not the swapped pair as printed in an early version; a full
+enumeration of the $64$ structures by the Arf invariant closed the
+question forever and added an automatic enumeration module to the
+program. Second --- the E6 case on the torus: the correct derivation
+gives $\Delta=0.7990$, not the previously printed $0.5964$; the
+correction was obtained by the same chain of first principles and
+entered all tables. Both events illustrated the power of the
+protocol approach: any mismatch between the printed and the computed
+is discovered automatically upon reproduction.
+
+\section{Methodology: the five rules}\label{sec:rules}
+
+Five rules have guided the program since stage~III. They are simple,
+but they determine the architecture of both the monograph and the
+laboratory.
+
+\begin{keybox}{The five rules of the program}
+\begin{enumerate}[leftmargin=2em, itemsep=0.2em]
+\item \emph{The triple rule.} Geometry supplies only
+  $(n,B,\lambda_0)$. Everything else is derived.
+\item \emph{The closed-form rule.} Every checkable number is either
+  derived in closed algebraic form or certified by direct
+  independent measurement.
+\item \emph{The certificate independence rule.} A certificate may
+  not use the same algorithm as the computation it certifies;
+  analysis is checked by integration without $\Ga$-functions,
+  combinatorics by exact arithmetic.
+\item \emph{The reproducibility rule.} Every result is reproducible
+  by one command from a clean repository; randomness and seeds are
+  forbidden.
+\item \emph{The fixation rule.} Discrepancies are recorded as errata
+  with full analysis; the fix enters the main text, not footnotes.
+\end{enumerate}
+\end{keybox}
+
+Rule~1 separates geometry from algebra and makes the framework
+portable: new geometry requires only the triple. Rule~2 eliminates
+fitting: a number is either derived or measured independently.
+Rule~3 protects against circularity: a certificate using the same
+functions as the checked computation certifies nothing. Rule~4 makes
+the monograph and the laboratory a single organism: every number of
+the text has a source in \texttt{laboratory.py}. Rule~5 turns errors
+into results: errata E8 and the E6 case are full sections with
+automatic verification.
+
+\subsection{Why computational certificates complement proofs}
+
+One may ask: why certificates if the theorems are proved? The answer
+is the division of labor between the analytic and the computational
+channels. A theorem fixes an identity in general form; a certificate
+guarantees that the concrete implementation --- code, libraries,
+precision --- actually computes that identity and not a close
+neighbor. A wrong sign, an index shift, a lost branch of a complex
+logarithm --- classes of errors invisible in the statement but
+immediately exposed by an independent numerical cross-check. On the
+$N=15/30$ stand certificate~B does exactly this: the closed form
+$\frac1N\zeta^{ra+sb}\Omega_{a,b}$ and the independent integration
+agree to $10^{-36}$, hence the implementation is correct and the
+phases are produced in the right order.
+
+The symmetric situation occurs with integer structures: the
+polarization type $(1,1,5,5,15,15,15,15)$ is obtained by the Smith
+algorithm, but its arithmetic (the product of invariant factors
+$=\disc$, the match with $3^4\cdot5^6$) is checked by a separate
+integer line. Double registration --- algorithm plus arithmetic
+invariant --- is the program's rule for all key tables.
+
+\section{Mathematical background}\label{sec:background}
+
+This section introduces all mathematical notions used by the
+program, in a volume sufficient for independent reading of the
+monograph. Each notion is defined, explained, and linked to its
+concrete role in the pipeline. A reader familiar with Riemann
+surfaces and Hodge structures may proceed directly to
+Section~\ref{sec:torus}.
+
+\subsection{Riemann surfaces and genus}
+
+A \emph{Riemann surface} is a one-dimensional complex manifold: a
+space locally modeled on a domain of the complex plane with
+holomorphically compatible coordinate changes. Simplest examples ---
+the Riemann sphere $\mathbb{P}^1$ (genus $0$), the torus
+$\CC/\Lambda$ (genus $1$). The genus is an integer topological
+invariant: the number of ``handles''; algebraically
+$g=\dim H^0(C,\Omega^1)$ --- the dimension of the space of
+holomorphic forms. For a smooth plane curve of degree $m$ the genus
+is $\tfrac{(m-1)(m-2)}{2}$ --- this formula (Pl\"ucker) gives the
+genus of the Klein quartic and, in another reading
+(Lemma~\ref{lem:genus}), the genus of the Fermat curve.
+
+The \emph{Fermat curve} $C_N=\{x^N+y^N=z^N\}$ is a plane curve of
+degree $N$; its genus $(N-1)(N-2)/2$ grows quadratically: $91$ at
+$N=15$ and $406$ at $N=30$. The curve carries the large symmetry
+group $\mu_N\times\mu_N$: multiplication of coordinates by roots of
+unity. This group organizes the entire computation --- both forms
+and cycles decompose into its characters.
+
+\subsection{Holomorphic forms and periods}
+
+A \emph{holomorphic 1-form} is a differential $\omega=f(z)\,dz$ with
+holomorphic $f$ in every chart. On a genus-$g$ curve their space is
+$g$-dimensional; on the Fermat curve a basis is written explicitly
+(Lemma~\ref{lem:forms}): $\eta_{i,j}=x^iy^j\,dx/y^{N-1}$.
+
+A \emph{period} is the integral of a form over a closed cycle. Cycles
+form the lattice $H_1(C,\ZZ)\cong\ZZ^{2g}$; a choice of cycle basis
+turns the collection of periods into a \emph{period matrix} of size
+$g\times2g$. The period matrix encodes the complex structure of the
+curve recoverably (Torelli). On the Fermat curve every period has
+the closed form $\frac1N\zeta^{ra+sb}\Omega_{a,b}$
+(Lemma~\ref{lem:closedform}) --- the transcendental factor
+$\Omega_{a,b}$ (a beta integral) and the algebraic phase (a root of
+unity) are separated; this separation is the technical basis of the
+whole $\Ga$-normalization.
+
+The \emph{Jacobian} $\Jac(C)$ is the complex torus
+$\CC^g/H_1(C,\ZZ)$ with its principal polarization; an abelian
+variety into which the curve embeds via integration of forms (the
+Abel--Jacobi map). For the Klein quartic the Jacobian is isogenous
+to the cube of an elliptic curve with CM field $\QQ(\sqrt{-7})$ ---
+Ribet's theorem, around which the stand of Section~\ref{sec:klein}
+is built.
+
+\subsection{Riemann relations and Hodge structures}
+
+The period matrix in a symplectic basis must satisfy the \emph{Riemann
+relations}: symmetry $\Omega^T=\Omega$ and positive definiteness of
+$\im\Omega$. On a curve they are proved by Riemann's bilinear
+identity (Theorem~\ref{th:riemann}) --- the only analytic tool the
+program uses in this block. The space $H^1$ splits into the
+\emph{Hodge structure} $H^1=H^{1,0}\oplus H^{0,1}$; the intersection
+form defines the \emph{polarization}: the Riemann--Hodge relations
+(Theorem~\ref{th:polarization}). The Hodge conjecture asserts that
+rational classes orthogonal to all transcendental directions are
+classes of algebraic cycles; the program builds the computable
+infrastructure around this assertion --- polarizations, lattices,
+indices --- and certifies each component exactly.
+
+\subsection{Spin structures and the Arf invariant}
+
+A \emph{spin structure} on a curve is a choice of square root of the
+canonical bundle; on a genus-$g$ curve there are exactly $2^{2g}$ of
+them. The parity of a structure is determined by the \emph{Arf
+invariant} --- a quadratic form on $H^1(C,\ZZ/2)$. Parity controls
+the theta constant: even structures have vanishing theta constant.
+The even/odd counts by genus ($1/3$ at genus 1, $6/10$ at genus 2,
+$28/36$ at genus 3) are classical; the program reproduces them by a
+complete enumeration (Section~\ref{sec:e8}).
+
+\subsection{Cyclotomic fields and roots of unity}
+
+The \emph{roots of unity} $\zeta_N^k=e^{2\pi ik/N}$ form the cyclic
+group $\mu_N$; the field $\QQ(\zeta_N)$ is the cyclotomic field of
+degree $\phi(N)$. The phase lattice $\frac1N\ZZ[\zeta_N]$ is a
+module over the ring of integers; the denominator $N$ is what
+Theorem~\ref{th:normalization} fixes as ``fractional shares of
+$\pi$''. The M\"obius function $\mu(d)$ underlies the census formula
+\eqref{eq:mobius} --- a classical inclusion--exclusion scheme whose
+exactness (integers!) makes the census a type-one certificate.
+
+\subsection{Curves, lattices, and CM fields}
+
+An elliptic curve with \emph{complex multiplication} (CM) has a
+period ratio in an imaginary quadratic field; e.g.
+$\tau=(1+\sqrt{-7})/2$ for the Klein Jacobian component. The lattice
+$\ZZ\tau+\ZZ$ has Laplacian spectrum $|m\tau-n|^2$ --- the universal
+formula of certificate~G1. The class numbers of small-discriminant
+CM fields ($h(-7)=1$, $h(-3)=1$, $h(-15)=2$) make all mentioned
+objects computable in integers: every CM object comes with its exact
+minimal polynomial ($4X^2-7$, $4X^3-1$, etc.), and no quantity
+remains ``just a number''.
+
+\subsection{The tanh-sinh method: why it is independent}
+
+The protocol verifies $\Ga$-forms by direct integration via tanh-sinh
+(double-exponential quadrature). The method is applied to
+\emph{smooth} integrands: the substitution $t=u^N/2$ on the two
+halves of the interval removes the endpoint singularities of the
+beta integral, and no $\Ga$-function ever appears in the quadrature
+code --- this guarantees the independence of the certificate: an
+error in the formula $\Ga(a/N)\Ga(b/N)/\Ga((a+b)/N)$ cannot support
+itself, because the reference is computed by a completely different
+algorithm. Agreement of the two methods to $10^{-36}$ at $dps=35$
+certifies the correctness of the formula, not merely a numerical
+coincidence.
+
+\subsection{Smith normal form and indices}
+
+The \emph{Smith normal form} (SNF) of an integer matrix is a
+diagonal $d_1|d_2|\dots$ with exact integer invariant factors,
+computed by integer elementary transformations with no rounding. For
+polarization lattices the SNF gives the \emph{polarization type} ---
+an integer invariant of the principally polarized variety. The
+product of invariant factors equals the absolute determinant ---
+for the $N=15/30$ stand this is
+$1\cdot1\cdot5\cdot5\cdot15\cdot15\cdot15\cdot15=1265625=1125^2$,
+and the agreement with the discriminant is an integer certificate
+(Theorem~\ref{th:H1}). The sublattice index is the ratio of
+determinants; the Hermite--Smith algorithm computes the saturation
+basis exactly, making the block indices
+(Theorem~\ref{th:indexcomp}) computable in the strict sense.

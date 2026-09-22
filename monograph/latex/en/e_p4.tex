@@ -1,0 +1,711 @@
+% ═══════════════════════════════════════════════════════════════════
+% EN Part 4: The N=15/30 stand — closed system
+% ═══════════════════════════════════════════════════════════════════
+\part{The $N=15/30$ Stand: A Closed System}
+
+\section{Introduction to the stand. The self-sufficiency principle}
+\label{sec:cyclo-intro}
+
+This part is devoted to the fourth rung of the ladder --- the
+cyclotomic levels $N=15$ and $N=30$. The first three rungs were
+traversed above: the torus (genus $g=1$, four spin structures, the
+$\pi/N$ family), the K3 surface
+($\Lambda_{K3}=E_8\oplus E_8\oplus U\oplus U\oplus U$, $b_2=22$,
+signature $(3,19)$), and the Klein quartic Jacobian (genus $g=3$,
+group $\Gamma(2,3,7)$, phases $\pi/2,\pi/3,\pi/7$). Each rung
+supplied an integer geometric triple: the order $n$, the integer
+topological index $B$, and the spectral threshold $\lambda_0$. At
+the $N=15/30$ rung the level $N$ plays the role of $n$, the integer
+indices of the polarization lattices per conductor blocks play the
+role of $B$ (computed in Section~\ref{sec:indices}), while the
+spectral component $\lambda_0$ is not used at all --- the stand is
+built without spectral hypotheses, and this separation of roles
+between rungs is part of the design.
+
+The objects of the stand are the Fermat curves
+\begin{equation}\label{eq:fermat}
+  C_N \;=\; \{\, (x,y)\in \mathbb{P}^2 \;:\; x^N + y^N = z^N \,\},
+  \qquad N = 15,\ 30,
+\end{equation}
+and their Jacobians $\Jac(C_N)$. The genera are
+$g(15)=\tfrac{14\cdot 13}{2}=91$ and $g(30)=\tfrac{29\cdot 28}{2}
+=406$, so the period matrices have sizes $91\times182$ and
+$406\times812$. The symmetry group is $\mu_N\times\mu_N$; the field
+of cyclotomic constants is $\QQ(\zeta_N)$.
+
+\subsection{The self-sufficiency principle}
+
+The exposition is governed by one requirement: \emph{every statement
+is either proved in the text from first principles or carries an
+explicit computational certificate of exact arithmetic or direct
+integration}. In particular, the exposition relies on its own closed
+constructions rather than external fitting methods:
+
+\begin{keybox}{Replacement of external methods by own constructions}
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.44\textwidth} >{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Early-plan method} & \textbf{Replacement in this text} \\
+\midrule
+A ``global phase'' via Hecke L-values &
+The phase is not sought: it enters the closed form
+$P=\tfrac1N\zeta_N^{ra+sb}\Omega_{a,b}$ explicitly
+(Lemma~\ref{lem:closedform}) \\
+PSLQ at $N=30$ &
+Relations are derived from the $\Ga$-identities
+(Lemmas~\ref{lem:reflection},~\ref{lem:gauss},~\ref{lem:relations}) \\
+Numerical check of the Riemann relations on $91\times182$,
+$406\times812$ &
+Theorem~\ref{th:riemann}: identical proof; numbers are a one-off
+sanity line outside the text \\
+Numerical assembly of a symplectic basis &
+The combinatorial basis of the covering grid graph
+(Lemmas~\ref{lem:genus},~\ref{lem:sympl}) \\
+An appeal to a self-adjoint operator &
+Only the cycle lattice with the intersection form and the integrals
+of forms are used (Section~\ref{sec:nooperator}) \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\end{keybox}
+
+The exposition is a closed chain: cycle combinatorics
+(Section~\ref{sec:cycles}) $\to$ closed period forms
+(Section~\ref{sec:periods}) $\to$ $\Ga$-identities
+(Section~\ref{sec:gammaid}) $\to$ Riemann relations as an identity
+(Section~\ref{sec:riemann}) $\to$ $\Ga$-normalization and fractional
+$\pi$ (Section~\ref{sec:normalization}) $\to$ polarization and Hodge
+lattice indices (Section~\ref{sec:indices}) $\to$ protocol and
+statuses (Section~\ref{sec:protocol}). Every lemma is used by the
+subsequent theorems; the chain contains no external ``leftovers''.
+
+\section{Cycle combinatorics (Lemma 0)}\label{sec:cycles}
+
+This section fixes the two topological objects on which the stand
+rests: the cycle lattice $H_1(C_N,\ZZ)$ and the intersection form
+$J$ on it. Crucially, their definition requires nothing but the
+combinatorics of the covering: no analysis, no spectral theory, no
+operators. Analysis joins only in Section~\ref{sec:periods}, on top
+of the ready lattice.
+
+\begin{lemma}[genus of the Fermat curve]\label{lem:genus}
+Let $N\ge 4$ and $C_N=\{x^N+y^N=z^N\}\subset\mathbb{P}^2$. The
+projection $\pi_x\colon C_N\to\mathbb{P}^1$ is a morphism of degree
+$N$, unramified over $\infty$ and ramified exactly over the $N$
+points $\zeta_N^k$, with ramification index $N$ at each
+$P_k=(\zeta_N^k,0)$. The genus equals
+\[
+  g \;=\; \frac{(N-1)(N-2)}{2};
+  \qquad
+  g(15)=91,\quad g(30)=406 .
+\]
+\end{lemma}
+
+\begin{proof}
+Over any $x_0\in\mathbb{P}^1$ the equation $y^N=1-x_0^N$ has exactly
+$N$ solutions with multiplicity, since $y\mapsto y^N-(1-x_0^N)$ has
+degree $N$; hence $\deg\pi_x=N$. At $P_k$ we have
+$1-x^N=-N\zeta_N^{k(N-1)}(x-\zeta_N^k)+\dots$, i.e.\ locally
+$y^N=c\,(x-\zeta_N^k)$ with $c\ne0$: the parameter is $y$ and
+$x-\zeta_N^k\sim c^{-1}y^N$, so the ramification index is $N$.
+Over $\infty$ there is no ramification: at $z=0$ the equation
+$X^N+Y^N=0$ has $N$ distinct solutions with unramified projection
+(the local parameter $v=z/Y$ of regular rank, cf.~\eqref{eq:infinity}).
+The Riemann--Hurwitz formula gives
+\[
+  2g-2 \;=\; N\,(2\cdot 0-2) \;+\; \sum_{p\in C_N}(e_p-1)
+  \;=\; -2N \;+\; N\,(N-1) \;=\; N^2-3N,
+\]
+hence $2g=(N-1)(N-2)$ and $g=(N-1)(N-2)/2$. Substituting $N=15,30$
+gives $91$ and $406$.
+\end{proof}
+
+\begin{lemma}[the grid graph of the covering]\label{lem:gridgraph}
+Put $t=x^N$ and consider $\varphi=(x^N,y^N)\colon C_N\to
+\mathbb{P}^1$; over $\mathbb{P}^1\setminus\{0,1,\infty\}$ this is an
+unramified covering of degree $N^2$ with sheet group
+$\mu_N\times\mu_N$ (a sheet is a pair of branches
+$x=\zeta_N^r t^{1/N}$, $y=\zeta_N^s(1-t)^{1/N}$). Let
+$C_N^\circ=C_N\setminus\varphi^{-1}\{0,1,\infty\}$; then
+$C_N^\circ$ deformation-retracts onto the grid graph $\Gamma_N$
+--- $\ZZ/N\times\ZZ/N$ with $N^2$ vertices and $2N^2$ edges (two
+spanning directions, corresponding to the two generators
+$\sigma_0,\sigma_1$ of $\pi_1(\mathbb{P}^1\setminus\{0,1,\infty\})
+\cong F_2$). The cyclomatic number of the graph is $N^2+1$.
+\end{lemma}
+
+\begin{proof}
+Identify $\mathbb{P}^1\setminus\{0,1,\infty\}$ with a cylinder with
+two cuts; its fundamental group is free on $\sigma_0$ (a loop around
+$0$) and $\sigma_1$ (around $1$). Choose base paths
+$\ell_0,\ell_1$ realizing $\sigma_0,\sigma_1$. To each sheet
+$(r,s)$ assign the lifts $\ell_0^{(r,s)}$, $\ell_1^{(r,s)}$ ---
+this gives $N^2$ vertices (ends of lifts over the fiber of $t_0$)
+and $2N^2$ edges. The monodromy is simple: $\sigma_0$ sends
+$t^{1/N}\mapsto\zeta_N t^{1/N}$, i.e.\ $(r,s)\mapsto(r+1,s)$;
+$\sigma_1$ acts as $(r,s)\mapsto(r,s+1)$. Hence $\Gamma_N$ is
+exactly the coordinate grid on the torus $(\ZZ/N)^2$. The covering
+over the thrice-punctured sphere is unramified, so
+$\chi(C_N^\circ)=N^2(-1)$, matching the graph count
+$V-E=N^2-2N^2=-N^2$. The cyclomatic number of a connected graph is
+$E-V+1=N^2+1$.
+\end{proof}
+
+\begin{remark}
+The graph $\Gamma_N$ is exactly the ``skeleton'' of the binary
+geometric encoding (Section~\ref{sec:binary}): vertices are bits
+(positions), edges are transitions, closed paths are cycles. Nothing
+extra is invested into the ``symplectic basis'': it is a reading of
+our own skeleton in standard algebraic form.
+\end{remark}
+
+\begin{lemma}[cycle closure and the exact sequence]\label{lem:capping}
+The integer homology ranks fit the exact sequence
+\[
+  0\;\longrightarrow\; K\;\longrightarrow\;
+  H_1(C_N^\circ,\ZZ)\;\longrightarrow\;H_1(C_N,\ZZ)\;\longrightarrow\;0,
+\]
+where $\rank H_1(C_N^\circ,\ZZ)=N^2+1$ (the cyclomatic number),
+$\rank H_1(C_N,\ZZ)=2g=(N-1)(N-2)$, and the kernel $K$ is generated
+by the $3N$ loops around the punctures with the single relation
+$\sum(\text{loops})=0$, so $\rank K=3N-1$.
+\end{lemma}
+
+\begin{proof}
+For a curve with $m=3N$ punctures the standard homology sequence of
+the pair $(C_N,C_N^\circ)$ gives
+$H_1(C_N^\circ)\to H_1(C_N)\to\widetilde H_0(C_N\setminus C_N^\circ)
+\to 0$, where the right term is $\ZZ^{3N}/\ZZ$ of rank $3N-1$. The
+rank of the left term is the cyclomatic number $N^2+1$
+(Lemma~\ref{lem:gridgraph}); the rank of $H_1(C_N,\ZZ)$ is $2g$
+(Lemma~\ref{lem:genus}). Rank bookkeeping:
+$(N^2+1)-(N^2-3N+2)=3N-1$ --- matches the right term, so the
+sequence is exact by construction. The kernel description: a small
+loop around a fiber point over $0$ (the point $x=0$, $y^N=1$) is the
+closure of an $\sigma_0$-loop traversed $N$ times (after $N$
+circuits of $t=0$ the branch $t^{1/N}$ returns to its sheet);
+similarly for $t=1$ and $t=\infty$.
+\end{proof}
+
+\begin{lemma}[symplectic basis]\label{lem:sympl}
+On $H_1(C_N,\ZZ)$ the intersection form $J$ is skew-symmetric and
+unimodular. There is a basis
+$\mathfrak{B}=\{a_1,\dots,a_g,\; b_1,\dots,b_g\}$ with
+$J(a_i,a_j)=J(b_i,b_j)=0$ and $J(a_i,b_j)=\delta_{ij}$, i.e.\ the
+matrix of the form is
+$J=\begin{pmatrix}0&I_g\\-I_g&0\end{pmatrix}$.
+\end{lemma}
+
+\begin{proof}
+$C_N$ is a closed orientable surface of real dimension two, so by
+Poincar\'e duality $J$ is nondegenerate and unimodular on
+$H_1(C_N,\ZZ)\cong\ZZ^{2g}$. The classification of closed orientable
+surfaces gives a fundamental $4g$-gon with boundary word
+$a_1b_1a_1^{-1}b_1^{-1}\cdots a_gb_ga_g^{-1}b_g^{-1}$; the pairwise
+identified edges give the cycles, and reading the intersections off
+the boundary gives the matrix $J$ (only $a_i\cdot b_i=+1$, all other
+pairs $0$). The existence of the fundamental polygon is the standard
+classification theorem relying only on the combinatorics of
+triangulations; no analysis is involved.
+\end{proof}
+
+\begin{statusbox}[status of the combinatorics section]
+Lemmas~\ref{lem:genus}--\ref{lem:sympl} are proved in full; they rely
+only on Riemann--Hurwitz, the Euler characteristic, the homology
+sequence of a pair, and the classification of surfaces --- the
+toolkit is topological. The exact census of sheets, edges, and faces
+for $N=15,30$ (rank sums, the agreement
+$N^2+1=(N-1)(N-2)+(3N-1)$) is verified by exact integer arithmetic
+in the protocol script (check V1, Section~\ref{sec:protocol}); no
+numerical assembly of a basis is performed or needed.
+\end{statusbox}
+
+\section{Closed period forms (Lemma 1)}\label{sec:periods}
+
+\subsection{The $\mu_N\times\mu_N$-action and eigenforms}
+
+The group $\mu_N\times\mu_N$ acts on $C_N$ by coordinate
+multiplication. The action is defined over $\ZZ$ and commutes with
+everything that follows; its eigenspaces organize both forms and
+cycles.
+
+\begin{lemma}[basis of holomorphic forms]\label{lem:forms}
+The forms
+\[
+  \eta_{i,j} \;=\; \frac{x^i\,y^j\,dx}{y^{\,N-1}},
+  \qquad i,j\ge 0,\quad i+j\le N-3,
+\]
+are holomorphic on $C_N$; their number is $(N-1)(N-2)/2=g$, and they
+form a basis of $H^0(C_N,\Omega^1)$. Each $\eta_{i,j}$ is an
+eigenform of the $\mu_N\times\mu_N$-action with character
+$(a,b)=(i+1,\,j+1)$:
+\begin{equation}\label{eq:eigen}
+  (\xi,\eta)^*\,\eta_{i,j} \;=\; \xi^{\,i+1}\eta^{\,j+1}\,\eta_{i,j}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+\emph{Holomorphy.} At $P_\zeta=(\zeta,0)$ with $\zeta^N=1$ we have
+$x=\zeta(1-y^N)^{1/N}=\zeta(1-\tfrac{y^N}{N}+\dots)$, whence
+$dx\sim-\zeta\,y^{N-1}dy$ and
+$\eta_{i,j}\sim-\zeta^{\,i+1}y^{\,j}\,dy$ --- a regular differential.
+At infinity pass to $u=X/Y$, $v=Z/Y$ (then $u^N+1=v^N$, local
+parameter $v$, $u$ holomorphic in $v$); since $x=u/v$, $y=1/v$, a
+direct computation gives
+\begin{equation}\label{eq:infinity}
+  \eta_{i,j} \;=\; u^{\,i}\,(v\,du-u\,dv)\,v^{\,N-3-i-j},
+\end{equation}
+regular exactly when $i+j\le N-3$.
+\emph{Count.} The number of pairs with $i,j\ge0$, $i+j\le N-3$ is
+$\sum_{k=0}^{N-3}(k+1)=(N-2)(N-1)/2=g$ by Lemma~\ref{lem:genus}.
+\emph{Independence.} Forms with distinct pairs $(i+1,j+1)$ have
+distinct characters by~\eqref{eq:eigen}. Eigenvectors of distinct
+characters of a finite abelian group are linearly independent:
+applying the projection onto the character $(a,b)$ --- the group
+average with weight $\zeta_N^{-(ua+vb)}$ --- to a nontrivial
+dependence $\sum c_{i,j}\eta_{i,j}=0$ gives
+$c_{a-1,b-1}\,\eta_{a-1,b-1}=0$, a contradiction. Hence $g$
+independent holomorphic forms --- a basis.
+\end{proof}
+
+\begin{definition}[conductor]\label{def:conductor}
+For $(a,b)\in T_N$, where
+$T_N=\{(a,b)\in\ZZ^2:\ 1\le a,\ b,\ a+b\le N-1\}$, put
+$g_0=\gcd(N,a,b)$ and $d=N/g_0$. The number $d$ is the
+\emph{conductor} of the character $(a,b)$. The set $T_N$ is in
+bijection with the basis of Lemma~\ref{lem:forms} via
+$(a,b)=(i+1,j+1)$, and $|T_N|=g$.
+\end{definition}
+
+The character census by conductors (exact integer tables
+$h_d=\#\{(a,b)\in T_N:\ d(a,b)=d\}$ with the M\"obius derivation) is
+in Appendix~\ref{app:census}; the totals:
+\[
+  N=15:\quad h_3=1,\ h_5=6,\ h_{15}=84,\quad \textstyle\sum h_d=91;
+\]
+\[
+  N=30:\quad h_3=1,\ h_5=6,\ h_6=9,\ h_{10}=30,\ h_{15}=84,\
+  h_{30}=276,\quad \textstyle\sum h_d=406.
+\]
+
+\subsection{Reduction of periods to the beta integral}
+
+\begin{lemma}[closed form of a period]\label{lem:closedform}
+Let $(a,b)\in T_N$ and $\eta=\eta_{a-1,b-1}$. In the coordinate
+$t=x^N$ the identity
+\begin{equation}\label{eq:beta}
+  \eta_{i,j} \;=\; \frac{1}{N}\;
+  t^{\frac{a}{N}-1}\,(1-t)^{\frac{b}{N}-1}\,dt,
+  \qquad a=i+1,\ b=j+1
+\end{equation}
+holds. For a lift $\gamma$ of a path
+$\delta\subset\mathbb{P}^1\setminus\{0,1,\infty\}$ with winding data
+$(r,s)\in(\ZZ/N)^2$ the period has the closed form
+\begin{equation}\label{eq:closedform}
+  P_{a,b}(r,s) \;=\; \int_\gamma \eta
+  \;=\; \frac{1}{N}\,\zeta_N^{\,ra+sb}\;\Omega_{a,b},
+\end{equation}
+where
+\begin{equation}\label{eq:omegaab}
+  \Omega_{a,b}\;=\;\Bfun\!\Bigl(\frac{a}{N},\frac{b}{N}\Bigr)
+  \;=\;\frac{\Ga(\frac{a}{N})\,\Ga(\frac{b}{N})}{\Ga(\frac{a+b}{N})}.
+\end{equation}
+The image of the period functional on $H_1(C_N,\ZZ)$ lies in the
+lattice $\frac{\Omega_{a,b}}{N}\,\ZZ[\zeta_N]$; in particular
+$\Omega_{a,b}>0$ is real.
+\end{lemma}
+
+\begin{proof}
+Identity~\eqref{eq:beta}: the substitution $t=x^N$ gives
+$dt=Nx^{N-1}dx$, hence $x^i\,dx=\tfrac1N t^{\frac{i+1}{N}-1}dt$;
+and $y^j/y^{N-1}=(1-t)^{\frac{j+1}{N}-1}$ since $y^N=1-t$.
+Integrating over $\gamma$ means integrating form~\eqref{eq:beta}
+along $\delta$ with chosen branches; each full loop around $t=0$
+multiplies the branch $t^{1/N}$ by $\zeta_N$, hence the integral of
+$t^{a/N-1}dt$ by $\zeta_N^{a}$; similarly a loop around $t=1$
+multiplies the integral by $\zeta_N^{b}$. A path with winding data
+$(r,s)$ therefore carries the factor $\zeta_N^{ra+sb}$ on the
+reference integral
+$\frac1N\Bfun(a/N,b/N)$ --- this is~\eqref{eq:closedform}. The
+positivity $\Omega_{a,b}>0$ is the standard property of the beta
+integral at $a/N,b/N>0$. The lattice containment follows since every
+cycle is an integer combination of closed chains of the described
+form (the lifts of the edges of $\Gamma_N$ generate $H_1$ after
+closure --- Lemmas~\ref{lem:gridgraph},~\ref{lem:capping}), and the
+integral over each edge is a difference of two values of the
+form~\eqref{eq:closedform}.
+\end{proof}
+
+\begin{corollary}[$\mu_N\times\mu_N$-equivariance]\label{cor:equivar}
+Translating a cycle by $(\zeta_N^u,\zeta_N^v)\in\mu_N\times\mu_N$
+multiplies the period of the eigenform $(a,b)$ by $\zeta_N^{ua+vb}$.
+\end{corollary}
+
+\begin{proof}
+The action lifts $t=x^N$ identically, so paths with data $(r,s)$ map
+to paths with data $(r+u,s+v)$; apply~\eqref{eq:closedform}: the
+phase is $\zeta^{(r+u)a+(s+v)b}=\zeta^{ua+vb}\zeta^{ra+sb}$.
+\end{proof}
+
+\begin{remark}
+The closed form~\eqref{eq:closedform} performs both functions for
+which the early plan reserved L-values and PSLQ: it fixes the phase
+\emph{explicitly} and replaces the numerical search for relations by
+the \emph{identical derivation} from the $\Ga$-identities
+(Section~\ref{sec:gammaid}). The computational cross-check against
+independent tanh-sinh integration is check V2; the maximal relative
+deviation over $69$ tests for $N=15,30$ is $3.9\cdot10^{-36}$.
+\end{remark}
+
+\section{$\Ga$-identities (Lemma 2)}\label{sec:gammaid}
+
+Here the analytic toolkit of the stand is assembled --- two classical
+functional identities of the gamma function. Crucially, nothing else
+is needed: all relations among the $\Ga$-products used below follow
+from these two, which makes the exposition self-sufficient.
+
+\begin{lemma}[reflection formula]\label{lem:reflection}
+For all $z\in\CC\setminus\ZZ$,
+\begin{equation}\label{eq:reflection}
+  \Ga(z)\,\Ga(1-z)\;=\;\frac{\pi}{\sin \pi z}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}[Proof (full derivation in Appendix~\ref{app:gamma})]
+The key is Euler's integral
+$\int_0^\infty \frac{u^{z-1}}{1+u}\,du = \frac{\pi}{\sin\pi z}$
+($0<\re z<1$), proved by residues over the keyhole contour; the
+substitution $t=\frac{u}{1+u}$ turns it into
+$\Bfun(z,1-z)=\Ga(z)\Ga(1-z)$.
+\end{proof}
+
+\begin{lemma}[Gauss multiplication formula]\label{lem:gauss}
+For integers $m\ge2$ and $mz\notin\ZZ_{\le0}$,
+\begin{equation}\label{eq:gauss}
+  \Ga(z)\,\Ga\!\Bigl(z+\frac1m\Bigr)\cdots
+  \Ga\!\Bigl(z+\frac{m-1}{m}\Bigr)
+  \;=\;(2\pi)^{\frac{m-1}{2}}\;m^{\frac12-mz}\;\Ga(mz).
+\end{equation}
+\end{lemma}
+
+\begin{proof}[Proof (full derivation in Appendix~\ref{app:gamma})]
+The ratio of the two sides is a $1$-periodic holomorphic function
+tending to $1$ as $\re z\to+\infty$ in vertical strips of finite
+width; periodicity spreads the limit across the strip, hence the
+identity.
+\end{proof}
+
+\begin{lemma}[inventory of relations]\label{lem:relations}
+Every relation among the values
+$\{\Omega_{a,b}=\Bfun(a/N,b/N)\}_{(a,b)\in T_N}$ used in this text is
+a consequence of~\eqref{eq:reflection} and~\eqref{eq:gauss}. In
+particular:
+\begin{enumerate}[leftmargin=2em, itemsep=0.15em]
+\item if $a+b=N$, then $\Omega_{a,b}=\pi/\sin(\pi a/N)$ --- a pure
+  fractional share of $\pi$;
+\item if $a+b>N$, then
+  $\Omega_{a,b}=\dfrac{N}{a+b-N}\cdot
+  \dfrac{\Ga(a/N)\,\Ga(b/N)}{\Ga\bigl(\frac{a+b-N}{N}\bigr)}$ ---
+  a reduction to arguments with sum $<N$;
+\item if $a+b<N$, then $\Omega_{a,b}$ is a canonical $\Bfun$-value
+  needing no reduction.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Point~1 applies~\eqref{eq:reflection} to $b/N=1-a/N$. Point~2 uses
+the recurrence
+$\Ga\bigl(\frac{a+b}{N}\bigr)=\frac{a+b-N}{N}\,
+\Ga\bigl(\frac{a+b-N}{N}\bigr)$. Point~3 is by definition. Since no
+other transformations of $\Ga(k/N)$ are performed, every deduction
+reduces to these three rules and the identities
+\eqref{eq:reflection}--\eqref{eq:gauss}.
+\end{proof}
+
+\begin{statusbox}[scope of the claim]
+Lemma~\ref{lem:relations} claims exactly what the stand needs: all
+\emph{used} relations follow from reflection and multiplication. The
+sufficiency of the generating set is verified not by a relation
+search but by the rank of the explicitly built functional matrix
+(check V7: numerical rank $=g$ --- $91$ and $406$ --- with condition
+numbers $8.6$ and $18.2$).
+\end{statusbox}
+
+\section{Theorem 1. The Riemann relations as an identity}
+\label{sec:riemann}
+
+\begin{definition}[normalized period matrix]\label{def:periodmatrix}
+Let $\mathfrak{B}=\{a_1,\dots,a_g,b_1,\dots,b_g\}$ be the symplectic
+basis of Lemma~\ref{lem:sympl}. Normalize the forms
+$\omega_1,\dots,\omega_g$ by $\int_{a_i}\omega_j=\delta_{ij}$ and set
+$\Omega=(\Omega_{ij})$, $\Omega_{ij}=\int_{b_i}\omega_j$.
+\end{definition}
+
+\begin{theorem}[Riemann relations]\label{th:riemann}
+For the period matrix of Definition~\ref{def:periodmatrix}:
+\begin{enumerate}[leftmargin=2em, itemsep=0.15em]
+\item $\Omega^{\mathsf{T}}=\Omega$ (symmetry);
+\item $\im\Omega$ is positive definite: for every
+  $0\ne\lambda\in\RR^g$, $\lambda^{\mathsf{T}}(\im\Omega)\lambda>0$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+The tool is Riemann's bilinear identity. Let $F$ be the fundamental
+$4g$-gon of Lemma~\ref{lem:sympl} with edges $a_i,b_i$, and let
+$\alpha,\beta$ be closed holomorphic 1-forms. Stokes' formula
+applied to $\alpha\wedge\beta$ on $F$, with opposite edges
+canceling, gives
+\begin{equation}\label{eq:bilinear}
+  \iint_F \alpha\wedge\beta
+  \;=\;\sum_{i=1}^{g}\Bigl(
+    \int_{a_i}\alpha\int_{b_i}\beta
+    \;-\;\int_{b_i}\alpha\int_{a_i}\beta\Bigr).
+\end{equation}
+
+\emph{Symmetry.} Take $\alpha=\omega_j$, $\beta=\omega_k$ --- both
+holomorphic. On a complex curve every holomorphic $(2,0)$-object
+vanishes ($\Omega^2_{C_N}=0$), so $\omega_j\wedge\omega_k=0$, and
+\eqref{eq:bilinear} gives
+$\Omega_{jk}-\Omega_{kj}=0$.
+
+\emph{Positivity.} Take a nonzero holomorphic form
+$\omega=\sum_k\lambda_k\omega_k$ and apply \eqref{eq:bilinear} to
+$\alpha=\omega$, $\beta=\overline{\omega}$. Locally
+$\omega=g\,dz$ and $\omega\wedge\overline{\omega}
+=|g|^2\,dz\wedge d\bar z=-2i\,|g|^2\,dx\wedge dy$, so the left side
+is $-2i\int_{C_N}|g|^2\,dx\,dy$ --- purely imaginary. The right side,
+with $\int_{a_i}\omega=\lambda_i$ and
+$\int_{b_i}\omega=(\Omega\lambda^{\mathsf{T}})_i$, equals
+\[
+  \sum_i\Bigl(\lambda_i\,\overline{(\Omega\lambda^{\mathsf{T}})_i}
+  -(\Omega\lambda^{\mathsf{T}})_i\,\overline{\lambda_i}\Bigr)
+  \;=\;-2i\,\lambda^{\mathsf{T}}(\im\Omega)\overline{\lambda}^{\mathsf{T}},
+\]
+using the symmetry of $\Omega$ (part 1). Equating and canceling
+$-2i$:
+$\lambda^{\mathsf{T}}(\im\Omega)\overline{\lambda}^{\mathsf{T}}
+=\int_{C_N}|g|^2\,dx\,dy>0$, which for real $\lambda\ne0$ is
+statement~2.
+\end{proof}
+
+\subsection{Why no self-adjoint operator is needed here}
+\label{sec:nooperator}
+
+The word ``symplectic'' in this text refers exclusively to the skew
+intersection form $J$ on the integer lattice $H_1(C_N,\ZZ)$ --- a
+purely topological object (Lemma~\ref{lem:sympl}); this is not a
+mechanical phase space, and no Hamiltonian, observables, or spectral
+problem appear in the proof. Theorem~\ref{th:riemann} involves
+exactly two objects, both built inside the construction: the cycle
+lattice with its intersection form (Section~\ref{sec:cycles}) and
+the integrals of holomorphic forms over cycles
+(Section~\ref{sec:periods}). The Riemann relations are not an alien
+hypothesis but \emph{an identity that our own period matrix must
+satisfy}. That is why the numerical check on the $91\times182$ and
+$406\times812$ matrices is dismantled as a stage: there is nothing
+to check numerically --- it is proved identically. The numbers remain
+as a one-off sanity line of the protocol, outside the text. The only
+substantive reason to keep the block is that $J$ feeds the Hodge
+lattice index module (Section~\ref{sec:indices}): without a
+polarization the indices are undefined.
+
+\section{Theorem 2. $\Ga$-normalization and fractional $\pi$}
+\label{sec:normalization}
+
+\begin{definition}[$\Ga$-normalization of the stand]\label{def:grossnorm}
+For $(a,b)\in T_N$ and a period
+$P\in\frac{\Omega_{a,b}}{N}\ZZ[\zeta_N]$, the \emph{normalized
+period} is
+$\widehat{P} = P/\Omega_{a,b}\in\frac1N\,\ZZ[\zeta_N]$. The
+transcendental factor is fully absorbed by
+$\Omega_{a,b}=\Bfun(a/N,b/N)$; normalized periods are algebraic
+numbers.
+\end{definition}
+
+\begin{theorem}[$\Ga$-normalization and fractional $\pi$]
+\label{th:normalization}
+Let $N\in\{15,30\}$. Then:
+\begin{enumerate}[leftmargin=2em, itemsep=0.15em]
+\item \emph{Algebraicity.} For every period $P$ of the eigenform
+  $(a,b)$, $\widehat P=P/\Omega_{a,b}$ lies in
+  $\frac1N\ZZ[\zeta_N]$: the phase lattice has denominator $N$.
+\item \emph{Reduction of the transcendental part.} Each
+  $\Omega_{a,b}$ is expressed through $\Ga$-values in canonical
+  positions and factors $\pi/\sin(\pi k/N)$, $1\le k\le N-1$, per
+  Lemma~\ref{lem:relations}; when $a+b=N$ one gets the pure fraction
+  $\Omega_{a,b}=\pi/\sin(\pi a/N)$.
+\item \emph{No $4\pi^2$ in the normalization.} In the closed
+  form~\eqref{eq:closedform} $\pi$ enters only through the factors
+  $\pi/\sin(\pi k/N)$ with $k/N=k/15$ or $k/30$ and through the
+  multiplication formula~\eqref{eq:gauss}; no power $4\pi^2$ arises
+  in the normalization or intermediate relations. (The universal
+  Tate twist $4\pi^2$ lives in the lattice spectra --- certificate~G,
+  Theorem~\ref{th:certG} --- not in the period normalization.)
+\item \emph{Closed radical constants of the stand.} The constant
+  $b_{Ch}(n)=1-\cos(2\pi/n)$ takes exact radical values:
+  \begin{align}
+    b_{Ch}(15) &= 1-\cos\frac{2\pi}{15}
+      \;=\;1-\frac{1+\sqrt5+\sqrt3\,\sqrt{10-2\sqrt5}}{8},
+      \label{eq:b15}\\
+    b_{Ch}(30) &= 1-\cos\frac{\pi}{15}
+      \;=\;1-\frac{\sqrt{30+6\sqrt5}+\sqrt5-1}{8}.
+      \label{eq:b30}
+  \end{align}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Point~1 is immediate from Lemma~\ref{lem:closedform}: dividing the
+lattice $\frac{\Omega}{N}\ZZ[\zeta_N]$ by $\Omega$ gives
+$\frac1N\ZZ[\zeta_N]$. Points~2--3 apply Lemma~\ref{lem:relations}:
+reflection introduces $\pi$ only as $\pi/\sin(\pi k/N)$,
+multiplication only as $(2\pi)^{(m-1)/2}$ at integer $m$; neither
+generates a normalizing $4\pi^2$, because the normalization is built
+from the periods themselves. Point~4: the exact values are cosines
+of half-arguments: $\cos24^\circ=\cos(60^\circ-36^\circ)$ with
+$\cos36^\circ=\frac{1+\sqrt5}{4}$,
+$\sin36^\circ=\frac{\sqrt{10-2\sqrt5}}{4}$ gives~\eqref{eq:b15};
+similarly $\cos12^\circ=\cos(30^\circ-18^\circ)$ with
+$\cos18^\circ=\frac{\sqrt{10+2\sqrt5}}{4}$,
+$\sin18^\circ=\frac{\sqrt5-1}{4}$ gives~\eqref{eq:b30}
+(numerically: $b_{Ch}(15)\approx0.086\,454$,
+$b_{Ch}(30)\approx0.021\,854$).
+\end{proof}
+
+\begin{remark}[the meaning of ``fractional $\pi$'']
+The share of $\pi$ in the normalization is always rational with
+denominator $N$: the factor $\pi/\sin(\pi k/N)$ carries the angle
+$k\pi/N$ (shares $\pi/15$ and $\pi/30$ at our levels), and the phase
+lattice $\frac1N\ZZ[\zeta_N]$ carries the denominator $N$ in
+algebra. This is a structural claim: it holds for all blocks at
+once. The level ladder $\pi/7$, $\pi/15$, $\pi/30$ (certificates~G
+and~H) shows all rungs are rungs of one $\mu_N$-quantum ladder.
+\end{remark}
+
+\section{Theorem 3. Polarization and Hodge lattice indices}
+\label{sec:indices}
+
+\begin{definition}[polarization]\label{def:polarization}
+For closed 1-forms $\alpha,\beta$ on $C_N$ set
+$\widetilde E([\alpha],[\beta])=\iint_{C_N}\alpha\wedge\beta$; by
+Stokes this is well defined on $H^1_{\mathrm{dR}}(C_N)$ and
+skew-symmetric. The polarization form on $H_1(C_N,\ZZ)$ is the
+intersection form $E:=J$; by Poincar\'e duality
+$\widetilde E(\delta_u,\delta_v)=E(u,v)$.
+\end{definition}
+
+\begin{theorem}[$J$ is a weight-1 Hodge polarization]\label{th:polarization}
+With respect to the Hodge decomposition
+$H^1(C_N,\CC)=H^{1,0}\oplus H^{0,1}$ with
+$H^{1,0}=\operatorname{span}\{\omega_1,\dots,\omega_g\}$ of
+Lemma~\ref{lem:forms}, the Riemann--Hodge relations hold:
+\begin{enumerate}[leftmargin=2em, itemsep=0.15em]
+\item $\widetilde E(\omega,\omega')=0$ for all
+  $\omega,\omega'\in H^{1,0}$;
+\item $-\dfrac{1}{2i}\,\widetilde E(\omega,\overline{\omega})
+  =\displaystyle\int_{C_N}|g|^2\,dx\,dy>0$ for every nonzero
+  $\omega=g\,dz\in H^{1,0}$.
+\end{enumerate}
+Hence $E=J$ is a polarization of weight $1$ on $H_1(C_N,\ZZ)$, and
+$\Jac(C_N)=H^1/H_1$ with this polarization is a principally
+polarized abelian variety (the polarization matrix in the symplectic
+basis is $J$).
+\end{theorem}
+
+\begin{proof}
+(i) A complex curve has no nonzero holomorphic 2-forms:
+$\Omega^2_{C_N}=0$, so $\omega\wedge\omega'=0$ and the integral
+vanishes --- equivalently, the first Riemann relation of
+Theorem~\ref{th:riemann} read on the bilinear
+identity~\eqref{eq:bilinear}. (ii) From the proof of
+Theorem~\ref{th:riemann}:
+$\omega\wedge\overline{\omega}=-2i\,|g|^2\,dx\wedge dy$, whence
+$-\frac{1}{2i}\widetilde E(\omega,\overline{\omega})
+=\int_{C_N}|g|^2\,dx\,dy>0$ for $\omega\ne0$. Relations (i)--(ii)
+are exactly Riemann's conditions for $\im\Omega\succ0$
+(Theorem~\ref{th:riemann}, part 2), so the period matrix defines a
+principally polarized abelian variety; the unimodularity of $J$
+(Lemma~\ref{lem:sympl}) gives the principality.
+\end{proof}
+
+\begin{definition}[Hodge lattice indices by blocks]\label{def:indices}
+For each conductor $d\mid N$ the eigen-decomposition
+(Lemma~\ref{lem:forms}) defines the lattice
+\[
+  \Lambda_d \;=\; \Bigl\{\gamma\in H_1(C_N,\ZZ):\ \gamma
+  \text{ lies in the isotypic component of characters }(a,b),\
+  d(a,b)=d\Bigr\},
+\]
+its saturation $\Lambda_d^{\mathrm{sat}}=\Lambda_d\otimes\QQ\cap
+H_1(C_N,\ZZ)$ and the \emph{block index}
+$\Ind(\Lambda_d)=[\Lambda_d^{\mathrm{sat}}:\Lambda_d]$. Block data:
+rank, signature of $E|_{\Lambda_d}$, determinant of $E|_{\Lambda_d}$,
+and the index.
+\end{definition}
+
+\begin{theorem}[computability of the indices from $\Ga$-data]
+\label{th:indexcomp}
+For the stand $N\in\{15,30\}$ all quantities of
+Definition~\ref{def:indices} are finite and are computed
+algorithmically from the closed forms~\eqref{eq:closedform}: the
+saturation by integer reduction of the block lattice (Hermite--Smith
+normal form), the signature and determinant of the restricted
+polarization from the combinatorially known intersection matrix
+(Lemma~\ref{lem:sympl}) filtered by characters, the index as a ratio
+of determinants. The number of eigenforms per block is given by the
+census $h_d$ (Appendix~\ref{app:census}): for $N=15$ --- three blocks
+with $1+6+84=91$; for $N=30$ --- six blocks with
+$1+6+9+30+84+276=406$.
+\end{theorem}
+
+\begin{proof}
+Finiteness: $H_1(C_N,\ZZ)$ is a free abelian group of finite rank
+$2g$; finite-rank sublattices have finite index in their saturation.
+Computability: the isotypic component of a character $(a,b)$ is
+defined over $\QQ(\zeta_N)$; its intersection with the integer
+lattice is an integer sublattice whose basis is found by the
+Hermite--Smith algorithm from the integer cycle basis and the action
+table of $\mu_N\times\mu_N$ (the sheet combinatorics of
+Lemma~\ref{lem:gridgraph}). The restricted polarization is computed
+via Theorem~\ref{th:polarization}: $E=J$, and $J$ in the cycle basis
+is known combinatorially. The census $h_d$ ---
+Appendix~\ref{app:census}; the sums match the genera (verified by
+exact arithmetic, check V1).
+\end{proof}
+
+\begin{statusbox}[junction with certificate H]
+Certificate~H (Section~\ref{sec:certH}) implements the computability
+of Theorem~\ref{th:indexcomp} in full: the polarization type per
+blocks is obtained in Smith normal form
+$(1,1,5,5,15,15,15,15)$, the discriminant is
+$3^4\cdot5^6=1265625=1125^2$, and the full Gross $\Ga$-normalization
+gives the volume $\mathrm{vol}_h=1125$. Thus the Hodge lattice
+indices of the $N=15/30$ stand are not only computable
+(Theorem~\ref{th:indexcomp}) but computed with exact integer
+certification.
+\end{statusbox}
+
+\subsection{Junction with the program: the triple and the ladder}
+\label{sec:repocycle}
+
+Geometry supplies only the triple $(n,B,\lambda_0)$; the corrections
+have the skeleton form
+\[
+  \Delta(n,B;\lambda_0) \;=\; \lambda_0
+  \;+\;\frac{(\pi/n)^2}{2}\;-\;\frac{(\pi/n)^5}{B},
+  \qquad
+  b_{Ch}(n)=1-\cos\frac{2\pi}{n}.
+\]
+The $N=15/30$ stand supplies the components $n$ and $B$ at large
+scale: $n$ is the level $N$ (all phases are $\pi/N$-multiples in the
+sense of Theorem~\ref{th:normalization}), and the integer indices
+$B$ are the ranks and determinants of the polarization lattices
+$\Lambda_d$ (Theorem~\ref{th:indexcomp}); at earlier rungs this role
+was played by the single index $b_2=22$, here there are several
+indices --- per conductor blocks --- and they are computed, not
+postulated. The spectral component $\lambda_0$ is not involved: the
+$\Ga$-normalization is built from the periods themselves --- a
+deliberate division of roles between rungs, letting each rung
+develop its strengths.
