@@ -1,0 +1,235 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Certificate J: The Macbeath Rung $N=9$}\\[0.4em]
+{\large The cubic $x^3-3x+1$, a cube root of unity, and the $\pi/9$ phase}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\small The ``Dynamic Principle'' program --- the \texttt{hodge-laboratory} repository}\\[0.15em]
+{\small Standalone theorem monograph · Monograph 18/20}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+The second cubic rung of the ladder is the level $N=9$. The rung
+is named after Roderick Macbeath: the Macbeath curve of genus $7$
+--- the Hurwitz surface with group $\mathrm{PSL}(2,8)$ of order
+$504$ --- carries rotations of order $9$, and the phase $\pi/9$
+is its footprint in the program's ladder. The $N=9$ stand
+certifies the Fermat-level pipeline at $N=9$: the Fermat curve
+$X_9$ has genus $28$, the conductor census is nontrivial (two
+conductors, $3$ and $9$, already), and the minimal cubic
+$x^3-3x+1$ is the simplest of the program's three cubic floors.
+Certificate J secures: the census $28=1+27$, the exact cubic
+layer in $\ZZ[\zeta]/(\Phi_9)$, and the Cardano form whose
+arguments are primitive roots of unity.
+
+\begin{theorem}[J1 --- the census of the level $3^2$]\label{th:J1}
+For the Fermat curve $X_9$ the conductor census of the
+eigencharacters $(a,b)$, $1\le a,b$, $a+b\le 8$, is
+$\{3\colon 1,\ 9\colon 27\}$, and $\sum_d h_d = 28
+= (9-1)(9-2)/2 = g$. Both schemes (the direct one and the
+M\"obius one) agree.
+\end{theorem}
+
+\begin{proof}
+The conductor of a character is $d=9/\gcd(9,a,b)$, so
+$d\in\{3,9\}$. \emph{Conductor $3$}: one needs
+$\gcd(9,a,b)=3$, i.e. $a,b\in\{3,6\}$; the constraint
+$a+b\le 8$ leaves the single pair $(3,3)$ --- the diagonal
+character; hence $h_3=1$. \emph{Conductor $9$}: $\gcd(9,a,b)=1$;
+in total there are $c(9)=(9-1)(9-2)/2=28$ eigencharacters, so
+$h_9=28-1=27$. The M\"obius scheme: $h_3=c(3)-c(1)=1-0=1$,
+$h_9=c(9)-c(3)=28-1=27$. Both schemes are integer identities.
+\end{proof}
+
+\begin{theorem}[J2 --- the cubic layer of $b_{\mathrm{Ch}}(9)$]\label{th:J2}
+The numbers $x_1=\zeta+\zeta^{-1}$, $x_2=\zeta^2+\zeta^{-2}$,
+$x_4=\zeta^4+\zeta^{-4}$ with $\zeta=e^{2\pi i/9}$ have exact
+elementary symmetric polynomials
+\[
+  s_1=x_1+x_2+x_4=0,\qquad
+  s_2=x_1x_2+x_1x_4+x_2x_4=-3,\qquad
+  s_3=x_1x_2x_4=-1,
+\]
+computed by pure integer arithmetic in $\ZZ[\zeta]/(\Phi_9)$;
+therefore $x_1$ is a root of the cubic $x^3-3x+1$, and this is
+its exact minimal polynomial over $\QQ$.
+\end{theorem}
+
+\begin{proof}
+\emph{Sum.} The exponents $\{\pm1,\pm2,\pm4\}\bmod 9$ exhaust all
+the units of the cyclotomic field: $\{1,2,4,5,7,8\}$. Hence
+$s_1=\sum_{k\in(\ZZ/9)^\times}\zeta^k$ is the Ramanujan sum
+$c_9(1)=\mu(9)=0$ (the level is divisible by $3^2$, where the
+M\"obius function vanishes).
+
+\emph{Pairwise products.}
+$x_1x_2=(\zeta+\zeta^8)(\zeta^2+\zeta^7)=\zeta^3+\zeta^8+\zeta+\zeta^6$;
+$x_1x_4=(\zeta+\zeta^8)(\zeta^4+\zeta^5)=\zeta^5+\zeta^6+\zeta^3+\zeta^4$;
+$x_2x_4=(\zeta^2+\zeta^7)(\zeta^4+\zeta^5)=\zeta^6+\zeta^7+\zeta^2+\zeta^3$.
+Here $\zeta^3$ and $\zeta^6$ are the primitive cubic roots:
+$\zeta^3+\zeta^6=\omega+\bar\omega=-1$. Collecting:
+$x_1x_2=(-1)+(\zeta+\zeta^8)$,
+$x_1x_4=(-1)+(\zeta^5+\zeta^4)$, and
+$x_2x_4=(-1)+(\zeta^7+\zeta^2)$; summing,
+$s_2=-3+(\zeta+\zeta^2+\zeta^4+\zeta^5+\zeta^7+\zeta^8)
+=-3+s_1=-3$.
+
+\emph{Product.}
+$x_1x_2x_4=(\zeta^3+\zeta^8+\zeta+\zeta^6)(\zeta^4+\zeta^5)
+=\zeta^7+\zeta^8+\zeta^{12}+\zeta^{13}+\zeta^5+\zeta^6+\zeta^{10}+\zeta^{11}
+=\zeta^7+\zeta^8+\zeta^3+\zeta^4+\zeta^5+\zeta^6+\zeta+\zeta^2
+=\sum_{k=1}^{8}\zeta^k=-1$.
+
+By Vieta's formulas: $x^3-s_1x^2+s_2x-s_3=x^3-3x+1$.
+Minimality: $\mathrm{Gal}(\QQ(\zeta_9)^+/\QQ)
+\cong(\ZZ/9)^\times/\{\pm1\}\cong C_3$ acts by multiplication by
+$2$: the classes $\{1,8\}\mapsto\{2,7\}\mapsto\{4,5\}\mapsto\{8,1\}$
+--- a transitive cycle; hence $[\QQ(x_1):\QQ]=3$. Fingerprint:
+$x^3-3x+1\equiv x^3+x+1\pmod2$ has no root in $\mathbf{F}_2$
+($0\mapsto1$, $1\mapsto1$) --- it is irreducible.
+\end{proof}
+
+\begin{theorem}[J3 --- Cardano and the root of unity]\label{th:J3}
+The cubic $x^3-3x+1$ is already depressed ($p=-3$, $q=1$); its
+Cardano discriminant is $\Delta=\frac14-1=-\frac34<0$ --- again
+the $\mathrm{casus\ irreducibilis}$, and
+\[
+  2\cos\frac{2\pi}{9}
+  =\sqrt[3]{\frac{-1+\sqrt{-3}}{2}}+\sqrt[3]{\frac{-1-\sqrt{-3}}{2}},
+  \qquad
+  b_{\mathrm{Ch}}(9)=1-\frac{\sqrt[3]{\omega}+\sqrt[3]{\bar\omega}}{2},
+\]
+where $\omega=\frac{-1+\sqrt{-3}}{2}=e^{2\pi i/3}$ is a primitive
+cube root of unity. The principal cube roots are exactly
+$\sqrt[3]{\omega}=\zeta_9$ and $\sqrt[3]{\bar\omega}=\zeta_9^{-1}$:
+the Cardano arguments lie on the unit circle
+($|\omega|=|\bar\omega|=1$), and the product of the radicals is
+$1$.
+\end{theorem}
+
+\begin{proof}
+No depression is needed: the cubic $x^3-3x+1$ already has the
+shape $y^3+py+q$ with $p=-3$, $q=1$. The discriminant is
+$\Delta=\frac{q^2}{4}+\frac{p^3}{27}=\frac14-\frac{27}{27}
+=-\frac34<0$, $\sqrt\Delta=\frac{i\sqrt3}{2}$, and Cardano gives
+$y=\sqrt[3]{-\frac12+\frac{i\sqrt3}{2}}+\sqrt[3]{-\frac12-\frac{i\sqrt3}{2}}
+=\sqrt[3]{\omega}+\sqrt[3]{\bar\omega}$.
+
+\emph{Principal branches.} The argument of $\omega$ is
+$\frac{2\pi}{3}\in(-\pi,\pi]$; the principal cube root divides
+the argument by three: $\sqrt[3]{\omega}=e^{2\pi i/9}=\zeta_9$,
+and likewise $\sqrt[3]{\bar\omega}=e^{-2\pi i/9}=\zeta_9^{-1}$.
+Therefore $y=\zeta_9+\zeta_9^{-1}=2\cos\frac{2\pi}{9}$ --- the
+Cardano form reproduces the cyclotomic definition verbatim: at
+this rung the Cardano cube radicals are themselves ninth roots of
+unity. The branches are pinned by the modulus:
+$|\omega|=|\bar\omega|=1$ --- the only rung of the program for
+which both Cardano arguments lie on the unit circle; the product
+of the radicals
+$\sqrt[3]{\omega}\sqrt[3]{\bar\omega}=\sqrt[3]{\omega\bar\omega}
+=\sqrt[3]{1}=1$ is an exact identity.
+
+\emph{Isolation.} The roots $x_1\approx1.53209$,
+$x_2\approx0.34730$, $x_3\approx-1.87939$ are strictly ordered;
+at working precision (dps 60) the relative deviation of the
+Cardano form from $1-\cos(2\pi/9)$ is zero within precision
+(protocol: $3.2\cdot10^{-36}$ at dps 35).
+\end{proof}
+
+\begin{remark}
+The diagonal character $(3,3)$ of conductor $3$ is the
+``hermit'' of the census: the only character that does not lift
+to the full level $9$. It is at the same time the trace of level
+$3$: the self-similarity lemma (monograph 20/20) states
+$h_3(9)=h_3(3)=1$ --- every conductor carries a complete smaller
+stand. The order-$9$ rotations of the Macbeath curve give a
+geometric realization of the phase $\pi/9$: on the Hurwitz
+surface of genus $7$ with $|\mathrm{PSL}(2,8)|=504$
+automorphisms the order $9$ is maximal.
+\end{remark}
+
+\begin{databox}[Certificate J --- the stand numbers]
+Genus $g=28$; census $\{3\colon 1,\ 9\colon 27\}$ (both schemes);
+minimal cubic $x^3-3x+1$; Vieta $(s_1,s_2,s_3)=(0,-3,-1)$ exactly
+in $\ZZ[\zeta]/(\Phi_9)$; the cubic is irreducible over
+$\mathrm{GF}(2)$; Cardano form
+$b_{\mathrm{Ch}}(9)=1-\frac{\sqrt[3]{\omega}+\sqrt[3]{\bar\omega}}{2}$
+with $\omega=\frac{-1+\sqrt{-3}}{2}$;
+$\sqrt[3]{\omega}=\zeta_9$ (principal branch); the product of the
+radicals is $1$;
+$b_{\mathrm{Ch}}(9)=0.233955556881021964797607349444583\ldots$;
+protocol relative errors: Cardano $3.2\cdot10^{-36}$, periods
+(spot sample) $2.3\cdot10^{-36}$ (dps 35); phase $\pi/9$.
+\end{databox}
+
+\begin{statusbox}[summary]
+Certificate J accepted ($5/5$): the census $28=1+27$ by two
+schemes, the exact integer Vieta data $(0,-3,-1)$ in
+$\ZZ[\zeta]/(\Phi_9)$, irreducibility over $\mathrm{GF}(2)$, the
+Cardano form with root-of-unity arguments ($|\omega|=1$, the
+product of the radicals $1$), and the phase $\pi/9$. The second
+cubic foundation of the ladder is established.
+\end{statusbox}
+
+\begin{verifybox}[how to reproduce]
+\texttt{python3 laboratory.py} $\to$ ``Certificates $\to$ J'';
+``Stands $\to$ N=9''; batch mode: a scenario with the
+\texttt{bch} item ($N=9$); \texttt{--check-baseline} cross-checks
+$g=28$, the census $\{3\colon1,9\colon27\}$, the symmetric data
+$(0,-3,-1)$ and the errors against the reference.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates'').
+}
+\end{document}

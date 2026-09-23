@@ -1,0 +1,231 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Сертификат J: ступень Макбета $N=9$}\\[0.4em]
+{\large Кубика $x^3-3x+1$, кубический корень из единицы и фаза $\pi/9$}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 18/20}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+Вторая кубическая ступень лестницы --- уровень $N=9$. Имя ступени
+несёт Родерик Макбет: кривая Макбета рода $7$ --- поверхность
+Гурвица с группой $\mathrm{PSL}(2,8)$ порядка $504$ --- несёт
+повороты порядка $9$, и фаза $\pi/9$ --- её отпечаток в лестнице
+программы. Стенд $N=9$ сертифицирует ферма-уровень конвейера при
+$N=9$: кривая Ферма $X_9$ имеет род $28$, перепись проводников
+нетривиальна (уже два проводника, $3$ и $9$), а минимальная
+кубика $x^3-3x+1$ --- самая простая из трёх кубических этажей
+программы. Сертификат J закрепляет: перепись
+$28=1+27$, точный кубический слой в $\ZZ[\zeta]/(\Phi_9)$ и форму
+Кардано, у которой аргументы --- первообразные корни из единицы.
+
+\begin{theorem}[J1 --- перепись уровня $3^2$]\label{th:J1}
+Для кривой Ферма $X_9$ перепись собственных характеров
+$(a,b)$, $1\le a,b$, $a+b\le 8$, по проводникам есть
+$\{3\colon 1,\ 9\colon 27\}$, и $\sum_d h_d = 28
+= (9-1)(9-2)/2 = g$. Обе схемы (прямая и моёбиусова) согласуются.
+\end{theorem}
+
+\begin{proof}
+Проводник характера равен $d=9/\gcd(9,a,b)$, поэтому $d\in\{3,9\}$.
+\emph{Проводник $3$}: нужно $\gcd(9,a,b)=3$, т.е. $a,b\in\{3,6\}$;
+условие $a+b\le 8$ оставляет единственную пару $(3,3)$ ---
+диагональный характер, отсюда $h_3=1$. \emph{Проводник $9$}:
+$\gcd(9,a,b)=1$; всего характеров $c(9)=(9-1)(9-2)/2=28$, поэтому
+$h_9=28-1=27$. Моёбиусова схема: $h_3=c(3)-c(1)=1-0=1$,
+$h_9=c(9)-c(3)=28-1=27$. Обе схемы --- целые тождества.
+\end{proof}
+
+\begin{theorem}[J2 --- кубический слой $b_{\mathrm{Ch}}(9)$]\label{th:J2}
+Числа $x_1=\zeta+\zeta^{-1}$, $x_2=\zeta^2+\zeta^{-2}$,
+$x_4=\zeta^4+\zeta^{-4}$, $\zeta=e^{2\pi i/9}$, имеют точные
+элементарные симметрические многочлены
+\[
+  s_1=x_1+x_2+x_4=0,\qquad
+  s_2=x_1x_2+x_1x_4+x_2x_4=-3,\qquad
+  s_3=x_1x_2x_4=-1,
+\]
+вычисленные чисто целочисленно в $\ZZ[\zeta]/(\Phi_9)$; поэтому
+$x_1$ --- корень кубики $x^3-3x+1$, и это --- его точный
+минимальный многочлен над $\QQ$.
+\end{theorem}
+
+\begin{proof}
+\emph{Сумма.} Показатели $\{\pm1,\pm2,\pm4\}\bmod 9$ исчерпывают
+все единицы кругового поля: $\{1,2,4,5,7,8\}$. Поэтому
+$s_1=\sum_{k\in(\ZZ/9)^\times}\zeta^k$ --- сумма Раманужана
+$c_9(1)=\mu(9)=0$ (уровень делится на $3^2$, и функция Мёбиуса
+обнуляется).
+
+\emph{Попарные произведения.}
+$x_1x_2=(\zeta+\zeta^8)(\zeta^2+\zeta^7)=\zeta^3+\zeta^8+\zeta+\zeta^6$;
+$x_1x_4=(\zeta+\zeta^8)(\zeta^4+\zeta^5)=\zeta^5+\zeta^6+\zeta^3+\zeta^4$;
+$x_2x_4=(\zeta^2+\zeta^7)(\zeta^4+\zeta^5)=\zeta^6+\zeta^7+\zeta^2+\zeta^3$.
+Здесь $\zeta^3$ и $\zeta^6$ --- примитивные кубические корни:
+$\zeta^3+\zeta^6=\omega+\bar\omega=-1$. Собираем:
+$x_1x_2=(-1)+(\zeta+\zeta^8)$,
+$x_1x_4=(-1)+(\zeta^5+\zeta^4)$, и
+$x_2x_4=(-1)+(\zeta^7+\zeta^2)$; сумма
+$s_2=-3+(\zeta+\zeta^2+\zeta^4+\zeta^5+\zeta^7+\zeta^8)
+=-3+s_1=-3$.
+
+\emph{Произведение.}
+$x_1x_2x_4=(\zeta^3+\zeta^8+\zeta+\zeta^6)(\zeta^4+\zeta^5)
+=\zeta^7+\zeta^8+\zeta^{12}+\zeta^{13}+\zeta^5+\zeta^6+\zeta^{10}+\zeta^{11}
+=\zeta^7+\zeta^8+\zeta^3+\zeta^4+\zeta^5+\zeta^6+\zeta+\zeta^2
+=\sum_{k=1}^{8}\zeta^k=-1$.
+
+По формулам Виета: $x^3-s_1x^2+s_2x-s_3=x^3-3x+1$.
+Минимальность: $\mathrm{Gal}(\QQ(\zeta_9)^+/\QQ)
+\cong(\ZZ/9)^\times/\{\pm1\}\cong C_3$ действует умножением на
+$2$: классы $\{1,8\}\mapsto\{2,7\}\mapsto\{4,5\}\mapsto\{8,1\}$
+--- транзитивный цикл, значит $[\QQ(x_1):\QQ]=3$. Отпечаток:
+$x^3-3x+1\equiv x^3+x+1\pmod2$ не имеет корней в
+$\mathbf{F}_2$ ($0\mapsto1$, $1\mapsto1$) --- неприводим.
+\end{proof}
+
+\begin{theorem}[J3 --- Кардано и корень из единицы]\label{th:J3}
+Кубика $x^3-3x+1$ уже приведённая ($p=-3$, $q=1$), её
+дискриминант Кардано $\Delta=\frac14-1=-\frac34<0$ --- снова
+$\mathrm{casus\ irreducibilis}$, и
+\[
+  2\cos\frac{2\pi}{9}
+  =\sqrt[3]{\frac{-1+\sqrt{-3}}{2}}+\sqrt[3]{\frac{-1-\sqrt{-3}}{2}},
+  \qquad
+  b_{\mathrm{Ch}}(9)=1-\frac{\sqrt[3]{\omega}+\sqrt[3]{\bar\omega}}{2},
+\]
+где $\omega=\frac{-1+\sqrt{-3}}{2}=e^{2\pi i/3}$ --- примитивный
+кубический корень из единицы. Главные кубические корни равны в
+точности $\sqrt[3]{\omega}=\zeta_9$ и
+$\sqrt[3]{\bar\omega}=\zeta_9^{-1}$: аргументы Кардано лежат на
+единичной окружности ($|\omega|=|\bar\omega|=1$), и произведение
+радикалов равно $1$.
+\end{theorem}
+
+\begin{proof}
+Депрессия не нужна: кубика $x^3-3x+1$ уже имеет вид $y^3+py+q$
+с $p=-3$, $q=1$. Дискриминант
+$\Delta=\frac{q^2}{4}+\frac{p^3}{27}=\frac14-\frac{27}{27}
+=-\frac34<0$, $\sqrt\Delta=\frac{i\sqrt3}{2}$, и Кардано даёт
+$y=\sqrt[3]{-\frac12+\frac{i\sqrt3}{2}}+\sqrt[3]{-\frac12-\frac{i\sqrt3}{2}}
+=\sqrt[3]{\omega}+\sqrt[3]{\bar\omega}$.
+
+\emph{Главные ветви.} Аргумент $\omega$ равен $\frac{2\pi}{3}\in(-\pi,\pi]$;
+главный кубический корень делит аргумент на три:
+$\sqrt[3]{\omega}=e^{2\pi i/9}=\zeta_9$, и аналогично
+$\sqrt[3]{\bar\omega}=e^{-2\pi i/9}=\zeta_9^{-1}$. Поэтому
+$y=\zeta_9+\zeta_9^{-1}=2\cos\frac{2\pi}{9}$ --- форма Кардано
+воспроизводит циклотомическое определение дословно: на этой
+ступени кубические радикалы Кардано --- сами корни девятой
+степени из единицы. Единственность ветвей фиксируется модулем:
+$|\omega|=|\bar\omega|=1$ --- единственная ступень программы, у
+которой оба аргумента Кардано лежат на единичной окружности;
+произведение радикалов
+$\sqrt[3]{\omega}\sqrt[3]{\bar\omega}=\sqrt[3]{\omega\bar\omega}
+=\sqrt[3]{1}=1$ --- точное тождество.
+
+\emph{Изоляция.} Корни $x_1\approx1.53209$,
+$x_2\approx0.34730$, $x_3\approx-1.87939$ строго упорядочены;
+при рабочей точности (dps 60) относительное расхождение формы
+Кардано с $1-\cos(2\pi/9)$ --- нуль в пределах точности
+(протокол: $3.2\cdot10^{-36}$ при dps 35).
+\end{proof}
+
+\begin{remark}
+Диагональный характер $(3,3)$ проводника $3$ --- <<отшельник>>
+переписи: единственный характер, не поднимающийся до полного
+уровня $9$. Он же --- след уровня $3$: лемма самоподобия
+(монография 20/20) утверждает $h_3(9)=h_3(3)=1$ --- каждый
+проводник несёт полный меньший стенд. Повороты порядка $9$
+кривой Макбета дают геометрическую реализацию фазы $\pi/9$: на
+поверхности Гурвица рода $7$ с $|\mathrm{PSL}(2,8)|=504$
+автоморфизмами порядок $9$ --- максимальный.
+\end{remark}
+
+\begin{databox}[Сертификат J --- числа стенда]
+Род $g=28$; перепись $\{3\colon 1,\ 9\colon 27\}$ (обе схемы);
+минимальная кубика $x^3-3x+1$; Виета $(s_1,s_2,s_3)=(0,-3,-1)$
+точно в $\ZZ[\zeta]/(\Phi_9)$; кубика неприводима над
+$\mathrm{GF}(2)$; форма Кардано
+$b_{\mathrm{Ch}}(9)=1-\frac{\sqrt[3]{\omega}+\sqrt[3]{\bar\omega}}{2}$,
+$\omega=\frac{-1+\sqrt{-3}}{2}$;
+$\sqrt[3]{\omega}=\zeta_9$ (главная ветвь); произведение
+радикалов $=1$;
+$b_{\mathrm{Ch}}(9)=0.233955556881021964797607349444583\ldots$;
+относительные ошибки протокола: Кардано $3.2\cdot10^{-36}$,
+периоды (выборка) $2.3\cdot10^{-36}$ (dps 35); фаза $\pi/9$.
+\end{databox}
+
+\begin{statusbox}[итог]
+Сертификат J принят ($5/5$): перепись $28=1+27$ двумя схемами,
+точные целые Виета $(0,-3,-1)$ в $\ZZ[\zeta]/(\Phi_9)$,
+неприводимость над $\mathrm{GF}(2)$, форма Кардано с аргументами
+--- корнями из единицы ($|\omega|=1$, произведение радикалов
+$1$), фаза $\pi/9$. Второе кубическое основание лестницы
+установлено.
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+\texttt{python3 laboratory.py} $\to$ <<Сертификаты $\to$ J>>;
+<<Стенды $\to$ N=9>>; batch-режим: сценарий с пунктом
+\texttt{bch} ($N=9$); \texttt{--check-baseline} сверяет
+$g=28$, перепись $\{3\colon1,9\colon27\}$, симметрические
+$(0,-3,-1)$ и ошибки с эталоном.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (пункты <<Стенды>>/<<Сертификаты>>).
+}
+\end{document}

@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**16 self-sufficient studies · 64 documents · PDF + DOCX · RU/EN · complete proofs**
+**20 self-sufficient studies · 80 documents · PDF + DOCX · RU/EN · complete proofs**
 
 Each theorem of the program is packaged as a standalone monograph:
 statement, complete proof, protocol data, summary of what is proved,
@@ -46,11 +46,25 @@ individually — at any time and in any order.
 | 15 | [`T15_certificate_g`](T15_certificate_g/) | **Certificate G** | λ_{m,n}=(2π)²\|mτ−n\|²/(Im τ)²; CM fractions 16π²/d, 4π²/d; π/15, π/30 |
 | 16 | [`T16_certificate_h_klein`](T16_certificate_h_klein/) | **Certificate H + Klein** | vol_h = 1125 = √disc; SNF (1,1,5,5,15,15,15,15); j = −3375 |
 
+### Part IV. The cubic rungs
+
+| № | Folder | Theorem | Core result |
+|---|---|---|---|
+| 17 | [`T17_certificate_i_hurwitz`](T17_certificate_i_hurwitz/) | **Certificate I: the Hurwitz rung N = 7** | census 15 = h₇; x³+x²−2x−1, Vieta (−1,−2,1) exact in ℤ[ζ]/(Φ₇); Cardano with the exact pairing ∛t·∛t̄ = 7/9; phase π/7 |
+| 18 | [`T18_certificate_j_macbeath`](T18_certificate_j_macbeath/) | **Certificate J: the Macbeath rung N = 9** | census 28 = 1 + 27; x³−3x+1, Vieta (0,−3,−1); Cardano arguments are roots of unity: ∛ω = ζ₉; phase π/9 |
+
+### Part V. The exact layer
+
+| № | Folder | Theorem | Core result |
+|---|---|---|---|
+| 19 | [`T19_quartic_tower`](T19_quartic_tower/) | **The quartic tower of N = 15/30** | b_Ch(15) = (7−√5−√(30−6√5))/8, b_Ch(30) = (9−√5−√(30+6√5))/8; minimal quartics with P₃₀(x) = P₁₅(−x); ββ′ = 12√5 — one cyclic field, two rungs; disc = 1125 |
+| 20 | [`T20_conductor_census`](T20_conductor_census/) | **The conductor census** | the triangle c(N) = (N−1)(N−2)/2; lifting lemma + Möbius inversion; self-similarity h_d(N) = h_d(d); 15, 28 = 1+27, 91 = 1+6+84, 406 = 1+6+9+30+84+276 — two schemes, bit-for-bit |
+
 ---
 
 ## 📐 The uniform structure of every monograph
 
-All 64 documents (PDF and DOCX in both languages) follow one scheme:
+All 80 documents (PDF and DOCX in both languages) follow one scheme:
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -107,10 +121,10 @@ shape:
 4. register  the row in the index above + the roadmap checkbox
 ```
 
-Next slots: **T17 = certificate I** (the Hurwitz rung N = 7) and
-**T18 = certificate J** (the Macbeath rung N = 9) — roadmap v1.7;
-their content is already fixed by the laboratory certificates and
-the baseline.
+Next slots: **T21 = the cyclic quintic rung N = 11** (roadmap v1.5,
+certificate K) and **T22 = the SNF spectra of the rungs**
+(v1.6) — their content is fixed by the laboratory once the
+respective roadmap items are proved.
 
 ---
 
@@ -129,6 +143,12 @@ T09 E8                 └──→ T14 F ──→ T15 G ──→ T06 indices
 T13 E (flow)                                    ▼
                                     T16 H + Klein (closing the arch)
 T05 normalization ◄── T02, T03 ◄── the foundation
+
+T17 Hurwitz N=7 ─┐
+T18 Macbeath N=9 ─┼── the cubic rungs (certificates I, J)
+                  │
+T19 quartic tower (15/30) ── the exact layer of v1.2
+T20 census ──────────────── the multiplicities behind G/H
 ```
 
 Every monograph is self-sufficient: reading its proof requires none
@@ -156,13 +176,10 @@ of the others — the cross-references are navigation, not dependency.
 | 14 F | Certificates → F | `klein_integers` |
 | 15 G | Certificates → G; designer d | — |
 | 16 H | Certificates → H; Stands → Klein | `stand_disc`, `klein_integers` |
-| cert. I | Certificates → I; Stands → N=7 | — |
-| cert. J | Certificates → J; Stands → N=9 | — |
-
-The certificates I (N = 7, the Hurwitz rung) and J (N = 9, the
-Macbeath rung) are exercised by the laboratory and recorded in the
-baseline; their standalone theorem monographs (T17, T18) are
-scheduled in the roadmap (v1.7).
+| 17 I | Certificates → I; Stands → N=7 | — |
+| 18 J | Certificates → J; Stands → N=9 | — |
+| 19 tower | Designer item 5; batch `bch` (N=15/30) | `bch_radicals` |
+| 20 census | Protocol V1; `--check-baseline` | `genus_fermat` |
 
 The exit codes of all implementations: `0` — accepted, `1` — failure.
 
@@ -174,7 +191,7 @@ The exit codes of all implementations: `0` — accepted, `1` — failure.
 @misc{isaev2026t08,
   author = {Isaev, Iskhak Khamzatovich},
   title  = {The K3 Stand: Neron--Severi Rank 20. Standalone Theorem
-            Monograph 8/16},
+            Monograph 8/20},
   year   = {2026},
   howpublished = {hodge-laboratory repository},
   url    = {https://github.com/wild8highlander/hodge-laboratory}

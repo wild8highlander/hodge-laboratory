@@ -1,0 +1,260 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries The Conductor Census: Two Schemes, One Genus}\\[0.4em]
+{\large Exact character histograms across the four rungs $N=7/9/15/30$}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\small The ``Dynamic Principle'' program --- the \texttt{hodge-laboratory} repository}\\[0.15em]
+{\small Standalone theorem monograph · Monograph 20/20}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+While monograph 1/20 derived the genus of the Fermat curve
+topologically (Riemann--Hurwitz), here the genus is obtained
+\emph{arithmetically} --- as the total of the conductor census of
+the eigencharacters. The census is the arithmetic skeleton of the
+ladder: it determines the multiplicities $h_d$ with which the
+conductors $d\mid N$ enter every Coleman--Selberg product of the
+program (certificates G and H), and it works identically on all
+four rungs $N=7,9,15,30$. Protocol V1 executes \emph{two
+independent census schemes} --- the direct one and the
+M\"obius one --- and demands their bit-for-bit agreement; this
+monograph proves that both schemes count the same thing and
+collects the exact histograms of every rung.
+
+\begin{definition}[eigencharacter and conductor]\label{th:def}
+An eigencharacter of level $N$ is a pair $(a,b)$ of integers with
+$1\le a$, $1\le b$, $a+b\le N-1$; it defines a holomorphic
+differential $\omega_{a,b}=x^ay^b\,dx/y^b$ on the Fermat curve
+$X_N\colon x^N+y^N=1$. The conductor of a character is
+$d=N/\gcd(N,a,b)$ --- the smallest level through which the
+character factors. The census is the histogram $h_d$ of the
+conductors; $c(k)=(k-1)(k-2)/2$ is the total number of
+eigencharacters of level $k$.
+\end{definition}
+
+\begin{theorem}[the triangle]\label{th:tri}
+$c(N)=(N-1)(N-2)/2$, and the census total equals the genus:
+$\sum_{d\mid N}h_d=c(N)=(N-1)(N-2)/2=g$.
+\end{theorem}
+
+\begin{proof}
+The number of pairs $1\le a,b$ with $a+b\le N-1$ is the count of
+lattice points of the integer triangle: for $a=1,\dots,N-2$ there
+are exactly $N-1-a$ values of $b$, giving
+$\sum_{a=1}^{N-2}(N-1-a)=1+2+\dots+(N-2)=(N-1)(N-2)/2$.
+Each pair yields a basis holomorphic differential (classical for
+the Fermat curve, monograph 1/20), so $c(N)=g$ --- the
+arithmetic side of the genus formula, independent of
+Riemann--Hurwitz. Since every character has exactly one conductor
+(lemma~\ref{th:lift} below shows the conductors divide $N$), the
+census total is $c(N)$.
+\end{proof}
+
+\begin{theorem}[the lifting lemma and M\"obius inversion]\label{th:lift}
+For every $d\mid N$ the map
+$(a',b')\mapsto\big(\tfrac{N}{d}a',\tfrac{N}{d}b'\big)$ is a
+bijection between the eigencharacters of level $d$ and the
+eigencharacters of level $N$ whose conductor divides $d$.
+Consequently,
+\[
+  \sum_{d'\mid d}h_{d'}=c(d),
+  \qquad\text{and by M\"obius inversion}\qquad
+  h_d=\sum_{m\mid d}\mu(m)\,c(d/m).
+\]
+In particular $h_d$ does not depend on the ambient level $N$
+(only $d\mid N$ matters): $h_d(N)=h_d(d)$ --- \emph{the
+self-similarity of the ladder}: every conductor carries a
+complete smaller stand.
+\end{theorem}
+
+\begin{proof}
+\emph{Well-definedness.} Let $(a',b')$ be a character of level
+$d$. Put $a=\tfrac{N}{d}a'$, $b=\tfrac{N}{d}b'$: then
+$1\le a,b$ and $a+b=\tfrac{N}{d}(a'+b')\le\tfrac{N}{d}(d-1)
+=N-\tfrac{N}{d}\le N-1$, so $(a,b)$ is a character of level $N$.
+Its conductor: $\gcd(N,a,b)=\tfrac{N}{d}\gcd(d,a',b')$, hence
+$d(a,b)=N/\gcd(N,a,b)=d/\gcd(d,a',b')=d(a',b')\mid d$.
+
+\emph{Surjectivity with a section.} If a character $(a,b)$ of
+level $N$ has conductor $d'\mid d$, then
+$\gcd(N,a,b)=\tfrac{N}{d'}$ is a multiple of $\tfrac{N}{d}$,
+whence $\tfrac{N}{d}\mid a,b$ and the pair $a'=\tfrac{d}{N}a$,
+$b'=\tfrac{d}{N}b$ is integral; the bounds are preserved by the
+reverse of the well-definedness argument, and $(a',b')$ is a
+character of level $d$ with conductor $d'$ that restores $(a,b)$.
+Injectivity is obvious. Therefore
+$\sum_{d'\mid d}h_{d'}(N)=c(d)$ --- the total number of
+characters of level $d$.
+
+\emph{Inversion.} The divisor lattice of $d$ is a finite
+distributive lattice, and its M\"obius function is the classical
+$\mu$; M\"obius inversion on the divisor lattice yields the
+second formula. The right-hand side depends only on $d$, so $h_d$
+is the same at every level $N$ divisible by $d$: at the level $d$
+the formula produces $h_d(d)$. The self-similarity is proved.
+\end{proof}
+
+\begin{theorem}[the censuses of the four rungs]\label{th:four}
+The exact conductor histograms:
+\[
+\begin{array}{lll}
+N=7: & \{7\colon 15\}, & 15=15;\\[0.15em]
+N=9: & \{3\colon 1,\ 9\colon 27\}, & 28=1+27;\\[0.15em]
+N=15: & \{3\colon 1,\ 5\colon 6,\ 15\colon 84\}, & 91=1+6+84;\\[0.15em]
+N=30: & \{3\colon 1,\ 5\colon 6,\ 6\colon 9,\ 10\colon 30,\ 15\colon 84,\ 30\colon 276\}, & 406=1+6+9+30+84+276.
+\end{array}
+\]
+Each row is verified by both schemes, including the explicit
+values $h_6=c(6)-c(3)-c(2)+c(1)=10-1-0+0=9$,
+$h_{10}=c(10)-c(5)-c(2)+c(1)=36-6=30$ and
+$h_{30}=c(30)-c(15)-c(10)-c(6)+c(5)+c(3)+c(2)-c(1)
+=406-91-36-10+6+1=276$.
+\end{theorem}
+
+\begin{proof}
+\emph{The direct scheme.} $N=7$ is prime: $\gcd(7,a,b)=1$ for
+every character of the triangle --- the single conductor $7$,
+$h_7=c(7)=15$. $N=9$: conductor $3$ means $\gcd(9,a,b)=3$, i.e.
+$a,b\in\{3,6\}$, and $a+b\le8$ leaves $(3,3)$: $h_3=1$; the rest
+$h_9=28-1=27$. $N=15$: conductor $3$ --- $\gcd(15,a,b)=5$, i.e.
+$a,b\in\{5,10\}$ with $a+b\le14$ --- only $(5,5)$: $h_3=1$;
+conductor $5$ --- $\gcd=3$, i.e. $a,b\in\{3,6,9,12\}$ with
+$a+b\le14$ --- the six pairs $(3,3),(3,6),(6,3),(3,9),(9,3),(6,6)$:
+$h_5=6$; the rest $h_{15}=91-1-6=84$. $N=30$ --- conductor $6$:
+$\gcd(30,a,b)=5$, so $a,b$ are multiples of $5$ with $a+b\le29$
+and $\gcd$ exactly $5$ (not $10$, not $15$) --- nine pairs; the
+M\"obius scheme gives the same $h_6=9$; likewise $h_{10}=30$,
+$h_{15}=84$ (self-similarity: $h_{15}(30)=h_{15}(15)$) and
+$h_{30}=276$.
+
+\emph{The M\"obius scheme.} The formula of
+theorem~\ref{th:lift} with the explicit values $c$: $c(2)=0$,
+$c(3)=1$, $c(5)=6$, $c(6)=10$, $c(9)=28$, $c(10)=36$,
+$c(15)=91$, $c(30)=406$; the computations are displayed in the
+statement --- every conductor matches the direct scheme
+pairwise.
+\end{proof}
+
+\begin{theorem}[two schemes, one total]\label{th:two}
+The direct scheme (enumerating the pairs with
+$d=N/\gcd(N,a,b)$) and the M\"obius scheme
+(inclusion--exclusion over the divisors) produce
+\emph{bit-for-bit identical} histograms at every level
+$N=7,9,15,30$ --- an integer identity, a deterministic check
+without thresholds.
+\end{theorem}
+
+\begin{proof}
+By theorem~\ref{th:lift} both schemes compute the same function
+$h_d$: the direct one by definition (every pair lands in exactly
+one conductor class), the M\"obius one as the unique solution of
+the convolution equation $\sum_{d'\mid d}h_{d'}=c(d)$ on the
+divisor lattice. The formal coincidence leaves no room for
+discrepancies; the machine execution (protocol V1) is a
+fingerprint against implementation errors: two independent code
+paths must produce identical dictionaries $\{d\colon h_d\}$,
+which is exactly what the bit-wise comparison asserts.
+\end{proof}
+
+\begin{remark}
+The histograms compress quadratically with the arithmetic of the
+level: the prime $7$ has one conductor; $9=3^2$ has two (the
+``hermit'' $(3,3)$ appears --- the trace of level $3$);
+$15=3\cdot5$ has three; $30=2\cdot3\cdot5$ has six --- every
+divisor of the level except $1$ and $2$ (the triangle of level
+$d$ is empty only for $d\le2$). The self-similarity
+$h_d(N)=h_d(d)$ turns the ladder into a fractal family of
+stands: a larger rung contains all smaller ones as
+conductor layers, and every summand of
+$406=1+6+9+30+84+276$ is itself the census of a smaller stand
+(its proper conductors subtracted). It is the multiplicities
+$h_d$ that enter the exponents of the Coleman--Selberg product of
+certificate H --- the census closes the $\Ga$-architecture of the
+program.
+\end{remark}
+
+\begin{databox}[The census --- a summary of the four rungs]
+$N=7$: genus $15$, $\{7\colon15\}$, a single conductor (prime
+level). $N=9$: genus $28$, $\{3\colon1,\,9\colon27\}$, the
+diagonal character $(3,3)$. $N=15$: genus $91$,
+$\{3\colon1,\,5\colon6,\,15\colon84\}$. $N=30$: genus $406$,
+$\{3\colon1,\,5\colon6,\,6\colon9,\,10\colon30,\,15\colon84,\,30\colon276\}$.
+All rows confirmed by two schemes (V1); the totals equal
+$(N-1)(N-2)/2$ exactly; the self-similarity $h_d(N)=h_d(d)$
+(e.g. $h_{15}(30)=84=h_{15}(15)$). Reference:
+\texttt{baseline\_v1\_v9.json}, block \texttt{V1\_census}.
+\end{databox}
+
+\begin{statusbox}[summary]
+The arithmetic of the genus is placed on its own foundation: the
+character triangle, the lifting lemma with the conductor
+bijection, M\"obius inversion, the self-similarity
+$h_d(N)=h_d(d)$, the exact histograms of all four rungs and the
+bit-for-bit agreement of the two schemes. The genus is
+\emph{counted}, not postulated; the multiplicities $h_d$ are the
+input of the $\Ga$-normalization of certificates G/H.
+\end{statusbox}
+
+\begin{verifybox}[how to reproduce]
+\texttt{python3 laboratory.py} $\to$ protocol V1 (the census,
+two schemes, levels $7/9/15/30$); \texttt{--check-baseline}
+cross-checks the histograms and the genera against the
+reference; Lean: the \texttt{genus\_fermat} block; batch mode:
+the \texttt{census} item of a scenario.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (protocol V1, \texttt{--check-baseline}).
+}
+\end{document}

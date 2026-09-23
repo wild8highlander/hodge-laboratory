@@ -1,0 +1,251 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Summary of results:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Protocol data:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Verification:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Certificate I: The Hurwitz Rung $N=7$}\\[0.4em]
+{\large The cyclic cubic of $2\cos(2\pi/7)$, the Cardano pairing, and the $\pi/7$ phase}\\[0.6em]
+{\normalsize Isaev Iskhak Khamzatovich}\\[0.2em]
+{\small The ``Dynamic Principle'' program --- the \texttt{hodge-laboratory} repository}\\[0.15em]
+{\small Standalone theorem monograph · Monograph 17/20}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Setting}
+
+With the program extended to the four rungs $N=7,9,15,30$
+(roadmap v1.3), the ladder acquired two cubic foundations: the
+Hurwitz rung $N=7$ and the Macbeath rung $N=9$. Certificate~I is
+the first of the two new anchors: it secures, at level $N=7$, the
+entire pipeline of the program --- the conductor census of
+eigencharacters, the exact cubic layer of $b_{\mathrm{Ch}}(7)$ in
+$\ZZ[\zeta]/(\Phi_7)$, and the Cardano closed form in the
+$\mathrm{casus\ irreducibilis}$ regime.
+
+The rung is named after Adolf Hurwitz: the polynomial
+$x^3+x^2-2x-1$ is the minimal polynomial of $2\cos(2\pi/7)$, a
+generator of the maximal totally real subfield of the cyclotomic
+field $\QQ(\zeta_7)$ --- the very field that lives in the
+discriminant $\Delta=-343=-7^3$ of the Klein quartic (monograph
+16/20). Note, however, that the $N=7$ stand certifies not the
+Klein quartic itself (which has its own ``Klein'' stand and
+monograph 16/20) but the Fermat-level pipeline at $N=7$: the
+Fermat curve $X_7$ has genus $15$, and every mechanism of the
+program --- census, periods, $\Ga$-monomials --- operates at this
+level unchanged.
+
+\begin{theorem}[I1 --- the census of the prime level]\label{th:I1}
+For the Fermat curve $X_7$ every eigencharacter $(a,b)$ with
+$1\le a,b$, $a+b\le 6$ has conductor $d=7$; the conductor census
+consists of a single class, $\{7\colon 15\}$, and
+$\sum_d h_d = 15 = (7-1)(7-2)/2 = g$. Both census schemes (the
+direct one and the M\"obius one) produce the same histogram.
+\end{theorem}
+
+\begin{proof}
+The level $N=7$ is prime, so for any eigencharacter $(a,b)$ with
+$1\le a,b$, $a+b\le 6$ we have $a,b\not\equiv 0 \pmod 7$, hence
+$\gcd(7,a,b)=1$ and the conductor is $d = 7/\gcd(7,a,b) = 7$ ---
+the only one. The number of such pairs $(a,b)$ is the count of
+lattice points in the triangle $1\le a,b$, $a+b\le 6$: for each
+$a$ from $1$ to $5$ there are exactly $6-a$ values of $b$, giving
+$\sum_{a=1}^{5}(6-a)=5+4+3+2+1=15$. The M\"obius scheme:
+$h_7 = c(7)-c(1) = 15-0 = 15$, where
+$c(k)=(k-1)(k-2)/2$ is the number of eigencharacters of level
+$k$. Both schemes are integer identities; their agreement is
+deterministic.
+\end{proof}
+
+\begin{theorem}[I2 --- the cubic layer of $b_{\mathrm{Ch}}(7)$]\label{th:I2}
+The numbers $x_1=\zeta+\zeta^{-1}$, $x_2=\zeta^2+\zeta^{-2}$,
+$x_3=\zeta^3+\zeta^{-3}$ with $\zeta=e^{2\pi i/7}$ have exact
+elementary symmetric polynomials
+\[
+  s_1=x_1+x_2+x_3=-1,\qquad
+  s_2=x_1x_2+x_1x_3+x_2x_3=-2,\qquad
+  s_3=x_1x_2x_3=1,
+\]
+computed by pure integer arithmetic in $\ZZ[\zeta]/(\Phi_7)$;
+therefore $x_1$ is a root of the cubic $x^3+x^2-2x-1$, and this
+is its exact minimal polynomial over $\QQ$.
+\end{theorem}
+
+\begin{proof}
+\emph{Sum.} $s_1=\zeta+\zeta^6+\zeta^2+\zeta^5+\zeta^3+\zeta^4$
+is the sum of all nontrivial powers of $\zeta$, i.e.
+$s_1=-1$ (the $\Phi_7$-sum, since $1+\zeta+\dots+\zeta^6=0$).
+
+\emph{Pairwise products.} Expand in $\ZZ[\zeta]/(\Phi_7)$ using
+$\zeta^{-k}=\zeta^{7-k}$:
+$x_1x_2=(\zeta+\zeta^6)(\zeta^2+\zeta^5)=\zeta^3+\zeta^6+\zeta+\zeta^4$;
+$x_1x_3=(\zeta+\zeta^6)(\zeta^3+\zeta^4)=\zeta^4+\zeta^5+\zeta^2+\zeta^3$;
+$x_2x_3=(\zeta^2+\zeta^5)(\zeta^3+\zeta^4)=\zeta^5+\zeta^6+\zeta+\zeta^2$.
+Adding, each of the six powers $\zeta^1,\dots,\zeta^6$ occurs
+exactly twice:
+$s_2=2(\zeta+\zeta^2+\dots+\zeta^6)=2\cdot(-1)=-2$.
+
+\emph{Product.}
+$x_1x_2x_3=(\zeta^3+\zeta^6+\zeta+\zeta^4)(\zeta^3+\zeta^4)
+=\zeta^6+\zeta^7+\zeta^9+\zeta^{10}+\zeta^4+\zeta^5+\zeta^7+\zeta^8
+=\zeta^6+1+\zeta^2+\zeta^3+\zeta^4+\zeta^5+1+\zeta
+=2+(\zeta+\dots+\zeta^6)=2-1=1$.
+
+By Vieta's formulas the cubic with roots $x_1,x_2,x_3$ is
+$x^3-s_1x^2+s_2x-s_3=x^3+x^2-2x-1$. Minimality: the Galois group
+$\mathrm{Gal}(\QQ(\zeta_7)^+/\QQ)\cong(\ZZ/7)^\times/\{\pm1\}\cong C_3$
+acts by multiplication of exponents by $2$:
+$1\mapsto2\mapsto4\equiv-3\mapsto-1\equiv1$ --- a cycle on the
+three classes $\{1,6\},\{2,5\},\{3,4\}$; the action is
+transitive, so $[\QQ(x_1):\QQ]=3$. Fingerprint: modulo $2$ the
+cubic $x^3+x^2-2x-1\equiv x^3+x^2+1$ has no root in $\mathbf{F}_2$
+($0\mapsto1$, $1\mapsto1$) --- it is irreducible, independently
+confirming the degree $3$.
+\end{proof}
+
+\begin{theorem}[I3 --- the Cardano form and the pairing]\label{th:I3}
+In terms of $t=\frac{7}{54}+\frac{7\sqrt{-3}}{18}$ and
+$\bar t=\frac{7}{54}-\frac{7\sqrt{-3}}{18}$ the largest root of
+the cubic is
+\[
+  2\cos\frac{2\pi}{7}=\sqrt[3]{t}+\sqrt[3]{\bar t}-\frac13,
+  \qquad
+  b_{\mathrm{Ch}}(7)=1-\cos\frac{2\pi}{7}
+  =\frac76-\frac{\sqrt[3]{t}+\sqrt[3]{\bar t}}{2},
+\]
+and the moduli of the Cardano arguments are paired by the exact
+identity $|t|^2=(7/9)^3$, so that the product of the cube roots
+is $\sqrt[3]{t}\cdot\sqrt[3]{\bar t}=7/9$ exactly.
+\end{theorem}
+
+\begin{proof}
+The substitution $x=y-\frac13$ removes the quadratic term:
+$p=-\frac73$, $q=-\frac{7}{27}$, and the cubic becomes
+$y^3-\frac73y-\frac7{27}=0$. The Cardano discriminant is
+\[
+  \Delta=\frac{q^2}{4}+\frac{p^3}{27}
+  =\frac{49}{2916}-\frac{343}{729}
+  =\frac{49-1372}{2916}=-\frac{1323}{2916}=-\frac{49}{108}<0
+\]
+--- the classical \emph{casus irreducibilis}: all three roots are
+real, yet expressible only through complex cube roots. Hence
+$\sqrt{\Delta}=\frac{7i\sqrt3}{18}$ and
+\[
+  y=\sqrt[3]{-\frac q2+\sqrt\Delta}+\sqrt[3]{-\frac q2-\sqrt\Delta}
+  =\sqrt[3]{\frac{7}{54}+\frac{7\sqrt{-3}}{18}}
+  +\sqrt[3]{\frac{7}{54}-\frac{7\sqrt{-3}}{18}},
+\]
+so $x_1=y-\frac13$ and $b_{\mathrm{Ch}}(7)=1-\frac{x_1}{2}
+=\frac76-\frac{\sqrt[3]{t}+\sqrt[3]{\bar t}}{2}$.
+
+\emph{The pairing.} $|t|^2=\frac{49}{2916}+\frac{147}{324}
+=\frac{49+1323}{2916}=\frac{1372}{2916}=\frac{343}{729}=\left(\frac79\right)^3$;
+therefore $\sqrt[3]{t}\cdot\sqrt[3]{\bar t}=\sqrt[3]{|t|^2}
+=\sqrt[3]{(7/9)^3}=7/9$ --- an exact integer identity (the
+``the Cardano pairing'' comment in the laboratory code).
+
+\emph{Vi\`ete form.} $|t|^{1/3}=\sqrt{7}/3$ and
+$\arg t=\arctan(3\sqrt3)$, so the principal cube root is
+$u=\sqrt[3]{t}=\frac{\sqrt7}{3}e^{i\theta}$ with
+$\theta=\frac13\arctan(3\sqrt3)$, and
+$2\cos\frac{2\pi}{7}=2\re u-\frac13
+=\frac{2\sqrt7}{3}\cos\!\Big(\frac13\arctan(3\sqrt3)\Big)-\frac13$
+--- the real trigonometric form (the trisection of the angle
+$\arctan(3\sqrt3)\approx79.1^\circ$).
+
+\emph{Isolation.} The roots $x_1\approx2.24698$,
+$x_2\approx-0.55496$, $x_3\approx-1.69202$ are strictly ordered;
+the numeric check at working precision (dps 60) gives a relative
+deviation of the Cardano form from $1-\cos(2\pi/7)$ equal to
+$2.1\cdot10^{-61}$ --- agreement within working precision,
+pinning the largest root.
+\end{proof}
+
+\begin{remark}
+The phase $\pi/7$ anchors the quantum ladder of the program: item
+G6 of certificate G secures the phases $\pi/7,\pi/15,\pi/30$ as
+levels of the single construction $\delta=\pi/N$, and the isotypy
+$(1,1,0,1)$ of the Klein quartic ties $\zeta_7$ to its periods.
+The rung $N=7$ is thus the arithmetic foundation of the whole
+heptadic branch.
+\end{remark}
+
+\begin{databox}[Certificate I --- the stand numbers]
+Genus $g=15$; census $\{7\colon 15\}$ (both schemes); minimal
+cubic $x^3+x^2-2x-1$; Vieta $(s_1,s_2,s_3)=(-1,-2,1)$ exactly in
+$\ZZ[\zeta]/(\Phi_7)$; the cubic is irreducible over
+$\mathrm{GF}(2)$; Cardano form
+$b_{\mathrm{Ch}}(7)=\frac76-\frac{\sqrt[3]{t}+\sqrt[3]{\bar t}}{2}$,
+$t=\frac{7}{54}\pm\frac{7\sqrt{-3}}{18}$; the pairing
+$\sqrt[3]{t}\sqrt[3]{\bar t}=7/9$;
+$b_{\mathrm{Ch}}(7)=0.376510198141266469474995115995760\ldots$;
+protocol relative errors: Cardano $2.0\cdot10^{-36}$, periods
+(spot sample) $1.0\cdot10^{-36}$ (dps 35); phase $\pi/7$.
+\end{databox}
+
+\begin{statusbox}[summary]
+Certificate I accepted ($5/5$): the census of the prime level by
+two schemes, the exact integer Vieta data in
+$\ZZ[\zeta]/(\Phi_7)$, irreducibility over $\mathrm{GF}(2)$, the
+Cardano form in the $\mathrm{casus\ irreducibilis}$ with the exact
+pairing $7/9$, and the phase $\pi/7$. The cubic foundation of the
+ladder is established.
+\end{statusbox}
+
+\begin{verifybox}[how to reproduce]
+\texttt{python3 laboratory.py} $\to$ ``Certificates $\to$ I'';
+``Stands $\to$ N=7''; batch mode: a scenario with the
+\texttt{bch} item ($N=7$); \texttt{--check-baseline} cross-checks
+$g=15$, the symmetric data $(-1,-2,1)$ and the errors against the
+reference.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+License: individual exclusive license of Isaev Iskhak Khamzatovich.
+All rights to the computations, formulas and texts belong to the author.
+Verification: \texttt{python3 laboratory.py} (``Stands''/``Certificates'').
+}
+\end{document}

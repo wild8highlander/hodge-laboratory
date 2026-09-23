@@ -1,0 +1,294 @@
+% !TeX program = tectonic
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\usepackage[russian]{babel}
+\babelfont{rm}[Language=Default]{Liberation Serif}
+\babelfont[Language=Default]{sf}{Carlito}
+\babelfont[Language=Default]{tt}{DejaVu Sans Mono}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{a4paper, top=2.4cm, bottom=2.4cm, left=2.4cm, right=2.4cm}
+\usepackage{booktabs,tabularx,enumitem,xcolor,tcolorbox}
+\tcbuselibrary{breakable,skins}
+\definecolor{linkblue}{HTML}{1F4E79}
+\definecolor{statgreen}{HTML}{2F6B3A}
+\definecolor{goldacc}{HTML}{8B7E5A}
+\usepackage[colorlinks=true,linkcolor=linkblue,urlcolor=linkblue,unicode=true]{hyperref}
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Предложение}
+\newtheorem{corollary}[theorem]{Следствие}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
+\newtcolorbox{statusbox}[1][]{colback=statgreen!5,colframe=statgreen!75,
+  title={\textbf{Сводка доказанного:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{databox}[1][]{colback=goldacc!6,colframe=goldacc!80,
+  title={\textbf{Данные протокола:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\newtcolorbox{verifybox}[1][]{colback=linkblue!5,colframe=linkblue!80,
+  title={\textbf{Верификация:} #1},fonttitle=\small,boxrule=0.7pt,arc=2pt,breakable}
+\widowpenalty=10000
+\clubpenalty=10000
+\setlength{\parskip}{0.35em}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\Ga}{\Gamma}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\disc}{\operatorname{disc}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Квартичная башня: точные радикалы}\\[0.2em]
+{\large и минимальные квартики ступеней $N=15/30$}\\[0.6em]
+{\normalsize Исаев Исхак Хамзатович}\\[0.2em]
+{\small Программа <<Динамический принцип>> --- лаборатория \texttt{hodge-laboratory}}\\[0.15em]
+{\small Отдельная монография теоремы · Монография 19/20}
+\end{center}
+\vspace{0.4em}
+{\color{linkblue}\hrule height 0.8pt}
+\vspace{0.8em}
+
+\section{Постановка}
+
+Уровни $N=15$ и $N=30$ --- конструктивные ступени лестницы:
+$15=3\cdot5$ --- произведение различных простых Ферма, и
+правильный пятнадцатиугольник строится циркулем и линейкой
+(Гаусс--Ванцель). Соответственно $2\cos(2\pi/15)$ имеет степень
+$4$ над $\QQ$ ($\varphi(15)/2=4$), и $b_{\mathrm{Ch}}(15)$, $b_{\mathrm{Ch}}(30)$ выражаются в квадратных радикалах ---
+двухэтажной башней $\QQ\subset\QQ(\sqrt5)\subset\QQ(\sqrt5,\beta)$.
+Эта монография фиксирует полный точный слой v1.2: закрытые
+радикалы, минимальные квартики, галуа-структуру башни и
+машинный сертификат --- целочисленную тождественную проверку в
+$\ZZ[\sqrt5][\beta]$.
+
+\begin{lemma}[удвоение переставляет классы]\label{th:dbl}
+Множество $C=\{1,2,4,7\}$ --- по одному представителю от каждой
+пары классов $\{\pm k\}$ обратимых вычетов по модулю $15$.
+Умножение на $2$ переставляет $C$ (с точностью до замены
+представителя): $1\mapsto2\mapsto4\mapsto8\equiv-7\mapsto7\mapsto14\equiv-1\mapsto1$.
+\end{lemma}
+
+\begin{proof}
+Прямая проверка: $2\cdot1=2$, $2\cdot2=4$, $2\cdot4=8\equiv8$,
+а $8\equiv-7\pmod{15}$; далее $2\cdot7=14\equiv-1$. Классы
+$\{\pm1\},\{\pm2\},\{\pm4\},\{\pm7\}$ переходят друг в друга по
+циклу --- это и есть циклическая группа
+$\mathrm{Gal}(\QQ(\zeta_{15})^+/\QQ)
+\cong(\ZZ/15)^\times/\{\pm1\}\cong C_4$, порождённая удвоением.
+\end{proof}
+
+\begin{lemma}[суммы Раманужана]\label{th:rams}
+Для $x_k=\zeta^k+\zeta^{-k}$, $\zeta=e^{2\pi i/15}$, $k\in C$:
+$s_1=\sum x_k=1$ и $s_2=\sum_{i<j}x_ix_j=-4$.
+\end{lemma}
+
+\begin{proof}
+$s_1=\sum_{k\in C}(\zeta^k+\zeta^{-k})=\sum_{j\in U}\zeta^j$,
+где $U=(\ZZ/15)^\times$ --- все восемь единиц; это сумма
+Раманужана $c_{15}(1)=\mu(15)=\mu(3)\mu(5)=1$. Далее
+$x_k^2=2+2\cos(4\pi k/15)=2+x_{2k}$, поэтому по лемме~\ref{th:dbl}
+$\sum_{k\in C}x_k^2=8+s_1=9$, и
+$s_2=\frac{s_1^2-\sum x_k^2}{2}=\frac{1-9}{2}=-4$.
+\end{proof}
+
+\begin{theorem}[башня и радикалы]\label{th:tower}
+Положим $\beta=\sqrt{30-6\sqrt5}$ и $\beta'=\sqrt{30+6\sqrt5}$
+(положительные корни). Тогда
+\[
+  2\cos\frac{2\pi}{15}=\frac{1+\sqrt5+\beta}{4},
+  \qquad
+  2\cos\frac{2\pi}{30}=\frac{\sqrt5-1+\beta'}{4},
+\]
+причём $\beta\beta'=12\sqrt5$ --- точное тождество, так что
+$\beta'=12\sqrt5/\beta$ и оба радикала живут в \emph{одном}
+квартичном поле $K=\QQ(\sqrt5,\beta)=\QQ(\sqrt5,\beta')
+=\QQ(\zeta_{15})^+=\QQ(\zeta_{30})^+$.
+Поле $K$ вполне вещественно, циклично:
+$\mathrm{Gal}(K/\QQ)\cong C_4$, и $\QQ(\sqrt5)$ --- его
+единственное квадратичное подполе.
+\end{theorem}
+
+\begin{proof}
+\emph{Формы.} Для $x=(1+\sqrt5+\beta)/4$ имеем
+$(4x-1-\sqrt5)^2=\beta^2=30-6\sqrt5$; раскрывая,
+$16x^2-8(1+\sqrt5)x+(6+2\sqrt5)=30-6\sqrt5$, то есть
+$x^2=\varphi\,x+\gamma$ с $\varphi=\frac{1+\sqrt5}{2}$ и
+$\gamma=\frac{3-\sqrt5}{2}$: $x$ квадратичен над $\QQ(\sqrt5)$.
+При этом $x\notin\QQ(\sqrt5)$: иначе квадратный трёхчлен
+$z^2-\varphi z-\gamma$ имел бы корень в $\QQ(\sqrt5)$, а его
+дискриминант $\Delta_z=\varphi^2+4\gamma=\frac{3(5-\sqrt5)}{2}$
+имел бы норму $\mathrm{N}(\Delta_z)=\frac94\cdot20=45$ квадратом
+рационального числа ($\mathrm{N}(w^2)=\mathrm{N}(w)^2\in\QQ^2$) ---
+но $45$ не квадрат. Значит
+$[\QQ(\sqrt5,x):\QQ(\sqrt5)]=2$ и $[\QQ(\sqrt5,x):\QQ]=4$.
+Так как $x=2\cos(2\pi/15)$ лежит в
+$\QQ(\zeta_{15})^+$ и $\varphi(15)/2=4$, поля совпадают:
+$K=\QQ(\zeta_{15})^+$. Для второй формы: $\zeta_{30}=-\zeta_{15}^8$
+(проверка порядков), значит $\QQ(\zeta_{30})=\QQ(\zeta_{15})$,
+и аналогичное раскрытие $(4x'-\sqrt5+1)^2=\beta'^2$ даёт
+$x'=(\sqrt5-1+\beta')/4=2\cos(\pi/15)=2\cos(2\pi/30)$.
+
+\emph{Спаривание башни.}
+$\beta^2\beta'^2=(30-6\sqrt5)(30+6\sqrt5)=900-180=720=(12\sqrt5)^2$,
+и $\beta,\beta'>0$, поэтому $\beta\beta'=12\sqrt5$ точно, откуда
+$\beta'=12\sqrt5/\beta\in K$.
+
+\emph{Цикличность.} $\mathrm{Gal}(\QQ(\zeta_{15})^+/\QQ)
+\cong(\ZZ/15)^\times/\{\pm1\}$; элемент $2$ имеет порядок $4$
+по модулю $15$, так что группа циклична порядка $4$.
+Автоморфизм $\sigma\colon\zeta\mapsto\zeta^2$ переводит
+$\sqrt5=\zeta_5+\zeta_5^4-\zeta_5^2-\zeta_5^3$ (где
+$\zeta_5=\zeta^3$) в $-\sqrt5$, значит
+$\sigma(\beta)^2=\sigma(\beta^2)=30+6\sqrt5=\beta'^2$ и,
+в силу спаривания, $\sigma(\beta)=\pm\beta'$ --- знак
+фиксируется: $\sigma$ переставляет $\beta\leftrightarrow\beta'$
+с точностью до знака, а $\langle\sigma^2\rangle$ фиксирует
+$\QQ(\sqrt5)$ --- единственное квадратичное подполе (группа
+$C_4$ имеет единственную подгруппу порядка $2$).
+Дискриминант поля: по формуле проводник-дискриминант
+$\disc K=f_4\cdot f'_4\cdot f_2=15\cdot15\cdot5=1125=3^2\cdot5^3$
+--- число, совпадающее с объёмом $\mathrm{vol}_h=1125$ из
+монографии 16/20.
+\end{proof}
+
+\begin{theorem}[минимальные квартики]\label{th:quart}
+Минимальные многочлены:
+\[
+  P_{15}(x)=x^4-x^3-4x^2+4x+1 \ \text{для}\ 2\cos\frac{2\pi}{15},
+  \qquad
+  P_{30}(x)=x^4+x^3-4x^2-4x+1 \ \text{для}\ 2\cos\frac{2\pi}{30},
+\]
+причём $P_{30}(x)=P_{15}(-x)$ --- квартика уровня $30$ есть
+отражение квартики уровня $15$. Коэффициенты $P_{15}$ собираются
+из сумм Раманужана и нормы башни: свободный член
+$s_4=\prod x_k=1$, третий коэффициент $s_3=-4$ (Ньютон).
+\end{theorem}
+
+\begin{proof}
+Квартика с корнями $x_1,\dots,x_4$ (классы $C$) имеет вид
+$x^4-s_1x^3+s_2x^2-s_3x+s_4$. По лемме~\ref{th:rams} уже
+$s_1=1$, $s_2=-4$. \emph{Норма через башню}: по теореме~\ref{th:tower}
+$K\supset\QQ(\sqrt5)$, и норма расщепляется:
+$x_1x_3=(\zeta+\zeta^{-1})(\zeta^4+\zeta^{-4})
+=(\zeta^5+\zeta^{-5})+(\zeta^3+\zeta^{-3})
+=-1+2\cos\frac{2\pi}{5}=-1+\frac{\sqrt5-1}{2}=\frac{\sqrt5-3}{2}$;
+тогда
+$s_4=\mathrm{N}_{K/\QQ}(x_1)
+=\mathrm{N}_{\QQ(\sqrt5)/\QQ}\!\left(\frac{\sqrt5-3}{2}\right)
+=\frac{\sqrt5-3}{2}\cdot\frac{-\sqrt5-3}{2}=1$.
+\emph{Ньютон}: $p_3=\sum x_k^3=\sum_{k\in C}\!\big[(\zeta^{3k}+\zeta^{-3k})+3x_k\big]$;
+здесь $3k\bmod15$ пробегает $\{3,6,12,6\}$ --- пары пятых долей:
+$\sum_{k\in C}(\zeta^{3k}+\zeta^{-3k})
+=2\cdot2\cos\frac{2\pi}{5}+2\cdot2\cos\frac{4\pi}{5}
+=(\sqrt5-1)-(1+\sqrt5)=-2$,
+откуда $p_3=-2+3s_1=1$, и по ньютоновской формуле
+$s_3=\frac{p_3-s_1p_2+s_2p_1}{3}=\frac{1-9-4}{3}=-4$
+($p_2=\sum x_k^2=9$, $p_1=s_1=1$). Итого
+$P_{15}(x)=x^4-x^3-4x^2+4x+1$; это минимальный многочлен,
+поскольку $[K:\QQ]=4$ уже установлено.
+
+\emph{Отражение.} Корни $P_{30}$ --- $2\cos(\pi k/15)$ для
+$k\in\{1,7,11,13\}$ (классы $\{\pm k\}$ по модулю $30$). Для
+$m\in C$: $-2\cos\frac{2\pi m}{15}=2\cos\!\big(\pi-\frac{2\pi m}{15}\big)
+=2\cos\frac{\pi(15-2m)}{15}$, и $15-2m$ пробегает
+$\{13,11,7,1\}$ --- в точности классы $P_{30}$. Значит множество
+корней $P_{30}$ есть $\{-x\colon x\ \text{корень}\ P_{15}\}$, т.е.
+$P_{30}(x)=P_{15}(-x)=x^4+x^3-4x^2-4x+1$.
+
+\emph{Следствие (формы $b_{\mathrm{Ch}}$).}
+$b_{\mathrm{Ch}}(15)=1-\frac{x}{2}=\frac{7-\sqrt5-\beta}{8}$,
+$b_{\mathrm{Ch}}(30)=1-\frac{x'}{2}=\frac{9-\sqrt5-\beta'}{8}$.
+\end{proof}
+
+\begin{theorem}[точный слой: целочисленный сертификат]\label{th:exact}
+\emph{(а)} Элемент $x=m/4$, $m=1+\sqrt5+\beta$, удовлетворяет
+$P_{15}$ тождественно: раскрытие $256\,P_{15}(m/4)$ в башне
+$\ZZ[\sqrt5][\beta]$ ($\beta^2=30-6\sqrt5$ --- целое!) даёт
+нулевой элемент $(0,0,0,0)$ --- \emph{чистое целочисленное
+тождество} без единой плавающей операции; аналогично
+$256\,P_{30}((\sqrt5-1+\beta')/4)=0$ в
+$\ZZ[\sqrt5][\beta']$. \emph{(б)} Обе квартики по модулю $2$
+совпадают: $P_{15}\equiv P_{30}\equiv x^4+x^3+1\pmod2$ ---
+неприводимый многочлен над $\mathbf{F}_2$ (нет корней в
+$\mathbf{F}_2$; деление на единственный неприводимый квадратичный
+$x^2+x+1$ даёт ненулевой остаток) --- машинный отпечаток степени.
+\emph{(в)} Изоляция: корни $P_{15}$ суть
+$1.827091\ldots,\ 1.338261\ldots,\ -0.209057\ldots,\ -1.956295\ldots$
+--- старший корень единственным образом выделяет главное
+значение $2\cos(2\pi/15)$.
+\end{theorem}
+
+\begin{proof}
+(а) --- прямое раскрытие: башенная арифметика
+$\ZZ[\sqrt5][\beta]$ умножает пары $(A,B)$
+($A+B\beta$, $A,B\in\ZZ[\sqrt5]$) по правилу
+$\beta^2=D$ с целым элементом $D=30\mp6\sqrt5$; все
+промежуточные результаты целые, так как $\beta^2\in\ZZ[\sqrt5]$
+и все коэффициенты целые. Сертификат лаборатории
+(\texttt{\_bch\_exact\_residual}) возвращает нулевой элемент ---
+это и есть тождество. (б) — редукция коэффициентов:
+$(1,-1,-4,4,1)\bmod2=(1,1,0,0,1)$ и
+$(1,1,-4,-4,1)\bmod2=(1,1,0,0,1)$; неприводимость
+$x^4+x^3+1$ над $\mathbf{F}_2$ стандартна. (в) —
+численная проверка при dps 60: радикальные формы совпадают с
+$2\cos$ с относительной ошибкой $0$ в пределах точности;
+упорядоченность корней транзитивна.
+\end{proof}
+
+\begin{remark}
+Квартики $P_{15}$, $P_{30}$ --- нормы циклического квартичного
+поля с дискриминантом $3^4\cdot5^3$; их отражённая пара
+$P_{30}(x)=P_{15}(-x)$ --- арифметическое эхо того, что уровни
+$15$ и $30$ --- одно и то же круговое поле $\QQ(\zeta_{15})
+=\QQ(\zeta_{30})$ (монография 16/20, теорема H1). Конструктивность
+уровня (Гаусс--Ванцель) и цикличность $C_4$ --- две стороны
+одной медали: башня $\QQ\subset\QQ(\sqrt5)\subset K$ имеет ровно
+один промежуточный этаж.
+\end{remark}
+
+\begin{databox}[Точный слой v1.2 --- числа]
+Радикалы: $b_{\mathrm{Ch}}(15)=\frac{7-\sqrt5-\sqrt{30-6\sqrt5}}{8}
+=0.086454542357399104497872428014682822\ldots$;
+$b_{\mathrm{Ch}}(30)=\frac{9-\sqrt5-\sqrt{30+6\sqrt5}}{8}
+=0.021852399266194362071433252130400468\ldots$
+(совпадение с $1-\cos$ при dps 60 --- $0$ в пределах точности).
+Минимальные квартики: $x^4-x^3-4x^2+4x+1$ и
+$x^4+x^3-4x^2-4x+1$; отражение $P_{30}(x)=P_{15}(-x)$;
+остаток башни $=0$ (целое тождество); $\mathrm{GF}(2)$:
+обе сводятся к $x^4+x^3+1$ (неприводим); спаривание
+$\beta\beta'=12\sqrt5$; $\beta^2+\beta'^2=60$; поле
+$K=\QQ(\zeta_{15})^+$, $\mathrm{Gal}\cong C_4$,
+$\disc K=1125=3^2\cdot5^3=5\cdot15\cdot15$ --- то же число
+$1125$, что объём $\mathrm{vol}_h$ монографии 16/20.
+\end{databox}
+
+\begin{statusbox}[итог]
+Точный слой v1.2 поднят до уровня теорем: закрытые радикалы обеих
+конструктивных ступеней, минимальные квартики с человеческим
+выводом (суммы Раманужана + норма башни + Ньютон + отражение),
+галуа-структура $C_4$ с единственным квадратичным этажом
+$\QQ(\sqrt5)$, целочисленный сертификат башни и $\mathrm{GF}(2)$-отпечаток.
+Одно поле --- две ступени.
+\end{statusbox}
+
+\begin{verifybox}[как воспроизвести]
+\texttt{python3 laboratory.py} $\to$ <<Конструктор $\to$ пункт 5>>
+(радикалы + точный/численный вердикты, $N=15/30$); batch-режим:
+сценарий с пунктами \texttt{bch} ($N=15$, $N=30$);
+тесты: \texttt{pytest tests/ -k bch}; Lean: блок
+\texttt{bch\_radicals}; \texttt{--check-baseline}.
+\end{verifybox}
+
+\vfill
+{\color{linkblue}\hrule height 0.6pt}
+\vspace{0.5em}
+{\small\color{gray}
+Лицензия: индивидуальная исключительная лицензия Исаева Исхака Хамзатовича.
+Все права на вычисления, формулы и тексты принадлежат автору.
+Верификация: \texttt{python3 laboratory.py} (<<Конструктор>>, batch, тесты).
+}
+\end{document}

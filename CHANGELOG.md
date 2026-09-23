@@ -3,6 +3,50 @@
 All notable changes to Hodge Laboratory are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased] — roadmap v1.7 (the theorem monograph collection: 20)
+
+### Added
+
+* **Monographs T17–T20 — the collection grown to 20 theorems,
+  80 documents.** Four new standalone theorem monographs in the
+  uniform four-format package (RU/EN × PDF/DOCX + LaTeX sources):
+  * **T17 = Certificate I, the Hurwitz rung N = 7** — the prime-level
+    census 15 = h₇, the cubic layer x³+x²−2x−1 with the exact Vieta
+    integers (−1,−2,1) in ℤ[ζ]/(Φ₇), and the Cardano closed form
+    with the exact pairing |t|² = (7/9)³ → ∛t·∛t̄ = 7/9
+    (casus irreducibilis, Δ = −49/108) and the Viète trigonometric
+    form (2√7/3)·cos(⅓·arctan 3√3) − 1/3.
+  * **T18 = Certificate J, the Macbeath rung N = 9** — the census
+    28 = 1 + 27, the cubic x³−3x+1 with Vieta (0,−3,−1) (s₁ via the
+    Ramanujan sum c₉(1) = μ(9) = 0), and the Cardano form whose
+    arguments are primitive roots of unity: ∛ω = ζ₉ — the only rung
+    with the Cardano arguments on the unit circle.
+  * **T19 = The quartic tower of N = 15/30** — the exact layer of
+    roadmap v1.2 raised to theorem status: the closed radicals
+    b_Ch(15) = (7−√5−√(30−6√5))/8, b_Ch(30) = (9−√5−√(30+6√5))/8;
+    the minimal quartics derived from first principles (Ramanujan
+    sums + the doubling lemma + the tower norm + Newton), the
+    reflection identity P₃₀(x) = P₁₅(−x), the tower pairing
+    ββ′ = 12√5 — one cyclic quartic field ℚ(ζ₁₅)⁺ with
+    disc K = 1125 = 5·15·15 (the volume number of certificate H),
+    the integer tower certificate and the GF(2) fingerprint
+    (both quartics ≡ x⁴+x³+1).
+  * **T20 = The conductor census** — the arithmetic derivation of
+    the genus: the triangle c(N) = (N−1)(N−2)/2, the lifting lemma
+    (a bijection between level-d characters and level-N characters
+    with conductor dividing d), Möbius inversion, the
+    self-similarity h_d(N) = h_d(d), and the exact histograms of
+    all four rungs (15; 28 = 1+27; 91 = 1+6+84;
+    406 = 1+6+9+30+84+276) with the bit-for-bit agreement of the
+    two schemes (V1).
+* `theorems/README.md` — the index extended with Parts IV–V, the
+  cross-reference map and the verification rows of T17–T20; the
+  next slots are T21 (v1.5, the cyclic quintic N = 11) and T22
+  (v1.6, the SNF spectra).
+* `README.md` — the badge, the tables and the citation records
+  updated to 20 monographs / 80 documents; roadmap v1.7 ticked
+  (delivered beyond the plan: T19 and T20 included).
+
 ## [Unreleased] — roadmap v1.3 (N = 7/9 stands)
 
 ### Added
