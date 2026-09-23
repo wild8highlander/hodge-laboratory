@@ -1,6 +1,6 @@
-THE DYNAMIC PRINCIPLE LABORATORY
-the program of Isaev Iskhak Khamzatovich · hodge-laboratory
-2026-09-23 08:09:30
+ЛАБОРАТОРИЯ «ДИНАМИЧЕСКИЙ ПРИНЦИП»
+программа Исаева Исхака Хамзатовича · hodge-laboratory
+2026-09-23 17:08:02
 ============================================================
 
 [checks]
@@ -8,7 +8,7 @@ the program of Isaev Iskhak Khamzatovich · hodge-laboratory
   V1_census.data.15.h_d.15                     84
   V1_census.data.15.h_d.3                      1
   V1_census.data.15.h_d.5                      6
-  V1_census.data.15.mobius_match               PASS
+  V1_census.data.15.mobius_match               ПРОЙДЕНО
   V1_census.data.15.total                      91
   V1_census.data.30.genus                      406
   V1_census.data.30.h_d.10                     30
@@ -17,28 +17,28 @@ the program of Isaev Iskhak Khamzatovich · hodge-laboratory
   V1_census.data.30.h_d.30                     276
   V1_census.data.30.h_d.5                      6
   V1_census.data.30.h_d.6                      9
-  V1_census.data.30.mobius_match               PASS
+  V1_census.data.30.mobius_match               ПРОЙДЕНО
   V1_census.data.30.total                      406
   V1_census.data.7.genus                       15
   V1_census.data.7.h_d.7                       15
-  V1_census.data.7.mobius_match                PASS
+  V1_census.data.7.mobius_match                ПРОЙДЕНО
   V1_census.data.7.total                       15
   V1_census.data.9.genus                       28
   V1_census.data.9.h_d.3                       1
   V1_census.data.9.h_d.9                       27
-  V1_census.data.9.mobius_match                PASS
+  V1_census.data.9.mobius_match                ПРОЙДЕНО
   V1_census.data.9.total                       28
-  V1_census.pass                               PASS
+  V1_census.pass                               ПРОЙДЕНО
   V2V3_certB.data.max_phase_dev                7.52316384526264e-37
   V2V3_certB.data.max_rel_err                  3.853710440091966e-36
   V2V3_certB.data.n_tests                      90
-  V2V3_certB.pass                              PASS
+  V2V3_certB.pass                              ПРОЙДЕНО
   V4_certC.data.max_rel_err                    4.3763094108442054e-36
-  V4_certC.pass                                PASS
+  V4_certC.pass                                ПРОЙДЕНО
   V5_chain.data.max_rel                        2.8578948291111995e-36
-  V5_chain.pass                                PASS
+  V5_chain.pass                                ПРОЙДЕНО
   V6_reflection.data.max_rel_err               7.01288058796896e-36
-  V6_reflection.pass                           PASS
+  V6_reflection.pass                           ПРОЙДЕНО
   V7_rank.data.15.cond                         8.631861887686473
   V7_rank.data.15.genus                        91
   V7_rank.data.15.rank                         91
@@ -55,35 +55,35 @@ the program of Isaev Iskhak Khamzatovich · hodge-laboratory
   V7_rank.data.9.genus                         28
   V7_rank.data.9.rank                          28
   V7_rank.data.9.rows                          28
-  V7_rank.pass                                 PASS
+  V7_rank.pass                                 ПРОЙДЕНО
   V8_dft.data.diag                             1.0666600203457015e-36
   V8_dft.data.offdiag                          4.0036581597109073e-36
-  V8_dft.pass                                  PASS
+  V8_dft.pass                                  ПРОЙДЕНО
   V9_deep.data.rel_err                         1.258720039947873e-71
-  V9_deep.pass                                 PASS
-  _protocol_time_s                             2.0
+  V9_deep.pass                                 ПРОЙДЕНО
+  _protocol_time_s                             2.1
 
 [stands]
   binary_code.data.tstar                       48
   binary_code.data.visited                     48
-  binary_code.pass                             PASS
+  binary_code.pass                             ПРОЙДЕНО
   errata_e8.data.table.1                       (4, 3, 1)
   errata_e8.data.table.2                       (16, 10, 6)
   errata_e8.data.table.3                       (64, 36, 28)
   errata_e8.data.table.4                       (256, 136, 120)
-  errata_e8.pass                               PASS
+  errata_e8.pass                               ПРОЙДЕНО
   k3.data.det                                  64
   k3.data.rank                                 20
-  k3.pass                                      PASS
+  k3.pass                                      ПРОЙДЕНО
   klein.data.j                                 -3375
-  klein.pass                                   PASS
+  klein.pass                                   ПРОЙДЕНО
   n7.data.bch_rel_err                          1.998130165504827e-36
   n7.data.genus                                15
   n7.data.h_d.7                                15
   n7.data.period_rel_err                       1.0320725409563741e-36
   n7.data.rung                                 Hurwitz
   n7.data.syms                                 (-1, -2, 1)
-  n7.pass                                      PASS
+  n7.pass                                      ПРОЙДЕНО
   n9.data.bch_rel_err                          3.21563802354502e-36
   n9.data.genus                                28
   n9.data.h_d.3                                1
@@ -91,38 +91,38 @@ the program of Isaev Iskhak Khamzatovich · hodge-laboratory
   n9.data.period_rel_err                       2.296790207354913e-36
   n9.data.rung                                 Macbeath
   n9.data.syms                                 (0, -3, -1)
-  n9.pass                                      PASS
+  n9.pass                                      ПРОЙДЕНО
   torus.data.Delta                             39.48799539346835
-  torus.pass                                   PASS
+  torus.pass                                   ПРОЙДЕНО
 
 [certificates]
   A.data.kernel                                29
-  A.pass                                       PASS
+  A.pass                                       ПРОЙДЕНО
   B.data                                       None
-  B.pass                                       PASS
+  B.pass                                       ПРОЙДЕНО
   C.data                                       None
-  C.pass                                       PASS
+  C.pass                                       ПРОЙДЕНО
   D.data                                       None
-  D.pass                                       PASS
+  D.pass                                       ПРОЙДЕНО
   E.data                                       None
-  E.pass                                       PASS
+  E.pass                                       ПРОЙДЕНО
   F.data                                       None
-  F.pass                                       PASS
+  F.pass                                       ПРОЙДЕНО
   G.data                                       None
-  G.pass                                       PASS
+  G.pass                                       ПРОЙДЕНО
   H.data                                       None
-  H.pass                                       PASS
+  H.pass                                       ПРОЙДЕНО
   I.data.bch_rel_err                           1.998130165504827e-36
   I.data.genus                                 15
   I.data.syms                                  (-1, -2, 1)
-  I.pass                                       PASS
+  I.pass                                       ПРОЙДЕНО
   J.data.bch_rel_err                           3.21563802354502e-36
   J.data.genus                                 28
   J.data.syms                                  (0, -3, -1)
-  J.pass                                       PASS
+  J.pass                                       ПРОЙДЕНО
 
 [plots]
   count.data.made                              8
-  count.pass                                   PASS
+  count.pass                                   ПРОЙДЕНО
 
-VERDICT: ALL CHECKS PASSED
+VERDICT: ВСЕ ПРОВЕРКИ ПРОЙДЕНЫ

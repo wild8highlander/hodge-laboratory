@@ -13,11 +13,11 @@ reproducible verification in 5 languages + the Lean 4 kernel**
 [![DOI](https://img.shields.io/badge/DOI-pending_Zenodo_mint-9A9A9A)](#15-zenodo--doi)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--7299--0701-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-7299-0701)
 [![Protocol](https://img.shields.io/badge/protocol_V1%E2%80%93V9-ALL_PASS-2EA043)](#6-the-protocol-v1v9-reproducibility-record)
-[![Certificates](https://img.shields.io/badge/certificates_A%E2%80%93H-8%2F8_ACCEPTED-gold)](#5-the-certificates-of-the-program)
+[![Certificates](https://img.shields.io/badge/certificates_A%E2%80%93J-10%2F10_ACCEPTED-gold)](#5-the-certificates-of-the-program)
 [![Lean 4](https://img.shields.io/badge/Lean_4-kernel_verified-9558B2)](verification/lean/)
 [![Verification](https://img.shields.io/badge/stack-5_languages_✔-2EA043)](#8-five-language-verification--the-lean-4-kernel)
 [![Monograph](https://img.shields.io/badge/monograph-RU%2FEN_×_PDF%2FDOCX-1284BA)](monograph/)
-[![Theorems](https://img.shields.io/badge/theorem_monographs-16_×_2_languages-8B5CF6)](theorems/)
+[![Theorems](https://img.shields.io/badge/theorem_monographs-16_×_RU%2FEN_×_PDF%2FDOCX-8B5CF6)](theorems/)
 [![Plots](https://img.shields.io/badge/plots-8_@_600dpi-green)](reports/)
 [![Python](https://img.shields.io/badge/Python-3.10%E2%80%933.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Platforms](https://img.shields.io/badge/platforms-Termux_·_Linux_·_macOS-lightgrey)](INSTRUCTION.md)
@@ -79,7 +79,7 @@ package contains:
 |---|---|
 | 🧪 **Laboratory** (`laboratory.py`) | a single file: the full protocol V1–V9, seven stands, certificates A–J, an experiment designer, 600 dpi tiled plots, RU/EN interface |
 | 📕 **Unified monograph** (`monograph/`) | «The Dynamic Principle» — 80 pp. (RU) / 53 pp. (EN), PDF + DOCX, LaTeX sources |
-| 📚 **16 theorem monographs** (`theorems/`) | one folder per theorem, each with full proofs in RU and EN |
+| 📚 **16 theorem monographs** (`theorems/`) | one folder per theorem: full proofs in RU and EN, each as PDF + DOCX (64 documents) + LaTeX sources |
 | ✅ **Verification stack** (`verification/`) | C, Rust, Julia, Fortran — independent reimplementations + **Lean 4** kernel proofs |
 | 📊 **Baseline** (`results/`) | reference JSON for byte-level reproduction checks |
 | 🌐 **Landing page** (`docs/`) | GitHub Pages site of the program |
@@ -91,9 +91,12 @@ the character census, closed Gamma-forms against tanh-sinh
 quadratures at relative deviation ~10⁻³⁶, exact phase laws, orbit-sum
 vanishing, the reflection ladder, numerical completeness with rank =
 g, DFT orthogonality, and a deep-precision record at dps = 70 with
-residual ~10⁻⁷¹. Eight certificates **A–H** close the logical
-structure; the N = 15/30 stand forms a **closed system** of eight
-lemmas and six theorems with complete proofs.
+residual ~10⁻⁷¹. Ten certificates **A–J** close the logical
+structure — including the cubic rungs **N = 7** (Hurwitz) and
+**N = 9** (Macbeath) with exact integer Vieta identities in
+ℤ[ζ]/(Φ_n), GF(2)-irreducibility and Cardano closed forms; the
+N = 15/30 stand forms a **closed system** of eight lemmas and six
+theorems with complete proofs.
 
 **Why it matters.** Every number in this README is produced by the
 laboratory in a fully deterministic run — no seeds, no randomness, no
@@ -303,10 +306,14 @@ enumeration itself has not reproduced.
 | F | Rationalization | a priori bound **Q = 256** (Cramér); LLL: Im τ = √7/2, 4X²−7 | ✅ accepted (5/5) |
 | G | Hodge lattice indices | λ_{m,n} = (2π)²·\|mτ−n\|²/(Im τ)²; Chowla–Selberg layer; **π/15, π/30** | ✅ accepted (6/6) |
 | H | Stand N=15/30 | SNF (1,1,5,5,15,15,15,15); **vol_h = 1125**; Q = 480; levels irreducible | ✅ accepted (6/6) |
+| I | Hurwitz rung N=7 | census **15 = h₇ = g(7)**; Vieta **(−1,−2,1)** in ℤ[ζ]/(Φ₇); x³+x²−2x−1 irreducible over GF(2); Cardano **b_Ch(7)** | ✅ accepted (5/5) |
+| J | Macbeath rung N=9 | census **28 = 1 + 27**; Vieta **(0,−3,−1)** in ℤ[ζ]/(Φ₉); x³−3x+1 irreducible over GF(2); Cardano **b_Ch(9)** | ✅ accepted (5/5) |
 
-Each certificate is documented in a standalone monograph
-([`theorems/T10…T16`](theorems/)) and is exercised by the laboratory
-(menu item 3, or `--run certs`).
+Certificates A–H are documented in standalone monographs
+([`theorems/T10…T16`](theorems/)); the rung certificates I and J are
+exercised by the laboratory, with their monographs (T17, T18)
+scheduled by the roadmap (v1.7). All ten run via menu item 3, or
+`--run certs`.
 
 ---
 
@@ -374,8 +381,8 @@ no installation step beyond `pip install mpmath numpy matplotlib`.
 ```
 ┌──────────────────────────────────────────────────────────┐
 │  1. Full protocol V1–V9                                  │
-│  2. Stands: torus / K3 / Klein / errata E8 / binary code │
-│  3. Certificates A–H (by choice or all)                  │
+│  2. Stands: torus/K3/Klein/N=7/9/E8/binary code          │
+│  3. Certificates A–J (by choice or all)                  │
 │  4. Calculation parameters (dps, samples, levels)        │
 │  5. Own experiment designer                              │
 │  6. Plots: tiled system 600 dpi (8 tiles)                │
@@ -496,7 +503,11 @@ trees, glossary). LaTeX sources are included for both languages; see
 
 Each theorem of the program is packaged as a self-sufficient
 monograph — statement, complete proof, protocol data, verification
-guide — in **both Russian and English** (32 PDFs + LaTeX sources).
+guide — in **both Russian and English** and in **both PDF and DOCX**:
+64 documents (`monograph_RU.pdf`, `monograph_RU.docx`,
+`monograph_EN.pdf`, `monograph_EN.docx` in every folder) plus the
+LaTeX sources. The DOCX editions carry native Word equations (OMML)
+and follow the same six-block scheme as the PDFs.
 
 | Part | Folders | Content |
 |---|---|---|
@@ -505,7 +516,11 @@ guide — in **both Russian and English** (32 PDFs + LaTeX sources).
 | III. Certificates | `T10_certificate_b` … `T16_certificate_h_klein` | certificates B–H with the Klein quartic finale |
 
 The full index with reading paths and cross-references lives in
-[`theorems/README.md`](theorems/README.md).
+[`theorems/README.md`](theorems/README.md). The collection **grows
+together with the program**: every newly proved roadmap item arrives
+as the same four-format package — LaTeX → PDF (tectonic) → DOCX
+(native OMML via `scripts/build_theorem_docx.py`). Next in line:
+T17 = certificate I and T18 = certificate J (roadmap v1.7).
 
 ---
 
@@ -515,7 +530,7 @@ The full index with reading paths and cross-references lives in
 |---|---|---|
 | 🧪 **Laboratory** | [`laboratory.py`](laboratory.py) | single file: test menu, parameters, experiment designer, reports, 600 dpi plots, RU/EN switch, 5-language and Lean launchers |
 | 📕 **Monograph** | [`monograph/`](monograph/) | the unified monograph: PDF + DOCX, each in two languages, LaTeX sources |
-| 📚 **Theorems** | [`theorems/`](theorems/) | **16 standalone monographs** — one per theorem, PDFs in two languages + LaTeX |
+| 📚 **Theorems** | [`theorems/`](theorems/) | **16 standalone monographs** — one per theorem, PDF + DOCX in two languages + LaTeX |
 | ✅ **Verification** | [`verification/`](verification/) | Lean 4 (machine proofs), Julia, Fortran, C, Rust — independent implementations of one identity set |
 | 🧪 **Tests** | [`tests/`](tests/) | the pytest suite for the laboratory core |
 | 📊 **Baselines** | [`results/`](results/) | reference JSON for reproduction cross-checks |
@@ -529,7 +544,7 @@ hodge-laboratory/
 ├── laboratory.py                  ← the laboratory (single file)
 ├── tests/                         ← pytest suite
 ├── monograph/                     ← PDF/DOCX × RU/EN + LaTeX
-├── theorems/                      ← 16 theorem folders × RU/EN
+├── theorems/                      ← 16 theorem folders × RU/EN × PDF/DOCX
 ├── verification/                  ← lean/ · julia/ · fortran/ · c/ · rust/
 ├── results/                       ← baseline JSON
 ├── reports/                       ← committed reference run artifacts
@@ -702,8 +717,8 @@ If this program is useful in your research, please cite it:
   version      = {1.1.1},
   publisher    = {hodge-laboratory},
   howpublished = {\url{https://github.com/wild8highlander/hodge-laboratory}},
-  note         = {Protocol V1--V9, certificates A--H, 16 theorem monographs,
-                  5-language + Lean 4 verification}
+  note         = {Protocol V1--V9, certificates A--J, 16 theorem monographs,
+                  64 PDF/DOCX documents, 5-language + Lean 4 verification}
 }
 ```
 
@@ -904,7 +919,7 @@ norm and is welcome.
 | **Census h_d** | the count of characters of conductor d; Σh_d = g is the V1 identity |
 | **Ω_{a,b}** | the Gamma quotient Γ(a/N)Γ(b/N)/Γ((a+b)/N) — the modulus of the period |
 | **Braking γ, effective phase δ_eff** | the δ⁴/k and δ⁵/k corrections of the united formula |
-| **Certificate A–H** | a certified block of the program: divisor, kernel closure, equivariance, termination, rationalization, indices, volume |
+| **Certificates A–J** | a certified block of the program: divisor, kernel closure, equivariance, termination, rationalization, indices, volume, and the cubic rungs N=7/9 (exact ℤ[ζ] layer + Cardano) |
 | **SNF** | Smith normal form of the N=15/30 lattice: (1,1,5,5,15,15,15,15) |
 | **vol_h** | the h-volume 1125 = √(3⁴·5⁶) from the Gross Γ-normalization |
 | **t\*** | the exact termination time of the (a, b)-flow: lcm(W/gcd(a,W), H/gcd(b,H)) |

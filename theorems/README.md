@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**16 self-sufficient studies · 32 PDFs · two languages · complete proofs**
+**16 self-sufficient studies · 64 documents · PDF + DOCX · RU/EN · complete proofs**
 
 Each theorem of the program is packaged as a standalone monograph:
 statement, complete proof, protocol data, summary of what is proved,
@@ -50,7 +50,7 @@ individually — at any time and in any order.
 
 ## 📐 The uniform structure of every monograph
 
-All 32 PDFs follow one scheme:
+All 64 documents (PDF and DOCX in both languages) follow one scheme:
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -76,10 +76,41 @@ Files in each folder:
 
 | File | Content |
 |---|---|
-| `monograph_RU.pdf` | the full theorem monograph (Russian) |
-| `monograph_EN.pdf` | the full theorem monograph (English) |
+| `monograph_RU.pdf` | the full theorem monograph (Russian, LaTeX/tectonic) |
+| `monograph_RU.docx` | Word edition of the same monograph with native OMML equations (Russian) |
+| `monograph_EN.pdf` | the full theorem monograph (English, LaTeX/tectonic) |
+| `monograph_EN.docx` | Word edition of the same monograph with native OMML equations (English) |
 | `latex/ru/monograph.tex` | LaTeX source (Russian) |
 | `latex/en/monograph.tex` | LaTeX source (English) |
+
+The DOCX editions are generated from the same LaTeX sources
+(`scripts/build_theorem_docx.py`: pandoc + a styled reference
+template), so the two formats never diverge in content — a proof
+edited once appears identically in both.
+
+---
+
+## 🧬 How the collection grows
+
+Every newly proved roadmap item becomes a monograph in the same
+four-format package, so the collection expands without changing its
+shape:
+
+```
+1. write  latex/ru/monograph.tex  and  latex/en/monograph.tex
+          (the six-block scheme above; theorem environments +
+           statusbox/databox/verifybox)
+2. build  monograph_RU.pdf / monograph_EN.pdf   (tectonic)
+3. build  monograph_RU.docx / monograph_EN.docx
+          (scripts/build_theorem_docx.py — pandoc, native OMML,
+           styled protocol boxes, RU/EN metadata)
+4. register  the row in the index above + the roadmap checkbox
+```
+
+Next slots: **T17 = certificate I** (the Hurwitz rung N = 7) and
+**T18 = certificate J** (the Macbeath rung N = 9) — roadmap v1.7;
+their content is already fixed by the laboratory certificates and
+the baseline.
 
 ---
 

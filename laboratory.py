@@ -69,8 +69,8 @@ L = {
   'sub': 'программа Исаева Исхака Хамзатовича · hodge-laboratory',
   'choose_lang': 'Выберите язык интерфейса / Choose language [ru/en]: ',
   'menu': ['Полный протокол V1–V9 (стенд N=15/30)',
-           'Стенды: тор / K3 / Клейн / errata E8 / бинарный код',
-           'Сертификаты A–H (по выбору или все)',
+           'Стенды: тор / K3 / Клейн / N=7 / N=9 / errata E8 / бинарный код',
+           'Сертификаты A–J (по выбору или все)',
            'Параметры расчётов (dps, выборки, уровни)',
            'Конструктор собственных экспериментов',
            'Диаграммы: плиточная система 600 dpi',
@@ -142,8 +142,8 @@ L = {
   'sub': 'the program of Isaev Iskhak Khamzatovich · hodge-laboratory',
   'choose_lang': 'Choose language / Выберите язык [ru/en]: ',
   'menu': ['Full protocol V1–V9 (stand N=15/30)',
-           'Stands: torus / K3 / Klein / errata E8 / binary code',
-           'Certificates A–H (by choice or all)',
+           'Stands: torus / K3 / Klein / N=7 / N=9 / errata E8 / binary code',
+           'Certificates A–J (by choice or all)',
            'Calculation parameters (dps, samples, levels)',
            'Own experiment designer',
            'Plots: tiled system 600 dpi',
@@ -1458,7 +1458,7 @@ def run_one_stand(name: str) -> bool:
 
 
 # ──────────────────────────────────────────────────────────────────────
-# CERTIFICATES A–H (key checks)
+# CERTIFICATES A–J (key checks)
 # ──────────────────────────────────────────────────────────────────────
 
 def cert_A(verbose: bool = True) -> bool:

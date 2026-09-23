@@ -42,6 +42,17 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 * 13 new pytest tests (53 total): the census tables of N = 7/9, the
   exact Vieta collapse, GF(2) irreducibility, the Cardano layer, the
   new stands and certificates, the extended baseline.
+* **DOCX editions of the standalone theorem monographs** — every
+  theorem folder now ships `monograph_RU.docx` and `monograph_EN.docx`
+  alongside the PDFs: 16 theorems × 2 languages = **64 documents**.
+  Generated from the same LaTeX sources by the new
+  `scripts/build_theorem_docx.py` (pandoc + a styled reference
+  template): native Word equations (OMML), the uniform six-block
+  scheme, styled protocol boxes (summary / protocol data /
+  verification) and RU/EN document metadata. The collection therefore
+  grows together with the proofs — T17 (certificate I) and T18
+  (certificate J) will arrive as the same four-format package
+  (roadmap v1.7).
 
 ### Fixed
 
@@ -53,6 +64,12 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   the protocol record (§6), §2.2 and the architecture diagram now
   include the N = 7/9 rungs; the roadmap (§17) is rewritten with the
   completed history compressed and the new plan v1.5–v1.7/v2.0.
+* **Interface/documentation sync of the v1.3 additions** — the
+  interactive menu (RU/EN) now names the N = 7/9 stands and the full
+  A–J certificate range; the README badge (A–J 10/10), the
+  certificate table (rows I and J), the §7 menu box, the glossary,
+  the BibTeX note and §10 (the theorem-monograph collection, now
+  64 PDF/DOCX documents) reflect all new proofs.
 
 ## [Unreleased] — roadmap v1.2 + v1.4
 
