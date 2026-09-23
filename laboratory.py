@@ -16,6 +16,7 @@
 Run:    python3 laboratory.py                  (interactive menu)
         python3 laboratory.py --run all       (full protocol)
         python3 laboratory.py --lang en       (English interface)
+        python3 laboratory.py --batch s.json  (batch mode: queue of designer runs)
         python3 laboratory.py --version       (print version)
 """
 import argparse
@@ -36,9 +37,11 @@ __version__ = '1.1.2'
 
 try:
     from mpmath import arg as mp_arg
+    from mpmath import cos as mp_cos
     from mpmath import expj, mp, mpc, mpf, sin
     from mpmath import gamma as mgamma
     from mpmath import pi as mpi
+    from mpmath import sqrt as mp_sqrt
     HAVE_MPMATH = True
 except ImportError:
     HAVE_MPMATH = False
@@ -92,7 +95,8 @@ L = {
                     'CM-решётка: λ₁ для произвольного d',
                     'Время завершимости потока t* (E4)',
                     'Радикальная константа b_Ch(n)',
-                    'Полный мини-сертификат (замкнутая форма + интеграл)'],
+                    'Полный мини-сертификат (замкнутая форма + интеграл)',
+                    'Пакетный прогон: очередь из JSON-сценария'],
   'enter_n': 'Уровень N [4..64]: ',
   'enter_ab': 'Пара (a,b) через пробел: ',
   'enter_rs': 'Данные обхода (r,s) через пробел: ',
@@ -100,6 +104,16 @@ L = {
   'enter_wh': 'Сетка W H через пробел: ',
   'enter_step': 'Шаг (a,b) через пробел: ',
   'enter_n_ch': 'n для b_Ch(n): ',
+  'bch_closed': 'Замкнутая радикальная форма',
+  'bch_exact': 'Точный слой: радикал удовлетворяет минимальному квартику (Z[√5][√D], GF(2))',
+  'bch_compare': 'Замкнутая форма против mpmath cos',
+  'bch_no_radical': 'Радикалы установлены для n = 15 и n = 30 (роадмап v1.2); показано численное значение',
+  'batch': 'ПАКЕТНЫЙ РЕЖИМ — ОЧЕРЕДЬ ПРОГОНОВ КОНСТРУКТОРА',
+  'batch_path': 'Путь к JSON-сценарию: ',
+  'batch_done': 'Сводный отчёт записан в {}',
+  'batch_bad_json': 'Не удалось прочитать сценарий: {}',
+  'batch_bad_shape': 'Сценарий должен быть JSON-объектом с непустым массивом "runs".',
+  'batch_bad_dps': 'dps в сценарии должен быть целым от 20 до 120, получено: {}',
   'plots': 'ГЕНЕРАЦИЯ ДИАГРАММ (600 dpi, плиточная система)',
   'plot_done': 'Диаграммы записаны в {}',
   'report_hdr': 'ОТЧЁТЫ',
@@ -154,7 +168,8 @@ L = {
                     'CM lattice: λ₁ for arbitrary d',
                     'Flow termination time t* (E4)',
                     'Radical constant b_Ch(n)',
-                    'Full mini-certificate (closed form + integral)'],
+                    'Full mini-certificate (closed form + integral)',
+                    'Batch run: a queue from a JSON scenario'],
   'enter_n': 'Level N [4..64]: ',
   'enter_ab': 'Pair (a,b) space-separated: ',
   'enter_rs': 'Winding data (r,s) space-separated: ',
@@ -162,6 +177,16 @@ L = {
   'enter_wh': 'Grid W H space-separated: ',
   'enter_step': 'Step (a,b) space-separated: ',
   'enter_n_ch': 'n for b_Ch(n): ',
+  'bch_closed': 'Closed radical form',
+  'bch_exact': 'Exact layer: the radical satisfies the minimal quartic (Z[√5][√D], GF(2))',
+  'bch_compare': 'Closed form vs mpmath cos',
+  'bch_no_radical': 'Radicals are installed for n = 15 and n = 30 (roadmap v1.2); numeric value shown',
+  'batch': 'BATCH MODE — DESIGNER RUN QUEUE',
+  'batch_path': 'Path to the JSON scenario: ',
+  'batch_done': 'Combined report written to {}',
+  'batch_bad_json': 'Cannot read the scenario: {}',
+  'batch_bad_shape': 'The scenario must be a JSON object with a non-empty "runs" array.',
+  'batch_bad_dps': 'The scenario dps must be an integer from 20 to 120, got: {}',
   'plots': 'PLOT GENERATION (600 dpi, tiled system)',
   'plot_done': 'Plots written to {}',
   'report_hdr': 'REPORTS',
@@ -403,6 +428,150 @@ def pick_chars(chars_by_d: dict, per_d: int = 3) -> list:
         for k in list(take)[:per_d]:
             out.append((d, lst[k]))
     return out
+
+
+# ──────────────────────────────────────────────────────────────────────
+# RADICAL CONSTANTS b_Ch (roadmap v1.2 — closed forms, not only numerics)
+# ──────────────────────────────────────────────────────────────────────
+#
+# b_Ch(n) = 1 − cos(2π/n) is the braking constant of the dynamic
+# principle.  The levels n = 15 and n = 30 are products of distinct
+# Fermat primes (3·5 and 2·3·5), so cos(2π/n) is constructible and the
+# constants live in the biquadratic field Q(√5, √(30 ∓ 6√5)):
+#
+#     b_Ch(15) = (7 − √5 − √(30−6√5)) / 8
+#     b_Ch(30) = (9 − √5 − √(30+6√5)) / 8
+#
+# The exact layer below proves the radicals honest with pure integer
+# arithmetic: writing x = 2cos(2π/n) = (c₀ + √5 + β)/4 with β the
+# matching square root, it verifies that
+#   (a) 4⁴·P(x) = 0 EXACTLY in the tower Z[√5][√D], where P is the
+#       monic quartic minimal polynomial of 2cos(2π/n)
+#       (N=15: x⁴−x³−4x²+4x+1;  N=30: x⁴+x³−4x²−4x+1), and
+#   (b) P is irreducible over GF(2) (no F₂-root, no factor x²+x+1),
+#       so P really is the minimal polynomial and the radical is one
+#       of the four conjugates 2cos(2πk/n), gcd(k, n) = 1;
+# the numeric layer (closed form vs mpmath cos at the working dps)
+# then pins the conjugate k = 1.  The radical also sits in the exact
+# rational interval (7/4, 2) — the same interval holds exactly one
+# conjugate of each P — which fixes the branch independently.
+
+# Element of the tower Z[√5][√D]: the pair (A, B) of integer pairs,
+# the value A + B·β, where β² = D = d0 + d1·√5, √5² = 5.
+BCH_RADICALS = {
+    15: {
+        'D': (30, -6),               # β = √(30 − 6√5)
+        'm': ((1, 1), (1, 0)),       # 2cos(2π/15) = (1 + √5 + β)/4
+        'den': 4,
+        'poly': (1, -1, -4, 4, 1),   # x⁴ − x³ − 4x² + 4x + 1
+        'bch': '(7 − √5 − √(30−6√5)) / 8',
+    },
+    30: {
+        'D': (30, 6),                # β = √(30 + 6√5)
+        'm': ((-1, 1), (1, 0)),      # 2cos(2π/30) = (√5 − 1 + β)/4
+        'den': 4,
+        'poly': (1, 1, -4, -4, 1),   # x⁴ + x³ − 4x² − 4x + 1
+        'bch': '(9 − √5 − √(30+6√5)) / 8',
+    },
+}
+
+
+def _z5_mul(p: tuple, q: tuple) -> tuple:
+    """Multiply two elements of Z[√5] given as integer pairs a + b√5."""
+    a, b = p
+    c, d = q
+    return (a * c + 5 * b * d, a * d + b * c)
+
+
+def _z5_add(p: tuple, q: tuple) -> tuple:
+    return (p[0] + q[0], p[1] + q[1])
+
+
+def _tower_mul(u: tuple, v: tuple, D: tuple) -> tuple:
+    """Multiply (A1 + B1·β)(A2 + B2·β) with β² = D ∈ Z[√5]."""
+    A1, B1 = u
+    A2, B2 = v
+    return (_z5_add(_z5_mul(A1, A2), _z5_mul(_z5_mul(B1, B2), D)),
+            _z5_add(_z5_mul(A1, B2), _z5_mul(A2, B1)))
+
+
+def _tower_add(u: tuple, v: tuple) -> tuple:
+    return (_z5_add(u[0], v[0]), _z5_add(u[1], v[1]))
+
+
+def _tower_scale(u: tuple, k: int) -> tuple:
+    return ((u[0][0] * k, u[0][1] * k), (u[1][0] * k, u[1][1] * k))
+
+
+def _bch_exact_residual(n: int) -> tuple:
+    """Return den⁴·P(m/den) computed EXACTLY in Z[√5][√D].
+
+    A zero tower element proves that the radical x = m/den satisfies
+    the minimal quartic P — pure integer arithmetic end to end.
+    """
+    spec = BCH_RADICALS[n]
+    D, m, den, poly = spec['D'], spec['m'], spec['den'], spec['poly']
+    powers = [((1, 0), (0, 0))]          # m⁰ = 1
+    for _ in range(4):
+        powers.append(_tower_mul(powers[-1], m, D))
+    acc = ((0, 0), (0, 0))
+    for k in range(5):                   # coefficient of x^k is poly[4-k]
+        c = poly[4 - k]
+        if c:
+            acc = _tower_add(acc, _tower_scale(powers[k], c * den ** (4 - k)))
+    return acc
+
+
+def _bch_minpoly_irreducible(n: int) -> bool:
+    """The minimal quartic must be irreducible over GF(2).
+
+    A quartic over F₂ is irreducible iff it has no root in F₂ and is
+    not divisible by the only irreducible quadratic x²+x+1.  (Both
+    quartics here reduce to x⁴+x³+1, a known irreducible — the check
+    below recomputes that honestly.)
+    """
+    c = [v % 2 for v in BCH_RADICALS[n]['poly']]         # [c4,c3,c2,c1,c0]
+    if c[4] == 0 or (c[0] + c[1] + c[2] + c[3] + c[4]) % 2 == 0:
+        return False                                     # roots 0 / 1
+    rem = list(c)
+    for lead in range(3):                # divide by x²+x+1 over F₂
+        if rem[lead]:
+            rem[lead] ^= 1
+            rem[lead + 1] ^= 1
+            rem[lead + 2] ^= 1
+    return bool(rem[3] or rem[4])        # remainder must be nonzero
+
+
+def bch_exact_layer(n: int) -> bool:
+    """Two-part exact certificate of the radical for level n (15 or 30):
+    the radical satisfies the minimal quartic exactly (integer tower
+    arithmetic) and the quartic is irreducible over GF(2)."""
+    if n not in BCH_RADICALS:
+        return False
+    zero = ((0, 0), (0, 0))
+    return _bch_exact_residual(n) == zero and _bch_minpoly_irreducible(n)
+
+
+def bch_closed(n: int):
+    """Closed radical form of b_Ch(n) = 1 − cos(2π/n).
+
+    Installed for the constructible levels n = 15 and n = 30 (roadmap
+    v1.2); evaluated at the working mpmath precision.  Other levels
+    raise ValueError — their numeric value is 1 − mp.cos(2π/n).
+    """
+    if n == 15:
+        return (7 - mp_sqrt(mpf(5))
+                - mp_sqrt(30 - 6 * mp_sqrt(mpf(5)))) / 8
+    if n == 30:
+        return (9 - mp_sqrt(mpf(5))
+                - mp_sqrt(30 + 6 * mp_sqrt(mpf(5)))) / 8
+    raise ValueError('closed radical form is installed for n = 15 and '
+                     'n = 30 only (roadmap v1.2)')
+
+
+def bch_numeric(n: int):
+    """b_Ch(n) = 1 − cos(2π/n) at the working mpmath precision."""
+    return 1 - mp_cos(2 * mpi / n)
 
 
 # ──────────────────────────────────────────────────────────────────────
@@ -1401,6 +1570,208 @@ def write_reports() -> bool:
 
 
 # ──────────────────────────────────────────────────────────────────────
+# BATCH EXPERIMENT MODE (roadmap v1.4 — a scripted queue of designer
+# runs with a combined JSON verdict)
+# ──────────────────────────────────────────────────────────────────────
+#
+# Scenario file (JSON):
+#   {
+#     "scenario": "my-experiments",        # optional label
+#     "dps": 35,                           # optional, 20..120
+#     "runs": [
+#       {"type": "period", "N": 15, "a": 2, "b": 3, "r": 0, "s": 1,
+#        "tolerance": 1e-25},
+#       {"type": "census", "N": 15},
+#       {"type": "cm",     "d": 7},
+#       {"type": "flow",   "W": 48, "H": 48, "a": 1, "b": 1,
+#        "expected_t": 48},
+#       {"type": "bch",    "n": 15},
+#       {"type": "omega",  "N": 30, "a": 1, "b": 1, "tolerance": 1e-25}
+#     ]
+#   }
+#
+# Every run is one designer experiment, executed deterministically and
+# crash-hardened: a malformed or failing run is recorded and never
+# kills the queue.  The combined report (reports/batch_report.json by
+# default) carries a per-run verdict plus the ALL PASS / FAIL summary,
+# and the exit code mirrors it — CI can gate on it directly.
+
+BATCH_TYPES = ('period', 'census', 'cm', 'flow', 'bch', 'omega')
+
+
+def _batch_bad(msg: str) -> tuple[bool, dict]:
+    return False, {'error': msg}
+
+
+def _batch_run_one(spec: dict) -> tuple[bool, dict]:
+    """Execute one designer run from the scenario spec."""
+    rtype = spec.get('type')
+
+    if rtype == 'period':
+        N = int(spec.get('N', 15))
+        a = int(spec.get('a', 1))
+        b = int(spec.get('b', 1))
+        r = int(spec.get('r', 0))
+        s = int(spec.get('s', 0))
+        tol = float(spec.get('tolerance', 1e-25))
+        if not (4 <= N <= 64 and 1 <= a and 1 <= b and a + b <= N - 1):
+            return _batch_bad('requirement: 4≤N≤64, 1≤a, 1≤b, a+b≤N−1')
+        pc = period_closed(N, a, b, r, s)
+        pn = period_numeric(N, a, b, r, s)
+        e = rel_err(pc, pn)
+        return e < tol, {'N': N, 'a': a, 'b': b, 'r': r, 's': s,
+                         'rel': e, 'tolerance': tol,
+                         'closed': str(pc), 'quadrature': str(pn)}
+
+    if rtype == 'census':
+        N = int(spec.get('N', 15))
+        if not 4 <= N <= 64:
+            return _batch_bad('requirement: 4≤N≤64')
+        h, _by_d, g = census(N)
+        hm = census_mobius(N)
+        agree = all(h.get(d, 0) == hm.get(d, 0)
+                    for d in set(h) | set(hm))
+        passed = sum(h.values()) == g and agree
+        return passed, {'N': N, 'genus': g,
+                        'h_d': {str(k): v for k, v in h.items()},
+                        'mobius_agrees': agree}
+
+    if rtype == 'cm':
+        d = int(spec.get('d', 7))
+        if not 1 <= d <= 100:
+            return _batch_bad('requirement: 1≤d≤100')
+        lam = (16 if d % 4 == 3 else 4) * math.pi ** 2 / d
+        return True, {'d': d, 'lambda1': lam,
+                      'lambda1_over_4pi': lam / (4 * math.pi)}
+
+    if rtype == 'flow':
+        W = int(spec.get('W', 48))
+        H = int(spec.get('H', 48))
+        a = int(spec.get('a', 1))
+        b = int(spec.get('b', 1))
+        if min(W, H, a, b) < 1:
+            return _batch_bad('requirement: W, H, a, b ≥ 1')
+        tstar = math.lcm(W // gcd(a, W), H // gcd(b, H))
+        data = {'W': W, 'H': H, 'a': a, 'b': b, 't_star': tstar}
+        if 'expected_t' in spec:
+            expected = int(spec['expected_t'])
+            data['expected_t'] = expected
+            data['agrees'] = tstar == expected
+            return tstar == expected, data
+        return True, data
+
+    if rtype == 'bch':
+        n = int(spec.get('n', 15))
+        num = bch_numeric(n)
+        data = {'n': n, 'b_Ch': str(num)}
+        if n in BCH_RADICALS:
+            closed = bch_closed(n)
+            e = rel_err(closed, num)
+            exact = bch_exact_layer(n)
+            data.update({'closed': str(closed), 'rel': e,
+                         'tolerance': 1e-25, 'exact_layer': exact,
+                         'radical': BCH_RADICALS[n]['bch']})
+            return (exact and e < 1e-25), data
+        return True, data
+
+    if rtype == 'omega':
+        N = int(spec.get('N', 30))
+        a = int(spec.get('a', 1))
+        b = int(spec.get('b', 1))
+        tol = float(spec.get('tolerance', 1e-25))
+        if not (4 <= N <= 64 and 1 <= a and 1 <= b and a + b <= N - 1):
+            return _batch_bad('requirement: 4≤N≤64, 1≤a, 1≤b, a+b≤N−1')
+        om = omega_closed(N, a, b)
+        e = rel_err(period_closed(N, a, b, 0, 0),
+                    period_numeric(N, a, b, 0, 0))
+        return e < tol, {'N': N, 'a': a, 'b': b, 'Omega': str(om),
+                         'rel': e, 'tolerance': tol}
+
+    return _batch_bad('unknown run type: '
+                      f'{rtype!r} (known types: {", ".join(BATCH_TYPES)})')
+
+
+def run_batch(scenario_path: str,
+              out_path: str | None = None,
+              verbose: bool = True) -> bool:
+    """Batch experiment mode: run the scripted queue of designer runs.
+
+    Reads the JSON scenario, executes every run deterministically,
+    writes the combined JSON verdict (default
+    reports/batch_report.json) and returns the overall verdict.
+    ValueError is raised for an unreadable/malformed scenario file
+    itself; malformed individual runs are recorded as failures.
+    """
+    try:
+        with open(scenario_path, encoding='utf-8') as f:
+            scen = json.load(f)
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(t('batch_bad_json').format(exc)) from exc
+    runs_spec = scen.get('runs') if isinstance(scen, dict) else None
+    if not isinstance(runs_spec, list) or not runs_spec:
+        raise ValueError(t('batch_bad_shape'))
+
+    if 'dps' in scen:
+        dps_req = scen['dps']
+        if not isinstance(dps_req, int) or not 20 <= dps_req <= 120:
+            raise ValueError(t('batch_bad_dps').format(dps_req))
+        mp.dps = dps_req
+
+    if verbose:
+        hdr(t('batch'))
+    out_runs = []
+    for i, spec in enumerate(runs_spec, 1):
+        if not isinstance(spec, dict):
+            passed, data = False, {'error': 'run must be a JSON object'}
+            rtype = '?'
+        else:
+            rtype = str(spec.get('type', '?'))
+            try:
+                passed, data = _batch_run_one(spec)
+            except Exception as exc:            # crash-hardened queue
+                passed, data = False, {'error': str(exc)}
+        out_runs.append({'index': i, 'type': rtype,
+                         'spec': spec if isinstance(spec, dict) else {},
+                         'pass': bool(passed), 'data': data})
+        if verbose:
+            mark = (ok if passed else fail)
+            mark(f'run {i:02d} [{rtype}]')
+            brief = json.dumps(data, ensure_ascii=False, default=str)
+            if len(brief) > 72:
+                brief = brief[:69] + '…'
+            print(f'      {C.DIM}{brief}{C.RESET}')
+
+    total = len(out_runs)
+    n_pass = sum(1 for r in out_runs if r['pass'])
+    verdict = n_pass == total
+    report = {
+        'meta': {'version': __version__, 'dps': int(mp.dps),
+                 'language': LANG,
+                 'scenario': scen.get('scenario')
+                 if isinstance(scen, dict) else None,
+                 'source': os.path.abspath(scenario_path)},
+        'runs': out_runs,
+        'summary': {'total': total, 'passed': n_pass,
+                    'failed': total - n_pass},
+        'verdict': 'ALL PASS' if verdict else 'FAIL',
+    }
+    out = out_path or os.path.join(REPORTS, 'batch_report.json')
+    os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
+    with open(out, 'w', encoding='utf-8') as f:
+        json.dump(report, f, ensure_ascii=False, indent=1, default=str)
+    if verbose:
+        ok(f'batch_report → {out}')
+        print(f'\n  {t("summary")}: '
+              f'{total - n_pass}/{total} '
+              f'{t("fail")} · {n_pass}/{total} {t("pass")}')
+        v = t('all_pass') if verdict else t('has_fail')
+        color = C.GREEN if verdict else C.RED
+        print(f'  {color}{v}{C.RESET}')
+        print(f'  {C.DIM}{t("batch_done").format(out)}{C.RESET}')
+    return verdict
+
+
+# ──────────────────────────────────────────────────────────────────────
 # MULTILINGUAL VERIFICATION
 # ──────────────────────────────────────────────────────────────────────
 
@@ -1607,9 +1978,17 @@ def menu_designer() -> None:
             ok('formula E4: t* = lcm(W/gcd(a,W), H/gcd(b,H))')
         elif k == 5:
             n = ask_int(t('enter_n_ch'), 3, 360, 15)
-            val = 1 - math.cos(2 * math.pi / n)
-            info(f'b_Ch({n}) = 1 − cos(2π/{n})', f'{val:.6f}')
-            ok('radical constant (radicals for n = 15, 30 — see theorems)')
+            num = bch_numeric(n)
+            info(f'b_Ch({n}) = 1 − cos(2π/{n})', f'{float(num):.12f}')
+            if n in BCH_RADICALS:
+                closed = bch_closed(n)
+                e = rel_err(closed, num)
+                exact = bch_exact_layer(n)
+                kv(t('bch_closed'), BCH_RADICALS[n]['bch'])
+                (ok if exact else fail)(t('bch_exact'))
+                (ok if e < 1e-25 else fail)(t('bch_compare'), f'rel={e:.2e}')
+            else:
+                info(t('bch_no_radical'), 'n = 15 · n = 30')
         elif k == 6:
             N = ask_int(t('enter_n'), 4, 64, 30)
             a, b = ask_pair(t('enter_ab'), (1, 1))
@@ -1624,6 +2003,13 @@ def menu_designer() -> None:
                         period_numeric(N, a, b, 0, 0))
             (ok if e < 1e-25 else fail)('closed form vs independent integral',
                                         f'rel={e:.2e}')
+        elif k == 7:
+            path = input(t('batch_path')).strip().strip('"').strip("'")
+            if path:
+                try:
+                    run_batch(path)
+                except ValueError as exc:
+                    print(f'  {C.RED}{exc}{C.RESET}')
         else:
             print(t('bad'))
         input(t('press'))
@@ -1783,6 +2169,13 @@ def main() -> None:
     ap.add_argument('--check-baseline', action='store_true',
                     help='cross-check the integer layer against '
                          'results/baseline_v1_v9.json and exit')
+    ap.add_argument('--batch', metavar='SCENARIO.json', default=None,
+                    help='batch mode: run the scripted queue of designer '
+                         'runs from a JSON scenario and write the combined '
+                         'verdict (default reports/batch_report.json)')
+    ap.add_argument('--batch-out', metavar='FILE', default=None,
+                    help='where to write the combined batch verdict '
+                         '(used with --batch)')
     ap.add_argument('--no-plots', action='store_true')
     ap.add_argument('--version', action='version',
                     version=f'Hodge Laboratory {__version__}')
@@ -1795,6 +2188,8 @@ def main() -> None:
         sys.exit(2)
     if args.lang:
         LANG = args.lang
+    elif args.batch:
+        LANG = 'ru'      # scripted mode: never prompt for the language
     else:
         try:
             choose_language()
@@ -1808,6 +2203,15 @@ def main() -> None:
     if args.check_baseline:
         show_banner()
         sys.exit(0 if check_baseline() else 1)
+
+    if args.batch:
+        show_banner()
+        try:
+            verdict = run_batch(args.batch, args.batch_out)
+        except ValueError as exc:
+            print(f'  {C.RED}{exc}{C.RESET}')
+            sys.exit(2)      # malformed scenario — distinct exit code
+        sys.exit(0 if verdict else 1)
 
     show_banner()
 

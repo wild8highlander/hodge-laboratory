@@ -6,6 +6,7 @@ randomness.  Run:  python3 -m pytest tests/ -q
 """
 
 import importlib.util
+import json
 import math
 import sys
 from fractions import Fraction
@@ -358,3 +359,147 @@ def test_lean_panel_g1_arf_count_matches_formula():
             'HodgeLaboratory.lean').read_text(encoding='utf-8')
     assert '2^0 * (2^1 + 1) = 3' in lean
     assert '2^1 * (2^1 + 1)' not in lean
+
+
+# ────────────────────────────────────────────────────────────────────
+# Roadmap v1.2 — radical closed forms for b_Ch(15) and b_Ch(30)
+# ────────────────────────────────────────────────────────────────────
+
+def test_bch_closed_forms_match_numeric():
+    """The radicals (7−√5−√(30−6√5))/8 and (9−√5−√(30+6√5))/8 must
+    reproduce 1 − cos(2π/n) at the working precision."""
+    for n in (15, 30):
+        closed = laboratory.bch_closed(n)
+        numeric = laboratory.bch_numeric(n)
+        assert laboratory.rel_err(closed, numeric) < 1e-30, n
+
+
+def test_bch_exact_layer():
+    """Pure-integer certificate: the radical satisfies its minimal
+    quartic EXACTLY in Z[√5][√D], and the quartic is irreducible
+    over GF(2) — so the radical is a true conjugate 2cos(2πk/n)."""
+    for n in (15, 30):
+        assert laboratory._bch_exact_residual(n) == ((0, 0), (0, 0)), n
+        assert laboratory._bch_minpoly_irreducible(n) is True, n
+        assert laboratory.bch_exact_layer(n) is True, n
+
+
+def test_bch_minimal_polynomials_known():
+    """The quartics pinned by the conjugate sums: N=15 →
+    x⁴−x³−4x²+4x+1, N=30 → x⁴+x³−4x²−4x+1 (regression guard against
+    accidental spec edits)."""
+    assert laboratory.BCH_RADICALS[15]['poly'] == (1, -1, -4, 4, 1)
+    assert laboratory.BCH_RADICALS[30]['poly'] == (1, 1, -4, -4, 1)
+
+
+def test_bch_closed_rejects_other_levels():
+    with pytest.raises(ValueError):
+        laboratory.bch_closed(7)
+    assert laboratory.bch_exact_layer(7) is False
+
+
+def test_bch_radical_strings_present():
+    assert '√5' in laboratory.BCH_RADICALS[15]['bch']
+    assert '√5' in laboratory.BCH_RADICALS[30]['bch']
+    assert '30' in laboratory.BCH_RADICALS[15]['bch']
+
+
+# ────────────────────────────────────────────────────────────────────
+# Roadmap v1.4 — batch experiment mode
+# ────────────────────────────────────────────────────────────────────
+
+def _write_scenario(tmp_path: Path, runs, **extra) -> str:
+    scen = {'scenario': 'pytest', **extra, 'runs': runs}
+    p = tmp_path / 'scenario.json'
+    p.write_text(json.dumps(scen), encoding='utf-8')
+    return str(p)
+
+
+def test_batch_mode_all_pass(tmp_path):
+    scen = _write_scenario(tmp_path, [
+        {'type': 'period', 'N': 15, 'a': 2, 'b': 3, 'r': 0, 's': 1},
+        {'type': 'census', 'N': 15},
+        {'type': 'cm', 'd': 7},
+        {'type': 'flow', 'W': 48, 'H': 48, 'a': 1, 'b': 1,
+         'expected_t': 48},
+        {'type': 'bch', 'n': 15},
+        {'type': 'bch', 'n': 30},
+        {'type': 'omega', 'N': 30, 'a': 1, 'b': 1},
+    ])
+    out = tmp_path / 'batch_report.json'
+    assert laboratory.run_batch(scen, str(out), verbose=False) is True
+    rep = json.loads(out.read_text(encoding='utf-8'))
+    assert rep['verdict'] == 'ALL PASS'
+    assert rep['summary'] == {'total': 7, 'passed': 7, 'failed': 0}
+    assert all(r['pass'] for r in rep['runs'])
+
+
+def test_batch_mode_bch_run_carries_the_radical(tmp_path):
+    scen = _write_scenario(tmp_path, [{'type': 'bch', 'n': 15}])
+    out = tmp_path / 'batch_report.json'
+    laboratory.run_batch(scen, str(out), verbose=False)
+    rep = json.loads(out.read_text(encoding='utf-8'))
+    data = rep['runs'][0]['data']
+    assert data['exact_layer'] is True
+    assert '√5' in data['radical']
+    assert data['rel'] < 1e-25
+
+
+def test_batch_mode_failure_flips_verdict_and_exit(tmp_path):
+    scen = _write_scenario(tmp_path, [
+        {'type': 'period', 'N': 15, 'a': 1, 'b': 1, 'tolerance': 0.0},
+        {'type': 'flow', 'W': 48, 'H': 48, 'a': 1, 'b': 1,
+         'expected_t': 7},
+    ])
+    out = tmp_path / 'batch_report.json'
+    assert laboratory.run_batch(scen, str(out), verbose=False) is False
+    rep = json.loads(out.read_text(encoding='utf-8'))
+    assert rep['verdict'] == 'FAIL'
+    assert rep['summary']['failed'] == 2
+
+
+def test_batch_mode_crash_hardened(tmp_path):
+    """Malformed single runs are recorded as failures, never raised;
+    a malformed scenario FILE raises ValueError (exit code 2 in CLI)."""
+    scen = _write_scenario(tmp_path, [
+        {'type': 'nope'},
+        'not-an-object',
+        {'type': 'period', 'N': 3},          # violates 4≤N≤64
+        {'type': 'census', 'N': 'abc'},      # int() inside the runner
+    ])
+    out = tmp_path / 'batch_report.json'
+    assert laboratory.run_batch(scen, str(out), verbose=False) is False
+    rep = json.loads(out.read_text(encoding='utf-8'))
+    assert rep['summary']['failed'] == 4
+    assert 'unknown run type' in rep['runs'][0]['data']['error']
+
+    broken = tmp_path / 'broken.json'
+    broken.write_text('{not json', encoding='utf-8')
+    with pytest.raises(ValueError):
+        laboratory.run_batch(str(broken), str(tmp_path / 'o.json'),
+                             verbose=False)
+
+    empty = tmp_path / 'empty.json'
+    empty.write_text('{"runs": []}', encoding='utf-8')
+    with pytest.raises(ValueError):
+        laboratory.run_batch(str(empty), str(tmp_path / 'o.json'),
+                             verbose=False)
+
+    bad_dps = _write_scenario(tmp_path, [{'type': 'cm', 'd': 7}],
+                              dps=999)
+    with pytest.raises(ValueError):
+        laboratory.run_batch(bad_dps, str(tmp_path / 'o.json'),
+                             verbose=False)
+
+
+def test_batch_mode_honours_scenario_dps(tmp_path):
+    scen = _write_scenario(tmp_path, [{'type': 'bch', 'n': 15}], dps=40)
+    out = tmp_path / 'batch_report.json'
+    old = laboratory.mp.dps
+    try:
+        laboratory.run_batch(scen, str(out), verbose=False)
+        assert int(laboratory.mp.dps) == 40
+        rep = json.loads(out.read_text(encoding='utf-8'))
+        assert rep['meta']['dps'] == 40
+    finally:
+        laboratory.mp.dps = old

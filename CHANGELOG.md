@@ -3,6 +3,52 @@
 All notable changes to Hodge Laboratory are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased] — roadmap v1.2 + v1.4
+
+### Added
+
+* **Roadmap v1.2 — radical arithmetic for `b_Ch(15)` and `b_Ch(30)`
+  inside the designer** (menu item 5): the braking constants now ship
+  with closed radical forms — `b_Ch(15) = (7 − √5 − √(30−6√5))/8`,
+  `b_Ch(30) = (9 − √5 − √(30+6√5))/8` — each certified by two
+  layers. The exact layer runs on pure integer arithmetic in the
+  biquadratic tower `Z[√5][√(30∓6√5)]`: the radical satisfies its
+  monic quartic minimal polynomial exactly (`x⁴−x³−4x²+4x+1` for
+  N=15, `x⁴+x³−4x²−4x+1` for N=30) and the quartic is irreducible
+  over GF(2). The numeric layer compares the closed form against
+  mpmath `cos` at the working dps (threshold 1e-25, measured margins
+  ≈1e-34). New API: `bch_closed`, `bch_numeric`, `bch_exact_layer`,
+  `BCH_RADICALS`.
+* **Roadmap v1.4 — batch experiment mode**: `python3 laboratory.py
+  --batch scenario.json [--batch-out FILE]` runs a scripted queue of
+  designer experiments — `period`, `census`, `cm`, `flow`, `bch`,
+  `omega` — and writes a combined JSON verdict (default
+  `reports/batch_report.json`) with a per-run verdict, the
+  `ALL PASS` / `FAIL` summary and the scenario dps. The queue is
+  deterministic and crash-hardened: a malformed run is recorded as a
+  failure and never kills the batch. Exit codes mirror the verdict:
+  `0` ALL PASS, `1` failures present, `2` malformed scenario file.
+  The designer (menu item 7) accepts the same scenario
+  interactively; a ready scenario ships as
+  [`examples/batch_smoke.json`](examples/batch_smoke.json).
+* **`scripts/set_doi.sh`** — one-command registration of the minted
+  Zenodo DOI: rewrites the README badge and the `identifiers` block
+  of `CITATION.cff`; the concept DOI is added via
+  `CONCEPT_DOI=10.5281/zenodo.<ID>`.
+* 10 new pytest tests (40 total): the exact b_Ch certificate, the
+  known minimal quartics, the batch queue (ALL PASS, FAIL,
+  crash-hardening, scenario dps).
+
+### Fixed
+
+* **README** — the DOI badge carried the placeholder
+  `10.5281/zenodo.XXXXXX` and linked to the «DOI NOT FOUND» page at
+  doi.org (no Zenodo record exists yet). The badge is now a neutral
+  «pending Zenodo mint» state linking to §15; once the record is
+  minted, `scripts/set_doi.sh` installs the real DOI in one command.
+* `reports/` — reference artifacts regenerated with v1.1.2 (the
+  committed copies were stale v1.1.0 runs with a vacuous `V7` entry).
+
 ## [1.1.2] — 2026-09-22
 
 ### Fixed

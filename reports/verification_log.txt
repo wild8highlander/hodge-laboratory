@@ -1,6 +1,6 @@
 THE DYNAMIC PRINCIPLE LABORATORY
 the program of Isaev Iskhak Khamzatovich · hodge-laboratory
-2026-09-22 01:11:04
+2026-09-23 00:31:28
 ============================================================
 
 [checks]
@@ -30,14 +30,21 @@ the program of Isaev Iskhak Khamzatovich · hodge-laboratory
   V5_chain.pass                                PASS
   V6_reflection.data.max_rel_err               7.01288058796896e-36
   V6_reflection.pass                           PASS
-  V7_rank.data.skipped                         PASS
+  V7_rank.data.15.cond                         8.631861887686473
+  V7_rank.data.15.genus                        91
+  V7_rank.data.15.rank                         91
+  V7_rank.data.15.rows                         91
+  V7_rank.data.30.cond                         17.348920074507312
+  V7_rank.data.30.genus                        406
+  V7_rank.data.30.rank                         140
+  V7_rank.data.30.rows                         140
   V7_rank.pass                                 PASS
   V8_dft.data.diag                             1.0666600203457015e-36
   V8_dft.data.offdiag                          4.0036581597109073e-36
   V8_dft.pass                                  PASS
   V9_deep.data.rel_err                         1.258720039947873e-71
   V9_deep.pass                                 PASS
-  _protocol_time_s                             5.6
+  _protocol_time_s                             1.7
 
 [stands]
   binary_code.data.tstar                       48

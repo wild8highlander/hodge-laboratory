@@ -1,9 +1,9 @@
 {
  "meta": {
   "dps": 35,
-  "timestamp": "2026-09-22 01:11:04",
+  "timestamp": "2026-09-23 00:31:28",
   "language": "en",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "author": "Исаев Исхак Хамзатович / Isaev Iskhak Khamzatovich"
  },
  "checks": {
@@ -64,7 +64,18 @@
   "V7_rank": {
    "pass": true,
    "data": {
-    "skipped": true
+    "15": {
+     "rank": 91,
+     "rows": 91,
+     "genus": 91,
+     "cond": 8.631861887686473
+    },
+    "30": {
+     "rank": 140,
+     "rows": 140,
+     "genus": 406,
+     "cond": 17.348920074507312
+    }
    }
   },
   "V8_dft": {
@@ -80,7 +91,7 @@
     "rel_err": 1.258720039947873e-71
    }
   },
-  "_protocol_time_s": 5.6
+  "_protocol_time_s": 1.7
  },
  "stands": {
   "torus": {

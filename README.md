@@ -10,7 +10,7 @@ reproducible verification in 5 languages + the Lean 4 kernel**
 
 [![CI — Verification Suite](https://github.com/wild8highlander/hodge-laboratory/actions/workflows/ci.yml/badge.svg)](https://github.com/wild8highlander/hodge-laboratory/actions/workflows/ci.yml)
 [![GitHub Pages](https://github.com/wild8highlander/hodge-laboratory/actions/workflows/pages.yml/badge.svg)](https://github.com/wild8highlander/hodge-laboratory/actions/workflows/pages.yml)
-[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.XXXXXX-1284BA)](https://doi.org/10.5281/zenodo.XXXXXX)
+[![DOI](https://img.shields.io/badge/DOI-pending_Zenodo_mint-9A9A9A)](#15-zenodo--doi)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0003--7299--0701-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0003-7299-0701)
 [![Protocol](https://img.shields.io/badge/protocol_V1%E2%80%93V9-ALL_PASS-2EA043)](#6-the-protocol-v1v9-reproducibility-record)
 [![Certificates](https://img.shields.io/badge/certificates_A%E2%80%93H-8%2F8_ACCEPTED-gold)](#5-the-certificates-of-the-program)
@@ -390,7 +390,16 @@ no installation step beyond `pip install mpmath numpy matplotlib`.
 * **Experiment designer** — arbitrary N, characters (a, b), winding
   data (r, s), CM-lattices, termination times, radicals — every run
   receives a mini-certificate (closed form + independent integral +
-  verdict).
+  verdict). The radical constants come with closed forms:
+  `b_Ch(15) = (7 − √5 − √(30−6√5))/8`, `b_Ch(30) = (9 − √5 −
+  √(30+6√5))/8`, each certified by an exact integer layer in the
+  tower Z[√5][√D] plus a dps-level comparison (roadmap v1.2).
+* **Batch experiment mode** — `python3 laboratory.py --batch
+  scenario.json` runs a scripted queue of designer experiments
+  (period, census, cm, flow, bch, omega) and writes a combined JSON
+  verdict (`reports/batch_report.json` by default); exit codes:
+  `0` ALL PASS · `1` failures · `2` malformed scenario (roadmap
+  v1.4; a sample scenario ships as `examples/batch_smoke.json`).
 * **Reports** to `reports/`: JSON + text log + 8 tiles at 600 dpi
   (census, phase lattice, reflection ladder, b_Ch, braking, protocol
   residuals, genus ladder, DFT orthogonality).
@@ -661,9 +670,12 @@ automatically:
    and mints the record with the metadata from `.zenodo.json`
    (author, ORCID, keywords, license note).
 4. Copy the version DOI and the concept DOI from the record page.
-5. Replace the placeholder `XXXXXX` in the DOI badge above and fill
-   the `identifiers` block of [`CITATION.cff`](CITATION.cff)
-   (the exact insertion points are marked there with comments).
+5. Register the DOI in one command —
+   `bash scripts/set_doi.sh 10.5281/zenodo.<ID>` — it rewrites the
+   DOI badge above and the `identifiers` block of
+   [`CITATION.cff`](CITATION.cff) (add the concept DOI with
+   `CONCEPT_DOI=10.5281/zenodo.<ConceptID>`); or replace the
+   placeholder manually in the same two places.
 
 The author's ORCID is [0009-0003-7299-0701](https://orcid.org/0009-0003-7299-0701)
 — it is embedded in `CITATION.cff`, `.zenodo.json`, and the README
@@ -724,11 +736,11 @@ order the ladder demands:
       (10, not 5), backend exit codes honoured by the multilingual
       runner, crash-hardened designer input, genuine baseline E8
       cross-check, README artwork
-- [ ] **v1.2** — radical arithmetic for `b_Ch(15)` and `b_Ch(30)`
+- [x] **v1.2** — radical arithmetic for `b_Ch(15)` and `b_Ch(30)`
       inside the designer (closed forms, not only numerics)
 - [ ] **v1.3** — Level N = 7 and N = 9 stands in the ladder tables
       (Macbeath, Hurwitz rungs) with their own certificates
-- [ ] **v1.4** — batch experiment mode: a scripted queue of designer
+- [x] **v1.4** — batch experiment mode: a scripted queue of designer
       runs with a combined JSON verdict
 - [ ] **v2.0** — the next ladder step: higher cyclotomic levels and
       their SNF spectra (monograph part in preparation)

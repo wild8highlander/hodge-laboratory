@@ -1,0 +1,17 @@
+{
+  "scenario": "smoke-test-v1.4",
+  "dps": 35,
+  "runs": [
+    {"type": "period", "N": 15, "a": 2, "b": 3, "r": 0, "s": 1},
+    {"type": "period", "N": 30, "a": 1, "b": 1, "r": 2, "s": 0, "tolerance": 1e-25},
+    {"type": "census", "N": 15},
+    {"type": "census", "N": 30},
+    {"type": "cm", "d": 7},
+    {"type": "flow", "W": 48, "H": 48, "a": 1, "b": 1, "expected_t": 48},
+    {"type": "flow", "W": 24, "H": 36, "a": 3, "b": 5, "expected_t": 72},
+    {"type": "bch", "n": 15},
+    {"type": "bch", "n": 30},
+    {"type": "bch", "n": 7},
+    {"type": "omega", "N": 30, "a": 1, "b": 1}
+  ]
+}
