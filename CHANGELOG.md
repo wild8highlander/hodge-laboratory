@@ -3,6 +3,57 @@
 All notable changes to Hodge Laboratory are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased] — roadmap v1.3 (N = 7/9 stands)
+
+### Added
+
+* **Roadmap v1.3 — Level N = 7 and N = 9 stands (the Hurwitz and
+  Macbeath rungs) with their own certificates.** New stands
+  `stand_n7` / `stand_n9` (menu item 2, items 4–5; keys `n7`/`n9` in
+  `reports/hodge_report.json`) certify the Fermat-level pipeline at
+  the first non-constructible rungs φ(n)/2 = 3: the conductor census
+  `15 = h₇` and `28 = 1 + 27` (two independent schemes), the cubic
+  exact layer of `b_Ch(7)` / `b_Ch(9)` and period spot-checks.
+* **The cubic exact layer** — pure integer arithmetic in
+  `Z[ζ]/(Φ_n)`: the elementary symmetric polynomials of the
+  conjugates `x_k = ζ^k + ζ^{−k}` are computed by polynomial
+  arithmetic reduced modulo Φ₇ = x⁶+…+x+1 and Φ₉ = x⁶+x³+1 and must
+  collapse to the Vieta integers `(−1, −2, 1)` and `(0, −3, −1)`;
+  the minimal cubics `x³+x²−2x−1` (N=7) and `x³−3x+1` (N=9) are
+  verified irreducible over GF(2). New API: `CYC_CUBICS`,
+  `cyc_exact_layer`, `bch_cardano`, `_minpoly_irreducible_gf2`.
+* **Cardano closed forms for the casus irreducibilis** —
+  `b_Ch(7) = 7/6 − (∛(7(1+3√−3)/54) + ∛(7(1−3√−3)/54))/2`,
+  `b_Ch(9) = 1 − (∛((−1+√−3)/2) + ∛((−1−√−3)/2))/2`, evaluated
+  through principal complex cube roots and compared against mpmath
+  `cos` (threshold 1e-25, measured margins ≈1e-35); the designer
+  (menu item 5) and the batch `bch` run type now cover n = 7/9.
+* **Certificates I and J** — the N = 7 and N = 9 rung certificates
+  (census + Vieta + GF(2) + Cardano + the π/7, π/9 phase anchors);
+  `CERT_FUNCS` now spans A–J.
+* **The protocol gained the new rungs**: V1 (census), V2/V3 (closed
+  vs tanh–sinh + phases), V4 (equivariance), V6 (reflection) and V7
+  (completeness) now loop over N = 7, 9, 15, 30 (V2: 90 tests;
+  V7 certifies ranks 15/28/91/140). V5/V8/V9 stay anchored at the
+  flagship stand N = 15/30.
+* **Baseline extension** — `results/baseline_v1_v9.json` carries the
+  N = 7/9 census tables and the new `V13_cyc` block (Vieta integers,
+  cubics, GF(2) verdicts); `--check-baseline` recomputes all of them.
+* 13 new pytest tests (53 total): the census tables of N = 7/9, the
+  exact Vieta collapse, GF(2) irreducibility, the Cardano layer, the
+  new stands and certificates, the extended baseline.
+
+### Fixed
+
+* **README** — the display formula of the termination certificate
+  used `\operatorname{lcm}`, a macro GitHub's math renderer does not
+  allow (the block failed as «The following macros are not allowed:
+  operatorname»); replaced by `\mathrm{lcm}`.
+* **README** — the ladder table (§4), the certificate table (§5),
+  the protocol record (§6), §2.2 and the architecture diagram now
+  include the N = 7/9 rungs; the roadmap (§17) is rewritten with the
+  completed history compressed and the new plan v1.5–v1.7/v2.0.
+
 ## [Unreleased] — roadmap v1.2 + v1.4
 
 ### Added

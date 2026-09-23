@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hodge Laboratory · The Dynamic Principle Laboratory</title>
-<meta name="description" content="A unified research platform of the program by Isaev Iskhak Khamzatovich: the ladder of stands, certificates A–H, a closed system of theorems, verification in 5 languages and the Lean 4 kernel.">
+<meta name="description" content="A unified research platform of the program by Isaev Iskhak Khamzatovich: the ladder of stands, certificates A–J, a closed system of theorems, verification in 5 languages and the Lean 4 kernel.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Noto+Serif:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -80,14 +80,14 @@ footer .gold{color:var(--gold)}
   <div class="wrap hero">
     <div class="badge-row">
       <span class="badge"><b>PROTOCOL V1–V9</b> · ALL PASS</span>
-      <span class="badge"><b>CERTIFICATES A–H</b> · 8/8 ACCEPTED</span>
+      <span class="badge"><b>CERTIFICATES A–J</b> · 10/10 ACCEPTED</span>
       <span class="badge"><b>LEAN 4</b> · MACHINE VERIFICATION</span>
       <span class="badge"><b>5 LANGUAGES</b> · Python·Julia·Fortran·C·Rust</span>
       <span class="badge"><b>DETERMINISTIC</b> · 0 seeds</span>
     </div>
     <h1 class="serif">Hodge Laboratory<br><span class="thin">The Dynamic Principle</span></h1>
     <p class="sub">A unified research platform: the ladder of stands from the calibration torus
-    to the cyclotomic levels N=15/30, certificates A–H, a closed system of eight lemmas and six
+    through the cubic rungs N=7/9 to the cyclotomic levels N=15/30, certificates A–J, a closed system of eight lemmas and six
     theorems, a reproducible protocol V1–V9, and a computational laboratory in a single file.</p>
     <div class="author">
       <div class="ava">ИИ</div>
@@ -141,6 +141,10 @@ footer .gold{color:var(--gold)}
         <td>ρ = 20 = max (Shioda); (1,19); det 64; 48 lines</td><td class="ok">✓ exact over ℚ</td></tr>
       <tr><td><b>Klein</b></td><td class="num">(7, 22, 3.338)</td><td class="num">3</td>
         <td>j = −3375 = −15³; Δ = −7³; τ = (1+√−7)/2; Ribet</td><td class="ok">✓ certs. B, C</td></tr>
+      <tr><td><b>Fermat 7</b> (Hurwitz rung)</td><td class="num">(7, ·, ·)</td><td class="num">15</td>
+        <td>census h₇ = 15; Cardano closed form b_Ch(7); Vieta exact in Z[ζ]/(Φ₇)</td><td class="ok">✓ certificate I</td></tr>
+      <tr><td><b>Fermat 9</b> (Macbeath rung)</td><td class="num">(9, ·, ·)</td><td class="num">28</td>
+        <td>census 1+27 (conductors 3, 9); Cardano closed form b_Ch(9); Vieta exact in Z[ζ]/(Φ₉)</td><td class="ok">✓ certificate J</td></tr>
       <tr><td><b>Fermat 15</b></td><td class="num">(15, ·, ·)</td><td class="num">91</td>
         <td>census 1+6+84; Γ-normalization; radical b_Ch(15)</td><td class="ok">✓ closed system</td></tr>
       <tr><td><b>Fermat 30</b></td><td class="num">(30, ·, ·)</td><td class="num">406</td>
@@ -151,7 +155,7 @@ footer .gold{color:var(--gold)}
 
 <section id="certs">
   <div class="wrap">
-    <div class="kicker">Certificates A–H</div>
+    <div class="kicker">Certificates A–J</div>
     <h2 class="serif">The certificates of the program</h2>
     <p class="lead">Every non-trivial transition of the pipeline has an independent check:
     exact integer arithmetic or direct integration without Γ-functions.</p>
@@ -164,6 +168,8 @@ footer .gold{color:var(--gold)}
       <div class="card"><h3>F · Rationalization</h3><p>The a priori bound Q = 256 (Cramér); the integer q-scan; LLL: Im τ = √7/2, minpoly 4X²−7.</p><span class="tag">✓ 5/5</span></div>
       <div class="card"><h3>G · Hodge lattice indices</h3><p>λ_{m,n} = (2π)²·|mτ−n|²/(Im τ)²; CM fractions 16π²/d; the Chowla–Selberg layer; the levels π/15 and π/30.</p><span class="tag">✓ 6/6</span></div>
       <div class="card"><h3>H · Stand N=15/30</h3><p>SNF (1,1,5,5,15,15,15,15); disc = 1125²; vol_h = 1125; the denominator bound Q = 480.</p><span class="tag">✓ 6/6</span></div>
+      <div class="card"><h3>I · Level N=7 (Hurwitz)</h3><p>Census {7: 15}; Vieta s = (−1, −2, 1) exact in Z[ζ]/(Φ₇); the cubic irreducible over GF(2); the Cardano form of b_Ch(7).</p><span class="tag">✓ 5/5</span></div>
+      <div class="card"><h3>J · Level N=9 (Macbeath)</h3><p>Census 1+27 (conductors 3, 9); Vieta s = (0, −3, −1) exact in Z[ζ]/(Φ₉); GF(2); the Cardano form of b_Ch(9).</p><span class="tag">✓ 5/5</span></div>
       <div class="card"><h3>Errata E8</h3><p>Spin structures of genus 3: 36 even (Arf=0) / 28 odd (Arf=1) — full enumeration; the typo of the early text is corrected.</p><span class="tag">✓ closed</span></div>
     </div>
   </div>
@@ -177,7 +183,7 @@ footer .gold{color:var(--gold)}
     Working precision dps=35, deep record dps=70.</p>
     <table>
       <tr><th>Check</th><th>Result</th><th>Status</th></tr>
-      <tr><td>V1 character census</td><td class="num">91 = 1+6+84 · 406 = 1+6+9+30+84+276</td><td class="ok">✓ proved + arithmetic</td></tr>
+      <tr><td>V1 character census</td><td class="num">15 = h₇ · 28 = 1+27 · 91 = 1+6+84 · 406 = 1+6+9+30+84+276</td><td class="ok">✓ proved + arithmetic</td></tr>
       <tr><td>V2 closed form ↔ tanh-sinh</td><td class="num">3.9·10⁻³⁶ (69 tests)</td><td class="ok">✓</td></tr>
       <tr><td>V3 phases arg P = 2π(ra+sb)/N</td><td class="num">0.0</td><td class="ok">✓ proved</td></tr>
       <tr><td>V4 μ_N×μ_N-equivariance</td><td class="num">3.9·10⁻³⁶</td><td class="ok">✓</td></tr>

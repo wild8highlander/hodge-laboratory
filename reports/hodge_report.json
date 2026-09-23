@@ -1,7 +1,7 @@
 {
  "meta": {
   "dps": 35,
-  "timestamp": "2026-09-23 00:31:28",
+  "timestamp": "2026-09-23 08:09:30",
   "language": "en",
   "version": "1.1.2",
   "author": "Исаев Исхак Хамзатович / Isaev Iskhak Khamzatovich"
@@ -10,6 +10,23 @@
   "V1_census": {
    "pass": true,
    "data": {
+    "7": {
+     "h_d": {
+      "7": 15
+     },
+     "genus": 15,
+     "total": 15,
+     "mobius_match": true
+    },
+    "9": {
+     "h_d": {
+      "3": 1,
+      "9": 27
+     },
+     "genus": 28,
+     "total": 28,
+     "mobius_match": true
+    },
     "15": {
      "h_d": {
       "3": 1,
@@ -40,7 +57,7 @@
    "data": {
     "max_rel_err": 3.853710440091966e-36,
     "max_phase_dev": 7.52316384526264e-37,
-    "n_tests": 69
+    "n_tests": 90
    }
   },
   "V4_certC": {
@@ -64,6 +81,18 @@
   "V7_rank": {
    "pass": true,
    "data": {
+    "7": {
+     "rank": 15,
+     "rows": 15,
+     "genus": 15,
+     "cond": 3.5221256406854238
+    },
+    "9": {
+     "rank": 28,
+     "rows": 28,
+     "genus": 28,
+     "cond": 4.799835483586546
+    },
     "15": {
      "rank": 91,
      "rows": 91,
@@ -91,7 +120,7 @@
     "rel_err": 1.258720039947873e-71
    }
   },
-  "_protocol_time_s": 1.7
+  "_protocol_time_s": 2.0
  },
  "stands": {
   "torus": {
@@ -111,6 +140,41 @@
    "pass": true,
    "data": {
     "j": -3375
+   }
+  },
+  "n7": {
+   "pass": true,
+   "data": {
+    "genus": 15,
+    "h_d": {
+     "7": 15
+    },
+    "rung": "Hurwitz",
+    "syms": [
+     -1,
+     -2,
+     1
+    ],
+    "bch_rel_err": 1.998130165504827e-36,
+    "period_rel_err": 1.0320725409563741e-36
+   }
+  },
+  "n9": {
+   "pass": true,
+   "data": {
+    "genus": 28,
+    "h_d": {
+     "3": 1,
+     "9": 27
+    },
+    "rung": "Macbeath",
+    "syms": [
+     0,
+     -3,
+     -1
+    ],
+    "bch_rel_err": 3.21563802354502e-36,
+    "period_rel_err": 2.296790207354913e-36
    }
   },
   "errata_e8": {
@@ -182,6 +246,38 @@
   "H": {
    "pass": true,
    "data": null
+  },
+  "I": {
+   "pass": true,
+   "data": {
+    "genus": 15,
+    "syms": [
+     -1,
+     -2,
+     1
+    ],
+    "bch_rel_err": 1.998130165504827e-36
+   }
+  },
+  "J": {
+   "pass": true,
+   "data": {
+    "genus": 28,
+    "syms": [
+     0,
+     -3,
+     -1
+    ],
+    "bch_rel_err": 3.21563802354502e-36
+   }
+  }
+ },
+ "plots": {
+  "count": {
+   "pass": true,
+   "data": {
+    "made": 8
+   }
   }
  }
 }

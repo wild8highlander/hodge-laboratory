@@ -5,7 +5,7 @@
 ### The Dynamic Principle Laboratory
 
 **A unified research platform of the program by Isaev Iskhak Khamzatovich:
-the ladder of stands · certificates A–H · a closed system of theorems ·
+the ladder of stands · certificates A–J · a closed system of theorems ·
 reproducible verification in 5 languages + the Lean 4 kernel**
 
 [![CI — Verification Suite](https://github.com/wild8highlander/hodge-laboratory/actions/workflows/ci.yml/badge.svg)](https://github.com/wild8highlander/hodge-laboratory/actions/workflows/ci.yml)
@@ -23,7 +23,7 @@ reproducible verification in 5 languages + the Lean 4 kernel**
 [![Platforms](https://img.shields.io/badge/platforms-Termux_·_Linux_·_macOS-lightgrey)](INSTRUCTION.md)
 [![License](https://img.shields.io/badge/license-individual_exclusive-red)](LICENSE)
 
-<img src="docs/assets/banner.png" alt="Hodge Laboratory — the Dynamic Principle: Δ_Ch = λ₀ − R/4 + δ²/2 − δ⁵/k, phase lattice motif, protocol V1–V9 ALL PASS, certificates A–H" width="100%">
+<img src="docs/assets/banner.png" alt="Hodge Laboratory — the Dynamic Principle: Δ_Ch = λ₀ − R/4 + δ²/2 − δ⁵/k, phase lattice motif, protocol V1–V9 ALL PASS, certificates A–J" width="100%">
 
 </div>
 
@@ -33,7 +33,8 @@ reproducible verification in 5 languages + the Lean 4 kernel**
 > everything else: the spin phase **δ = π/N**, the braking
 > **γ = δ⁴/k**, the effective phase **δ_eff = δ⁵/k**, and the united
 > formula **Δ_Ch = λ₀ − R/4 + δ²/2 − δ⁵/k** — verified on a ladder of
-> stands from the calibration torus to the cyclotomic levels N = 15/30,
+> stands from the calibration torus through the cubic rungs N = 7/9
+> (the Hurwitz and Macbeath levels) to the cyclotomic levels N = 15/30,
 > where the genera reach **91** and **406**.
 
 ---
@@ -76,7 +77,7 @@ package contains:
 
 | Block | What it delivers |
 |---|---|
-| 🧪 **Laboratory** (`laboratory.py`) | a single file: the full protocol V1–V9, five stands, certificates A–H, an experiment designer, 600 dpi tiled plots, RU/EN interface |
+| 🧪 **Laboratory** (`laboratory.py`) | a single file: the full protocol V1–V9, seven stands, certificates A–J, an experiment designer, 600 dpi tiled plots, RU/EN interface |
 | 📕 **Unified monograph** (`monograph/`) | «The Dynamic Principle» — 80 pp. (RU) / 53 pp. (EN), PDF + DOCX, LaTeX sources |
 | 📚 **16 theorem monographs** (`theorems/`) | one folder per theorem, each with full proofs in RU and EN |
 | ✅ **Verification stack** (`verification/`) | C, Rust, Julia, Fortran — independent reimplementations + **Lean 4** kernel proofs |
@@ -158,8 +159,8 @@ The termination certificate closes the dynamical side with an exact
 formula — the flow stops precisely at
 
 $$
-t^{*} \;=\; \operatorname{lcm}\!\Big(
-\tfrac{W}{\gcd(a,\,W)},\; \tfrac{H}{\gcd(b,\,H)}\Big),
+t^{*} \;=\; \mathrm{lcm}\,\Big(
+\tfrac{W}{\gcd(a,\,W)},\; \tfrac{H}{\gcd(b,\,H)}\Big)
 $$
 
 and the genus of the level-N Fermat curve is
@@ -201,7 +202,7 @@ structural facts: the spin-phase family δ = π/N is strictly
 decreasing, δ_eff < γ whenever δ < 1 (all levels N ≥ 4), and the
 torus carries exactly 2^(2g) = 4 spin structures.
 
-### 2.2 The cyclotomic rungs: N = 15/30
+### 2.2 The cyclotomic rungs: N = 7/9 and N = 15/30
 
 At the top of the ladder the pipeline closes into a system: the
 census of characters by conductor (V1), the closed period forms
@@ -210,6 +211,8 @@ the completeness of the period functionals (V7), the DFT
 orthogonality (V8), and the deep-precision record (V9) certify that
 the construction is **closed** — nothing is left as a free parameter,
 and nothing needs an external input beyond the triple (n, B, λ₀).
+The level-generic checks span all four cyclotomic rungs N = 7, 9,
+15, 30; V5/V8/V9 stay anchored at the flagship stand N = 15/30.
 
 ---
 
@@ -221,10 +224,10 @@ mirrors it layer by layer:
 ```mermaid
 flowchart TB
     G["geometry<br/>(n, B, λ₀)"] --> P["universal parameter-free pipeline<br/>δ = π/N · γ = δ⁴/k · δ_eff = δ⁵/k · Δ_Ch"]
-    P --> S["ladder of stands<br/>torus → K3 → Klein → N=15/30"]
+    P --> S["ladder of stands<br/>torus → K3 → Klein → N=7/9 → N=15/30"]
     S --> C["census & periods<br/>census(N) · Ω_{a,b} · P(r,s)"]
     C --> T["theorems<br/>8 lemmas + 6 theorems (closed system)"]
-    T --> CERT["certificates A–H<br/>divisor · kernel closure · equivariance<br/>termination · rationalization · indices · volume"]
+    T --> CERT["certificates A–J<br/>divisor · kernel closure · equivariance<br/>termination · rationalization · indices · volume"]
     CERT --> V{"verification"}
     V --> PY["Python · mpmath<br/>protocol V1–V9"]
     V --> LEAN["Lean 4 kernel<br/>native_decide"]
@@ -723,27 +726,44 @@ For a standalone theorem monograph, add its number to the title, e.g.
 
 ## 17. Roadmap
 
-The program is alive; the following directions are planned in the
-order the ladder demands:
+The program is alive. The completed rungs are history; the open
+items are planned in the order the ladder demands.
+
+**Completed**
 
 - [x] **v1.0** — unified monograph, certificates A–H, protocol
       V1–V9, five-language stack, Lean kernel panel
-- [x] **v1.1** — verification hardening: genuine Arf enumeration,
-      non-vacuous V5, independent-stack fixes (Julia precision &
-      quadrature, Fortran/C/Rust sign and hygiene), pytest suite,
-      baseline cross-check, CI expansion
-- [x] **v1.1.1** — correctness patch: the Lean Arf count for g = 2
-      (10, not 5), backend exit codes honoured by the multilingual
-      runner, crash-hardened designer input, genuine baseline E8
-      cross-check, README artwork
+- [x] **v1.1 – v1.1.2** — verification hardening: genuine Arf
+      enumeration, non-vacuous V5, independent-stack fixes (Julia
+      precision & quadrature, Fortran/C/Rust sign and hygiene),
+      pytest suite, baseline cross-check, CI expansion, README
+      artwork, crash-hardened designer input
 - [x] **v1.2** — radical arithmetic for `b_Ch(15)` and `b_Ch(30)`
-      inside the designer (closed forms, not only numerics)
-- [ ] **v1.3** — Level N = 7 and N = 9 stands in the ladder tables
-      (Macbeath, Hurwitz rungs) with their own certificates
+      inside the designer: closed forms in the tower
+      Z[√5][√(30∓6√5)], certified by an exact integer layer (the
+      radical satisfies its minimal quartic; irreducible over GF(2))
+- [x] **v1.3** — Level N = 7 and N = 9 stands in the ladder tables
+      (the Hurwitz and Macbeath rungs) with their own certificates:
+      conductor census 15 = h₇ and 28 = 1 + 27, the cubic exact
+      layer of `b_Ch(7)` / `b_Ch(9)` (Vieta identities recomputed
+      exactly in Z[ζ]/(Φ_n) + GF(2) irreducibility), Cardano closed
+      forms for the casus irreducibilis, certificates I and J; the
+      level-generic checks V1/V2–V4/V6/V7 now span all four rungs
 - [x] **v1.4** — batch experiment mode: a scripted queue of designer
       runs with a combined JSON verdict
-- [ ] **v2.0** — the next ladder step: higher cyclotomic levels and
-      their SNF spectra (monograph part in preparation)
+
+**Next**
+
+- [ ] **v1.5** — Level N = 11 (the Hurwitz₃ rung): the cyclic
+      quintic `b_Ch(11)` with its exact layer in Z[ζ₁₁], census
+      h₁₁ = 45, genus 45, a certificate K
+- [ ] **v1.6** — SNF spectra of the period matrices for the rungs
+      N = 7/9/11 with their discriminants, on the model of the
+      N = 30 certificate H
+- [ ] **v1.7** — standalone theorem monographs T17 (certificate I)
+      and T18 (certificate J) in two languages
+- [ ] **v2.0** — higher cyclotomic levels and their SNF spectra
+      (monograph part in preparation)
 
 Feature requests are welcome through
 [Issues](https://github.com/wild8highlander/hodge-laboratory/issues)

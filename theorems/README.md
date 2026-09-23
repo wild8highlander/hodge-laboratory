@@ -125,6 +125,13 @@ of the others — the cross-references are navigation, not dependency.
 | 14 F | Certificates → F | `klein_integers` |
 | 15 G | Certificates → G; designer d | — |
 | 16 H | Certificates → H; Stands → Klein | `stand_disc`, `klein_integers` |
+| cert. I | Certificates → I; Stands → N=7 | — |
+| cert. J | Certificates → J; Stands → N=9 | — |
+
+The certificates I (N = 7, the Hurwitz rung) and J (N = 9, the
+Macbeath rung) are exercised by the laboratory and recorded in the
+baseline; their standalone theorem monographs (T17, T18) are
+scheduled in the roadmap (v1.7).
 
 The exit codes of all implementations: `0` — accepted, `1` — failure.
 

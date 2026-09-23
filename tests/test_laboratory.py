@@ -503,3 +503,111 @@ def test_batch_mode_honours_scenario_dps(tmp_path):
         assert rep['meta']['dps'] == 40
     finally:
         laboratory.mp.dps = old
+
+
+# ══════════════════════════════════════════════════════════════════════
+# Roadmap v1.3 — Level N=7 / N=9 stands (Hurwitz & Macbeath rungs)
+# ══════════════════════════════════════════════════════════════════════
+
+def test_census_n7_n9_known_tables():
+    """V1 at the new rungs: exact census tables and genera."""
+    h7, _, g7 = laboratory.census(7)
+    assert g7 == 15
+    assert h7 == {7: 15}
+    h9, _, g9 = laboratory.census(9)
+    assert g9 == 28
+    assert h9 == {3: 1, 9: 27}
+    # the independent Möbius scheme must agree per conductor
+    for N, h in ((7, h7), (9, h9)):
+        hm = laboratory.census_mobius(N)
+        assert all(h[d] == hm.get(d, 0) for d in set(h) | set(hm)), N
+
+
+def test_cyc_elementary_symmetric_identities():
+    """Vieta integers of 2cos(2πk/n) collapse exactly in Z[ζ]/(Φ_n)."""
+    assert laboratory._cyc_elem_syms(7) == (-1, -2, 1)
+    assert laboratory._cyc_elem_syms(9) == (0, -3, -1)
+
+
+def test_cyc_minpoly_specs_pinned():
+    """Regression guard: the minimal cubics and cyclotomic reductions."""
+    assert laboratory.CYC_CUBICS[7]['poly'] == (1, 1, -2, -1)
+    assert laboratory.CYC_CUBICS[9]['poly'] == (1, 0, -3, 1)
+    assert laboratory.CYC_CUBICS[7]['phi'] == (1, 1, 1, 1, 1, 1, 1)
+    assert laboratory.CYC_CUBICS[9]['phi'] == (1, 0, 0, 1, 0, 0, 1)
+    assert laboratory.CYC_CUBICS[7]['rung'] == 'Hurwitz'
+    assert laboratory.CYC_CUBICS[9]['rung'] == 'Macbeath'
+
+
+def test_minpoly_irreducible_gf2():
+    """The generic GF(2) irreducibility test (cubic and quartic)."""
+    assert laboratory._minpoly_irreducible_gf2((1, 1, -2, -1)) is True
+    assert laboratory._minpoly_irreducible_gf2((1, 0, -3, 1)) is True
+    # reducible samples: x³+x² (root 0), x³+1 (root 1... over F₂: x³+1=(x+1)(x²+x+1)),
+    # x³+x+1 mod 2 has root 1 → 1+1+1 = 1 ≠ 0 hmm — it is irreducible; use x³+x²+x = x(x²+x+1)
+    assert laboratory._minpoly_irreducible_gf2((1, 1, 0, 0)) is False
+    assert laboratory._minpoly_irreducible_gf2((1, 0, 0, 1)) is False  # x³+1
+    # quartic cross-check against the v1.2 verdicts
+    assert laboratory._minpoly_irreducible_gf2((1, -1, -4, 4, 1)) is True
+    assert laboratory._minpoly_irreducible_gf2((1, 1, -4, -4, 1)) is True
+
+
+def test_cyc_exact_layer():
+    assert laboratory.cyc_exact_layer(7)['pass'] is True
+    assert laboratory.cyc_exact_layer(9)['pass'] is True
+
+
+def test_bch_cardano_matches_cos():
+    """The Cardano closed forms (casus irreducibilis) match mpmath cos."""
+    for n in (7, 9):
+        e = laboratory.rel_err(laboratory.bch_cardano(n),
+                               laboratory.bch_numeric(n))
+        assert e < 1e-25, n
+
+
+def test_bch_cardano_rejects_other_levels():
+    with pytest.raises(ValueError):
+        laboratory.bch_cardano(11)
+    with pytest.raises(ValueError):
+        laboratory.bch_cardano(15)
+
+
+def test_bch_closed_still_rejects_cubic_levels():
+    """v1.2's radical tower stays 15/30-only; 7/9 use the Cardano layer."""
+    with pytest.raises(ValueError):
+        laboratory.bch_closed(7)
+    assert laboratory.bch_exact_layer(7) is False
+    assert laboratory.bch_exact_layer(9) is False
+
+
+def test_stands_n7_n9():
+    for n in ('n7', 'n9'):
+        fn = getattr(laboratory, f'stand_{n}')
+        assert fn(verbose=False) is True
+        entry = laboratory.RESULTS['stands'][n]
+        assert entry['pass'] is True
+        assert entry['data']['rung'] in ('Hurwitz', 'Macbeath')
+
+
+def test_cert_i_and_j():
+    assert laboratory.cert_I(verbose=False) is True
+    assert laboratory.cert_J(verbose=False) is True
+    assert laboratory.RESULTS['certificates']['I']['pass'] is True
+    assert laboratory.RESULTS['certificates']['J']['pass'] is True
+
+
+def test_cert_registry_covers_a_to_j():
+    assert sorted(laboratory.CERT_FUNCS) == list('ABCDEFGHIJ')
+
+
+def test_protocol_extended_levels():
+    """V1/V7 verdict data now covers all four rungs 7/9/15/30."""
+    assert laboratory.v1_census(verbose=False) is True
+    d = laboratory.RESULTS['checks']['V1_census']['data']
+    assert sorted(d) == [7, 9, 15, 30]
+    assert d[7]['genus'] == 15 and d[9]['genus'] == 28
+
+
+def test_baseline_extended_for_v13():
+    """--check-baseline now cross-checks the N=7/9 census and Vieta."""
+    assert laboratory.check_baseline() is True

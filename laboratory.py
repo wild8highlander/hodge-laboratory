@@ -83,7 +83,7 @@ L = {
   'bad': 'Неверный пункт.',
   'stand': 'Стенд',
   'cert': 'Сертификат',
-  'cert_prompt': 'Номер сертификата (A–H) или Enter для всех: ',
+  'cert_prompt': 'Номер сертификата (A–J) или Enter для всех: ',
   'param_hdr': 'ПАРАМЕТРЫ РАСЧЁТОВ',
   'param_dps': 'Точность mpmath, цифр [{}]: ',
   'param_range_bad': 'Некорректный ввод — введите целое от {lo} до {hi}.',
@@ -107,7 +107,7 @@ L = {
   'bch_closed': 'Замкнутая радикальная форма',
   'bch_exact': 'Точный слой: радикал удовлетворяет минимальному квартику (Z[√5][√D], GF(2))',
   'bch_compare': 'Замкнутая форма против mpmath cos',
-  'bch_no_radical': 'Радикалы установлены для n = 15 и n = 30 (роадмап v1.2); показано численное значение',
+  'bch_no_radical': 'Замкнутые формы установлены для n = 7, 9 (Кардано, роадмап v1.3) и n = 15, 30 (радикалы, роадмап v1.2); показано численное значение',
   'batch': 'ПАКЕТНЫЙ РЕЖИМ — ОЧЕРЕДЬ ПРОГОНОВ КОНСТРУКТОРА',
   'batch_path': 'Путь к JSON-сценарию: ',
   'batch_done': 'Сводный отчёт записан в {}',
@@ -122,8 +122,8 @@ L = {
   'lean': 'LEAN-ВЕРИФИКАЦИЯ',
   'about': ('ПРОГРАММА «ДИНАМИЧЕСКИЙ ПРИНЦИП»\n'
             'Автор: Исаев Исхак Хамзатович. Все права защищены.\n\n'
-            'Лестница стендов: тор → K3 → Клейн → N=15/30.\n'
-            'Сертификаты A–H приняты. Протокол V1–V9 воспроизводим.\n'
+            'Лестница стендов: тор → K3 → Клейн → N=7 → N=9 → N=15/30.\n'
+            'Сертификаты A–J приняты. Протокол V1–V9 воспроизводим.\n'
             'Лицензия: индивидуальная исключительная (см. LICENSE).\n'
             'Цитирование: см. CITATION.cff.'),
   'pass': 'ПРОЙДЕНО',
@@ -156,7 +156,7 @@ L = {
   'bad': 'Invalid item.',
   'stand': 'Stand',
   'cert': 'Certificate',
-  'cert_prompt': 'Certificate letter (A–H) or Enter for all: ',
+  'cert_prompt': 'Certificate letter (A–J) or Enter for all: ',
   'param_hdr': 'CALCULATION PARAMETERS',
   'param_dps': 'mpmath precision, digits [{}]: ',
   'param_range_bad': 'Invalid input — enter an integer from {lo} to {hi}.',
@@ -180,7 +180,7 @@ L = {
   'bch_closed': 'Closed radical form',
   'bch_exact': 'Exact layer: the radical satisfies the minimal quartic (Z[√5][√D], GF(2))',
   'bch_compare': 'Closed form vs mpmath cos',
-  'bch_no_radical': 'Radicals are installed for n = 15 and n = 30 (roadmap v1.2); numeric value shown',
+  'bch_no_radical': 'Closed forms are installed for n = 7, 9 (Cardano, roadmap v1.3) and n = 15, 30 (radicals, roadmap v1.2); numeric value shown',
   'batch': 'BATCH MODE — DESIGNER RUN QUEUE',
   'batch_path': 'Path to the JSON scenario: ',
   'batch_done': 'Combined report written to {}',
@@ -195,8 +195,8 @@ L = {
   'lean': 'LEAN VERIFICATION',
   'about': ('THE DYNAMIC PRINCIPLE PROGRAM\n'
             'Author: Isaev Iskhak Khamzatovich. All rights reserved.\n\n'
-            'The ladder: torus -> K3 -> Klein -> N=15/30.\n'
-            'Certificates A–H accepted. Protocol V1–V9 reproducible.\n'
+            'The ladder: torus -> K3 -> Klein -> N=7 -> N=9 -> N=15/30.\n'
+            'Certificates A–J accepted. Protocol V1–V9 reproducible.\n'
             'License: individual exclusive (see LICENSE).\n'
             'Citation: see CITATION.cff.'),
   'pass': 'PASS',
@@ -575,15 +575,204 @@ def bch_numeric(n: int):
 
 
 # ──────────────────────────────────────────────────────────────────────
+# CYCLOTOMIC EXACT LAYER (roadmap v1.3 — the cubic rungs N = 7 / 9)
+# ──────────────────────────────────────────────────────────────────────
+#
+# The levels n = 7 and n = 9 are the first NON-constructible rungs of
+# the ladder: φ(n)/2 = 3, so x = 2cos(2π/n) is a cubic algebraic number
+# with minimal polynomials
+#
+#     n = 7:  x³ + x² − 2x − 1   (the Hurwitz rung — the Klein quartic
+#                                 is the genus-3 Hurwitz curve, the
+#                                 order-7 rotation of the ladder)
+#     n = 9:  x³ − 3x + 1        (the Macbeath rung — the genus-7
+#                                 Macbeath curve shares the order-9
+#                                 rotation of the ladder)
+#
+# Both cubics have three REAL roots 2cos(2πk/n), gcd(k, n) = 1,
+# k ~ k⁻¹ — the casus irreducibilis: the Cardano radical form needs
+# complex cube roots,
+#
+#     n = 7:  2cos(2π/7) = ∛(7(1+3i√3)/54) + ∛(7(1−3i√3)/54) − 1/3
+#     n = 9:  2cos(2π/9) = ∛((−1+i√3)/2) + ∛((−1−i√3)/2)
+#
+# where the principal cube roots pair correctly (|7(1+3i√3)/54|² =
+# 343/729 = (7/9)³, so the product of the two radicals is exactly
+# 7/9 — the Cardano pairing — and both arguments are ±atan(3√3)/3,
+# symmetric about the real axis).
+#
+# The exact layer certifies the closed forms with pure integer
+# arithmetic in Z[ζ]/(Φ_n):
+#   (a) the elementary symmetric polynomials of the three conjugates
+#       x_k = ζ^k + ζ^{−k}, computed EXACTLY by polynomial arithmetic
+#       reduced modulo Φ_n, collapse to integers and match the Vieta
+#       coefficients of the minimal cubic;
+#   (b) the cubic is irreducible over GF(2) (no F₂-root), so it really
+#       is the minimal polynomial and its roots are the conjugates;
+# the numeric layer (Cardano vs mpmath cos at the working dps, plus
+# the isolation x₁ > x₂ > x₃ of the largest conjugate) pins k = 1.
+
+CYC_CUBICS = {
+    7: {
+        'units': (1, 2, 3),            # k ~ ±1, ±2, ±3 (mod 7)
+        'poly': (1, 1, -2, -1),        # x³ + x² − 2x − 1
+        'phi': (1, 1, 1, 1, 1, 1, 1),  # Φ₇ = x⁶+x⁵+x⁴+x³+x²+x+1
+        'vieta': (-1, -2, 1),          # (s1, s2, s3) of the three roots
+        'cardano': '2cos(2π/7) = ∛(7(1+3√−3)/54) + ∛(7(1−3√−3)/54) − 1/3',
+        'bch': 'b_Ch(7) = 7/6 − (∛(7(1+3√−3)/54) + ∛(7(1−3√−3)/54))/2',
+        'rung': 'Hurwitz',
+    },
+    9: {
+        'units': (1, 2, 4),            # k ~ ±1, ±2, ±4 (mod 9)
+        'poly': (1, 0, -3, 1),         # x³ − 3x + 1
+        'phi': (1, 0, 0, 1, 0, 0, 1),  # Φ₉ = x⁶+x³+1
+        'vieta': (0, -3, -1),
+        'cardano': '2cos(2π/9) = ∛((−1+√−3)/2) + ∛((−1−√−3)/2)',
+        'bch': 'b_Ch(9) = 1 − (∛((−1+√−3)/2) + ∛((−1−√−3)/2))/2',
+        'rung': 'Macbeath',
+    },
+}
+
+
+def _poly_mul(a: list, b: list) -> list:
+    """Multiply two integer polynomials (highest degree first)."""
+    res = [0] * (len(a) + len(b) - 1)
+    for i, ai in enumerate(a):
+        if ai:
+            for j, bj in enumerate(b):
+                res[i + j] += ai * bj
+    return res
+
+
+def _poly_add(a: list, b: list) -> list:
+    """Add two integer polynomials (highest degree first)."""
+    n = max(len(a), len(b))
+    res = [0] * n
+    for i, v in enumerate(a):
+        res[i + n - len(a)] += v
+    for i, v in enumerate(b):
+        res[i + n - len(b)] += v
+    return res
+
+
+def _poly_mod_phi(a: list, phi: tuple) -> list:
+    """Remainder of an integer polynomial modulo the MONIC polynomial
+    phi (both highest-degree-first); exact integer arithmetic — phi
+    being monic keeps every pivot integral.  Returns the shortened
+    highest-first list."""
+    a = list(a)
+    dphi = len(phi) - 1
+    for i in range(len(a) - dphi):
+        k = a[i]
+        if k:
+            for j, c in enumerate(phi):
+                a[i + j] -= k * c
+    while a and a[0] == 0:
+        a.pop(0)
+    return a or [0]
+
+
+def _poly_as_int(p: list) -> int | None:
+    """The constant term if p reduces to a constant polynomial (the
+    exact-identity collapse), otherwise None."""
+    return p[0] if len(p) == 1 else None
+
+
+def _cyc_elem_syms(n: int) -> tuple:
+    """Exact elementary symmetric polynomials (s1, s2, s3) of the three
+    conjugates x_k = ζ^k + ζ^{−k}, k ∈ (Z/nZ)^×/{±1}, computed in
+    Z[ζ]/(Φ_n) by pure integer polynomial arithmetic.  Each symmetric
+    function must collapse to an integer constant — that collapse IS
+    the exact identity; a non-constant remainder raises AssertionError."""
+    spec = CYC_CUBICS[n]
+    phi = spec['phi']
+    roots = []
+    for k in spec['units']:
+        c = [0] * n                      # highest-first: index i ↔ ζ^(n−1−i)
+        c[n - 1 - k] += 1                # ζ^k
+        c[k - 1] += 1                    # ζ^(n−k)
+        roots.append(c)
+    # s1 = x1 + x2 + x3
+    s1 = _poly_mod_phi(_poly_add(_poly_add(roots[0], roots[1]), roots[2]),
+                       phi)
+    # s2 = x1x2 + x1x3 + x2x3
+    s2 = [0]
+    for i in range(3):
+        for j in range(i + 1, 3):
+            s2 = _poly_add(s2,
+                           _poly_mod_phi(_poly_mul(roots[i], roots[j]), phi))
+    s2 = _poly_mod_phi(s2, phi)
+    # s3 = x1 x2 x3
+    s3 = _poly_mod_phi(_poly_mul(
+        _poly_mod_phi(_poly_mul(roots[0], roots[1]), phi), roots[2]), phi)
+    vals = tuple(_poly_as_int(p) for p in (s1, s2, s3))
+    assert all(v is not None for v in vals), \
+        f'symmetric functions of 2cos(2π/{n}) do not collapse to integers'
+    return vals
+
+
+def _minpoly_irreducible_gf2(coeffs: tuple) -> bool:
+    """Irreducibility over GF(2) of a monic polynomial (highest-first).
+
+    Degree 3: irreducible iff no root in F₂.  Degree 4: no root in F₂
+    AND not divisible by the only irreducible quadratic x²+x+1."""
+    c = [v % 2 for v in coeffs]
+    if c[-1] == 0 or sum(c) % 2 == 0:
+        return False                       # roots 0 / 1 in F₂
+    if len(c) - 1 == 3:
+        return True
+    rem = list(c)
+    for lead in range(len(rem) - 2):       # divide by x²+x+1 over F₂
+        if rem[lead]:
+            rem[lead] ^= 1
+            rem[lead + 1] ^= 1
+            rem[lead + 2] ^= 1
+    return bool(rem[-2] or rem[-1])        # remainder must be nonzero
+
+
+def cyc_exact_layer(n: int) -> dict:
+    """Two-part exact certificate for the cubic rung n = 7 or 9:
+    (a) Vieta — the elementary symmetric polynomials of the conjugates
+        2cos(2πk/n), computed EXACTLY in Z[ζ]/(Φ_n), match the minimal
+        cubic's coefficients (pure integer arithmetic);
+    (b) the minimal cubic is irreducible over GF(2)."""
+    spec = CYC_CUBICS[n]
+    syms = _cyc_elem_syms(n)
+    p_vieta = syms == spec['vieta']
+    p_irr = _minpoly_irreducible_gf2(spec['poly'])
+    return {'n': n, 'rung': spec['rung'], 'syms': syms,
+            'vieta': spec['vieta'], 'vieta_match': p_vieta,
+            'gf2_irreducible': p_irr,
+            'pass': p_vieta and p_irr}
+
+
+def bch_cardano(n: int):
+    """Cardano closed form of b_Ch(n) = 1 − cos(2π/n) for the cubic
+    rungs n = 7 and n = 9 (roadmap v1.3), evaluated at the working
+    mpmath precision through principal complex cube roots — the
+    classical casus irreducibilis.  Other levels raise ValueError."""
+    if n == 7:
+        t = mpf(7) / 54 + mp.mpc(0, 7 * mp_sqrt(3) / 18)
+        u = mp.exp(mp.log(t) / 3)          # principal cube root of t
+        return mpf(7) / 6 - mp.re(u)       # (u + ū)/2 = Re u
+    if n == 9:
+        t = mpf(-1) / 2 + mp.mpc(0, mp_sqrt(3) / 2)
+        u = mp.exp(mp.log(t) / 3)
+        return 1 - mp.re(u)
+    raise ValueError('Cardano closed form is installed for n = 7 and '
+                     'n = 9 only (roadmap v1.3)')
+
+
+# ──────────────────────────────────────────────────────────────────────
 # PROTOCOL V1–V9
 # ──────────────────────────────────────────────────────────────────────
 
 def v1_census(verbose: bool = True) -> bool:
     """V1: character census — exact arithmetic, two independent schemes."""
-    hdr(f'V1 · {t("stand")} N=15/30 — CENSUS')
+    hdr(f'V1 · {t("stand")} N=7/9/15/30 — CENSUS')
     res = {}
     all_pass = True
-    for N, expect in ((15, 91), (30, 406)):
+    for N, expect in ((7, 15), (9, 28), (15, 91), (30, 406)):
         h, by_d, g = census(N)
         hm = census_mobius(N)
         total = sum(h.values())
@@ -608,7 +797,7 @@ def v2_v3_certB(verbose: bool = True, tests_per_cond: int = 3,
     hdr('V2/V3 · CERTIFICATE B — closed form vs tanh-sinh, phases')
     res = {'max_rel_err': 0.0, 'max_phase_dev': 0.0, 'n_tests': 0}
     all_pass = True
-    for N in (15, 30):
+    for N in (7, 9, 15, 30):
         h, by_d, g = census(N)
         sample = pick_chars(by_d, per_d=tests_per_cond)
         worst = 0.0
@@ -642,7 +831,7 @@ def v4_certC(verbose: bool = True) -> bool:
     """V4: mu_N x mu_N equivariance of the periods."""
     hdr('V4 · CERTIFICATE C — μ_N×μ_N equivariance')
     worst = 0.0
-    for N in (15, 30):
+    for N in (7, 9, 15, 30):
         h, by_d, g = census(N)
         for _d, (a, b) in pick_chars(by_d, per_d=2):
             for (u, v) in ((1, 0), (0, 1), (1, 1)):
@@ -703,7 +892,7 @@ def v6_reflection(verbose: bool = True) -> bool:
     """V6: reflection ladder Gamma(k/N) Gamma(1-k/N) = pi / sin(pi k/N)."""
     hdr('V6 · REFLECTION LADDER')
     worst = 0.0
-    for N in (15, 30):
+    for N in (7, 9, 15, 30):
         for k in range(1, N):
             lhs = mgamma(mpf(k) / N) * mgamma(1 - mpf(k) / N)
             rhs = mpi / sin(mpi * k / N)
@@ -730,7 +919,7 @@ def v7_rank(verbose: bool = True) -> bool:
             info('numpy missing — skipping (rank by construction)')
         record('checks', 'V7_rank', True, {'skipped': True})
         return True
-    for N, _gexp in ((15, 91), (30, 406)):
+    for N, _gexp in ((7, 15), (9, 28), (15, 91), (30, 406)):
         h, by_d, g = census(N)
         chars = [(a, b) for lst in by_d.values() for (a, b) in lst]
         Om = {ab: float(abs(omega_closed(N, ab[0], ab[1]))) for ab in chars}
@@ -1047,6 +1236,66 @@ def stand_klein(verbose: bool = True) -> bool:
     return p
 
 
+def _stand_cyclotomic(n: int, verbose: bool = True) -> bool:
+    """The Level-N stand for the cubic rungs n = 7 (Hurwitz) and
+    n = 9 (Macbeath): the conductor census, the genus, the cubic exact
+    layer of b_Ch(n) (Vieta in Z[ζ]/(Φ_n) + GF(2) irreducibility), the
+    Cardano closed form against mpmath cos, and period spot-checks
+    (closed form vs independent tanh–sinh)."""
+    spec = CYC_CUBICS[n]
+    hdr(f'{t("stand").upper()}: LEVEL N={n} — {spec["rung"].upper()} RUNG')
+    # 1. census (the V1 layer at this level)
+    h, by_d, g = census(n)
+    hm = census_mobius(n)
+    info(f'N={n}: h_d', ', '.join(f'h{d}={v}' for d, v in h.items()))
+    p1 = sum(h.values()) == g
+    p2 = all(h[d] == hm.get(d, 0) for d in set(h) | set(hm))
+    (ok if p1 and p2 else fail)(f'Σh_d = g = {g} (V1); Möbius scheme agrees')
+    # 2. cubic exact layer of b_Ch(n)
+    layer = cyc_exact_layer(n)
+    kv('minimal cubic of 2cos(2π/n)',
+       'x³ + x² − 2x − 1' if n == 7 else 'x³ − 3x + 1')
+    (ok if layer['vieta_match'] else fail)(
+        f'Vieta exact in Z[ζ]/(Φ_{n}): s = {layer["syms"]}')
+    (ok if layer['gf2_irreducible'] else fail)('cubic irreducible over GF(2)')
+    # 3. Cardano closed form vs mpmath cos
+    card = bch_cardano(n)
+    num = bch_numeric(n)
+    e = rel_err(card, num)
+    kv(t('bch_closed'), spec['bch'])
+    (ok if e < 1e-25 else fail)(t('bch_compare'), f'rel={e:.2e}')
+    # 4. period spot-checks at this level
+    worst = 0.0
+    for _d, (a, b) in pick_chars(by_d, per_d=2):
+        worst = max(worst, rel_err(period_closed(n, a, b, 0, 0),
+                                   period_numeric(n, a, b, 0, 0)))
+    (ok if worst < 1e-25 else fail)('Ω_{a,b} closed vs tanh-sinh (spot)',
+                                    f'rel={worst:.2e}')
+    p = bool(p1 and p2 and layer['pass'] and e < 1e-25 and worst < 1e-25)
+    record('stands', f'n{n}', p, {'genus': g, 'h_d': h, 'rung': spec['rung'],
+                                  'syms': layer['syms'],
+                                  'bch_rel_err': float(e),
+                                  'period_rel_err': float(worst)})
+    return p
+
+
+def stand_n7(verbose: bool = True) -> bool:
+    """Level N=7 stand — the Hurwitz rung.  The Klein quartic is the
+    genus-3 Hurwitz curve (stand "klein" certifies the curve itself);
+    this stand certifies the Fermat-level pipeline at N = 7: census
+    h₇ = 15, genus 15, the cubic layer of b_Ch(7)."""
+    return _stand_cyclotomic(7, verbose)
+
+
+def stand_n9(verbose: bool = True) -> bool:
+    """Level N=9 stand — the Macbeath rung.  The genus-7 Macbeath
+    curve carries PSL(2,8) with order-9 rotations; this stand
+    certifies the Fermat-level pipeline at N = 9: census
+    28 = 1 + 27 (conductors 3, 9), genus 28, the cubic layer of
+    b_Ch(9)."""
+    return _stand_cyclotomic(9, verbose)
+
+
 def arf_enumeration(g: int) -> tuple[int, int, int]:
     """Full enumeration of ALL quadratic forms on (Z/2)^(2g) whose
     polarisation is the standard symplectic form.
@@ -1188,12 +1437,14 @@ def stand_binary(verbose: bool = True) -> bool:
 
 
 def run_stands() -> bool:
-    """Run all five stands."""
+    """Run all seven stands."""
     hdr(f'{t("stand").upper()}S · ALL STANDS')
     r = []
     r.append(stand_torus())
     r.append(stand_k3())
     r.append(stand_klein())
+    r.append(stand_n7())
+    r.append(stand_n9())
     r.append(stand_errata())
     r.append(stand_binary())
     return all(r)
@@ -1202,6 +1453,7 @@ def run_stands() -> bool:
 def run_one_stand(name: str) -> bool:
     """Run a single stand by its key."""
     return {'torus': stand_torus, 'k3': stand_k3, 'klein': stand_klein,
+            'n7': stand_n7, 'n9': stand_n9,
             'errata': stand_errata, 'binary': stand_binary}[name]()
 
 
@@ -1337,13 +1589,66 @@ def cert_H(verbose: bool = True) -> bool:
     return p1
 
 
+def cert_I(verbose: bool = True) -> bool:
+    """Certificate I — the Level N=7 rung (Hurwitz): the conductor
+    census and the cubic exact layer of b_Ch(7)."""
+    hdr('CERTIFICATE I — Level N=7 (Hurwitz rung)')
+    h, by_d, g = census(7)
+    hm = census_mobius(7)
+    kv('census (V1)', '15 = h₇ (single conductor, prime level)')
+    p1 = (sum(h.values()) == 15 == g
+          and all(h[d] == hm.get(d, 0) for d in set(h) | set(hm)))
+    (ok if p1 else fail)('I1: Σh_d = g = 15; census {7: 15} (two schemes)')
+    layer = cyc_exact_layer(7)
+    kv('minimal cubic of 2cos(2π/7)', 'x³ + x² − 2x − 1')
+    (ok if layer['vieta_match'] else fail)(
+        f'I2: Vieta exact in Z[ζ]/(Φ₇): s = {layer["syms"]}')
+    (ok if layer['gf2_irreducible'] else fail)(
+        'I3: the cubic is irreducible over GF(2)')
+    e = rel_err(bch_cardano(7), bch_numeric(7))
+    (ok if e < 1e-25 else fail)(
+        'I4: Cardano closed form vs mpmath cos', f'rel={e:.2e}')
+    ok('I5: phase π/7 anchors the quantum ladder (cert G6)')
+    p = bool(p1 and layer['pass'] and e < 1e-25)
+    record('certificates', 'I', p, {'genus': g, 'syms': layer['syms'],
+                                    'bch_rel_err': float(e)})
+    return p
+
+
+def cert_J(verbose: bool = True) -> bool:
+    """Certificate J — the Level N=9 rung (Macbeath): the conductor
+    census and the cubic exact layer of b_Ch(9)."""
+    hdr('CERTIFICATE J — Level N=9 (Macbeath rung)')
+    h, by_d, g = census(9)
+    hm = census_mobius(9)
+    kv('census (V1)', '28 = 1 + 27 (conductors 3, 9)')
+    p1 = (sum(h.values()) == 28 == g
+          and all(h[d] == hm.get(d, 0) for d in set(h) | set(hm)))
+    (ok if p1 else fail)('J1: Σh_d = g = 28; census {3: 1, 9: 27} (two schemes)')
+    layer = cyc_exact_layer(9)
+    kv('minimal cubic of 2cos(2π/9)', 'x³ − 3x + 1')
+    (ok if layer['vieta_match'] else fail)(
+        f'J2: Vieta exact in Z[ζ]/(Φ₉): s = {layer["syms"]}')
+    (ok if layer['gf2_irreducible'] else fail)(
+        'J3: the cubic is irreducible over GF(2)')
+    e = rel_err(bch_cardano(9), bch_numeric(9))
+    (ok if e < 1e-25 else fail)(
+        'J4: Cardano closed form vs mpmath cos', f'rel={e:.2e}')
+    ok('J5: phase π/9 — the order-9 rotation of the Macbeath rung')
+    p = bool(p1 and layer['pass'] and e < 1e-25)
+    record('certificates', 'J', p, {'genus': g, 'syms': layer['syms'],
+                                    'bch_rel_err': float(e)})
+    return p
+
+
 CERT_FUNCS: dict = {'A': cert_A, 'B': cert_B, 'C': cert_C, 'D': cert_D,
-                    'E': cert_E, 'F': cert_F, 'G': cert_G, 'H': cert_H}
+                    'E': cert_E, 'F': cert_F, 'G': cert_G, 'H': cert_H,
+                    'I': cert_I, 'J': cert_J}
 
 
 def run_certs(which: Iterable | None = None) -> bool:
     """Run the selected certificates (all by default)."""
-    letters = list(which) if which else list('ABCDEFGH')
+    letters = list(which) if which else list('ABCDEFGHIJ')
     allp = True
     for k in letters:
         allp &= CERT_FUNCS[k]()
@@ -1486,7 +1791,7 @@ def make_plots(dpi: int = 600) -> bool:
     ns = np.arange(4, 33)
     ax.plot(ns, (ns - 1) * (ns - 2) / 2, '-', color=BLUE,
             label='g = (N−1)(N−2)/2')
-    for n, lab in ((7, 15), (15, 91), (30, 406)):
+    for n, lab in ((7, 15), (9, 28), (15, 91), (30, 406)):
         ax.plot(n, (n - 1) * (n - 2) / 2, 'o', ms=7, color=RED)
         ax.annotate(f'{lab}', (n, (n - 1) * (n - 2) / 2),
                     textcoords='offset points', xytext=(6, 6), fontsize=9)
@@ -1672,6 +1977,14 @@ def _batch_run_one(spec: dict) -> tuple[bool, dict]:
                          'tolerance': 1e-25, 'exact_layer': exact,
                          'radical': BCH_RADICALS[n]['bch']})
             return (exact and e < 1e-25), data
+        if n in CYC_CUBICS:
+            layer = cyc_exact_layer(n)
+            e = rel_err(bch_cardano(n), num)
+            data.update({'closed': str(bch_cardano(n)), 'rel': e,
+                         'tolerance': 1e-25, 'exact_layer': layer['pass'],
+                         'syms': list(layer['syms']),
+                         'cardano': CYC_CUBICS[n]['bch']})
+            return (layer['pass'] and e < 1e-25), data
         return True, data
 
     if rtype == 'omega':
@@ -1987,8 +2300,16 @@ def menu_designer() -> None:
                 kv(t('bch_closed'), BCH_RADICALS[n]['bch'])
                 (ok if exact else fail)(t('bch_exact'))
                 (ok if e < 1e-25 else fail)(t('bch_compare'), f'rel={e:.2e}')
+            elif n in CYC_CUBICS:
+                layer = cyc_exact_layer(n)
+                e = rel_err(bch_cardano(n), num)
+                kv(t('bch_closed'), CYC_CUBICS[n]['bch'])
+                (ok if layer['pass'] else fail)(
+                    f"Vieta exact in Z[ζ]/(Φ_{n}) + GF(2) "
+                    f'(s = {layer["syms"]})')
+                (ok if e < 1e-25 else fail)(t('bch_compare'), f'rel={e:.2e}')
             else:
-                info(t('bch_no_radical'), 'n = 15 · n = 30')
+                info(t('bch_no_radical'), 'n = 7 · n = 9 · n = 15 · n = 30')
         elif k == 6:
             N = ask_int(t('enter_n'), 4, 64, 30)
             a, b = ask_pair(t('enter_ab'), (1, 1))
@@ -2055,12 +2376,14 @@ def main_menu() -> None:
         elif ch == '2':
             hdr(f'{t("stand").upper()}S')
             print(f'   {C.GOLD}1{C.RESET}. torus   {C.GOLD}2{C.RESET}. K3     '
-                  f'{C.GOLD}3{C.RESET}. klein   {C.GOLD}4{C.RESET}. errata   '
-                  f'{C.GOLD}5{C.RESET}. binary   {C.GOLD}0{C.RESET}. all')
+                  f'{C.GOLD}3{C.RESET}. klein   {C.GOLD}4{C.RESET}. N=7     '
+                  f'{C.GOLD}5{C.RESET}. N=9     {C.GOLD}6{C.RESET}. errata   '
+                  f'{C.GOLD}7{C.RESET}. binary   {C.GOLD}0{C.RESET}. all')
             s = input(t('prompt')).strip()
             m = {'0': run_stands, '1': lambda: stand_torus(),
                  '2': lambda: stand_k3(), '3': lambda: stand_klein(),
-                 '4': lambda: stand_errata(), '5': lambda: stand_binary()}
+                 '4': lambda: stand_n7(), '5': lambda: stand_n9(),
+                 '6': lambda: stand_errata(), '7': lambda: stand_binary()}
             if s in m:
                 m[s]()
             else:
@@ -2068,7 +2391,7 @@ def main_menu() -> None:
             input(t('press'))
         elif ch == '3':
             s = input(t('cert_prompt')).strip().upper()
-            picks = [c for c in s if c in 'ABCDEFGH'] or None
+            picks = [c for c in s if c in 'ABCDEFGHIJ'] or None
             run_certs(picks)
             input(t('press'))
         elif ch == '4':
@@ -2109,11 +2432,22 @@ def check_baseline(path: str | None = None) -> bool:
         B = json.load(f)
     hdr('BASELINE CROSS-CHECK — results/baseline_v1_v9.json')
     checks: list[tuple[str, bool]] = []
-    for N, _expected in ((15, 91), (30, 406)):
+    for N, _expected in ((7, 15), (9, 28), (15, 91), (30, 406)):
         h, by_d, g = census(N)
         checks.append((f'V1 genus N={N}', g == B['V1_census'][str(N)]['genus']))
         ref_hd = {int(k): v for k, v in B['V1_census'][str(N)]['h_d'].items()}
         checks.append((f'V1 census h_d N={N}', dict(h) == ref_hd))
+    # the cubic exact layer of the N=7/9 rungs (roadmap v1.3) — the
+    # Vieta integers are recomputed exactly in Z[ζ]/(Φ_n)
+    for n in (7, 9):
+        layer = cyc_exact_layer(n)
+        ref = B['V13_cyc'][str(n)]
+        checks.append((f'V13 Vieta N={n}',
+                       tuple(layer['syms']) == tuple(ref['syms'])
+                       and layer['pass']))
+        checks.append((f'V13 minpoly irreducible over GF(2) N={n}',
+                       _minpoly_irreducible_gf2(CYC_CUBICS[n]['poly'])
+                       == ref['gf2_irreducible'] is True))
     snf = [1, 1, 5, 5, 15, 15, 15, 15]
     prod = 1
     for s_ in snf:

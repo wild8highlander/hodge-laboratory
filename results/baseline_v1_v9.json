@@ -7,8 +7,15 @@
     "note": "Reference results of the protocol V1-V9 and of the stands. The laboratory cross-checks new runs against these values by explicit thresholds (laboratory.py --check-baseline)."
   },
   "V1_census": {
+    "7": {"h_d": {"7": 15}, "genus": 15, "total": 15},
+    "9": {"h_d": {"3": 1, "9": 27}, "genus": 28, "total": 28},
     "15": {"h_d": {"3": 1, "5": 6, "15": 84}, "genus": 91, "total": 91},
     "30": {"h_d": {"3": 1, "5": 6, "6": 9, "10": 30, "15": 84, "30": 276}, "genus": 406, "total": 406}
+  },
+  "V13_cyc": {
+    "note": "roadmap v1.3 — the cubic exact layer of b_Ch(7)/b_Ch(9): Vieta symmetric integers of 2cos(2πk/n) recomputed exactly in Z[ζ]/(Φ_n); the cubics are irreducible over GF(2)",
+    "7": {"syms": [-1, -2, 1], "poly": [1, 1, -2, -1], "gf2_irreducible": true, "rung": "Hurwitz"},
+    "9": {"syms": [0, -3, -1], "poly": [1, 0, -3, 1], "gf2_irreducible": true, "rung": "Macbeath"}
   },
   "V2_certB": {
     "15": {"n_tests": 21, "max_rel_err": 3.9e-36, "threshold": 1e-30},
@@ -39,6 +46,8 @@
     "E": "accepted 8/8: t*=lcm; 48/212/432/114",
     "F": "accepted 5/5: Q=256; 4X²−7; j=−3375; negative test 4π²",
     "G": "accepted 6/6: Chowla–Selberg; π/15, π/30",
-    "H": "accepted 6/6: SNF (1,1,5,5,15,15,15,15); disc=1125²; vol_h=1125; Q=480"
+    "H": "accepted 6/6: SNF (1,1,5,5,15,15,15,15); disc=1125²; vol_h=1125; Q=480",
+    "I": "accepted 5/5: census {7: 15}; Vieta s=(−1,−2,1) in Z[ζ]/(Φ₇); GF(2); Cardano b_Ch(7); π/7",
+    "J": "accepted 5/5: census {3: 1, 9: 27}; Vieta s=(0,−3,−1) in Z[ζ]/(Φ₉); GF(2); Cardano b_Ch(9); π/9"
   }
 }
