@@ -55,16 +55,16 @@ reproducible verification in 5 languages + the Lean 4 kernel**
 11. [Repository map](#11-repository-map)
 12. [Quick start](#12-quick-start)
 13. [Reproducing the numbers](#13-reproducing-the-numbers)
-14. [Zenodo & DOI](#15-zenodo--doi)
-   - [What we built: live web apps and the five-language analogues](#what-we-built-the-live-web-suite-and-the-five-language-analogues)
-15. [Citation](#16-citation)
-16. [Roadmap](#17-roadmap)
-17. [FAQ](#18-faq)
-18. [Contributing](#19-contributing)
-19. [Security](#20-security)
-20. [License](#21-license)
-21. [Glossary](#22-glossary)
-22. [Acknowledgments](#23-acknowledgments)
+14. [What we built: live web apps and the five-language analogues](#what-we-built-the-live-web-suite-and-the-five-language-analogues)
+15. [Zenodo & DOI](#15-zenodo--doi)
+16. [Citation](#16-citation)
+17. [Roadmap](#17-roadmap)
+18. [FAQ](#18-faq)
+19. [Contributing](#19-contributing)
+20. [Security](#20-security)
+21. [License](#21-license)
+22. [Glossary](#22-glossary)
+23. [Acknowledgments](#23-acknowledgments)
 
 ---
 
@@ -659,34 +659,6 @@ ruff check laboratory.py tests/      # clean
 
 ---
 
-
-## 14. Zenodo & DOI
-
-This repository ships full Zenodo metadata —
-[`.zenodo.json`](.zenodo.json) — so a citable DOI is minted
-automatically:
-
-1. Open [zenodo.org](https://zenodo.org), sign in with GitHub.
-2. **Account → GitHub** → flip the switch for
-   `wild8highlander/hodge-laboratory`.
-3. Publish a GitHub **release** (e.g. `v1.1.1`) — Zenodo snapshots it
-   and mints the record with the metadata from `.zenodo.json`
-   (author, ORCID, keywords, license note).
-4. Copy the version DOI and the concept DOI from the record page.
-5. Register the DOI in one command —
-   `bash scripts/set_doi.sh 10.5281/zenodo.<ID>` — it rewrites the
-   DOI badge above and the `identifiers` block of
-   [`CITATION.cff`](CITATION.cff) (add the concept DOI with
-   `CONCEPT_DOI=10.5281/zenodo.<ConceptID>`); or replace the
-   placeholder manually in the same two places.
-
-The author's ORCID is [0009-0003-7299-0701](https://orcid.org/0009-0003-7299-0701)
-— it is embedded in `CITATION.cff`, `.zenodo.json`, and the README
-badge, so all citations link to the same researcher identity.
-
----
-
-
 <!-- WEB-SUITE:START · do not remove these markers / not for removal -->
 
 ---
@@ -740,7 +712,33 @@ one and the same answer.
 
 <!-- WEB-SUITE:END -->
 
-## 15. Citation
+## 15. Zenodo & DOI
+
+This repository ships full Zenodo metadata —
+[`.zenodo.json`](.zenodo.json) — so a citable DOI is minted
+automatically:
+
+1. Open [zenodo.org](https://zenodo.org), sign in with GitHub.
+2. **Account → GitHub** → flip the switch for
+   `wild8highlander/hodge-laboratory`.
+3. Publish a GitHub **release** (e.g. `v1.1.1`) — Zenodo snapshots it
+   and mints the record with the metadata from `.zenodo.json`
+   (author, ORCID, keywords, license note).
+4. Copy the version DOI and the concept DOI from the record page.
+5. Register the DOI in one command —
+   `bash scripts/set_doi.sh 10.5281/zenodo.<ID>` — it rewrites the
+   DOI badge above and the `identifiers` block of
+   [`CITATION.cff`](CITATION.cff) (add the concept DOI with
+   `CONCEPT_DOI=10.5281/zenodo.<ConceptID>`); or replace the
+   placeholder manually in the same two places.
+
+The author's ORCID is [0009-0003-7299-0701](https://orcid.org/0009-0003-7299-0701)
+— it is embedded in `CITATION.cff`, `.zenodo.json`, and the README
+badge, so all citations link to the same researcher identity.
+
+---
+
+## 16. Citation
 
 If this program is useful in your research, please cite it:
 
@@ -778,7 +776,7 @@ For a standalone theorem monograph, add its number to the title, e.g.
 
 ---
 
-## 16. Roadmap
+## 17. Roadmap
 
 The program is alive. The completed rungs are history; the open
 items are planned in the order the ladder demands.
@@ -830,7 +828,7 @@ constraints any proposal must respect).
 
 ---
 
-## 17. FAQ
+## 18. FAQ
 
 **Q: Is this a proof of the Hodge conjecture?**
 No — and the repository does not claim one. The program builds a
@@ -907,7 +905,7 @@ their documented margins.
 
 ---
 
-## 18. Contributing
+## 19. Contributing
 
 Contributions that respect the determinism and exactness constraints
 are welcome — please read [`CONTRIBUTING.md`](CONTRIBUTING.md) first:
@@ -921,7 +919,7 @@ spaces.
 
 ---
 
-## 19. Security
+## 20. Security
 
 The package is offline scientific software with a deliberately narrow
 attack surface; the token-handling rules for the publishing script
@@ -931,7 +929,7 @@ rather than opening a public issue.
 
 ---
 
-## 20. License
+## 21. License
 
 **Individual exclusive license.** All rights to all computations,
 formulas, theorems, code, and texts belong to
@@ -951,7 +949,7 @@ norm and is welcome.
 
 ---
 
-## 21. Glossary
+## 22. Glossary
 
 | Term | Meaning in this repository |
 |---|---|
@@ -971,7 +969,7 @@ norm and is welcome.
 
 ---
 
-## 22. Acknowledgments
+## 23. Acknowledgments
 
 * To the classical theory this program leans on — the arithmetic of
   cyclotomic fields, the theory of K3 surfaces, Chowla–Selberg,
