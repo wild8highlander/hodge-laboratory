@@ -55,7 +55,7 @@ reproducible verification in 5 languages + the Lean 4 kernel**
 11. [Repository map](#11-repository-map)
 12. [Quick start](#12-quick-start)
 13. [Reproducing the numbers](#13-reproducing-the-numbers)
-14. [What we built: live web apps and the five-language analogues](#what-we-built-the-live-web-suite-and-the-five-language-analogues)
+14. [Live web apps and the five-language analogues](#Live-web-suite-and-the-five-language-analogues)
 15. [Zenodo & DOI](#15-zenodo--doi)
 16. [Citation](#16-citation)
 17. [Roadmap](#17-roadmap)
@@ -663,7 +663,7 @@ ruff check laboratory.py tests/      # clean
 
 ---
 
-## 14. What we built: the live web suite and the five-language analogues
+## 14. Live web suite and the five-language analogues
 
 **Two runnable web applications** now accompany the research package —
 open in any browser (Android / iOS / Desktop), no installation needed —
