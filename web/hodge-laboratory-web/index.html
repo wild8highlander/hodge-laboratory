@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hodge Laboratory Web · Лаборатория динамического принципа</title>
+<meta name="description" content="Динамический принцип — веб-лаборатория: протокол V1–V9, стенды, сертификаты A–J, конструктор экспериментов, ходжевы циклы, графики 600 dpi, монография.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="aurora a1"></div><div class="aurora a2"></div>
+
+<div class="shell">
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">ζ</div>
+      <div>
+        <div class="brand-name">Hodge Laboratory <span>Web</span></div>
+        <div class="brand-sub" data-i18n="app_sub"></div>
+      </div>
+    </div>
+    <nav class="nav" id="nav">
+      <a data-sec="dashboard" class="active"><span class="ico">◈</span><span data-i18n="nav_dashboard"></span></a>
+      <a data-sec="roadmap"><span class="ico">▶</span><span data-i18n="nav_roadmap"></span></a>
+      <a data-sec="protocol"><span class="ico">∑</span><span data-i18n="nav_protocol"></span></a>
+      <a data-sec="stands"><span class="ico">△</span><span data-i18n="nav_stands"></span></a>
+      <a data-sec="certs"><span class="ico">✦</span><span data-i18n="nav_certs"></span></a>
+      <a data-sec="designer"><span class="ico">⚗</span><span data-i18n="nav_designer"></span></a>
+      <a data-sec="cycles" class="hl"><span class="ico">🕸</span><span data-i18n="nav_cycles"></span></a>
+      <a data-sec="reports"><span class="ico">▤</span><span data-i18n="nav_reports"></span></a>
+      <a data-sec="monograph"><span class="ico">📕</span><span data-i18n="nav_monograph"></span></a>
+      <a data-sec="verify"><span class="ico">✔</span><span data-i18n="nav_verify"></span></a>
+      <a data-sec="about"><span class="ico">ℹ</span><span data-i18n="nav_about"></span></a>
+    </nav>
+    <div class="side-foot">
+      <button class="lang-pill" id="langBtn">EN</button>
+      <div class="ver">v1.0.0 · V1–V9 · A–J</div>
+    </div>
+  </aside>
+  <button class="burger" id="burger">☰</button>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="main" id="main">
+    <header class="topbar">
+      <div class="tb-title" id="tbTitle" data-i18n="nav_dashboard"></div>
+      <div class="tb-chips">
+        <span class="chip chip-gold" id="chipDps">dps 35</span>
+        <span class="chip" id="chipVerdict" hidden></span>
+      </div>
+    </header>
+
+    <!-- ═══ DASHBOARD ═══ -->
+    <section id="sec-dashboard" class="sec active">
+      <div class="kicker" data-i18n="dash_kicker"></div>
+      <h1 data-i18n="dash_h1"></h1>
+      <p class="lead" data-i18n="dash_lead"></p>
+      <div class="stats">
+        <div class="stat"><div class="n">20</div><div class="l" data-i18n="stat_theorems"></div></div>
+        <div class="stat"><div class="n">10</div><div class="l" data-i18n="stat_certs"></div></div>
+        <div class="stat"><div class="n">9</div><div class="l" data-i18n="stat_checks"></div></div>
+        <div class="stat"><div class="n">5+1</div><div class="l" data-i18n="stat_langs"></div></div>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn-gold" onclick="App.goto('roadmap')" data-i18n="dash_cta"></button>
+      </div>
+      <h2 data-i18n="ladder_title"></h2>
+      <div class="tbl-wrap"><table class="tbl" id="ladderTbl">
+        <thead><tr><th data-i18n="ladder_run"></th><th data-i18n="ladder_triple"></th><th data-i18n="ladder_genus"></th><th data-i18n="ladder_key"></th><th data-i18n="ladder_status"></th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </section>
+
+    <!-- ═══ ROADMAP ═══ -->
+    <section id="sec-roadmap" class="sec">
+      <div class="kicker" data-i18n="roadmap_kicker"></div>
+      <h1 data-i18n="roadmap_h"></h1>
+      <p class="lead" data-i18n="roadmap_lead"></p>
+      <div class="cta-row">
+        <button class="btn btn-gold" id="btnRoadmap" data-i18n="roadmap_run_all"></button>
+      </div>
+      <div class="stages" id="stages"></div>
+      <div class="logbox" id="roadmapLog" hidden><div class="logbox-h" data-i18n="roadmap_log"></div><div class="logbody" id="roadmapLogBody"></div></div>
+      <div class="verdict-box" id="roadmapVerdict" hidden></div>
+      <h2 data-i18n="roadmap_versions"></h2>
+      <div class="versions" id="versions"></div>
+    </section>
+
+    <!-- ═══ PROTOCOL ═══ -->
+    <section id="sec-protocol" class="sec">
+      <div class="kicker" data-i18n="prot_kicker"></div>
+      <h1 data-i18n="prot_h"></h1>
+      <p class="lead" data-i18n="prot_lead"></p>
+      <div class="grid g2" id="protocolGrid"></div>
+    </section>
+
+    <!-- ═══ STANDS ═══ -->
+    <section id="sec-stands" class="sec">
+      <div class="kicker" data-i18n="stands_kicker"></div>
+      <h1 data-i18n="stands_h"></h1>
+      <p class="lead" data-i18n="stands_lead"></p>
+      <div class="grid g2" id="standsGrid"></div>
+    </section>
+
+    <!-- ═══ CERTS ═══ -->
+    <section id="sec-certs" class="sec">
+      <div class="kicker" data-i18n="certs_kicker"></div>
+      <h1 data-i18n="certs_h"></h1>
+      <p class="lead" data-i18n="certs_lead"></p>
+      <div class="grid g2" id="certsGrid"></div>
+    </section>
+
+    <!-- ═══ DESIGNER ═══ -->
+    <section id="sec-designer" class="sec">
+      <div class="kicker" data-i18n="des_kicker"></div>
+      <h1 data-i18n="des_h"></h1>
+      <p class="lead" data-i18n="des_lead"></p>
+      <div class="panel">
+        <div class="form-grid">
+          <label><span data-i18n="des_type"></span>
+            <select id="desType">
+              <option value="period">period · Ω/P(r,s)</option>
+              <option value="omega">omega · Ω vs quadrature</option>
+              <option value="census">census · Σh_d = g</option>
+              <option value="cm">cm · λ₁ = 16π²/d</option>
+              <option value="flow">flow · t* = lcm</option>
+              <option value="bch">bch · радикалы b_Ch</option>
+              <option value="arf">arf · спиновые структуры</option>
+              <option value="k3">k3 · ранг/сигнатура</option>
+            </select>
+          </label>
+          <label><span data-i18n="des_N"></span><input type="number" id="desN" value="15" min="4" max="4096"></label>
+          <label><span data-i18n="des_a"></span><input type="number" id="desA" value="2" min="1"></label>
+          <label><span data-i18n="des_b"></span><input type="number" id="desB" value="3" min="1"></label>
+          <label><span data-i18n="des_r"></span><input type="number" id="desR" value="0" min="0"></label>
+          <label><span data-i18n="des_s"></span><input type="number" id="desS" value="1" min="0"></label>
+          <label><span data-i18n="des_dps"></span><input type="number" id="desDps" value="35" min="15" max="200"></label>
+          <label><span data-i18n="des_tolerance"></span><input type="text" id="desTol" value="1e-25"></label>
+          <label><span data-i18n="des_W"></span><input type="number" id="desW" value="48" min="1"></label>
+          <label><span data-i18n="des_H"></span><input type="number" id="desH" value="48" min="1"></label>
+          <label><span data-i18n="des_d"></span><input type="number" id="desD" value="7" min="1" max="100"></label>
+          <label><span data-i18n="des_g"></span><input type="number" id="desG" value="3" min="1" max="3"></label>
+        </div>
+        <div class="cta-row">
+          <button class="btn btn-gold" id="btnDesigner" data-i18n="des_run"></button>
+        </div>
+        <div class="result" id="desResult" hidden></div>
+      </div>
+      <h2 data-i18n="des_presets"></h2>
+      <div class="chips-row" id="presetChips"></div>
+      <h2 data-i18n="des_batch"></h2>
+      <div class="panel">
+        <textarea id="batchJson" rows="7" data-i18n-ph="des_batch_ph" class="mono"></textarea>
+        <div class="cta-row"><button class="btn btn-gold" id="btnBatch" data-i18n="des_batch_run"></button></div>
+        <div class="result" id="batchResult" hidden></div>
+      </div>
+    </section>
+
+    <!-- ═══ CYCLES ═══ -->
+    <section id="sec-cycles" class="sec">
+      <div class="kicker" data-i18n="cyc_kicker"></div>
+      <h1 data-i18n="cyc_h"></h1>
+      <p class="lead" data-i18n="cyc_lead"></p>
+      <div class="cta-row"><button class="btn btn-gold" id="btnCycles" data-i18n="cyc_run_all"></button></div>
+      <div class="grid g2" id="cyclesGrid"></div>
+    </section>
+
+    <!-- ═══ REPORTS ═══ -->
+    <section id="sec-reports" class="sec">
+      <div class="kicker" data-i18n="rep_kicker"></div>
+      <h1 data-i18n="rep_h"></h1>
+      <p class="lead" data-i18n="rep_lead"></p>
+      <div class="cta-row">
+        <button class="btn btn-gold" id="btnRepJson" data-i18n="rep_json"></button>
+        <button class="btn btn-ghost" id="btnRepLog" data-i18n="rep_log"></button>
+        <button class="btn btn-ghost" id="btnRepMeta" data-i18n="rep_meta"></button>
+      </div>
+      <h2 data-i18n="rep_plots"></h2>
+      <div class="plots" id="plotsGrid"></div>
+    </section>
+
+    <!-- ═══ MONOGRAPH ═══ -->
+    <section id="sec-monograph" class="sec">
+      <div class="kicker" data-i18n="mon_kicker"></div>
+      <h1 data-i18n="mon_h"></h1>
+      <p class="lead" data-i18n="mon_lead"></p>
+      <div class="cta-row">
+        <button class="btn btn-gold" id="btnMonBuild" data-i18n="mon_build"></button>
+        <button class="btn btn-ghost" id="btnMonTex" data-i18n="mon_tex"></button>
+        <button class="btn btn-ghost" id="btnMonHtml" data-i18n="mon_html"></button>
+        <button class="btn btn-ghost" id="btnMonScript" data-i18n="mon_script"></button>
+      </div>
+      <h2 data-i18n="mon_preview"></h2>
+      <iframe id="monFrame" class="mon-frame" title="monograph preview"></iframe>
+    </section>
+
+    <!-- ═══ VERIFY ═══ -->
+    <section id="sec-verify" class="sec">
+      <div class="kicker" data-i18n="ver_kicker"></div>
+      <h1 data-i18n="ver_h"></h1>
+      <p class="lead" data-i18n="ver_lead"></p>
+      <div class="cta-row"><button class="btn btn-gold" id="btnBaseline" data-i18n="ver_baseline"></button></div>
+      <div class="result" id="baselineResult" hidden></div>
+      <h2 data-i18n="ver_matrix"></h2>
+      <div class="tbl-wrap"><table class="tbl" id="verifyTbl">
+        <thead><tr><th>Stack</th><th>File</th><th>Role</th><th>Exit codes</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </section>
+
+    <!-- ═══ ABOUT ═══ -->
+    <section id="sec-about" class="sec">
+      <h1 data-i18n="about_h"></h1>
+      <div class="panel about">
+        <p class="author-line" data-i18n="about_author"></p>
+        <p data-i18n="about_orcid"></p>
+        <p><a href="https://github.com/wild8highlander/hodge-laboratory" target="_blank" rel="noopener" data-i18n="about_repo"></a></p>
+        <p data-i18n="about_web"></p>
+        <h2 data-i18n="about_citation"></h2>
+        <pre class="cite mono">@misc{isaev2026hodge,
+  author = {Isaev, Iskhak Khamzatovich},
+  orcid  = {0009-0003-7299-0701},
+  title  = {The Dynamic Principle: A Unified Monograph and
+            Computational Laboratory},
+  year   = {2026},
+  url    = {https://github.com/wild8highlander/hodge-laboratory}
+}</pre>
+        <p class="lic" data-i18n="about_license"></p>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>© 2026 Исаев Исхак Хамзатович / Isaev Iskhak Khamzatovich</span>
+      <span>ζ · Δ_Ch = λ₀ − R/4 + δ²/2 − δ⁵/k</span>
+    </footer>
+  </main>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="assets/js/engine/precise.js"></script>
+<script src="assets/js/engine/fermat.js"></script>
+<script src="assets/js/engine/core.js"></script>
+<script src="assets/js/engine/cycles.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/plots.js"></script>
+<script src="assets/js/forge.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

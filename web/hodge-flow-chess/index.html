@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A1120">
+<meta name="description" content="Hodge Flow — Шахматная Лаборатория / Chess Flow Laboratory: дискретный поток на шахматной сетке, t* = lcm(W/gcd(a,W), H/gcd(b,H)), μ₄-терминальный цикл, слои тор → K3 → Клейн, башни матриц, протокол E.">
+<title>Hodge Flow — Шахматная Лаборатория / Chess Flow Laboratory</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%230A1120'/%3E%3Ctext%20x='32'%20y='46'%20font-size='38'%20text-anchor='middle'%20fill='%23C9A96A'%3E%E2%99%9E%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- aurora blobs (fixed decoration) -->
+<div class="aurora aurora-gold" aria-hidden="true"></div>
+<div class="aurora aurora-violet" aria-hidden="true"></div>
+
+<div class="app-root">
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="topbar">
+    <div class="topline" aria-hidden="true"></div>
+    <div class="topbar-inner">
+      <button id="sidebarToggle" class="icon-btn menu-btn" type="button" data-i18n-title="tip.menu" aria-label="Показать/скрыть разделы">
+        <span aria-hidden="true">☰</span>
+      </button>
+      <div class="brand">
+        <span class="brand-glyph" aria-hidden="true">♞</span>
+        <div class="brand-text">
+          <h1 class="brand-title"><span data-i18n="app.title">Hodge Flow — Шахматная Лаборатория</span></h1>
+          <p class="brand-sub"><span data-i18n="brand.sub">Динамический принцип · шахматная сетка</span></p>
+        </div>
+      </div>
+      <div class="lang-pill" role="group" aria-label="RU / EN">
+        <button id="langRu" class="lang-btn active" type="button" data-i18n-title="tip.lang">RU</button>
+        <button id="langEn" class="lang-btn" type="button" data-i18n-title="tip.lang">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell">
+
+    <!-- ═══════════════ SIDEBAR NAV (desktop) / drawer (mobile) ═══════════════ -->
+    <nav class="sidebar" aria-label="Разделы приложения / App sections">
+      <p class="sidebar-head">Hodge Flow · v1.0.0</p>
+      <button class="nav-btn active" type="button" data-sec="flow">
+        <span class="nav-ico" aria-hidden="true">▶</span><span data-i18n="nav.flow">Живой поток</span>
+      </button>
+      <button class="nav-btn" type="button" data-sec="grid">
+        <span class="nav-ico" aria-hidden="true">▦</span><span data-i18n="nav.grid">Формульная сетка</span>
+      </button>
+      <button class="nav-btn" type="button" data-sec="layers">
+        <span class="nav-ico" aria-hidden="true">⧉</span><span data-i18n="nav.layers">Слои</span>
+      </button>
+      <button class="nav-btn" type="button" data-sec="towers">
+        <span class="nav-ico" aria-hidden="true">▲</span><span data-i18n="nav.towers">Башни</span>
+      </button>
+      <button class="nav-btn" type="button" data-sec="protocol">
+        <span class="nav-ico" aria-hidden="true">✓</span><span data-i18n="nav.protocol">Протокол E</span>
+      </button>
+      <button class="nav-btn" type="button" data-sec="reports">
+        <span class="nav-ico" aria-hidden="true">⤓</span><span data-i18n="nav.reports">Отчёты</span>
+      </button>
+      <button class="nav-btn" type="button" data-sec="about">
+        <span class="nav-ico" aria-hidden="true">ℹ</span><span data-i18n="nav.about">О программе</span>
+      </button>
+      <p class="sidebar-foot">♟ t* = lcm(W/gcd(a,W), H/gcd(b,H))</p>
+    </nav>
+
+    <!-- ═══════════════ MAIN ═══════════════ -->
+    <main class="main" id="main">
+
+      <!-- ─────────── SECTION: LIVE FLOW ─────────── -->
+      <section id="sec-flow" class="sec active" aria-label="Живой поток / Live Flow">
+        <div class="sec-head">
+          <h2 class="sec-title" data-i18n="flow.title">Живой поток на шахматной сетке</h2>
+        </div>
+
+        <div class="flow-layout">
+          <!-- board column -->
+          <div class="card-stack">
+            <div class="card">
+              <div class="card-title">
+                <span data-i18n="flow.state">Состояние (p, φ)</span>
+                <span class="kicker">μ₄ = {1, i, −1, −i}</span>
+              </div>
+              <div class="canvas-frame board-wrap">
+                <canvas id="boardCanvas" role="img" aria-label="Шахматная доска потока: тепловая карта посещений, траектория, маркер фазы μ₄ / Flow chessboard: visit heat map, trajectory, μ₄ phase marker"></canvas>
+              </div>
+              <div class="legend-row">
+                <span class="legend-item"><span class="legend-dot dot-heat" aria-hidden="true"></span><span data-i18n="flow.legend.heat">Интенсивность посещений: золото → бирюза</span></span>
+                <span class="legend-item"><span class="legend-dot dot-trail" aria-hidden="true"></span><span data-i18n="flow.legend.trail">Траектория</span></span>
+                <span class="legend-item"><span class="legend-dot dot-marker" aria-hidden="true"></span><span data-i18n="flow.legend.marker">Маркер с фазовыми тиками μ₄</span></span>
+                <span class="legend-item"><span class="legend-dot dot-pulse" aria-hidden="true"></span><span data-i18n="flow.legend.pulse">Импульс открытия</span></span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="chain-head">
+                <h3 data-i18n="chain.title">Цепной код Фримена</h3>
+                <button id="chainCopy" class="btn" type="button" data-i18n="chain.copy">Копировать</button>
+              </div>
+              <div id="chainStrip" class="chain-strip" aria-live="off"><span class="chain-empty">— пусто: запустите поток — здесь появятся стрелки —</span></div>
+              <p id="chainMeta" class="chain-meta mono"></p>
+            </div>
+          </div>
+
+          <!-- controls + stats column -->
+          <div class="card-stack">
+            <div class="card">
+              <h2 class="card-title"><span data-i18n="controls.title">Управление</span></h2>
+
+              <div class="field-grid">
+                <div class="field">
+                  <label class="field-label" for="inpW"><span data-i18n="lbl.W">Ширина W</span></label>
+                  <input id="inpW" type="number" inputmode="numeric" min="2" max="384" step="1" value="48" data-i18n-ph="ph.W" placeholder="2–384" aria-label="Ширина W / Width W">
+                </div>
+                <div class="field">
+                  <label class="field-label" for="inpH"><span data-i18n="lbl.H">Высота H</span></label>
+                  <input id="inpH" type="number" inputmode="numeric" min="2" max="384" step="1" value="48" data-i18n-ph="ph.H" placeholder="2–384" aria-label="Высота H / Height H">
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="inpWr"><span aria-hidden="true">W ·↔·</span></label>
+                <input id="inpWr" type="range" min="2" max="384" step="1" value="48" aria-label="Ширина W (слайдер) / Width W (slider)">
+              </div>
+              <div class="field">
+                <label class="field-label" for="inpHr"><span aria-hidden="true">H ·↕·</span></label>
+                <input id="inpHr" type="range" min="2" max="384" step="1" value="48" aria-label="Высота H (слайдер) / Height H (slider)">
+              </div>
+
+              <div class="field-grid">
+                <div class="field">
+                  <label class="field-label" for="inpA"><span data-i18n="lbl.a">Шаг a</span></label>
+                  <input id="inpA" type="number" inputmode="numeric" min="-16" max="16" step="1" value="1" data-i18n-ph="ph.a" placeholder="−16…16" aria-label="Шаг a / Step a">
+                </div>
+                <div class="field">
+                  <label class="field-label" for="inpB"><span data-i18n="lbl.b">Шаг b</span></label>
+                  <input id="inpB" type="number" inputmode="numeric" min="-16" max="16" step="1" value="1" data-i18n-ph="ph.b" placeholder="−16…16" aria-label="Шаг b / Step b">
+                </div>
+              </div>
+
+              <div class="field">
+                <span class="field-label"><span data-i18n="lbl.layer">Слой</span></span>
+                <div class="seg" role="radiogroup" aria-label="Слой / Layer">
+                  <label class="seg-item"><input type="radio" name="layer" value="torus" checked><span data-i18n="layer.torus" data-i18n-title="layer.torus.hint">Тор</span></label>
+                  <label class="seg-item"><input type="radio" name="layer" value="k3"><span data-i18n="layer.k3" data-i18n-title="layer.k3.hint">K3</span></label>
+                  <label class="seg-item"><input type="radio" name="layer" value="klein"><span data-i18n="layer.klein" data-i18n-title="layer.klein.hint">Клейн</span></label>
+                </div>
+                <p class="hint" data-i18n="layer.torus.hint">Модульный сдвиг: точная формула t*</p>
+                <p class="hint" data-i18n="layer.k3.hint">Отражения с торможением γ = δ⁴/k</p>
+                <p class="hint" data-i18n="layer.klein.hint">Зингер-порождение порядка 7</p>
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="inpSpeed"><span data-i18n="lbl.speed">Скорость, шагов/с</span><span class="val" id="speedVal">24</span></label>
+                <input id="inpSpeed" type="range" min="1" max="120" step="1" value="24" aria-label="Скорость, шагов в секунду / Speed, steps per second">
+              </div>
+
+              <div class="field">
+                <label class="switch" for="chkTurbo">
+                  <input id="chkTurbo" type="checkbox">
+                  <span class="track" aria-hidden="true"></span>
+                  <span class="sw-label" data-i18n="lbl.turbo">Турбо</span>
+                </label>
+              </div>
+
+              <div class="field">
+                <span class="field-label"><span data-i18n="presets">Пресеты</span></span>
+                <div class="btn-row">
+                  <button class="btn mono" type="button" data-preset="48x48">48×48</button>
+                  <button class="btn mono" type="button" data-preset="96x96">96×96</button>
+                  <button class="btn mono" type="button" data-preset="192x192">192×192</button>
+                  <button class="btn mono" type="button" data-preset="384x384">384×384</button>
+                </div>
+                <p id="gridWarn" class="warn-text" aria-live="polite"></p>
+              </div>
+
+              <div class="btn-row">
+                <button id="btnPlay" class="btn primary" type="button" style="flex:2 1 100%" data-i18n="btn.play" data-i18n-title="tip.play">▶ Пуск</button>
+                <button id="btnStep" class="btn" type="button" data-i18n="btn.step" data-i18n-title="tip.step">⏭ Шаг</button>
+                <button id="btnReset" class="btn" type="button" data-i18n="btn.reset" data-i18n-title="tip.reset">↺ Сброс</button>
+                <button id="btnSkip" class="btn" type="button" data-i18n="btn.skip" data-i18n-title="tip.skip">⚡ К t*</button>
+              </div>
+            </div>
+
+            <div class="card">
+              <h2 class="card-title"><span data-i18n="stats.title">Статистика потока</span><span id="stMode" class="mode-chip m-run">режим открытия</span></h2>
+              <div class="stat-grid">
+                <div class="stat"><span class="stat-label" data-i18n="st.step">Шаг</span><span id="stStep" class="stat-val">0</span></div>
+                <div class="stat"><span class="stat-label" data-i18n="st.pos">Позиция</span><span id="stPos" class="stat-val">(0, 0)</span></div>
+                <div class="stat"><span class="stat-label" data-i18n="st.phase">Фаза</span><span id="stPhase" class="stat-val">i^0 = 1</span></div>
+                <div class="stat"><span class="stat-label" data-i18n="st.visited">Посещено</span><span id="stVisited" class="stat-val">1 / 48</span></div>
+                <div class="stat"><span class="stat-label" data-i18n="st.tstar">Точное время t*</span><span id="stTstar" class="stat-val">48</span></div>
+                <div class="stat"><span class="stat-label" data-i18n="st.friction">Трение</span><span id="stFriction" class="stat-val">0</span></div>
+                <div class="stat"><span class="stat-label" data-i18n="st.edges">Краевые ячейки</span><span id="stEdges" class="stat-val">0</span></div>
+                <div class="stat"><span class="stat-label" data-i18n="st.chain">Цепной код, длина</span><span id="stChain" class="stat-val">0</span></div>
+                <div class="stat"><span class="stat-label" data-i18n="st.closure">Замыкание</span><span id="stClosure" class="stat-val">(0, 0) · ✓</span></div>
+              </div>
+
+              <div class="prog" role="progressbar" aria-label="Прогресс открытия / Discovery progress" aria-valuemin="0" aria-valuemax="100">
+                <div id="progFill" class="prog-fill"></div>
+              </div>
+              <div class="prog-meta">
+                <span class="stat-label" data-i18n="st.progress">Прогресс открытия</span>
+                <span id="progText" class="prog-text">0%</span>
+              </div>
+
+              <div class="layer-row" style="margin-top:10px">
+                <span class="lr-label" data-i18n="st.cycle">Терминальный цикл</span>
+                <span id="stCycle" class="lr-val">L = lcm(t*,4) = 48 · μ₄ = 4</span>
+              </div>
+
+              <!-- Klein extras (visible on klein layer) -->
+              <div id="kleinRow1" class="layer-row" style="display:none">
+                <span class="lr-label" data-i18n="st.singer">Зингер-множитель</span>
+                <span id="stSinger" class="lr-val">×1</span>
+              </div>
+              <div id="kleinRow2" class="layer-row" style="display:none">
+                <span class="lr-label" data-i18n="st.phase7">Фаза-7</span>
+                <span id="stPhase7" class="lr-val">0</span>
+              </div>
+
+              <!-- K3 extras (visible on k3 layer) -->
+              <div id="k3Row1" class="layer-row" style="display:none">
+                <span class="lr-label" data-i18n="st.refl">Отражения</span>
+                <span id="stRefl" class="lr-val">0</span>
+              </div>
+              <div id="k3Row2" class="layer-row" style="display:none">
+                <span class="lr-label" data-i18n="st.brake">Накопленное торможение</span>
+                <span id="stBrake" class="lr-val">1.000e+0</span>
+              </div>
+              <div id="k3Row3" class="layer-row" style="display:none">
+                <span class="lr-label" data-i18n="st.vel">Скорость (vx, vy)</span>
+                <span id="stVel" class="lr-val">(1.000, 1.000)</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <h2 class="card-title"><span data-i18n="ref.title">Эталон монографии: 48×48, шаг (1,1)</span></h2>
+              <div class="ref-blocks">
+                <div>
+                  <div class="ref-col-head">
+                    <span class="rc-title">48 / 212 / 432 / 114</span>
+                    <span class="pill pill-doc" data-i18n="st.reference">документированный эталон</span>
+                  </div>
+                  <div class="stat-grid">
+                    <div class="stat"><span class="stat-label" data-i18n="ref.visited">посещено</span><span class="stat-val">48</span></div>
+                    <div class="stat"><span class="stat-label" data-i18n="ref.friction">трение</span><span class="stat-val">212</span></div>
+                    <div class="stat"><span class="stat-label" data-i18n="ref.edges">краевые</span><span class="stat-val">432</span></div>
+                    <div class="stat"><span class="stat-label" data-i18n="ref.code">цепной код</span><span class="stat-val">114</span></div>
+                    <div class="stat"><span class="stat-label" data-i18n="ref.sum">сумма</span><span class="stat-val">806</span></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="ref-col-head">
+                    <span class="rc-title" data-i18n="st.computed">вычислено</span>
+                    <span class="pill pill-pass">PASS</span>
+                  </div>
+                  <div class="stat-grid">
+                    <div class="stat"><span class="stat-label" data-i18n="ref.visited">посещено</span><span id="refVisited" class="stat-val">—</span></div>
+                    <div class="stat"><span class="stat-label" data-i18n="ref.friction">трение</span><span id="refFriction" class="stat-val">—</span></div>
+                    <div class="stat"><span class="stat-label" data-i18n="ref.edges">краевые</span><span id="refEdges" class="stat-val">—</span></div>
+                    <div class="stat"><span class="stat-label" data-i18n="ref.code">цепной код</span><span id="refCode" class="stat-val">—</span></div>
+                  </div>
+                </div>
+              </div>
+              <p class="doc-note" data-i18n="ref.note">Значения 48/212/432/114 — документированный эталон сертифицированного конвейера (stand_binary); они не пересчитываются браузером. Ваши живые значения вычисляются точно по тем же правилам.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────── SECTION: FORMULA GRID ─────────── -->
+      <section id="sec-grid" class="sec" aria-label="Формульная сетка / Formula Grid">
+        <div class="sec-head">
+          <h2 class="sec-title" data-i18n="grid.title">Формульная сетка: эквивариантность μ₄</h2>
+        </div>
+
+        <div class="grid-layout">
+          <div class="card-stack">
+            <div class="card">
+              <p class="formula-line" data-i18n="grid.formula">Объединенная формула: Δ_Ch(ячейка) = λ₀ + δ²/2·s − δ⁵/k·s</p>
+              <div class="canvas-frame board-wrap" style="margin-top:12px">
+                <canvas id="gridCanvas" role="img" aria-label="Тепловая карта формульной сетки K×K с диагональным сканированием / Formula grid K×K heatmap with diagonal scan"></canvas>
+              </div>
+              <div id="gridProgWrap" class="prog" style="display:none" role="progressbar" aria-label="Вычисление сетки / Grid computation">
+                <div id="gridProgFill" class="prog-fill"></div>
+              </div>
+              <p id="gridProgText" class="hint mono" style="display:none"></p>
+            </div>
+          </div>
+
+          <div class="card-stack">
+            <div class="card">
+              <h2 class="card-title"><span data-i18n="controls.title">Управление</span></h2>
+
+              <div class="field">
+                <label class="field-label" for="inpKr"><span data-i18n="grid.K">Сетка K×K</span><span class="val" id="valK">64</span></label>
+                <input id="inpKr" type="range" min="16" max="512" step="16" value="64" aria-label="Размер сетки K / Grid size K">
+              </div>
+              <div class="field">
+                <button id="btnK4096" class="btn wide mono" type="button" data-i18n-title="grid.big.warn">4096 × 4096</button>
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="inpL0"><span data-i18n="grid.lambda0">λ₀ (база)</span></label>
+                <input id="inpL0" type="number" inputmode="decimal" step="0.0001" min="0.0001" value="39.47841760435743" placeholder="39.4784…" aria-label="λ₀ база / lambda0 base">
+              </div>
+
+              <div class="field">
+                <span class="field-label"><span data-i18n="grid.mode">Кодировка</span></span>
+                <div class="seg" role="radiogroup" aria-label="Кодировка / Encoding">
+                  <label class="seg-item"><input type="radio" name="fmode" value="A" checked><span data-i18n="grid.modeA">A — симметричная</span></label>
+                  <label class="seg-item"><input type="radio" name="fmode" value="B"><span data-i18n="grid.modeB">B — кодировка (7,22)</span></label>
+                </div>
+              </div>
+
+              <div class="field">
+                <button id="btnRescan" class="btn wide" type="button" data-i18n="grid.rescan">Повторить сканирование</button>
+              </div>
+
+              <p class="doc-note" data-i18n="grid.doc4096">Монография: симметричная кодировка — отклонение 0.000 на сетке 4096×4096</p>
+              <p class="doc-note" data-i18n="grid.doc722">Монография: кодировка (7,22) — отклонение 1.000</p>
+              <p class="doc-note" data-i18n="grid.docshift">Асимметрия циклического сдвига, K=256: 0.828 max / 1.782 mean</p>
+            </div>
+
+            <div class="card">
+              <div class="verdict-cards">
+                <div class="verdict-card stat">
+                  <div class="vc-head">
+                    <span class="vc-title" data-i18n="grid.verdict.A">A · симметричная кодировка</span>
+                    <span id="pillA" class="pill">…</span>
+                  </div>
+                  <div class="vc-vals">
+                    <div><span class="stat-label" data-i18n="grid.norm">Нормированное (макс.)</span><span id="normDevA" class="stat-val">—</span></div>
+                    <div><span class="stat-label" data-i18n="grid.raw">Сырое отклонение</span><span id="rawDevA" class="stat-val">—</span></div>
+                  </div>
+                  <p class="hint" data-i18n="grid.A.desc">Значение задаётся на фундаментальной области и продолжается правилом Δ(g·z) = χ(g)·Δ(z); проверка по всей сетке даёт 0.000.</p>
+                </div>
+                <div class="verdict-card stat">
+                  <div class="vc-head">
+                    <span class="vc-title" data-i18n="grid.verdict.B">B · кодировка (7,22)</span>
+                    <span id="pillB" class="pill">…</span>
+                  </div>
+                  <div class="vc-vals">
+                    <div><span class="stat-label" data-i18n="grid.norm">Нормированное (макс.)</span><span id="normDevB" class="stat-val">—</span></div>
+                    <div><span class="stat-label" data-i18n="grid.raw">Сырое отклонение</span><span id="rawDevB" class="stat-val">—</span></div>
+                  </div>
+                  <p class="hint" data-i18n="grid.B.desc">Спин (7r+22s) mod N применяется напрямую и ломает симметрию; нормированное отклонение достигает 1.000.</p>
+                </div>
+              </div>
+              <p id="gridBeta" class="beta-line" data-i18n="grid.beta">β = δ²/2 − δ⁵/k</p>
+              <p class="hint" data-i18n="grid.demo">вычислительная демонстрация утверждения монографии</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────── SECTION: LAYERS ─────────── -->
+      <section id="sec-layers" class="sec" aria-label="Слои / Layers">
+        <div class="sec-head">
+          <h2 class="sec-title" data-i18n="layers.title">Слои: тор → K3 → Клейн</h2>
+        </div>
+
+        <div class="card-stack">
+          <div class="layer-cards">
+            <div class="card layer-card lc-torus">
+              <h3 data-i18n="layers.torus.name">Слой тора</h3>
+              <p data-i18n="layers.torus.desc">Чистый поток: состояние (p, φ), φ ∈ μ₄ = {1, i, −1, −i}; переход — сдвиг по модулю сетки и умножение фазы на i. Пространство состояний конечно: 4WH состояний; моновариант открытия строго растёт — завершимость за t* = lcm(W/gcd(a,W), H/gcd(b,H)).</p>
+            </div>
+            <div class="card layer-card lc-k3">
+              <h3 data-i18n="layers.k3.name">K3-слой: отражения с торможением</h3>
+              <p data-i18n="layers.k3.desc">Без заворачивания: когда незаторможенный следующий выход покидает [0,W)×[0,H), компонента отражается (знак меняется) и величина шага умножается на γ = δ⁴/k, δ = π/n. Траектория становится ограниченной — «бильярд с демпфированием»; торможение накапливается.</p>
+            </div>
+            <div class="card layer-card lc-klein">
+              <h3 data-i18n="layers.klein.name">Клейн-слой: Зингер-порождение порядка 7</h3>
+              <p data-i18n="layers.klein.desc">К модульному потоку добавляется Зингер-порождение порядка 7: время завершимости умножается на 7/gcd(7,H); при H кратном 7 поток замыкается за исходное время. Ячейки окрашиваются по (r+s) mod 7, маркер несёт 7-сегментное кольцо фазы.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 class="card-title"><span data-i18n="layers.params">Параметры n, k</span><span class="kicker">δ = π/n</span></h2>
+            <div class="field-grid">
+              <div class="field">
+                <label class="field-label" for="inpN"><span data-i18n="grid.n">n (δ = π/n)</span></label>
+                <input id="inpN" type="number" inputmode="numeric" min="2" max="64" step="1" value="4" placeholder="4" aria-label="n / n">
+              </div>
+              <div class="field">
+                <label class="field-label" for="inpK"><span data-i18n="grid.k">k (торможение)</span></label>
+                <input id="inpK" type="number" inputmode="numeric" min="1" max="1024" step="1" value="1" placeholder="1" aria-label="k / k">
+              </div>
+            </div>
+            <div class="btn-row">
+              <button id="btnNTorus" class="btn" type="button" data-i18n="layers.preset.torus">Калибровка тора: n=4, k=1</button>
+              <button id="btnNKlein" class="btn" type="button" data-i18n="layers.preset.klein">Пресет Клейна: n=7, k=22</button>
+            </div>
+            <p class="hint" data-i18n="layers.hint.nk">Параметры применяются к K3-торможению и формульной сетке.</p>
+          </div>
+
+          <div class="card">
+            <h2 class="card-title"><span data-i18n="layers.live">живое значение</span></h2>
+            <div class="layer-row"><span class="lr-label" data-i18n="layers.delta">δ = π/n</span><span id="layDelta" class="lr-val">0.7853981634</span></div>
+            <div class="layer-row"><span class="lr-label" data-i18n="layers.gamma">γ = δ⁴/k</span><span id="layGamma" class="lr-val">3.805043e-1</span></div>
+            <div class="layer-row"><span class="lr-label" data-i18n="layers.deltaeff">δ_eff = δ⁵/k</span><span id="layDeltaEff" class="lr-val">2.988473e-1</span></div>
+            <div class="layer-row"><span class="lr-label" data-i18n="layers.brakeacc">Накопленное торможение (живое)</span><span id="layBrake" class="lr-val">1.000000e+0</span></div>
+            <div class="layer-row"><span class="lr-label" data-i18n="layers.singerf">Зингер-множитель 7/gcd(7,H)</span><span id="laySinger" class="lr-val">×7</span></div>
+            <p class="doc-note" data-i18n="layers.docgamma">Монография (тор, k=1): γ = π⁴/256 = 0.3805042619</p>
+            <p class="doc-note" data-i18n="layers.docdeltaeff">Монография (тор): δ_eff = δ⁵ = 0.2988473484</p>
+            <p class="doc-note" data-i18n="layers.docdelta2">Монография (тор): δ²/2 = π²/32 = 0.3084251375</p>
+            <p class="doc-note" data-i18n="layers.docdeltaCh">Δ_Ch(тор) = 4π² + δ²/2 − δ⁵ = 39.48799539346835</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────── SECTION: TOWERS ─────────── -->
+      <section id="sec-towers" class="sec" aria-label="Башни / Towers">
+        <div class="sec-head">
+          <h2 class="sec-title" data-i18n="towers.title">Башни больших матриц</h2>
+        </div>
+
+        <div class="card-stack">
+          <div class="card">
+            <h2 class="card-title"><span data-i18n="towers.base">Базовый блок 6×6: трёхдиагональный (−1, 2, −1) с твистом</span></h2>
+            <div class="field-grid">
+              <div class="field">
+                <label class="field-label" for="inpTwist"><span data-i18n="towers.twist">Твист (углы)</span></label>
+                <input id="inpTwist" type="number" inputmode="decimal" step="0.1" min="-2" max="2" value="-0.5" placeholder="-0.5" aria-label="Твист / Twist">
+              </div>
+              <div class="field" style="align-self:end">
+                <button id="btnTowers" class="btn primary wide" type="button" data-i18n="towers.compute">Диагонализовать и построить башню</button>
+              </div>
+            </div>
+
+            <h3 style="margin-top:14px" data-i18n="towers.eigen">Собственные значения базового блока (Якоби)</h3>
+            <div id="towersEigen" class="chip-row"></div>
+            <div class="layer-row" style="margin-top:10px">
+              <span class="lr-label" data-i18n="towers.residual">Невязка ‖Av − λv‖∞</span>
+              <span id="towersResidual" class="lr-val">—</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2 class="card-title"><span data-i18n="towers.spectra">Спектры уровней: {λᵢ+λⱼ+λₖ} — объединение сумм</span></h2>
+            <div class="canvas-frame chart-wrap">
+              <canvas id="specCanvas" role="img" aria-label="Спектры уровней Кронекеровой башни / Kronecker tower level spectra"></canvas>
+            </div>
+            <h3 style="margin-top:16px" data-i18n="towers.stab">Спектральная стабильность</h3>
+            <div class="table-scroll">
+              <table id="towersTable" class="data-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="towers.level">Уровень</th>
+                    <th data-i18n="towers.size">Размер</th>
+                    <th data-i18n="towers.min">мин λ</th>
+                    <th data-i18n="towers.max">макс λ</th>
+                    <th data-i18n="towers.distinct">различных</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <p class="hint" data-i18n="towers.stab.note">Кронекерово расширение не вносит дрейфа: спектр уровня k — все k-кратные суммы базовых λ (с кратностями).</p>
+            <p class="doc-note" data-i18n="towers.docedge">Монография: краевой спектр Грам-башен [−3.9890438, 1.0000000] повторяется на всех уровнях (5 знаков)</p>
+            <p class="doc-note" data-i18n="towers.docfluct">Монография: колебания λ по башне 28k: 2.06e-16 → 4.23e-17 (машинная точность)</p>
+          </div>
+
+          <div class="card">
+            <h2 class="card-title"><span data-i18n="towers.gram">Грам-башни G_N: уровни 22k, плотность CSR = O(1/N)</span></h2>
+            <div class="table-scroll">
+              <table id="gramTable" class="data-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="towers.gramN">N (размер)</th>
+                    <th data-i18n="towers.gramnnz">ненулевых</th>
+                    <th data-i18n="towers.gramdens">плотность</th>
+                    <th data-i18n="towers.grammem">память (оценка), МБ</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div class="canvas-frame chart-wrap" style="margin-top:14px">
+              <canvas id="gramCanvas" role="img" aria-label="Плотность Грам-башен, log-log / Gram tower density, log-log"></canvas>
+            </div>
+            <p class="doc-note" data-i18n="towers.docmem">Монография: ~39 МБ при N = 220 000; сборка субсекундная</p>
+            <p class="hint" data-i18n="towers.explain">Башни строятся блочно-кронекерово: A_{k+1} = A_k⊗I + I⊗A_k^(φ). Спектр башни — объединение спектров блоков с фазовыми множителями из конечной группы; уровни повторяют значения с большей кратностью.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────── SECTION: PROTOCOL E ─────────── -->
+      <section id="sec-protocol" class="sec" aria-label="Протокол E / Protocol E">
+        <div class="sec-head">
+          <h2 class="sec-title" data-i18n="proto.title">Протокол E — завершимость потока</h2>
+          <p class="sec-lede">E1–E6, E8 — computed · E7 — documented reference</p>
+        </div>
+
+        <div class="card">
+          <div class="table-scroll">
+            <table id="protoTable" class="data-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th data-i18n="proto.check">Проверка</th>
+                  <th data-i18n="proto.value">Значение</th>
+                  <th>✓</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div id="protoVerdict" class="verdict-banner"></div>
+          <p class="doc-note" data-i18n="proto.note">E1–E6, E8 вычисляются в браузере на текущей конфигурации. E7 — документированный эталон монографии (stand_binary): проверяется только арифметика суммы.</p>
+        </div>
+      </section>
+
+      <!-- ─────────── SECTION: REPORTS ─────────── -->
+      <section id="sec-reports" class="sec" aria-label="Отчёты / Reports">
+        <div class="sec-head">
+          <h2 class="sec-title" data-i18n="rep.title">Отчёты и экспорт</h2>
+        </div>
+
+        <div class="card">
+          <div class="rep-grid">
+            <button id="repJson" class="rep-btn" type="button">
+              <span class="rb-ico" aria-hidden="true">{ }</span>
+              <span data-i18n="rep.json">JSON-отчёт сессии</span>
+              <span class="rb-tags"><span class="pill pill-pass">computed</span></span>
+            </button>
+            <button id="repTxt" class="rep-btn" type="button">
+              <span class="rb-ico" aria-hidden="true">≣</span>
+              <span data-i18n="rep.txt">Полный текстовый лог</span>
+              <span class="rb-tags"><span class="pill">.txt</span></span>
+            </button>
+            <button id="repMeta" class="rep-btn" type="button">
+              <span class="rb-ico" aria-hidden="true">⌘</span>
+              <span data-i18n="rep.meta">Мета-файл параметров</span>
+              <span class="rb-tags"><span class="pill">.txt</span></span>
+            </button>
+            <button id="repPngBoard" class="rep-btn" type="button">
+              <span class="rb-ico" aria-hidden="true">♞</span>
+              <span data-i18n="rep.pngboard">PNG доски · 600 dpi</span>
+              <span class="rb-tags"><span class="pill" data-i18n="rep.dpi">600 dpi · Ultra HD (4800×4800)</span></span>
+            </button>
+            <button id="repPngGrid" class="rep-btn" type="button">
+              <span class="rb-ico" aria-hidden="true">▦</span>
+              <span data-i18n="rep.pngrid">PNG формульной сетки · 600 dpi</span>
+              <span class="rb-tags"><span class="pill" data-i18n="rep.dpi">600 dpi · Ultra HD (4800×4800)</span></span>
+            </button>
+            <button id="repPngSpec" class="rep-btn" type="button">
+              <span class="rb-ico" aria-hidden="true">▲</span>
+              <span data-i18n="rep.pngspec">PNG спектра башни · 600 dpi</span>
+              <span class="rb-tags"><span class="pill" data-i18n="rep.dpi">600 dpi · Ultra HD (4800×4800)</span></span>
+            </button>
+          </div>
+          <p class="doc-note" data-i18n="rep.note">PNG рендерится в offscreen-холст 4800×4800 и скачивается через toBlob. На мобильных может использоваться резерв 2400×2400.</p>
+        </div>
+      </section>
+
+      <!-- ─────────── SECTION: ABOUT ─────────── -->
+      <section id="sec-about" class="sec" aria-label="О программе / About">
+        <div class="sec-head">
+          <h2 class="sec-title" data-i18n="about.title">О программе</h2>
+        </div>
+
+        <div class="card-stack">
+          <div class="card about-text">
+            <p data-i18n="about.p1">«Hodge Flow — Шахматная Лаборатория» моделирует в реальном времени «шахматную идею» монографии проекта Лаборатории Ходжа: дискретный поток на шахматной сетке — состояния (p, φ) с фазой μ₄, точное время завершимости t*, моновариант открытия, терминальный цикл как μ₄-орбита.</p>
+            <p data-i18n="about.p2">Теоретический источник — монография «Динамический принцип», часть XV («Дискретный поток на шахматной сетке», «Башни больших матриц») и раздел об эквивариантности шахматной сетки (часть II). Сертификат E доказывает завершимость с точной lcm-формулой; эталонный конвейер 48×48 даёт координатную сверку 48/212/432/114.</p>
+            <p data-i18n="about.p3">Честность пометок: значения с бирюзовой пометкой PASS вычислены в вашем браузере по формулам монографии; фиолетовая пометка «документированный эталон» означает величины из сертифицированного конвейера, которые здесь не пересчитываются, а показываются рядом для сверки.</p>
+            <p class="doc-note" data-i18n="about.legend">Обозначения: PASS — проверка пройдена (вычислено); FAIL — нарушение обнаружено (вычислено); «документированный эталон» — значение из конвейера монографии.</p>
+          </div>
+
+          <div class="card">
+            <div class="credit-card">
+              <p class="credit-line" data-i18n="about.credit">Программа: Исаев Исхак Хамзатович / Program: Isaev Iskhak Khamzatovich</p>
+              <div class="about-meta">
+                <span data-i18n="about.mono">Монография: «Динамический принцип», часть XV / "The Dynamic Principle", Part XV</span>
+                <a href="https://github.com/wild8highlander/hodge-laboratory" target="_blank" rel="noopener" data-i18n="about.repo">Репозиторий: github.com/wild8highlander/hodge-laboratory</a>
+                <span data-i18n="about.license">Лицензия: индивидуальная исключительная лицензия / License: individual exclusive license</span>
+                <span class="mono" data-i18n="about.tech">Статическое приложение: HTML + CSS + JS без сборки; работает открытием index.html, GitHub Pages и Termux.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ═══════════════ FOOTER (sticky: .app-root flex + margin-top:auto) ═══════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div data-i18n="footer.text">Hodge Flow · Шахматная Лаборатория / Chess Flow Laboratory · v1.0.0</div>
+    <div class="foot-author" data-i18n="footer.author">Программа: Исаев Исхак Хамзатович / Program: Isaev Iskhak Khamzatovich</div>
+  </footer>
+</div>
+
+<!-- floating session-log toggle -->
+<button id="logToggle" class="icon-btn fab-log" type="button" aria-expanded="false" data-i18n-title="log.title" aria-label="Лог сессии / Session log">
+  <span aria-hidden="true">≣</span>
+</button>
+
+<!-- session log drawer -->
+<aside id="logDrawer" class="log-drawer" role="dialog" aria-label="Лог сессии / Session log">
+  <div class="log-head">
+    <h3 data-i18n="log.title">Лог сессии</h3>
+    <button id="logClear" class="btn" type="button" data-i18n="log.clear">Очистить</button>
+    <button id="logDown" class="btn" type="button" data-i18n="log.download">Скачать .txt</button>
+    <button id="logClose" class="icon-btn" type="button" aria-label="Закрыть / Close"><span aria-hidden="true">✕</span></button>
+  </div>
+  <div id="logBody" class="log-body"><span class="chain-empty">Лог пуст.</span></div>
+</aside>
+
+<!-- toast -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<noscript>
+  <p style="position:fixed;inset:auto 0 0 0;z-index:99;background:#0E1830;border-top:1px solid #24405F;color:#EAF0F8;padding:14px;text-align:center;font-family:Inter,sans-serif">
+    Для работы приложения включите JavaScript / Please enable JavaScript to run this app.
+  </p>
+</noscript>
+
+<!-- classic scripts (IIFE modules attaching to window; order matters; file://-safe) -->
+<script src="assets/js/engine.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/board.js"></script>
+<script src="assets/js/plots.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
