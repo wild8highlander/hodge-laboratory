@@ -687,44 +687,37 @@ badge, so all citations link to the same researcher identity.
 ---
 
 
-<!-- WEB-SUITE:START · do not remove these markers / не удаляйте эти маркеры -->
+<!-- WEB-SUITE:START · do not remove these markers / not for removal -->
 
 ---
 
-## What we built: the live web suite and the five-language analogues
+## 14. What we built: the live web suite and the five-language analogues
 
-> **RU.** К исследовательскому пакету добавлены **два работающих веб-приложения**
-> (открываются в браузере в один клик — с телефона или компьютера, без установки)
-> и **полиглот-ядро проверки на пяти языках программирования**. Код обоих
-> приложений полностью открыт: карты файлов — `CODE_INDEX.md` в каждом
-> репозитории, а полные копии лежат прямо здесь, в папке [`web/`](web/).
-> Аналоги на **Python, C, Rust, Go и Julia** — в [`polyglot/`](polyglot/).
-
-**EN.** Two runnable web applications now accompany the research package —
+**Two runnable web applications** now accompany the research package —
 open in any browser (Android / iOS / Desktop), no installation needed —
-plus a polyglot verification core. The source of both apps is fully open:
-file maps in `CODE_INDEX.md` per repository, full mirrors under
-[`web/`](web/), and the five-language analogues under [`polyglot/`](polyglot/).
+plus a **polyglot verification core**. The source of both apps is fully
+open: file maps live in `CODE_INDEX.md` in each repository, full mirrors
+are stored right here under [`web/`](web/), and the five-language
+analogues under [`polyglot/`](polyglot/).
 
-### ▶ Live web applications · Живые веб-приложения
+### Live web applications
 
-| # | App | What it does · Что делает | Open | Source |
-|---|-----|---------------------------|------|--------|
-| 1 | 🧪 **Hodge Laboratory Web** | Полная интерактивная платформа: роадмап-раннер **V1–V9** с живым журналом и вердиктом за ~6 с; семь стендов (тор Δ_Ch 40 знаков, K3 точный ранг 20 + SNF, Клейн Ω, N = 7/9, Арф 36/28, бинарный 806); сертификаты **A–J**; конструктор экспериментов с **неограниченными параметрами**; 10 глубоких тестов ходжевых циклов **C1–C10**; экспорт графиков **600 dpi**; кузница монографии; RU/EN | [**ОТКРЫТЬ ▶**](https://wild8highlander.github.io/hodge-laboratory-web/) | [repo](https://github.com/wild8highlander/hodge-laboratory-web) · [file map](https://github.com/wild8highlander/hodge-laboratory-web/blob/main/CODE_INDEX.md) · [`web/hodge-laboratory-web/`](web/hodge-laboratory-web/) |
-| 2 | ♞ **Hodge Flow Chess** | Симулятор шахматной идеи в реальном времени: состояния (p, φ ∈ μ₄) на доске; замкнутое время **t\* = lcm(W/gcd(a,W), H/gcd(b,H))**; точные терминальные циклы μ₄-орбит; отражения K3 + торможение γ = δ⁴/k; слой Клейна—Зингера порядка 7; живые проверки **протокола E**; экспорт 600 dpi; RU/EN | [**ОТКРЫТЬ ▶**](https://wild8highlander.github.io/hodge-flow-chess/) | [repo](https://github.com/wild8highlander/hodge-flow-chess) · [file map](https://github.com/wild8highlander/hodge-flow-chess/blob/main/CODE_INDEX.md) · [`web/hodge-flow-chess/`](web/hodge-flow-chess/) |
+| # | App | What it does | Open | Source |
+|---|-----|--------------|------|--------|
+| 1 | 🧪 **Hodge Laboratory Web** | The full interactive platform: the roadmap runner **V1–V9** with a live log and a verdict in ~6 s; seven stands (torus Δ_Ch at 40 digits, K3 exact rank 20 + SNF, Klein Ω, N = 7/9, Arf 36/28, binary 806); certificates **A–J**; the experiment **designer** with unlimited parameters; 10 deep Hodge-cycle tests **C1–C10**; **600-dpi** plot export; the monograph forge; RU/EN interface | [**OPEN ▶**](https://wild8highlander.github.io/hodge-laboratory-web/) | [repo](https://github.com/wild8highlander/hodge-laboratory-web) · [file map](https://github.com/wild8highlander/hodge-laboratory-web/blob/main/CODE_INDEX.md) · [`web/hodge-laboratory-web/`](web/hodge-laboratory-web/) |
+| 2 | ♞ **Hodge Flow Chess** | A real-time simulator of the chessboard idea: states (p, φ ∈ μ₄) on the board; the closed time **t\* = lcm(W/gcd(a,W), H/gcd(b,H))**; exact terminal cycles of the μ₄-orbits; K3 reflections + braking γ = δ⁴/k; the Klein–Singer order-7 layer; live **protocol-E** checks; 600-dpi exports; RU/EN interface | [**OPEN ▶**](https://wild8highlander.github.io/hodge-flow-chess/) | [repo](https://github.com/wild8highlander/hodge-flow-chess) · [file map](https://github.com/wild8highlander/hodge-flow-chess/blob/main/CODE_INDEX.md) · [`web/hodge-flow-chess/`](web/hodge-flow-chess/) |
 
-Оба приложения **статические и без зависимостей** — работают и офлайн
-прямо из Termux: `python3 -m http.server 8080` в папке приложения.
-Both apps are static and zero-dependency — they run offline the same way.
+Both apps are **static and zero-dependency** — they run offline from
+Termux the same way: `python3 -m http.server 8080` inside the app folder.
 
-### 🖥 Five-language analogues · Аналоги на пяти языках
+### The five-language analogues
 
-Вычислительное ядро веб-комплекта — одна и та же батарея из **19 проверок**
-(census V1 прямой + Мёбиус; замкнутые времена сертификата E; бинарный поток
-48×48; перечисление Арфа; ранг/SNF/сигнатура K3; точные значения Клейна;
-циклотомические N = 7/9; башня BCH N = 15/30; Δ_Ch на 40 знаков; квадратура Ω
-Клейна; Γ-отражение; замкнутые против численных периодов) — независимо
-реализовано пятью консольными верификаторами:
+The computational core of the web suite — one identical **19-check
+battery** (census V1 direct + Möbius; certificate-E closed times; the
+48×48 binary flow; Arf enumeration; the K3 rank/SNF/signature; the Klein
+exacts; cyclotomic N = 7/9; the BCH tower N = 15/30; Δ_Ch at 40 digits;
+the Klein Ω quadrature; the Γ-reflection; closed-vs-numeric periods) —
+is independently reimplemented as five console verifiers:
 
 | Language | File | Run |
 |---|---|---|
@@ -734,15 +727,16 @@ Both apps are static and zero-dependency — they run offline the same way.
 | **Go** · int64 rationals + f64 | `polyglot/go/verify_core.go` | `go run polyglot/go/verify_core.go` |
 | **Julia** · BigFloat 256 + Rational{BigInt} | `polyglot/julia/verify_core.jl` | `julia polyglot/julia/verify_core.jl` |
 
-Каждый верификатор печатает одинаковую итоговую строку —
-**`ALL 19 CHECKS PASSED`** — и таблицу PASS по каждой проверке.
-Все пять разом: `bash polyglot/run_all.sh`. Таблица точности
-(Python/Julia достигают ~10⁻²⁴ на интеграле Ω Клейна) и примечания —
-в [`polyglot/README.md`](polyglot/README.md).
+Every verifier prints the same final line — **`ALL 19 CHECKS PASSED`** —
+and a PASS table per check. Run all five at once: `bash polyglot/run_all.sh`.
+The precision table (Python/Julia reach ~10⁻²⁴ on the Klein Ω integral)
+and the notes are in [`polyglot/README.md`](polyglot/README.md).
 
-> **RU.** Все пять аналогов завершаются той же строкой **`ALL 19 CHECKS
-> PASSED`** — это независимое от браузера подтверждение того же результата,
-> который показывает веб-приложение: одно и то же ядро, пять языков, один ответ.
+**Why it matters.** The web apps make the program *visible and runnable
+from any phone*; the polyglot kernels make it *independent of the
+browser* — together they close the loop from the dynamic principle to a
+checkable artifact on any machine, in any of the five languages, with
+one and the same answer.
 
 <!-- WEB-SUITE:END -->
 
