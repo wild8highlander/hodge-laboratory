@@ -658,28 +658,8 @@ ruff check laboratory.py tests/      # clean
 
 ---
 
-## 14. Publishing to GitHub (Android/Termux, Linux, macOS)
 
-```bash
-# 1) unpack the repository and enter it
-# 2) create a personal token: GitHub → Settings → Developer settings →
-#    Personal access tokens (classic) → scopes: repo + workflow
-# 3) bootstrap the environment (installs Python deps, runs the protocol):
-bash scripts/termux_setup.sh
-# 4) publish in one command:
-bash scripts/github_push_termux.sh
-```
-
-The publish script checks the environment, creates the
-**hodge-laboratory** repository via the GitHub API, pushes the code,
-and enables GitHub Pages (`docs/`). The step-by-step Android guide —
-[`INSTRUCTION.md`](INSTRUCTION.md). After the first push the CI suite
-(protocol matrix on Python 3.10–3.12, lint, tests, C/Fortran/Rust
-backends) starts automatically.
-
----
-
-## 15. Zenodo & DOI
+## 14. Zenodo & DOI
 
 This repository ships full Zenodo metadata —
 [`.zenodo.json`](.zenodo.json) — so a citable DOI is minted
@@ -705,7 +685,7 @@ badge, so all citations link to the same researcher identity.
 
 ---
 
-## 16. Citation
+## 15. Citation
 
 If this program is useful in your research, please cite it:
 
@@ -743,7 +723,7 @@ For a standalone theorem monograph, add its number to the title, e.g.
 
 ---
 
-## 17. Roadmap
+## 16. Roadmap
 
 The program is alive. The completed rungs are history; the open
 items are planned in the order the ladder demands.
@@ -795,7 +775,7 @@ constraints any proposal must respect).
 
 ---
 
-## 18. FAQ
+## 17. FAQ
 
 **Q: Is this a proof of the Hodge conjecture?**
 No — and the repository does not claim one. The program builds a
@@ -872,7 +852,7 @@ their documented margins.
 
 ---
 
-## 19. Contributing
+## 18. Contributing
 
 Contributions that respect the determinism and exactness constraints
 are welcome — please read [`CONTRIBUTING.md`](CONTRIBUTING.md) first:
@@ -886,7 +866,7 @@ spaces.
 
 ---
 
-## 20. Security
+## 19. Security
 
 The package is offline scientific software with a deliberately narrow
 attack surface; the token-handling rules for the publishing script
@@ -896,7 +876,7 @@ rather than opening a public issue.
 
 ---
 
-## 21. License
+## 20. License
 
 **Individual exclusive license.** All rights to all computations,
 formulas, theorems, code, and texts belong to
@@ -916,7 +896,7 @@ norm and is welcome.
 
 ---
 
-## 22. Glossary
+## 21. Glossary
 
 | Term | Meaning in this repository |
 |---|---|
@@ -936,7 +916,7 @@ norm and is welcome.
 
 ---
 
-## 23. Acknowledgments
+## 22. Acknowledgments
 
 * To the classical theory this program leans on — the arithmetic of
   cyclotomic fields, the theory of K3 surfaces, Chowla–Selberg,
