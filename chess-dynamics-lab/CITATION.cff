@@ -1,0 +1,74 @@
+cff-version: 1.2.0
+message: >-
+  If you use this work, please cite it using the metadata below.
+  NOTE: all rights reserved — any use requires the author's written
+  permission (see LICENSE).
+title: >-
+  Chess Particle Dynamics: A Certifiable Laboratory (the
+  chess-dynamics-lab program)
+authors:
+  - name: Isaev, Iskhak Khamzatovich
+    alias: Исаев Исхак Хамзатович
+    orcid: "https://orcid.org/0009-0003-7299-0701"
+version: 2.2.0
+date-released: '2026-10-01'
+license: LicenseRef-IndividualExclusive-Isaev
+type: dataset
+keywords:
+  - chess programming
+  - particle model
+  - threat fields
+  - Lagrangian energy
+  - discrete flow
+  - Zobrist hashing
+  - splitmix64
+  - alpha-beta search
+  - retrograde analysis
+  - endgame tablebases
+  - perft
+  - verification protocol
+  - polyglot verification
+abstract: >-
+  A certifiable chess laboratory built on the particle model: every
+  piece is a particle that emits a threat field (the potential layer
+  K3), carries a Lagrangian energy E = [M(w) - M(b)] + mu[m(w) - m(b)]
+  with mu = 0.1 (the energy layer TORUS) and moves in a discrete flow
+  with memory and terminations (the flow layer KLEIN). Twelve theorems
+  T01-T12 cover the board algebra (D4/V4 orbit censuses 10/20), the
+  move-graph edge censuses (rook 448, bishop 280, knight 168, king
+  210, queen 728), mobility sums, threat-field equivariance with the
+  exact pawn anomaly 176, the Lagrangian certificates, the flow
+  termination t* = lcm(W/gcd(a,W), H/gcd(b,H)) with gamma = pi^4/256
+  damped billiards, the closed knight tour from f5, the perft
+  identities (20/400/8902/197281/4865609), splitmix64 Zobrist hashing
+  (1562 keys), the alpha-beta bounds (up to x256.8 node gain), and
+  the retrograde KRK/KQK tablebases (max DTM 16 and 10 moves, zero
+  Bellman violations). The protocol C1-C9 is fully reproducible by
+  one command; the polyglot battery C1-C10 runs in seven languages
+  with a bit-identical verdict 10/10.
+identifiers:
+  - type: url
+    value: "https://github.com/wild8highlander/chess-dynamics-lab"
+    description: The source repository (versioned releases)
+references:
+  - type: monograph
+    title: >-
+      Динамика шахматных частиц: сертифицируемая лаборатория (Chess
+      Particle Dynamics: A Certifiable Laboratory)
+    authors:
+      - name: Isaev, Iskhak Khamzatovich
+        orcid: "https://orcid.org/0009-0003-7299-0701"
+    year: '2026'
+    notes: >-
+      The main monograph of the program (12 chapters, 2 appendices,
+      5 figures; RU and EN editions; PDF and DOCX).
+  - type: monograph
+    title: >-
+      Монографии теорем T01–T12 (Theorem monographs T01–T12)
+    authors:
+      - name: Isaev, Iskhak Khamzatovich
+        orcid: "https://orcid.org/0009-0003-7299-0701"
+    year: '2026'
+    notes: >-
+      Twelve standalone theorem monographs, RU and EN editions,
+      PDF and DOCX each.

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A1120">
+<meta name="description" content="Chess Particle Dynamics — сертифицируемая шахматная лаборатория / a certifiable chess laboratory: светящиеся частицы-фигуры на доске 8×8, поле угроз Θ(c), энергия Лагранжиана E = [M_w−M_b] + μ[m_w−m_b], бильярд t* = lcm(W/gcd(a,W), H/gcd(b,H)) с γ = π⁴/256, протокол C1–C10, вычисляемый в браузере.">
+<title>Chess Particle Dynamics — Шахматная лаборатория / Chess Laboratory</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%230A1120'/%3E%3Ctext%20x='32'%20y='46'%20font-size='38'%20text-anchor='middle'%20fill='%23C9A96A'%3E%E2%99%9E%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- aurora blobs (fixed decoration) -->
+<div class="aurora aurora-gold" aria-hidden="true"></div>
+<div class="aurora aurora-violet" aria-hidden="true"></div>
+
+<div class="app-root" id="appRoot">
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="topbar">
+    <div class="topline" aria-hidden="true"></div>
+    <div class="topbar-inner">
+      <button id="sidebarToggle" class="icon-btn menu-btn" type="button" data-i18n-title="tip.menu" aria-label="Показать/скрыть разделы" aria-expanded="false">
+        <span aria-hidden="true">☰</span>
+      </button>
+      <div class="brand">
+        <span class="brand-glyph" aria-hidden="true">♞</span>
+        <div class="brand-text">
+          <h1 class="brand-title"><span data-i18n="app.title">Chess Particle Dynamics</span></h1>
+          <p class="brand-sub"><span data-i18n="brand.sub">Сертифицируемая шахматная лаборатория · частицы на 8×8</span></p>
+        </div>
+      </div>
+      <div class="lang-pill" role="group" aria-label="RU / EN">
+        <button id="langRu" class="lang-btn active" type="button" data-i18n-title="tip.lang">RU</button>
+        <button id="langEn" class="lang-btn" type="button" data-i18n-title="tip.lang">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell">
+
+    <!-- ═══════════════ SIDEBAR NAV (desktop) / drawer (mobile) ═══════════════ -->
+    <nav class="sidebar" aria-label="Разделы приложения / App sections">
+      <p class="sidebar-head">Chess Dynamics · v1.0.0</p>
+      <button class="nav-btn active" type="button" data-sec="flow" aria-selected="true">
+        <span class="nav-ico" aria-hidden="true">▶</span><span data-i18n="nav.flow">Живой поток</span>
+      </button>
+      <button class="nav-btn" type="button" data-sec="theory" aria-selected="false">
+        <span class="nav-ico" aria-hidden="true">✦</span><span data-i18n="nav.theory">Теоремы</span>
+      </button>
+      <button class="nav-btn" type="button" data-sec="protocol" aria-selected="false">
+        <span class="nav-ico" aria-hidden="true">✓</span><span data-i18n="nav.protocol">Протокол C</span>
+      </button>
+      <button class="nav-btn" type="button" data-sec="about" aria-selected="false">
+        <span class="nav-ico" aria-hidden="true">ℹ</span><span data-i18n="nav.about">О программе</span>
+      </button>
+      <p class="sidebar-foot">♟ t* = lcm(W/gcd(a,W), H/gcd(b,H)) · γ = π⁴/256</p>
+    </nav>
+
+    <!-- ═══════════════ MAIN ═══════════════ -->
+    <main class="main" id="main">
+
+      <!-- ─────────── SECTION: LIVE FLOW ─────────── -->
+      <section id="sec-flow" class="sec active" aria-label="Живой поток / Live flow">
+        <div class="sec-head">
+          <h2 class="sec-title" data-i18n="flow.title">Живой поток частиц на шахматной доске</h2>
+          <p class="sec-lede" data-i18n="flow.lede">Фигуры — светящиеся частицы (золото — белые, фиолет — чёрные). Включите авто-поток с сеяным ПСЧ-генератором или ходите вручную: кликните фигуру, затем подсвеченную клетку.</p>
+        </div>
+
+        <div class="flow-layout">
+          <!-- board column -->
+          <div class="card-stack">
+            <div class="card">
+              <div class="card-title">
+                <span data-i18n="flow.state">Позиция (частицы)</span>
+                <span class="kicker mono"><span data-i18n="flow.state.kicker">0x88 · полная легальность</span> · <span id="sizeChip" class="mono">8×8</span></span>
+              </div>
+              <div class="canvas-frame board-wrap">
+                <canvas id="boardCanvas" role="img" tabindex="0"
+                        aria-label="Шахматная доска 8×8: светящиеся частицы фигур, поле угроз, подсветка ходов / Chessboard 8×8: glowing piece particles, threat field, move highlights"
+                        data-i18n-aria="board.aria"></canvas>
+              </div>
+              <div class="legend-row">
+                <span class="legend-item"><span class="legend-dot dot-w" aria-hidden="true"></span><span data-i18n="flow.legend.white">Частица белых</span></span>
+                <span class="legend-item"><span class="legend-dot dot-b" aria-hidden="true"></span><span data-i18n="flow.legend.black">Частица чёрных</span></span>
+                <span class="legend-item"><span class="legend-dot dot-field" aria-hidden="true"></span><span data-i18n="flow.legend.field">Поле угроз Θ(c): золото → бирюза</span></span>
+                <span class="legend-item"><span class="legend-dot dot-fieldanim" aria-hidden="true"></span><span data-i18n="flow.legend.fieldAnim">Поток Θ(c)</span></span>
+                <span class="legend-item"><span class="legend-dot dot-last" aria-hidden="true"></span><span data-i18n="flow.legend.last">Последний ход</span></span>
+                <span class="legend-item"><span class="legend-dot dot-check" aria-hidden="true"></span><span data-i18n="flow.legend.check">Шах королю</span></span>
+                <span class="legend-item"><span class="legend-dot dot-target" aria-hidden="true"></span><span data-i18n="flow.legend.target">Доступные ходы</span></span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="chain-head">
+                <h3 data-i18n="flow.moves">Лента ходов</h3>
+                <button id="btnCopyPgn" class="btn" type="button" data-i18n="btn.copy">Копировать</button>
+              </div>
+              <div id="moveStrip" class="chain-strip" aria-live="off"></div>
+              <p id="moveMeta" class="chain-meta mono"></p>
+            </div>
+
+            <div class="card">
+              <div class="card-title">
+                <span data-i18n="tstar.title">t* — бильярд с демпфированием</span>
+                <span class="kicker mono">γ = π⁴/256</span>
+              </div>
+              <p class="hint" data-i18n="tstar.desc">Частица на той же геометрии 8×8: зеркальные отражения со торможением γ на каждом шаге; полный путь до остановки |v₀|/(1−γ).</p>
+              <div class="canvas-frame tstar-wrap">
+                <canvas id="billiardCanvas" role="img"
+                        aria-label="Демпфированный бильярд на сетке 8×8 / Damped billiard on the 8×8 grid"
+                        data-i18n-aria="tstar.aria"></canvas>
+              </div>
+              <div class="field-grid">
+                <div class="field">
+                  <label class="field-label" for="inpVa"><span data-i18n="tstar.lbl.a">Скорость a</span></label>
+                  <input id="inpVa" type="number" inputmode="numeric" min="-7" max="7" step="1" value="1" aria-label="Скорость a / Velocity a">
+                </div>
+                <div class="field">
+                  <label class="field-label" for="inpVb"><span data-i18n="tstar.lbl.b">Скорость b</span></label>
+                  <input id="inpVb" type="number" inputmode="numeric" min="-7" max="7" step="1" value="1" aria-label="Скорость b / Velocity b">
+                </div>
+              </div>
+              <div class="layer-row">
+                <span class="lr-label" data-i18n="tstar.t">Точное время t* = lcm(W/gcd(a,W), H/gcd(b,H))</span>
+                <span id="tsVal" class="lr-val mono">t* = 8</span>
+              </div>
+              <div class="layer-row">
+                <span class="lr-label" data-i18n="tstar.path">Формула пути |v₀|/(1−γ)</span>
+                <span id="tsPath" class="lr-val mono">—</span>
+              </div>
+              <div class="layer-row">
+                <span class="lr-label" data-i18n="tstar.sim">Симуляция пути (K3)</span>
+                <span id="tsSim" class="lr-val mono">—</span>
+              </div>
+              <div class="layer-row">
+                <span class="lr-label" data-i18n="tstar.refl">Отражений</span>
+                <span id="tsRefl" class="lr-val mono">—</span>
+              </div>
+              <p id="tsWarn" class="warn-text" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <!-- controls + stats column -->
+          <div class="card-stack">
+            <div class="card">
+              <div class="card-title">
+                <span data-i18n="controls.title">Управление</span>
+                <span id="modeChip" class="mode-chip m-rest">ручной режим</span>
+              </div>
+
+              <div class="btn-row">
+                <button id="btnFlow" class="btn primary" type="button" style="flex:2 1 100%" data-i18n="btn.play">▶ Авто-поток</button>
+                <button id="btnStep" class="btn" type="button" data-i18n="btn.step">⏭ Ход</button>
+                <button id="btnReset" class="btn" type="button" data-i18n="btn.reset">↺ Сброс</button>
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="inpSpeed"><span data-i18n="lbl.speed">Скорость, полуходов/с</span><span class="val" id="speedVal">3</span></label>
+                <input id="inpSpeed" type="range" min="0.5" max="24" step="0.5" value="3" aria-label="Скорость авто-потока / Auto flow speed">
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="inpSeed"><span data-i18n="lbl.seed">Зерно ПСЧ</span></label>
+                <input id="inpSeed" type="number" inputmode="numeric" min="0" max="4294967295" step="1" value="305419896" aria-label="Зерно ПСЧ / PRNG seed">
+              </div>
+
+              <div class="field">
+                <label class="field-label" for="selSize"><span data-i18n="lbl.size">Размер доски</span></label>
+                <select id="selSize" class="ctl-size" aria-label="Размер доски / Board size">
+                  <option value="8">8×8</option>
+                  <option value="6">6×6</option>
+                  <option value="5">5×5</option>
+                  <option value="4">4×4</option>
+                </select>
+                <p class="hint" data-i18n="size.hint">T14: обобщённые доски n×n из complexity-модуля</p>
+              </div>
+
+              <div class="field">
+                <label class="switch" for="chkField">
+                  <input id="chkField" type="checkbox">
+                  <span class="track" aria-hidden="true"></span>
+                  <span class="sw-label" data-i18n="lbl.field">Поле угроз Θ(c)</span>
+                </label>
+                <p class="hint" data-i18n="field.hint">Тепловая карта: число атакующих частиц на клетке</p>
+              </div>
+
+              <div class="field">
+                <label class="switch" for="chkFieldAnim">
+                  <input id="chkFieldAnim" type="checkbox">
+                  <span class="track" aria-hidden="true"></span>
+                  <span class="sw-label" data-i18n="lbl.fieldAnim">Анимация потока Θ(c)</span>
+                </label>
+                <p class="hint" data-i18n="field.animHint">Кванты поля текут от атакующей частицы к атакуемой клетке</p>
+              </div>
+
+              <div class="field">
+                <label class="switch" for="chkGlyphs">
+                  <input id="chkGlyphs" type="checkbox">
+                  <span class="track" aria-hidden="true"></span>
+                  <span class="sw-label" data-i18n="lbl.glyphs">Классические глифы ♟</span>
+                </label>
+                <p class="hint" data-i18n="glyphs.hint">Поверх частиц рисуются юникод-фигуры</p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">
+                <span data-i18n="energy.title">Энергия Лагранжиана</span>
+                <span class="kicker mono">μ = 0.1</span>
+              </div>
+
+              <div class="energy-e">
+                <div class="energy-e-label mono" data-i18n="energy.E">E = [M_w − M_b] + μ·[m_w − m_b]</div>
+                <div class="energy-e-val" id="enE">+0.0</div>
+              </div>
+
+              <div class="bar-head">
+                <span data-i18n="energy.material">Материал M (баланс)</span>
+                <span class="mono bar-nums"><span id="enMw">1</span> : <span id="enMb">1</span></span>
+              </div>
+              <div class="mat-bar" role="img" aria-label="Баланс материала / Material balance">
+                <div id="barMw" class="mat-w" style="width:50%"></div>
+                <div id="barMb" class="mat-b" style="width:50%"></div>
+                <div id="barMat" class="mat-mark" style="left:50%"></div>
+              </div>
+
+              <div class="bar-head">
+                <span data-i18n="energy.mobility">Мобильность m (легальные ходы)</span>
+                <span class="mono bar-nums"><span id="enmw">20</span> / <span id="enmb">20</span></span>
+              </div>
+              <div class="mob-row">
+                <span class="mob-side mono w" aria-hidden="true">w</span>
+                <div class="prog slim"><div id="barMobW" class="prog-fill gold" style="width:33%"></div></div>
+              </div>
+              <div class="mob-row">
+                <span class="mob-side mono b" aria-hidden="true">b</span>
+                <div class="prog slim"><div id="barMobB" class="prog-fill violet" style="width:33%"></div></div>
+              </div>
+
+              <div class="stat-grid">
+                <div class="stat"><span class="stat-label" data-i18n="energy.row.ply">Полуходов</span><span id="stPly" class="stat-val">0</span></div>
+                <div class="stat"><span class="stat-label" data-i18n="energy.row.side">Ход стороны</span><span id="stSide" class="stat-val">—</span></div>
+              </div>
+              <div class="layer-row">
+                <span class="lr-label" data-i18n="energy.row.E">Статус (взгляд белых)</span>
+                <span id="stStatus" class="mode-chip m-run">игра</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">
+                <span data-i18n="cx.title">Пространство состояний KRK на n×n</span>
+                <span class="kicker mono" data-i18n="cx.kicker">живое перечисление против замороженного E2</span>
+              </div>
+              <p class="hint" data-i18n="cx.desc"></p>
+              <div id="cx-current" class="layer-row mono cx-current"></div>
+              <div id="cx-out" class="table-scroll cx-wrap"><p class="hint">…</p></div>
+            </div>
+
+            <div class="card">
+              <div class="card-title"><span data-i18n="fen.label">FEN позиции</span></div>
+              <div class="fen-row">
+                <code id="stFen" class="mono fen-text">…</code>
+                <button id="btnCopyFen" class="btn" type="button" data-i18n="btn.copy">Копировать</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─────────── SECTION: THEORY ─────────── -->
+      <section id="sec-theory" class="sec" aria-label="Теоремы / Theorems">
+        <div class="sec-head">
+          <h2 class="sec-title" data-i18n="theory.title">Двенадцать теорем</h2>
+          <p class="sec-lede" data-i18n="theory.lede">Замороженные факты лаборатории: T01–T12 связывают алгебру доски, кинематику частиц и протокол верификации. Каждая теорема выпущена отдельной монографией (RU/EN × PDF/DOCX).</p>
+        </div>
+
+        <div class="card-stack">
+          <div id="theoryGrid" class="theory-grid"></div>
+          <p class="doc-note" data-i18n="theory.note">Значения в формулах — точные замороженные константы проекта; часть из них пересчитывается вживую в разделе «Протокол C».</p>
+        </div>
+      </section>
+
+      <!-- ─────────── SECTION: PROTOCOL ─────────── -->
+      <section id="sec-protocol" class="sec" aria-label="Протокол C / Protocol C">
+        <div class="sec-head">
+          <h2 class="sec-title" data-i18n="proto.title">Протокол C — батарея честных проверок</h2>
+          <p class="sec-lede" data-i18n="proto.lede">C1–C10 вычисляются в вашем браузере над собственным движком этой страницы. Значения не подставлены: FAIL возможен и отображается честно.</p>
+        </div>
+
+        <div class="card">
+          <div class="btn-row proto-btns">
+            <button id="btnProtoRun" class="btn primary" type="button" data-i18n="proto.run">⟳ Запустить все</button>
+            <button id="btnProtoDeep" class="btn" type="button" data-i18n="proto.deep">⏱ Глубоко (perft 4)</button>
+          </div>
+          <p class="hint" data-i18n="proto.deep.hint">Добавляет perft(4) = 197281 — занимает секунды</p>
+          <div class="table-scroll" style="margin-top:12px">
+            <table class="data-table" aria-label="Протокол C1–C10 / Protocol C1–C10">
+              <thead>
+                <tr>
+                  <th data-i18n="proto.col.code">Код</th>
+                  <th data-i18n="proto.col.check">Проверка</th>
+                  <th data-i18n="proto.col.expected">Ожидается</th>
+                  <th data-i18n="proto.col.computed">Вычислено</th>
+                  <th data-i18n="proto.col.result">Итог</th>
+                  <th data-i18n="proto.col.ms">мс</th>
+                </tr>
+              </thead>
+              <tbody id="protoBody"></tbody>
+            </table>
+          </div>
+          <div id="protoVerdict" class="verdict-banner" role="status" aria-live="polite"></div>
+          <p class="doc-note" data-i18n="proto.note">Все проверки выполняются синхронно; «Глубоко» добавляет perft(4). Результаты зависят только от кода страницы — детерминированы.</p>
+        </div>
+      </section>
+
+      <!-- ─────────── SECTION: ABOUT ─────────── -->
+      <section id="sec-about" class="sec" aria-label="О программе / About">
+        <div class="sec-head">
+          <h2 class="sec-title" data-i18n="about.title">О программе</h2>
+        </div>
+
+        <div class="card-stack">
+          <div class="card about-text">
+            <p data-i18n="about.p1">«Chess Particle Dynamics» — веб-лаборатория проекта chess-dynamics-lab: шахматные фигуры рассматриваются как светящиеся частицы на решётке 8×8, а вся теория — орбиты, переписи, поля угроз, энергия, завершимость потока — верифицируется протоколом C1–C10 прямо в браузере.</p>
+            <p data-i18n="about.p2">Программа является развитием методологии hodge-laboratory: три слоя динамики (поля угроз K3, лагранжев поиск на торе, дискретный поток Клейна), 12 теорем-монографий и честный протокол проверок без подставленных результатов.</p>
+            <p data-i18n="about.p3">Комплект: 12 монографий теорем × RU/EN × PDF/DOCX, монография «Chess Particle Dynamics», протокол C1–C9 (Python, single-file dynamics.py) и полиглот-батарея C1–C10 на 7 языках.</p>
+          </div>
+
+          <div class="card">
+            <div class="credit-card">
+              <p class="credit-line" data-i18n="about.credit">Программа: Исаев Исхак Хамзатович / Program: Isaev Iskhak Khamzatovich</p>
+              <div class="about-meta">
+                <span data-i18n="about.mono">12 монографий теорем × RU/EN × PDF/DOCX (48 файлов) + монография × RU/EN × PDF/DOCX</span>
+                <a href="https://github.com/wild8highlander/chess-dynamics-lab" target="_blank" rel="noopener" data-i18n="about.repo">Репозиторий: github.com/wild8highlander/chess-dynamics-lab</a>
+                <span data-i18n="about.license">Лицензия: индивидуальная исключительная лицензия / License: individual exclusive license</span>
+                <span class="mono" data-i18n="about.tech">Статическое приложение: HTML + CSS + JS без сборки; открывается файлом index.html, на GitHub Pages и в Termux.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="site-footer" role="contentinfo">
+    <div data-i18n="footer.text">Chess Particle Dynamics · шахматная лаборатория / chess laboratory · v1.0.0</div>
+    <div class="foot-author" data-i18n="footer.author">Программа: Исаев Исхак Хамзатович / Program: Isaev Iskhak Khamzatovich</div>
+  </footer>
+</div>
+
+<!-- mobile bottom tabs -->
+<nav class="bottom-tabs" aria-label="Разделы / Sections">
+  <button class="tab-btn active" type="button" data-sec="flow" aria-selected="true">
+    <span class="tab-ico" aria-hidden="true">▶</span><span data-i18n="nav.flow">Живой поток</span>
+  </button>
+  <button class="tab-btn" type="button" data-sec="theory" aria-selected="false">
+    <span class="tab-ico" aria-hidden="true">✦</span><span data-i18n="nav.theory">Теоремы</span>
+  </button>
+  <button class="tab-btn" type="button" data-sec="protocol" aria-selected="false">
+    <span class="tab-ico" aria-hidden="true">✓</span><span data-i18n="nav.protocol">Протокол C</span>
+  </button>
+  <button class="tab-btn" type="button" data-sec="about" aria-selected="false">
+    <span class="tab-ico" aria-hidden="true">ℹ</span><span data-i18n="nav.about">О программе</span>
+  </button>
+</nav>
+
+<!-- toast -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<noscript>
+  <p style="position:fixed;inset:auto 0 0 0;z-index:99;background:#0E1830;border-top:1px solid #24405F;color:#EAF0F8;padding:14px;text-align:center;font-family:Inter,sans-serif">
+    Для работы приложения включите JavaScript / Please enable JavaScript to run this app.
+  </p>
+</noscript>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

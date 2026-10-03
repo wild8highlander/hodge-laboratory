@@ -1,0 +1,60 @@
+══════════════════════════════════════════════════════════════════════════════
+E1 · PARTICLE SOLVER vs EXACT DTM ORACLE (8x8 frozen tables)
+══════════════════════════════════════════════════════════════════════════════
+— R: oracle loaded (399112 states, max 16 moves), sampling...
+  won WTM states: 175168, sampled: 5000
+    1000/5000 positions evaluated (1077 pos/s)
+    2000/5000 positions evaluated (1079 pos/s)
+    3000/5000 positions evaluated (1084 pos/s)
+    4000/5000 positions evaluated (1086 pos/s)
+    5000/5000 positions evaluated (1088 pos/s)
+
+  R: save_rate=0.8244  optimal_rate=0.3030  mean ΔDTM=2.9452 plies  max ΔDTM=18
+  depth       positions    saved  optimal     mean Δ
+  1 mv               50       50   1.0000       5.64
+  2 mv              134      122   0.9104      3.852
+  3 mv              107      106   0.9907      3.679
+  4 mv               57       50   0.8772        3.0
+  5 mv              136      131   0.9632      3.069
+  6 mv              234      205   0.8761      4.517
+  7 mv              307      259   0.8436       3.66
+  8 mv              504      427   0.8472      3.728
+  9 mv              555      426   0.7676      3.394
+  10 mv             577      454   0.7868      3.101
+  11 mv             568      455   0.8011      3.033
+  12 mv             635      492   0.7748      2.813
+  13 mv             530      432   0.8151       1.94
+  14 mv             425      369   0.8682      1.247
+  15 mv             152      123   0.8092      0.504
+  16 mv              29       21   0.7241      0.095
+  example losses (greedy loses a won position):
+    DTM 10 mv: 2k5/8/8/8/1R6/8/2K5/8 w - - 0 1 ; greedy b4b7 → 2k5/1R6/8/8/8/8/2K5/8 b - - 1 1
+    DTM 10 mv: 8/8/8/8/2K4k/1R6/8/8 w - - 0 1 ; greedy b3g3 → 8/8/8/8/2K4k/6R1/8/8 b - - 1 1
+    DTM  2 mv: 8/8/8/8/8/2R2K2/8/3k4 w - - 0 1 ; greedy c3c2 → 8/8/8/8/8/5K2/2R5/3k4 b - - 1 1
+
+— Q: oracle loaded (368452 states, max 10 moves), sampling...
+  won WTM states: 144508, sampled: 5000
+    1000/5000 positions evaluated (726 pos/s)
+    2000/5000 positions evaluated (730 pos/s)
+    3000/5000 positions evaluated (731 pos/s)
+    4000/5000 positions evaluated (730 pos/s)
+    5000/5000 positions evaluated (728 pos/s)
+
+  Q: save_rate=0.9562  optimal_rate=0.2648  mean ΔDTM=2.3301 plies  max ΔDTM=10
+  depth       positions    saved  optimal     mean Δ
+  1 mv              101       92   0.9109      3.826
+  2 mv              164      160   0.9756      3.913
+  3 mv              310      298   0.9613      3.094
+  4 mv              718      691   0.9624      3.071
+  5 mv              893      865   0.9686      2.675
+  6 mv             1076     1025   0.9526      2.353
+  7 mv             1123     1071   0.9537      1.742
+  8 mv              532      500   0.9398      0.988
+  9 mv               83       79   0.9518      0.405
+  example losses (greedy loses a won position):
+    DTM  8 mv: 8/KQ6/4k3/8/8/8/8/8 w - - 0 1 ; greedy b7d5 → 8/K7/4k3/3Q4/8/8/8/8 b - - 1 1
+    DTM  6 mv: 8/5Q2/8/8/4k3/2K5/8/8 w - - 0 1 ; greedy f7d5 → 8/8/8/3Q4/4k3/2K5/8/8 b - - 1 1
+    DTM  6 mv: 8/8/1K3k2/8/8/8/7Q/8 w - - 0 1 ; greedy h2e5 → 8/8/1K3k2/4Q3/8/8/8/8 b - - 1 1
+
+written: /home/z/my-project/chess-dynamics-lab/results/complexity_particles_vs_oracle.json
+E1 DONE

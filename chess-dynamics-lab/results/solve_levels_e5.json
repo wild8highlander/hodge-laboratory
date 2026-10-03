@@ -1,0 +1,530 @@
+{
+ "experiment": "E5 — the solution-level ladder: which level of \"solved, as checkers\" each frozen space sits at, and why the ladder cannot reach 32 pieces",
+ "companion_note": "complexity/SOLVING_CHESS.md (note N2)",
+ "level_definitions": {
+  "ultra_weak": "the game-theoretic value of the initial position is known (win / draw / loss)",
+  "weak": "the value plus a strategy achieving it from the initial position (Chinook 2007 for checkers)",
+  "strong": "every legal position valued plus the optimal move in each (what the four tables are)"
+ },
+ "strong": {
+  "krk": {
+   "states": 399112,
+   "won": 376868,
+   "drawn": 22244,
+   "mates": 216,
+   "max_dtm_plies": 32,
+   "wtm_states": 175168,
+   "wtm_won": 175168,
+   "btm_states": 223944,
+   "btm_won": 201700,
+   "btm_drawn": 22244,
+   "coverage": 1.0,
+   "bellman_verified": true,
+   "table_kb": 165.0
+  },
+  "kqk": {
+   "states": 368452,
+   "won": 345404,
+   "drawn": 23048,
+   "mates": 364,
+   "max_dtm_plies": 20,
+   "wtm_states": 144508,
+   "wtm_won": 144508,
+   "btm_states": 223944,
+   "btm_won": 200896,
+   "btm_drawn": 23048,
+   "coverage": 1.0,
+   "bellman_verified": true,
+   "table_kb": 137.5
+  },
+  "knk": {
+   "states": 429440,
+   "won": 0,
+   "drawn": 429440,
+   "mates": 0,
+   "max_dtm_plies": 0,
+   "wtm_states": 205496,
+   "wtm_won": 0,
+   "btm_states": 223944,
+   "btm_won": 0,
+   "btm_drawn": 223944,
+   "coverage": 1.0,
+   "bellman_verified": true,
+   "table_kb": 5.7
+  },
+  "kpk": {
+   "states": 331352,
+   "won": 222558,
+   "drawn": 108794,
+   "mates": 0,
+   "max_dtm_plies": 56,
+   "wtm_states": 163328,
+   "wtm_won": 124954,
+   "btm_states": 168024,
+   "btm_won": 97604,
+   "btm_drawn": 70420,
+   "coverage": 1.0,
+   "bellman_verified": true,
+   "table_kb": 117.1
+  }
+ },
+ "ultra_weak": {
+  "anchors": [
+   {
+    "kind": "krk",
+    "white_king": "c2",
+    "piece": "b4",
+    "black_king": "c8",
+    "stm": 0,
+    "expected": 19,
+    "probed": 19,
+    "pass": true,
+    "label": "the oracle box: the rook win is 19 plies deep from here"
+   },
+   {
+    "kind": "kqk",
+    "white_king": "a1",
+    "piece": "h1",
+    "black_king": "e8",
+    "stm": 0,
+    "expected": 13,
+    "probed": 13,
+    "pass": true,
+    "label": "canonical long-side start: queen far from her king, win in 13"
+   },
+   {
+    "kind": "knk",
+    "white_king": "e1",
+    "piece": "d4",
+    "black_king": "e8",
+    "stm": 0,
+    "expected": -1,
+    "probed": -1,
+    "pass": true,
+    "label": "insufficient material: a knight mate does not exist (T15)"
+   },
+   {
+    "kind": "kpk",
+    "white_king": "b6",
+    "piece": "c7",
+    "black_king": "a8",
+    "stm": 0,
+    "expected": 1,
+    "probed": 1,
+    "pass": true,
+    "label": "the promotion corner: 1.c8=Q is checkmate"
+   },
+   {
+    "kind": "kpk",
+    "white_king": "b6",
+    "piece": "c7",
+    "black_king": "a7",
+    "stm": 0,
+    "expected": -1,
+    "probed": -1,
+    "pass": true,
+    "label": "the under-promotion trap: 1.c8=Q/R is stalemate"
+   },
+   {
+    "kind": "kpk",
+    "white_king": "b6",
+    "piece": "c7",
+    "black_king": "a8",
+    "stm": 1,
+    "expected": -1,
+    "probed": -1,
+    "pass": true,
+    "label": "stalemate on the board: Black to move, no legal moves"
+   },
+   {
+    "kind": "kpk",
+    "white_king": "d6",
+    "piece": "e6",
+    "black_king": "d8",
+    "stm": 0,
+    "expected": -1,
+    "probed": -1,
+    "pass": true,
+    "label": "the frontal opposition: the classical draw"
+   },
+   {
+    "kind": "kpk",
+    "white_king": "d6",
+    "piece": "e6",
+    "black_king": "d8",
+    "stm": 1,
+    "expected": 18,
+    "probed": 18,
+    "pass": true,
+    "label": "the same squares, defender to move: opposition lost, win in 18"
+   },
+   {
+    "kind": "kpk",
+    "white_king": "a3",
+    "piece": "g2",
+    "black_king": "a5",
+    "stm": 1,
+    "expected": 56,
+    "probed": 56,
+    "pass": true,
+    "label": "the shoulder line: the deepest KPK win — 28 moves"
+   },
+   {
+    "kind": "kpk",
+    "white_king": "e6",
+    "piece": "e5",
+    "black_king": "e8",
+    "stm": 0,
+    "expected": 21,
+    "probed": 21,
+    "pass": true,
+    "label": "king in front of the pawn: the textbook rule, win in 21"
+   },
+   {
+    "kind": "kpk",
+    "white_king": "a1",
+    "piece": "e2",
+    "black_king": "d3",
+    "stm": 1,
+    "expected": -1,
+    "probed": -1,
+    "pass": true,
+    "label": "the undefended checking pawn: Kxe2 escapes into K vs K"
+   }
+  ],
+  "knk_universal_draw": {
+   "kind": "knk",
+   "states": 429440,
+   "won_states": 0,
+   "statement": "every state of the space is a draw: neither side can ever mate (T15 by exhaustion) — the ultra-weak, weak and strong levels COLLAPSE into one"
+  }
+ },
+ "weak": {
+  "starts": [
+   {
+    "kind": "krk",
+    "white_king": "c2",
+    "piece": "b4",
+    "black_king": "c8",
+    "stm": 0,
+    "dtm_plies": 19,
+    "pv_moves": [
+     "b4d4",
+     "c8c7",
+     "c2b3",
+     "c7b6",
+     "b3b4",
+     "b6c6",
+     "d4d1",
+     "c6b7",
+     "b4b5",
+     "b7c7",
+     "d1d2",
+     "c7b7",
+     "d2c2",
+     "b7a8",
+     "c2c7",
+     "a8b8",
+     "b5b6",
+     "b8a8",
+     "c7c8"
+    ],
+    "pv_length": 19,
+    "mate_confirmed": true,
+    "strategy_tree": {
+     "nodes": 2496,
+     "mate_leaves": 446,
+     "share_of_space": 0.006254
+    },
+    "label": "the oracle box: a complete weak solution — main line + the minimal strategy tree against every defence"
+   },
+   {
+    "kind": "kqk",
+    "white_king": "a1",
+    "piece": "h1",
+    "black_king": "e8",
+    "stm": 0,
+    "dtm_plies": 13,
+    "pv_moves": [
+     "h1b7",
+     "e8f8",
+     "a1b2",
+     "f8g8",
+     "b2c3",
+     "g8h8",
+     "c3d4",
+     "h8g8",
+     "d4e5",
+     "g8h8",
+     "e5f6",
+     "h8g8",
+     "b7g7"
+    ],
+    "pv_length": 13,
+    "mate_confirmed": true,
+    "strategy_tree": {
+     "nodes": 132,
+     "mate_leaves": 27,
+     "share_of_space": 0.000358
+    },
+    "label": "the long-side queen start: same protocol"
+   },
+   {
+    "kind": "kpk",
+    "white_king": "e6",
+    "piece": "e5",
+    "black_king": "e8",
+    "stm": 0,
+    "dtm_plies": 21,
+    "pv_moves": [
+     "e6d6",
+     "e8f8",
+     "e5e6",
+     "f8g8",
+     "d6d7",
+     "g8h7",
+     "e6e7",
+     "h7g6",
+     "e7e8",
+     "g6f5",
+     "e8e2",
+     "f5g6",
+     "e2f3",
+     "g6h7",
+     "f3g2",
+     "h7h8",
+     "d7e6",
+     "h8h7",
+     "e6f6",
+     "h7h8",
+     "g2g7"
+    ],
+    "pv_length": 21,
+    "mate_confirmed": true,
+    "strategy_tree": {
+     "nodes": 6558,
+     "mate_leaves": 1085,
+     "share_of_space": 0.019792
+    },
+    "label": "king in front: the strategy tree crosses the promotion boundary into the KQK space exactly as the build does"
+   }
+  ],
+  "e3_argmax_cross_check": {
+   "kind": "krk",
+   "white_king": "a8",
+   "piece": "c2",
+   "black_king": "d3",
+   "stm": 0,
+   "dtm_plies": 31,
+   "pv_length": 31,
+   "pv_moves": [
+    "c2a2",
+    "d3e4",
+    "a2a4",
+    "e4e5",
+    "a8a7",
+    "e5f6",
+    "a4a5",
+    "f6e6",
+    "a7b6",
+    "e6d7",
+    "a5d5",
+    "d7e7",
+    "b6c5",
+    "e7e6",
+    "c5c6",
+    "e6f7",
+    "d5d6",
+    "f7g8",
+    "c6d7",
+    "g8f7",
+    "d6a6",
+    "f7g8",
+    "d7e6",
+    "g8f8",
+    "a6a7",
+    "f8g8",
+    "e6f6",
+    "g8h8",
+    "f6g6",
+    "h8g8",
+    "a7a8"
+   ],
+   "tree_nodes_recomputed": 500900,
+   "tree_nodes_frozen_e3": 500900,
+   "match": true,
+   "note": "the hardest WTM position: two independent implementations of the minimal-strategy-tree recursion must produce one number"
+  }
+ },
+ "deepest": {
+  "krk": {
+   "wtm": {
+    "squares": [
+     "h8",
+     "b1",
+     "c2"
+    ],
+    "dtm_plies": 31,
+    "positions_at_max": 916
+   },
+   "btm": {
+    "squares": [
+     "h8",
+     "b1",
+     "d1"
+    ],
+    "dtm_plies": 32,
+    "positions_at_max": 3056
+   }
+  },
+  "kqk": {
+   "wtm": {
+    "squares": [
+     "h8",
+     "g7",
+     "d3"
+    ],
+    "dtm_plies": 19,
+    "positions_at_max": 8
+   },
+   "btm": {
+    "squares": [
+     "h8",
+     "g7",
+     "c2"
+    ],
+    "dtm_plies": 20,
+    "positions_at_max": 56
+   }
+  },
+  "knk": {
+   "wtm": {
+    "squares": [
+     "a1",
+     "a1",
+     "a1"
+    ],
+    "dtm_plies": null,
+    "positions_at_max": 0
+   },
+   "btm": {
+    "squares": [
+     "a1",
+     "a1",
+     "a1"
+    ],
+    "dtm_plies": null,
+    "positions_at_max": 0
+   }
+  },
+  "kpk": {
+   "wtm": {
+    "squares": [
+     "a2",
+     "g2",
+     "b5"
+    ],
+    "dtm_plies": 55,
+    "positions_at_max": 6
+   },
+   "btm": {
+    "squares": [
+     "a3",
+     "g2",
+     "a5"
+    ],
+    "dtm_plies": 56,
+    "positions_at_max": 4
+   }
+  }
+ },
+ "wall": {
+  "n_ladder_exact_e2": [
+   {
+    "n": 4,
+    "states": 3496,
+    "edges": 26992,
+    "max_dtm_moves": 7,
+    "theory_n6": 3360
+   },
+   {
+    "n": 5,
+    "states": 17528,
+    "edges": 161265,
+    "max_dtm_moves": 10,
+    "theory_n6": 13800
+   },
+   {
+    "n": 6,
+    "states": 60800,
+    "edges": 620224,
+    "max_dtm_moves": 12,
+    "theory_n6": 42840
+   },
+   {
+    "n": 7,
+    "states": 168260,
+    "edges": 1837205,
+    "max_dtm_moves": 14,
+    "theory_n6": 110544
+   },
+   {
+    "n": 8,
+    "states": 399112,
+    "edges": 4447032,
+    "max_dtm_moves": 16,
+    "theory_n6": 249984
+   }
+  ],
+  "piece_ladder_literature": [
+   {
+    "scope": "3 pieces on 8x8 (this program, exact)",
+    "value": "399,112 states (KRK) · 124 KB frozen"
+   },
+   {
+    "scope": "5 men (Syzygy tablebases)",
+    "value": "≈ 1 GB"
+   },
+   {
+    "scope": "6 men (Syzygy tablebases)",
+    "value": "≈ 150 GB"
+   },
+   {
+    "scope": "7 men (Syzygy tablebases)",
+    "value": "≈ 18.4 TB"
+   },
+   {
+    "scope": "8 men",
+    "value": "≈ 2 PB (published estimates)"
+   },
+   {
+    "scope": "checkers, 24 men — WEAKLY solved, 2007",
+    "value": "≈ 5·10^20 positions · endgame databases ≤ 8 pieces plus selected 9/10-piece blocks (the 10-piece block alone ≈ 3.9·10^13 positions) · 18 years of computation (1989–2007)"
+   },
+   {
+    "scope": "chess, 32 men — NOT SOLVED, not even ultra-weak",
+    "value": "≥ 4.5·10^44 legal positions (Tromp lower bound; estimate ≈ 4.8·10^44) · game-tree ≈ 10^120 (Shannon) · longest game ≤ 8,848.5 moves with the 50-move rule"
+   }
+  ],
+  "computed_extrapolations": {
+   "four_spaces_states": 1528356,
+   "four_spaces_table_kb": 425.2,
+   "bytes_per_state_frozen": 0.2849,
+   "full_chess_bytes_at_1B_per_state": "482000000000000000000000000000000000000000000",
+   "full_chess_tb_of_storage": "4.82e+32",
+   "ratio_to_world_storage": "3.21e+21",
+   "years_at_1e9_states_per_s": "1.53e+28",
+   "ratio_to_universe_age": "1.11e+18",
+   "checkers_to_chess_space_ratio": "9.64e+23",
+   "assumption": "1 byte per state (the frozen tables need even less: 0.28 B/state); no index, no strategy, just the raw values"
+  }
+ },
+ "verdict": [
+  "checkers: WEAKLY solved (Schaeffer et al., Science 2007) — value + strategy from the initial position, draw; not strong",
+  "chess: not even ultra-weak; the believed draw is belief, not a theorem",
+  "this program: four subspaces solved STRONGLY (100% coverage, Bellman-verified), weak certificates from canonical starts (explicit strategy trees), ultra-weak draws by exhaustion (T15) — the Chinook methodology at the scale where it is exact",
+  "the wall is measured, not conjectured: T13 (EXPTIME-complete generalized chess, P ⊊ EXPTIME), E3 (explicit certificates overtake the table), E5 (storage/time extrapolation: ~10^21 × world storage, ~10^18 × the age of the universe)",
+  "therefore \"solve chess like checkers\" is not an engineering scale-up: it needs a mathematics that does not exist today — e.g., a general draw invariant for 32-piece play"
+ ],
+ "runtime_s": 1.3
+}

@@ -1,0 +1,55 @@
+{
+ "certificate": "E12 \u2014 real games through the Epoch IV layers",
+ "context_noop_share": 0.0,
+ "flagged_results": [],
+ "game_level": {
+  "exact": {
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "log_loss": 0.0,
+   "n": 24
+  },
+  "model": {
+   "accuracy": 1.0,
+   "brier": 0.037736,
+   "log_loss": 0.113185,
+   "n": 24
+  },
+  "model+context": {
+   "accuracy": 1.0,
+   "brier": 0.068188,
+   "log_loss": 0.196649,
+   "n": 24
+  }
+ },
+ "model_argmax_flip_rate": 0.0,
+ "position_level": {
+  "log_loss_exact": 0.0,
+  "log_loss_model": 0.100067,
+  "log_loss_model_context": 0.190449,
+  "model_vs_exact_agreement": 1.0,
+  "n_scored_positions": 508
+ },
+ "recipe": {
+  "model": "outcome_model.json",
+  "n_games": 29,
+  "protocol": "position-level oracle entries scored at game level against the Result header; exact arm = the upper bound; context = Elo prior from PGN headers"
+ },
+ "runtime_seconds": 0.4,
+ "totals": {
+  "context_noop_rows": 0,
+  "entries_per_kind": {
+   "kpk": 18,
+   "kqk": 350,
+   "krk": 140
+  },
+  "games": 29,
+  "games_with_result": 24,
+  "oracle_entries": 508,
+  "sources": {
+   "engine": 2,
+   "human-classical": 3,
+   "tablebase-walk": 24
+  }
+ }
+}

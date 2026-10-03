@@ -1,0 +1,163 @@
+{
+ "experiment": "T17 trap census — exhaustive move classes over the four frozen endgames (the population twin of sampled E1)",
+ "semantics": {
+  "child_value": "DTM plies excluding the move ply; KPK promotion children valued through the frozen KQK certificate",
+  "trap": "BTM drawn -> child won (draw becomes a loss)",
+  "slack": "WTM won -> child drawn (win becomes a draw)",
+  "waste": "WTM won -> child won above d-1 (ddtm plies lost)",
+  "optimal": "child at exactly d-1 (Bellman descent)",
+  "optimal_def": "BTM won -> child at exactly d-1 (most resistant defence)",
+  "accel": "BTM won -> child above d-1 (mate arrives sooner)"
+ },
+ "kinds": {
+  "krk": {
+   "kind": "krk",
+   "wtm": {
+    "states": 175168,
+    "moves": 3383416,
+    "optimal": 361180,
+    "waste": 2759996,
+    "slack": 262240,
+    "with_slack": 73152,
+    "with_waste": 175128,
+    "ddtm_sum": 16244320,
+    "ddtm_max": 28,
+    "won_states": 175168,
+    "bellman_violations": 0,
+    "ddtm_mean": 5.8856,
+    "optimal_share": 0.10675
+   },
+   "btm": {
+    "states": 223944,
+    "won_states": 201700,
+    "drawn_states": 22244,
+    "moves": 1085792,
+    "traps": 59624,
+    "with_traps": 21764,
+    "max_traps": 4,
+    "deepest_trap_plies": 31,
+    "keeps": 22176,
+    "escapes": 22176,
+    "optimal_def": 370908,
+    "accel_sum": -3258592,
+    "accel_count": 633084,
+    "accel_max": 0,
+    "accel_mean": -5.1472,
+    "trap_share": 0.054913
+   },
+   "runtime_s": 5.5
+  },
+  "kqk": {
+   "kind": "kqk",
+   "wtm": {
+    "states": 144508,
+    "moves": 3992456,
+    "optimal": 420344,
+    "waste": 3281496,
+    "slack": 290616,
+    "with_slack": 111480,
+    "with_waste": 144500,
+    "ddtm_sum": 12895080,
+    "ddtm_max": 14,
+    "won_states": 144508,
+    "bellman_violations": 0,
+    "ddtm_mean": 3.9296,
+    "optimal_share": 0.105285
+   },
+   "btm": {
+    "states": 223944,
+    "won_states": 200896,
+    "drawn_states": 23048,
+    "moves": 899216,
+    "traps": 32896,
+    "with_traps": 19756,
+    "max_traps": 2,
+    "deepest_trap_plies": 17,
+    "keeps": 22176,
+    "escapes": 22176,
+    "optimal_def": 406956,
+    "accel_sum": -1338216,
+    "accel_count": 437188,
+    "accel_max": 0,
+    "accel_mean": -3.061,
+    "trap_share": 0.036583
+   },
+   "runtime_s": 6.8
+  },
+  "knk": {
+   "kind": "knk",
+   "wtm": {
+    "states": 205496,
+    "moves": 2291376,
+    "optimal": 0,
+    "waste": 0,
+    "slack": 0,
+    "with_slack": 0,
+    "with_waste": 0,
+    "ddtm_sum": 0,
+    "ddtm_max": 0,
+    "won_states": 0,
+    "bellman_violations": 0,
+    "ddtm_mean": 0.0,
+    "optimal_share": 0.0
+   },
+   "btm": {
+    "states": 223944,
+    "won_states": 0,
+    "drawn_states": 223944,
+    "moves": 1252056,
+    "traps": 0,
+    "with_traps": 0,
+    "max_traps": 0,
+    "deepest_trap_plies": 0,
+    "keeps": 1252056,
+    "escapes": 22176,
+    "optimal_def": 0,
+    "accel_sum": 0,
+    "accel_count": 0,
+    "accel_max": 0,
+    "accel_mean": 0.0,
+    "trap_share": 0.0
+   },
+   "runtime_s": 2.0
+  },
+  "kpk": {
+   "kind": "kpk",
+   "wtm": {
+    "states": 163328,
+    "moves": 1166864,
+    "optimal": 250038,
+    "waste": 469902,
+    "slack": 181950,
+    "with_slack": 38644,
+    "with_waste": 105312,
+    "ddtm_sum": 1926852,
+    "ddtm_max": 32,
+    "won_states": 124954,
+    "bellman_violations": 0,
+    "ddtm_mean": 4.1005,
+    "optimal_share": 0.214282
+   },
+   "btm": {
+    "states": 168024,
+    "won_states": 97604,
+    "drawn_states": 70420,
+    "moves": 1003214,
+    "traps": 173786,
+    "with_traps": 46054,
+    "max_traps": 7,
+    "deepest_trap_plies": 55,
+    "keeps": 263902,
+    "escapes": 18196,
+    "optimal_def": 409174,
+    "accel_sum": -603964,
+    "accel_count": 156352,
+    "accel_max": 0,
+    "accel_mean": -3.8628,
+    "trap_share": 0.173229
+   },
+   "runtime_s": 1.5
+  }
+ },
+ "runtime_s": 15.7
+}

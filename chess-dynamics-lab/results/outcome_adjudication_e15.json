@@ -1,0 +1,562 @@
+{
+ "adjudication_curves": {
+  "exact": {
+   "0": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "1": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "10": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "2": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "20": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "3": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "5": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "final": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   }
+  },
+  "state": {
+   "0": {
+    "accuracy": 1.0,
+    "log_loss": 0.113185,
+    "n": 24
+   },
+   "1": {
+    "accuracy": 1.0,
+    "log_loss": 0.113185,
+    "n": 24
+   },
+   "10": {
+    "accuracy": 1.0,
+    "log_loss": 0.113185,
+    "n": 24
+   },
+   "2": {
+    "accuracy": 1.0,
+    "log_loss": 0.113185,
+    "n": 24
+   },
+   "20": {
+    "accuracy": 1.0,
+    "log_loss": 0.113185,
+    "n": 24
+   },
+   "3": {
+    "accuracy": 1.0,
+    "log_loss": 0.113185,
+    "n": 24
+   },
+   "5": {
+    "accuracy": 1.0,
+    "log_loss": 0.113185,
+    "n": 24
+   },
+   "final": {
+    "accuracy": 1.0,
+    "log_loss": 0.113185,
+    "n": 24
+   }
+  },
+  "trajectory_final_only": {
+   "0": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "1": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "10": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "2": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "20": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "3": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "5": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "final": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   }
+  },
+  "trajectory_gated": {
+   "0": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "1": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "10": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "2": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "20": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "3": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "5": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   },
+   "final": {
+    "accuracy": 1.0,
+    "log_loss": 0.0,
+    "n": 24
+   }
+  }
+ },
+ "certificate": "E15 \u2014 whole-game adjudication (the E9 referee)",
+ "final_entry": {
+  "exact": {
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "flip_rate": 0.0,
+   "log_loss": 0.0,
+   "verdict_flips": 0,
+   "verdict_pairs": 484
+  },
+  "state": {
+   "accuracy": 1.0,
+   "brier": 0.037736,
+   "flip_rate": 0.0,
+   "log_loss": 0.113185,
+   "verdict_flips": 0,
+   "verdict_pairs": 484
+  },
+  "trajectory_final_only": {
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "flip_rate": 0.0,
+   "log_loss": 0.0,
+   "verdict_flips": 0,
+   "verdict_pairs": 484
+  },
+  "trajectory_gated": {
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "flip_rate": 0.0,
+   "log_loss": 0.0,
+   "verdict_flips": 0,
+   "verdict_pairs": 484
+  }
+ },
+ "per_game": [
+  {
+   "file": "walks_kpk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 12,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kpk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 24,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kpk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 18,
+   "result": "1/2-1/2",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kpk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 22,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kpk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 26,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kpk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 17,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kpk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 15,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kpk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 27,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kpk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 27,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kpk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 35,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kpk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 41,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kpk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 35,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kqk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 8,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kqk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 19,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kqk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 11,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kqk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 13,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kqk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 9,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_kqk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 9,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_krk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 18,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_krk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 28,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_krk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 24,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_krk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 18,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_krk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 23,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  },
+  {
+   "file": "walks_krk.pgn",
+   "final_verdicts": {
+    "exact": 0,
+    "state": 0,
+    "trajectory_final_only": 0,
+    "trajectory_gated": 0
+   },
+   "n_entries": 29,
+   "result": "1-0",
+   "scoreable": true,
+   "source": "tablebase-walk"
+  }
+ ],
+ "recipe": {
+  "arms": [
+   "exact",
+   "state",
+   "trajectory_gated",
+   "trajectory_final_only"
+  ],
+  "corpus": "data/games",
+  "cutoffs": [
+   0,
+   1,
+   2,
+   3,
+   5,
+   10,
+   20,
+   -1
+  ],
+  "gate_dtm": "exact oracle DTM of each entry (-1 for bare kings)",
+  "gate_time_axis": "oracle-entry ordinal / 40",
+  "ground_truth": "the Result header at game level",
+  "model": "outcome_model.json",
+  "note": "pure evaluation of frozen artifacts; no retraining",
+  "trajectory": "outcome_trajectory.json"
+ },
+ "runtime_seconds": 0.6,
+ "totals": {
+  "entries_per_kind": {
+   "kpk": 18,
+   "kqk": 350,
+   "krk": 140
+  },
+  "games": 29,
+  "games_in_oracle_space": 24,
+  "games_scoreable": 24,
+  "oracle_entries": 508,
+  "skipped_no_oracle_entries": 5,
+  "sources": {
+   "tablebase-walk": 24
+  }
+ }
+}

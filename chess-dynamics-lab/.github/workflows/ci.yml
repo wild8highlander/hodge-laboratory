@@ -1,0 +1,113 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  python-core:
+    name: python core (protocol + tests)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.11', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install test dependencies
+        run: python -m pip install pytest matplotlib
+      - name: Full protocol C1–C9
+        run: python dynamics.py --report
+      - name: Deep perft
+        run: python dynamics.py --run C5 --deep
+      - name: pytest suite
+        run: python -m pytest tests/ -q
+      - name: Outcome dynamics smoke (epochs I-III)
+        run: python3 -m outcome report --smoke --out /tmp/outcome_smoke.json
+      - name: Outcome dynamics falsification smoke (epoch VI)
+        run: python3 -m outcome falsify --smoke --out /tmp/counterexamples
+      - name: Outcome trajectory smoke (epoch V)
+        run: python3 -m outcome trajectory --smoke --out /tmp/outcome_traj_smoke.json
+      - name: Outcome nonlinear specialist smoke (epoch VII, E11)
+        run: python3 -m outcome nonlinear --smoke --out /tmp/e11_smoke.json
+      - name: Outcome real-games audit (epoch IV, E12)
+        run: python3 -m outcome games data/games --out /tmp/e12_smoke.json
+      - name: Outcome interaction-hinge smoke (epoch VII, E13)
+        run: python3 -m outcome interact --smoke --out /tmp/e13_smoke.json
+      - name: Outcome whole-game referee (epoch VIII, E15)
+        run: python3 -m outcome adjudicate data/games --out /tmp/e15_smoke.json
+      - name: Engine self-play determinism
+        run: python engine/game_player.py --selfplay --depth 3 --moves 12 > /dev/null && python engine/game_player.py --selfplay --depth 3 --moves 12 > /dev/null
+
+  polyglot:
+    name: polyglot battery (7 languages)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python backend
+        run: python3 polyglot/python/chess_core.py
+      - name: C backend
+        run: |
+          gcc -O2 -std=c99 -o /tmp/chess_core_c polyglot/c/chess_core.c -lm
+          /tmp/chess_core_c
+      - name: JavaScript backend
+        run: node polyglot/javascript/chess_core.js
+      - name: Rust backend
+        run: |
+          rustup toolchain install stable --profile minimal
+          cd polyglot/rust
+          rustc -O chess_core.rs -o /tmp/chess_core_rs
+          /tmp/chess_core_rs
+      - name: Go backend
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: Go run
+        run: go run polyglot/go/chess_core.go
+      - name: Julia backend
+        uses: julia-actions/setup-julia@v2
+        with:
+          version: '1.10'
+      - name: Julia run
+        run: julia polyglot/julia/chess_core.jl
+      - name: Julia large-board lab selftest (112x112 particle dynamics)
+        run: julia large_board_lab.jl --selftest
+      - name: Java backend
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Java compile + run
+        run: |
+          cd polyglot/java
+          javac ChessCore.java
+          java ChessCore
+      - name: Polyglot summary
+        run: bash polyglot/run_all.sh
+
+  web:
+    name: web laboratory sanity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Syntax-check the app bundle
+        run: node --check web/chess-particles/assets/js/app.js
+      - name: Protocol core must print verdict 10/10 from Node
+        run: |
+          node -e "
+          global.window = { localStorage: { getItem: () => null, setItem: () => {} } };
+          require('./web/chess-particles/assets/js/app.js');
+          const CDL = global.window.CDL;
+          const rows = CDL.runProtocol(false);
+          const pass = rows.filter(r => r.pass).length;
+          console.log('verdict:', pass + '/' + rows.length);
+          if (pass !== rows.length) process.exit(1);
+          "

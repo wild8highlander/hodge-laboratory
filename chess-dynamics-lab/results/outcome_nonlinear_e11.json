@@ -1,0 +1,503 @@
+{
+ "arms": {
+  "hinge": {
+   "derived_coordinates": 48,
+   "test": {
+    "accuracy": 0.828618,
+    "brier": 0.233914,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      657,
+      327
+     ],
+     [
+      0,
+      194,
+      1862
+     ]
+    ],
+    "ece": 0.012005,
+    "log_loss": 0.37507,
+    "macro_f1": 0.531115,
+    "n": 3040
+   },
+   "valid": {
+    "accuracy": 0.830944,
+    "brier": 0.239228,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      649,
+      322
+     ],
+     [
+      0,
+      185,
+      1843
+     ]
+    ],
+    "ece": 0.014488,
+    "log_loss": 0.385089,
+    "macro_f1": 0.532733,
+    "n": 2999
+   }
+  },
+  "hinge_cross": {
+   "derived_coordinates": 58,
+   "test": {
+    "accuracy": 0.833224,
+    "brier": 0.232024,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      669,
+      315
+     ],
+     [
+      0,
+      192,
+      1864
+     ]
+    ],
+    "ece": 0.011963,
+    "log_loss": 0.374613,
+    "macro_f1": 0.535162,
+    "n": 3040
+   },
+   "valid": {
+    "accuracy": 0.833611,
+    "brier": 0.236092,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      664,
+      307
+     ],
+     [
+      0,
+      192,
+      1836
+     ]
+    ],
+    "ece": 0.012199,
+    "log_loss": 0.383873,
+    "macro_f1": 0.535746,
+    "n": 2999
+   }
+  }
+ },
+ "baseline_global": {
+  "test": {
+   "accuracy": 0.768421,
+   "brier": 0.311896,
+   "confusion": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     462,
+     522
+    ],
+    [
+     0,
+     182,
+     1874
+    ]
+   ],
+   "ece": 0.030466,
+   "log_loss": 0.503689,
+   "macro_f1": 0.469812,
+   "n": 3040
+  },
+  "valid": {
+   "accuracy": 0.780594,
+   "brier": 0.301268,
+   "confusion": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     498,
+     473
+    ],
+    [
+     0,
+     185,
+     1843
+    ]
+   ],
+   "ece": 0.021035,
+   "log_loss": 0.492185,
+   "macro_f1": 0.483568,
+   "n": 2999
+  }
+ },
+ "certificate": "E11 \u2014 nonlinear specialist head",
+ "decision": {
+  "corpus_regenerated": true,
+  "pooled_metrics_after": {
+   "accuracy": 0.958849,
+   "brier": 0.057006,
+   "confusion": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     7063,
+     320
+    ],
+    [
+     0,
+     299,
+     7360
+    ]
+   ],
+   "ece": 0.003607,
+   "log_loss": 0.094447,
+   "macro_f1": 0.639222,
+   "n": 15042
+  },
+  "promoted": true,
+  "promoted_arm": "hinge_cross",
+  "rule": "strict improvement on BOTH accuracy and log loss over the untouched test split",
+  "smoke": false
+ },
+ "hot_spot_remine": {
+  "baseline_hard_errors": 443,
+  "hinge": 342,
+  "hinge_cross": 337,
+  "population": 2000
+ },
+ "kind": "kpk",
+ "recipe": {
+  "arm_seeds": {
+   "hinge": 2037,
+   "hinge_cross": 2049
+  },
+  "basis_spec": "nonlinear-basis v1 (hinge + cross, append-only)",
+  "crosses": [
+   [
+    "promotion_dist_min_white",
+    "king_dist_chebyshev"
+   ],
+   [
+    "promotion_dist_min_white",
+    "edge_dist_black"
+   ],
+   [
+    "promotion_dist_min_white",
+    "strongest_dist_own_king_white"
+   ],
+   [
+    "king_dist_chebyshev",
+    "edge_dist_black"
+   ],
+   [
+    "side_to_move",
+    "promotion_dist_min_white"
+   ],
+   [
+    "side_to_move",
+    "king_dist_chebyshev"
+   ],
+   [
+    "in_check_black",
+    "king_dist_chebyshev"
+   ],
+   [
+    "mobility_white",
+    "mobility_black"
+   ],
+   [
+    "king_freedom_white",
+    "king_freedom_black"
+   ],
+   [
+    "threat_coverage_white",
+    "threat_coverage_black"
+   ]
+  ],
+  "epochs": 40,
+  "hinges": [
+   [
+    "promotion_dist_min_white",
+    [
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   [
+    "king_dist_chebyshev",
+    [
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   ],
+   [
+    "king_dist_manhattan",
+    [
+     3,
+     5,
+     7,
+     9,
+     11
+    ]
+   ],
+   [
+    "edge_dist_black",
+    [
+     1,
+     2
+    ]
+   ],
+   [
+    "edge_dist_white",
+    [
+     1,
+     2
+    ]
+   ],
+   [
+    "strongest_dist_own_king_white",
+    [
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   [
+    "strongest_dist_enemy_king_white",
+    [
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   [
+    "king_freedom_black",
+    [
+     2,
+     4,
+     6
+    ]
+   ],
+   [
+    "king_freedom_white",
+    [
+     2,
+     4,
+     6
+    ]
+   ],
+   [
+    "mobility_white",
+    [
+     3,
+     5,
+     7,
+     9,
+     11
+    ]
+   ],
+   [
+    "mobility_black",
+    [
+     2,
+     4,
+     6
+    ]
+   ],
+   [
+    "threat_coverage_white",
+    [
+     5,
+     7,
+     9
+    ]
+   ],
+   [
+    "threat_coverage_black",
+    [
+     4,
+     6
+    ]
+   ],
+   [
+    "center_dist_black",
+    [
+     1,
+     2
+    ]
+   ]
+  ],
+  "members": 3,
+  "per_kind": {
+   "kbk": {
+    "accuracy": 1.0,
+    "brier": 0.0,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      3036,
+      0
+     ],
+     [
+      0,
+      0,
+      0
+     ]
+    ],
+    "ece": 7e-06,
+    "log_loss": 7e-06,
+    "macro_f1": 0.333333,
+    "n": 3036
+   },
+   "knk": {
+    "accuracy": 1.0,
+    "brier": 0.0,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2991,
+      0
+     ],
+     [
+      0,
+      0,
+      0
+     ]
+    ],
+    "ece": 3e-06,
+    "log_loss": 3e-06,
+    "macro_f1": 0.333333,
+    "n": 2991
+   },
+   "kpk": {
+    "accuracy": 0.833224,
+    "brier": 0.232024,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      669,
+      315
+     ],
+     [
+      0,
+      192,
+      1864
+     ]
+    ],
+    "ece": 0.011963,
+    "log_loss": 0.374613,
+    "macro_f1": 0.535162,
+    "n": 3040
+   },
+   "kqk": {
+    "accuracy": 0.997299,
+    "brier": 0.006365,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      198,
+      5
+     ],
+     [
+      0,
+      3,
+      2756
+     ]
+    ],
+    "ece": 0.005111,
+    "log_loss": 0.026495,
+    "macro_f1": 0.659583,
+    "n": 2962
+   },
+   "krk": {
+    "accuracy": 0.965483,
+    "brier": 0.044236,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      169,
+      0
+     ],
+     [
+      0,
+      104,
+      2740
+     ]
+    ],
+    "ece": 0.011722,
+    "log_loss": 0.067486,
+    "macro_f1": 0.582027,
+    "n": 3013
+   }
+  },
+  "protocol": "same sampler and hash split as the E8 dataset; the specialist trains on the kpk train rows only",
+  "seed": 2026
+ },
+ "runtime_seconds": 278.4
+}

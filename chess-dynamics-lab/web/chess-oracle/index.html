@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>chess-oracle · игра против идеала</title>
+<meta name="description" content="Play KRK/KQK endgames against the frozen DTM tablebase: perfect play, live Bellman audit, strategy-tree explorer, in-browser E1 replay.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="loading-mask" class="hidden"><div class="spinner"></div><span data-i18n="loading.table"></span></div>
+
+<header class="topbar">
+  <div class="brand">
+    <h1 data-i18n="app.title"></h1>
+    <p class="tagline" data-i18n="app.tagline"></p>
+  </div>
+  <div class="top-controls">
+    <select id="table-select" class="ctl" aria-label="endgame">
+      <option value="krk" data-i18n="table.krk"></option>
+      <option value="kqk" data-i18n="table.kqk"></option>
+      <option value="knk" data-i18n="table.knk"></option>
+      <option value="kpk" data-i18n="table.kpk"></option>
+    </select>
+    <button id="lang-btn" class="btn ghost">RU/EN</button>
+  </div>
+</header>
+
+<main class="layout">
+  <!-- ── board column ─────────────────────────────────────────── -->
+  <section class="panel board-panel" aria-label="board">
+    <div id="status-line" class="status">…</div>
+    <div class="board-wrap">
+      <div id="board" class="board" role="grid" aria-label="chessboard"></div>
+      <canvas id="vortex-canvas" class="vortex-canvas hidden" aria-hidden="true"></canvas>
+      <div id="vortex-badge" class="vortex-badge hidden"></div>
+    </div>
+
+    <div class="controls">
+      <label class="ctl-label"><span data-i18n="mode.label"></span>
+        <select id="mode-select" class="ctl">
+          <option value="vsOracle" data-i18n="mode.vsOracle"></option>
+          <option value="auto" data-i18n="mode.auto"></option>
+          <option value="vsParticles" data-i18n="mode.vsParticles"></option>
+          <option value="editor" data-i18n="mode.editor"></option>
+        </select>
+      </label>
+      <label class="ctl-label" id="side-select-wrap"><span data-i18n="side.label"></span>
+        <select id="side-select" class="ctl">
+          <option value="1" data-i18n="side.white"></option>
+          <option value="-1" selected data-i18n="side.black"></option>
+        </select>
+      </label>
+    </div>
+    <div class="controls">
+      <button id="btn-new" class="btn" data-i18n="btn.new"></button>
+      <button id="btn-restart" class="btn ghost" data-i18n="btn.restart"></button>
+      <button id="btn-undo" class="btn ghost" data-i18n="btn.undo"></button>
+      <button id="btn-flip" class="btn ghost" data-i18n="btn.flip"></button>
+      <button id="btn-hint" class="btn gold" data-i18n="btn.hint"></button>
+      <button id="btn-vortex" class="btn ghost" data-i18n="btn.vortex" data-i18n-title="vortex.title"></button>
+      <button id="btn-traps" class="btn ghost" data-i18n="btn.traps" data-i18n-title="traps.title"></button>
+    </div>
+
+    <div id="editor-bar" class="controls editor hidden">
+      <span class="ctl-label"><span data-i18n="editor.piece"></span>:
+        <label class="radio"><input type="radio" name="ed-piece" value="6">♔</label>
+        <label class="radio"><input type="radio" name="ed-piece" value="4" checked>♖</label>
+        <label class="radio"><input type="radio" name="ed-piece" value="5">♕</label>
+        <label class="radio"><input type="radio" name="ed-piece" value="2">♘</label>
+        <label class="radio"><input type="radio" name="ed-piece" value="1">♙</label>
+        <label class="radio"><input type="radio" name="ed-piece" value="-6">♚</label>
+      </span>
+      <label class="ctl-label"><span data-i18n="side.label"></span>
+        <select id="ed-side" class="ctl">
+          <option value="1" data-i18n="side.white"></option>
+          <option value="-1" selected data-i18n="side.black"></option>
+        </select>
+      </label>
+      <button id="ed-apply" class="btn gold" data-i18n="editor.apply"></button>
+      <button id="ed-clear" class="btn ghost" data-i18n="editor.clear"></button>
+    </div>
+
+    <div id="move-list" class="move-list" aria-live="polite"></div>
+  </section>
+
+  <!-- ── right column ─────────────────────────────────────────── -->
+  <aside class="col">
+    <section class="panel meter-panel" aria-label="distance to mate">
+      <div class="meter">
+        <div class="meter-value-box">
+          <span id="meter-value" class="meter-value">—</span>
+          <span id="meter-unit" class="meter-unit"></span>
+        </div>
+        <div class="meter-right">
+          <span id="meter-verdict" class="verdict"></span>
+          <span id="meter-par" class="small"></span>
+        </div>
+      </div>
+      <div class="meter-bar"><div id="meter-bar-fill"></div></div>
+      <div class="small horizon"><span data-i18n="meter.horizon"></span>: <span id="meter-horizon">32</span></div>
+      <p id="kind-note" class="small kind-note hidden"></p>
+    </section>
+
+    <section class="panel" aria-label="audit">
+      <div id="audit-banner" class="banner ok">…</div>
+      <div class="audit-counters">
+        <span><strong id="audit-visited">0</strong> <span data-i18n="audit.visited"></span></span>
+        <span class="ok-text"><strong id="audit-passed">0</strong> <span data-i18n="audit.passed"></span></span>
+        <span class="fail-text"><strong id="audit-failed">0</strong> <span data-i18n="audit.failed"></span></span>
+      </div>
+      <div id="audit-log" class="audit-log"></div>
+    </section>
+
+    <section class="panel tabs-panel" aria-label="analysis tabs">
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="tree" data-i18n="tabs.tree"></button>
+        <button class="tab-btn" data-tab="e1" data-i18n="tabs.e1"></button>
+        <button class="tab-btn" data-tab="traps" data-i18n="tabs.traps"></button>
+        <button class="tab-btn" data-tab="vortex" data-i18n="tabs.vortex"></button>
+        <button class="tab-btn" data-tab="table" data-i18n="tabs.table"></button>
+        <button class="tab-btn" data-tab="proof" data-i18n="tabs.proof"></button>
+      </nav>
+      <div id="pane-tree" class="pane active">
+        <div id="tree-out"></div>
+      </div>
+      <div id="pane-e1" class="pane">
+        <div class="controls">
+          <label class="ctl-label"><span data-i18n="e1.count"></span>
+            <input id="e1-count" type="number" value="500" min="50" max="5000" class="ctl num">
+          </label>
+          <label class="ctl-label"><span data-i18n="e1.seed"></span>
+            <input id="e1-seed" type="number" value="42" class="ctl num">
+          </label>
+          <button id="e1-run" class="btn gold" data-i18n="e1.run"></button>
+        </div>
+        <div id="e1-out"></div>
+      </div>
+      <div id="pane-traps" class="pane">
+        <div id="traps-out"></div>
+      </div>
+      <div id="pane-vortex" class="pane">
+        <div id="vortex-out"></div>
+      </div>
+      <div id="pane-table" class="pane">
+        <div id="table-out"></div>
+      </div>
+      <div id="pane-proof" class="pane proof">
+        <h3 data-i18n="proof.title"></h3>
+        <p data-i18n="proof.t13"></p>
+        <p data-i18n="proof.t14"></p>
+        <p data-i18n="proof.t15"></p>
+        <p data-i18n="proof.live"></p>
+        <p data-i18n="proof.trilemma"></p>
+        <p class="small" data-i18n="proof.note50"></p>
+        <p class="small">
+          <span data-i18n="proof.links"></span><br>
+          <a href="../../monograph/pdf/ru/particle_limit.pdf">monograph/pdf/ru/particle_limit.pdf</a> ·
+          <a href="../../monograph/pdf/en/particle_limit.pdf">monograph/pdf/en/particle_limit.pdf</a> ·
+          <a href="../../complexity/P_VS_NP.md">complexity/P_VS_NP.md</a>
+        </p>
+      </div>
+    </section>
+  </aside>
+</main>
+
+<footer class="footer">
+  <span data-i18n="footer.note"></span>
+  · <a href="../../docs/index.html">docs</a> ·
+  <a href="../chess-particles/index.html">chess-particles</a>
+</footer>
+
+<script src="assets/data/tables.js"></script>
+<script src="assets/js/chess.js"></script>
+<script src="assets/js/tb.js"></script>
+<script src="assets/js/particles.js"></script>
+<script src="assets/js/audit.js"></script>
+<script src="assets/js/tree.js"></script>
+<script src="assets/js/e1.js"></script>
+<script src="assets/js/traps.js"></script>
+<script src="assets/js/vortex.js"></script>
+<script src="assets/js/vortex_view.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

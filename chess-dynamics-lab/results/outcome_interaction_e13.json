@@ -1,0 +1,455 @@
+{
+ "arms": {
+  "ihinge": {
+   "derived_coordinates": 74,
+   "test": {
+    "accuracy": 0.833224,
+    "brier": 0.233104,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      672,
+      312
+     ],
+     [
+      0,
+      195,
+      1861
+     ]
+    ],
+    "ece": 0.010412,
+    "log_loss": 0.373813,
+    "macro_f1": 0.535403,
+    "n": 3040
+   },
+   "valid": {
+    "accuracy": 0.834278,
+    "brier": 0.237647,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      664,
+      307
+     ],
+     [
+      0,
+      190,
+      1838
+     ]
+    ],
+    "ece": 0.023193,
+    "log_loss": 0.384671,
+    "macro_f1": 0.536191,
+    "n": 2999
+   },
+   "weighted": false
+  },
+  "ihinge_w": {
+   "derived_coordinates": 74,
+   "test": {
+    "accuracy": 0.813816,
+    "brier": 0.258237,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      648,
+      336
+     ],
+     [
+      0,
+      230,
+      1826
+     ]
+    ],
+    "ece": 0.012732,
+    "log_loss": 0.399586,
+    "macro_f1": 0.520613,
+    "n": 3040
+   },
+   "valid": {
+    "accuracy": 0.812938,
+    "brier": 0.2611,
+    "confusion": [
+     [
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      640,
+      331
+     ],
+     [
+      0,
+      230,
+      1798
+     ]
+    ],
+    "ece": 0.011496,
+    "log_loss": 0.403052,
+    "macro_f1": 0.520107,
+    "n": 2999
+   },
+   "weighted": true
+  }
+ },
+ "baseline_route": {
+  "test": {
+   "accuracy": 0.833224,
+   "brier": 0.232024,
+   "confusion": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     669,
+     315
+    ],
+    [
+     0,
+     192,
+     1864
+    ]
+   ],
+   "ece": 0.011963,
+   "log_loss": 0.374613,
+   "macro_f1": 0.535162,
+   "n": 3040
+  },
+  "valid": {
+   "accuracy": 0.833611,
+   "brier": 0.236092,
+   "confusion": [
+    [
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     664,
+     307
+    ],
+    [
+     0,
+     192,
+     1836
+    ]
+   ],
+   "ece": 0.012199,
+   "log_loss": 0.383873,
+   "macro_f1": 0.535746,
+   "n": 2999
+  }
+ },
+ "certificate": "E13 \u2014 interaction hinge nodes on the residual KPK corpus",
+ "decision": {
+  "corpus_regenerated": false,
+  "pooled_metrics_after": null,
+  "promoted": false,
+  "promoted_arm": null,
+  "rule": "strict improvement on BOTH accuracy and log loss over the untouched test split vs the production route",
+  "smoke": false
+ },
+ "hot_spot_remine": {
+  "baseline_route_errors": 337,
+  "ihinge": 323,
+  "ihinge_w": 380,
+  "population": 2000
+ },
+ "kind": "kpk",
+ "recipe": {
+  "arm_seeds": {
+   "ihinge": 2039,
+   "ihinge_w": 2063
+  },
+  "basis_spec": "nonlinear-basis v2 (hinge + cross + interaction hinge, append-only)",
+  "crosses": [
+   [
+    "promotion_dist_min_white",
+    "king_dist_chebyshev"
+   ],
+   [
+    "promotion_dist_min_white",
+    "edge_dist_black"
+   ],
+   [
+    "promotion_dist_min_white",
+    "strongest_dist_own_king_white"
+   ],
+   [
+    "king_dist_chebyshev",
+    "edge_dist_black"
+   ],
+   [
+    "side_to_move",
+    "promotion_dist_min_white"
+   ],
+   [
+    "side_to_move",
+    "king_dist_chebyshev"
+   ],
+   [
+    "in_check_black",
+    "king_dist_chebyshev"
+   ],
+   [
+    "mobility_white",
+    "mobility_black"
+   ],
+   [
+    "king_freedom_white",
+    "king_freedom_black"
+   ],
+   [
+    "threat_coverage_white",
+    "threat_coverage_black"
+   ]
+  ],
+  "epochs": 40,
+  "err_weight": 4.0,
+  "hinges": [
+   [
+    "promotion_dist_min_white",
+    [
+     1,
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   [
+    "king_dist_chebyshev",
+    [
+     2,
+     3,
+     4,
+     5,
+     6
+    ]
+   ],
+   [
+    "king_dist_manhattan",
+    [
+     3,
+     5,
+     7,
+     9,
+     11
+    ]
+   ],
+   [
+    "edge_dist_black",
+    [
+     1,
+     2
+    ]
+   ],
+   [
+    "edge_dist_white",
+    [
+     1,
+     2
+    ]
+   ],
+   [
+    "strongest_dist_own_king_white",
+    [
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   [
+    "strongest_dist_enemy_king_white",
+    [
+     2,
+     3,
+     4,
+     5
+    ]
+   ],
+   [
+    "king_freedom_black",
+    [
+     2,
+     4,
+     6
+    ]
+   ],
+   [
+    "king_freedom_white",
+    [
+     2,
+     4,
+     6
+    ]
+   ],
+   [
+    "mobility_white",
+    [
+     3,
+     5,
+     7,
+     9,
+     11
+    ]
+   ],
+   [
+    "mobility_black",
+    [
+     2,
+     4,
+     6
+    ]
+   ],
+   [
+    "threat_coverage_white",
+    [
+     5,
+     7,
+     9
+    ]
+   ],
+   [
+    "threat_coverage_black",
+    [
+     4,
+     6
+    ]
+   ],
+   [
+    "center_dist_black",
+    [
+     1,
+     2
+    ]
+   ]
+  ],
+  "interactions": [
+   [
+    "promotion_dist_min_white",
+    3,
+    "king_dist_chebyshev",
+    3
+   ],
+   [
+    "promotion_dist_min_white",
+    4,
+    "king_dist_chebyshev",
+    3
+   ],
+   [
+    "promotion_dist_min_white",
+    5,
+    "king_dist_chebyshev",
+    4
+   ],
+   [
+    "promotion_dist_min_white",
+    4,
+    "king_dist_manhattan",
+    5
+   ],
+   [
+    "promotion_dist_min_white",
+    5,
+    "king_dist_manhattan",
+    7
+   ],
+   [
+    "promotion_dist_min_white",
+    4,
+    "side_to_move",
+    0
+   ],
+   [
+    "promotion_dist_min_white",
+    5,
+    "side_to_move",
+    0
+   ],
+   [
+    "king_dist_chebyshev",
+    3,
+    "king_freedom_black",
+    5
+   ],
+   [
+    "king_dist_chebyshev",
+    4,
+    "king_freedom_black",
+    7
+   ],
+   [
+    "king_dist_manhattan",
+    5,
+    "king_freedom_black",
+    4
+   ],
+   [
+    "edge_dist_black",
+    1,
+    "king_dist_manhattan",
+    5
+   ],
+   [
+    "edge_dist_white",
+    1,
+    "king_dist_manhattan",
+    5
+   ],
+   [
+    "king_freedom_white",
+    5,
+    "king_freedom_black",
+    5
+   ],
+   [
+    "strongest_dist_own_king_white",
+    3,
+    "king_dist_manhattan",
+    5
+   ],
+   [
+    "mobility_white",
+    7,
+    "mobility_black",
+    4
+   ],
+   [
+    "threat_coverage_white",
+    7,
+    "threat_coverage_black",
+    5
+   ]
+  ],
+  "members": 3,
+  "per_kind": 20000,
+  "protocol": "same sampler and hash split as the E8 dataset; the arms train on the kpk train rows only; the baseline is the promoted E11 production route",
+  "seed": 2026,
+  "train_rows_weighted": 2390
+ },
+ "runtime_seconds": 268.3
+}

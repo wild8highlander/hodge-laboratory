@@ -1,0 +1,114 @@
+{
+ "experiment": "E2 scaling with board size n (KRK)",
+ "rows": [
+  {
+   "n": 4,
+   "states": 3496,
+   "states_theory_n6": 3360,
+   "edges": 26992,
+   "won": 2884,
+   "mates": 40,
+   "max_dtm_moves": 7,
+   "retro_seconds": 1.9,
+   "particle": {
+    "mean_ms": 0.544,
+    "median_ms": 0.545,
+    "max_ms": 0.703,
+    "positions": 150
+   },
+   "alphabeta_d6": {
+    "mean_ms": 950.5,
+    "positions": 10
+   },
+   "n8_verification": null
+  },
+  {
+   "n": 5,
+   "states": 17528,
+   "states_theory_n6": 13800,
+   "edges": 161265,
+   "won": 15324,
+   "mates": 72,
+   "max_dtm_moves": 10,
+   "retro_seconds": 2.12,
+   "particle": {
+    "mean_ms": 0.596,
+    "median_ms": 0.594,
+    "max_ms": 0.792,
+    "positions": 150
+   },
+   "alphabeta_d6": {
+    "mean_ms": 1193.38,
+    "positions": 10
+   },
+   "n8_verification": null
+  },
+  {
+   "n": 6,
+   "states": 60800,
+   "states_theory_n6": 42840,
+   "edges": 620224,
+   "won": 55148,
+   "mates": 112,
+   "max_dtm_moves": 12,
+   "retro_seconds": 2.7,
+   "particle": {
+    "mean_ms": 0.612,
+    "median_ms": 0.614,
+    "max_ms": 0.74,
+    "positions": 150
+   },
+   "alphabeta_d6": {
+    "mean_ms": 1388.15,
+    "positions": 10
+   },
+   "n8_verification": null
+  },
+  {
+   "n": 7,
+   "states": 168260,
+   "states_theory_n6": 110544,
+   "edges": 1837205,
+   "won": 156320,
+   "mates": 160,
+   "max_dtm_moves": 14,
+   "retro_seconds": 4.24,
+   "particle": {
+    "mean_ms": 0.641,
+    "median_ms": 0.666,
+    "max_ms": 0.75,
+    "positions": 150
+   },
+   "alphabeta_d6": {
+    "mean_ms": 1338.88,
+    "positions": 10
+   },
+   "n8_verification": null
+  },
+  {
+   "n": 8,
+   "states": 399112,
+   "states_theory_n6": 249984,
+   "edges": 4447032,
+   "won": 376868,
+   "mates": 216,
+   "max_dtm_moves": 16,
+   "retro_seconds": 7.72,
+   "particle": {
+    "mean_ms": 0.617,
+    "median_ms": 0.606,
+    "max_ms": 0.774,
+    "positions": 150
+   },
+   "alphabeta_d6": {
+    "mean_ms": 1277.9,
+    "positions": 10
+   },
+   "n8_verification": {
+    "mismatches": 0,
+    "verdict": "PASS"
+   }
+  }
+ ],
+ "note": "states follow n^2(n^2-1)(n^2-2) ~ n^6 \u2014 POLYNOMIAL in n for fixed piece count; the exponential wall in generalized chess is the number of pieces k (Fraenkel-Lichtenstein reduction uses k = poly(n)), which pushes both the state space (~n^{2k}) and the DTM horizon beyond polynomial reach. n=8 retrograde is verified bit-exact against the frozen results/dtm_krk.json.gz table."
+}

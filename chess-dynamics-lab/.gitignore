@@ -1,0 +1,25 @@
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+
+# node
+node_modules/
+
+# os
+.DS_Store
+Thumbs.db
+
+# build intermediates (kept out of the release; monograph/pdf and monograph/docx ship)
+monograph/build/
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# local env
+.env
+GH_TOKEN.txt

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A1120">
+<meta name="description" content="Chess Particle Dynamics — сертифицируемая шахматная лаборатория: трёхслойная модель частиц K3 / TORUS / KLEIN, 12 теорем, протокол C1–C9, полиглот-ядро на 7 языках. Chess Particle Dynamics — a certifiable chess laboratory.">
+<title>Chess Particle Dynamics — сертифицируемая шахматная лаборатория / a certifiable chess laboratory</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%230A1120'/%3E%3Ctext%20x='32'%20y='46'%20font-size='38'%20text-anchor='middle'%20fill='%23C9A96A'%3E%E2%99%9E%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="aurora aurora-gold" aria-hidden="true"></div>
+<div class="aurora aurora-violet" aria-hidden="true"></div>
+
+<div class="page">
+
+  <header class="top">
+    <div class="brand">
+      <span class="brand-glyph" aria-hidden="true">♞</span>
+      <div>
+        <h1 class="brand-title">Chess Particle Dynamics</h1>
+        <p class="brand-sub" data-i18n="brand.sub">Сертифицируемая шахматная лаборатория · программа chess-dynamics-lab</p>
+      </div>
+    </div>
+    <div class="lang-pill" role="group" aria-label="RU / EN">
+      <button id="langRu" class="lang-btn active" type="button">RU</button>
+      <button id="langEn" class="lang-btn" type="button">EN</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <p class="kicker" data-i18n="hero.kicker">12 теорем · 9 проверок · 7 языков</p>
+    <h2 class="hero-title" data-i18n="hero.title">Шахматная партия как динамика системы частиц</h2>
+    <p class="hero-lede" data-i18n="hero.lede">Каждая фигура — частица: она испускает поле угроз (слой K3), несёт лагранжеву энергию (слой TORUS) и движется в дискретном потоке с памятью и завершениями (слой KLEIN). Каждая метафора получает точное определение, каждое определение — теорему, каждая теорема — исполняемую проверку, воспроизводимую одной командой.</p>
+    <div class="hero-btns">
+      <a class="btn primary" href="../web/chess-particles/index.html" data-i18n="hero.open">Открыть веб-лабораторию</a>
+      <a class="btn" href="../web/chess-oracle/index.html">chess-oracle · игра против идеала / play against perfection</a>
+      <a class="btn" href="../web/chess-oracle/index.html">вихрь T16 · vortex dynamics — the outcome as flow topology</a>
+      <a class="btn" href="https://github.com/wild8highlander/chess-dynamics-lab" data-i18n="hero.repo">Репозиторий на GitHub</a>
+    </div>
+    <p class="mono verdict-line">verdict: ALL CHECKS PASSED · C1–C9 · 10/10 polyglot</p>
+  </section>
+
+  <section class="layers">
+    <div class="layer-card">
+      <p class="layer-tag tag-k3">K3</p>
+      <h3 data-i18n="layer.k3.title">Поле угроз</h3>
+      <p data-i18n="layer.k3.text">Потенциальный слой: ΣΘ(c) = Σa(π) — дискретная теорема Фубини. Масса поля 38 на сторону, эквивариантность D4 без пешек, пешечная аномалия 176 = 88 + 88.</p>
+    </div>
+    <div class="layer-card">
+      <p class="layer-tag tag-torus">TORUS</p>
+      <h3 data-i18n="layer.torus.title">Лагранжиан</h3>
+      <p data-i18n="layer.torus.text">Энергетический слой: E = [M(○) − M(●)] + μ[m(○) − m(●)], μ = 0.1. После 1.e4 белый кинетический член +1.0; поиск минимизирует энергию.</p>
+    </div>
+    <div class="layer-card">
+      <p class="layer-tag tag-klein">KLEIN</p>
+      <h3 data-i18n="layer.klein.title">Дискретный поток</h3>
+      <p data-i18n="layer.klein.text">Потоковый слой: t* = lcm(W/gcd(a,W), H/gcd(b,H)), демпфирование γ = π⁴/256, память — хеши Цобриста splitmix64 (1562 ключа).</p>
+    </div>
+  </section>
+
+  <section class="card docs-card">
+    <h2 class="card-title" data-i18n="docs.title">Монографии теорем T01–T12</h2>
+    <p class="sec-lede" data-i18n="docs.lede">Каждая теорема выпущена отдельной монографией на русском и английском, в PDF и DOCX; плюс главная монография «Динамика шахматных частиц».</p>
+    <div class="table-scroll">
+      <table class="data-table" aria-label="Theorem monographs T01–T12">
+        <thead><tr>
+          <th data-i18n="docs.th.id">Код</th>
+          <th data-i18n="docs.th.title">Теорема</th>
+          <th class="mono" data-i18n="docs.th.key">Ключевая константа</th>
+          <th data-i18n="docs.th.check">Проверка</th>
+        </tr></thead>
+        <tbody id="docsTableBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card repro-card">
+    <h2 class="card-title" data-i18n="repro.title">Воспроизведение</h2>
+    <div class="cmd">
+      <span class="cmd-label">Linux / macOS</span>
+      <code class="mono">git clone https://github.com/wild8highlander/chess-dynamics-lab.git
+cd chess-dynamics-lab
+python3 dynamics.py --report        <span class="cmt"># полный протокол C1–C9</span>
+python3 dynamics.py --run C5 --deep <span class="cmt"># perft(5) = 4865609</span>
+bash polyglot/run_all.sh            <span class="cmt"># 7 языков, verdict 10/10</span>
+python3 -m outcome analyze "R5k1/8/6K1/8/8/8/8/8 b - - 0 1" --moves <span class="cmt"># Outcome Field v0.1</span>
+python3 -m pytest tests/ -q         <span class="cmt"># 92 теста</span></code>
+    </div>
+    <div class="cmd">
+      <span class="cmd-label">Android · Termux</span>
+      <code class="mono">pkg install python git
+git clone https://github.com/wild8highlander/chess-dynamics-lab.git
+cd chess-dynamics-lab
+python3 dynamics.py --report</code>
+    </div>
+    <p class="doc-note" data-i18n="repro.note">Вердикт ALL CHECKS PASSED воспроизводим на любой машине: сервере, ноутбуке или смартфоне. Все численные утверждения монографий зафиксированы этим протоколом.</p>
+  </section>
+
+  <footer class="site-footer">
+    <p>© 2026 <span class="foot-author" data-i18n="foot.author">Исаев Исхак Хамзатович</span> · <span data-i18n="foot.license">Индивидуальная исключительная лицензия</span></p>
+    <p data-i18n="foot.derived">Выросло из методологии программы hodge-laboratory (И. Х. Исаев, 2025).</p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var I18N = {
+    ru: {
+      'brand.sub': 'Сертифицируемая шахматная лаборатория · программа chess-dynamics-lab',
+      'hero.kicker': '12 теорем · 9 проверок · 7 языков',
+      'hero.title': 'Шахматная партия как динамика системы частиц',
+      'hero.lede': 'Каждая фигура — частица: она испускает поле угроз (слой K3), несёт лагранжеву энергию (слой TORUS) и движется в дискретном потоке с памятью и завершениями (слой KLEIN). Каждая метафора получает точное определение, каждое определение — теорему, каждая теорема — исполняемую проверку, воспроизводимую одной командой.',
+      'hero.open': 'Открыть веб-лабораторию',
+      'hero.repo': 'Репозиторий на GitHub',
+      'layer.k3.title': 'Поле угроз',
+      'layer.k3.text': 'Потенциальный слой: ΣΘ(c) = Σa(π) — дискретная теорема Фубини. Масса поля 38 на сторону, эквивариантность D4 без пешек, пешечная аномалия 176 = 88 + 88.',
+      'layer.torus.title': 'Лагранжиан',
+      'layer.torus.text': 'Энергетический слой: E = [M(○) − M(●)] + μ[m(○) − m(●)], μ = 0.1. После 1.e4 белый кинетический член +1.0; поиск минимизирует энергию.',
+      'layer.klein.title': 'Дискретный поток',
+      'layer.klein.text': 'Потоковый слой: t* = lcm(W/gcd(a,W), H/gcd(b,H)), демпфирование γ = π⁴/256, память — хеши Цобриста splitmix64 (1562 ключа).',
+      'docs.title': 'Монографии теорем T01–T12',
+      'docs.lede': 'Каждая теорема выпущена отдельной монографией на русском и английском, в PDF и DOCX; плюс главная монография «Динамика шахматных частиц».',
+      'docs.th.id': 'Код', 'docs.th.title': 'Теорема', 'docs.th.key': 'Ключевая константа', 'docs.th.check': 'Проверка',
+      'repro.title': 'Воспроизведение',
+      'repro.note': 'Вердикт ALL CHECKS PASSED воспроизводим на любой машине: сервере, ноутбуке или смартфоне. Все численные утверждения монографий зафиксированы этим протоколом.',
+      'foot.author': 'Исаев Исхак Хамзатович',
+      'foot.license': 'Индивидуальная исключительная лицензия',
+      'foot.derived': 'Выросло из методологии программы hodge-laboratory (И. Х. Исаев, 2025).',
+      'main.title': 'Главная монография', 'main.path': 'monograph/pdf/ru/main_monograph.pdf'
+    },
+    en: {
+      'brand.sub': 'A certifiable chess laboratory · the chess-dynamics-lab program',
+      'hero.kicker': '12 theorems · 9 checks · 7 languages',
+      'hero.title': 'A chess game as the dynamics of a particle system',
+      'hero.lede': 'Every piece is a particle: it emits a threat field (layer K3), carries a Lagrangian energy (layer TORUS) and moves in a discrete flow with memory and terminations (layer KLEIN). Every metaphor receives an exact definition, every definition a theorem, every theorem an executable check reproducible by one command.',
+      'hero.open': 'Open the web laboratory',
+      'hero.repo': 'GitHub repository',
+      'layer.k3.title': 'Threat field',
+      'layer.k3.text': 'The potential layer: ΣΘ(c) = Σa(π) — a discrete Fubini theorem. Field mass 38 per side, D4 equivariance without pawns, the pawn anomaly 176 = 88 + 88.',
+      'layer.torus.title': 'Lagrangian',
+      'layer.torus.text': 'The energy layer: E = [M(w) − M(b)] + μ[m(w) − m(b)], μ = 0.1. After 1.e4 the White kinetic term is +1.0; the search minimizes the energy.',
+      'layer.klein.title': 'Discrete flow',
+      'layer.klein.text': 'The flow layer: t* = lcm(W/gcd(a,W), H/gcd(b,H)), damping γ = π⁴/256, memory — splitmix64 Zobrist hashes (1562 keys).',
+      'docs.title': 'Theorem monographs T01–T12',
+      'docs.lede': 'Each theorem is published as a separate monograph in Russian and English, PDF and DOCX; plus the main monograph "Chess Particle Dynamics".',
+      'docs.th.id': 'Code', 'docs.th.title': 'Theorem', 'docs.th.key': 'Key constant', 'docs.th.check': 'Check',
+      'repro.title': 'Reproduction',
+      'repro.note': 'The ALL CHECKS PASSED verdict is reproducible on any machine: a server, a laptop or a phone. All numerical claims of the monographs are pinned by this protocol.',
+      'foot.author': 'Isaev Iskhak Khamzatovich',
+      'foot.license': 'Individual exclusive license',
+      'foot.derived': 'Grown from the methodology of the hodge-laboratory program (I. Kh. Isaev, 2025).',
+      'main.title': 'Main monograph', 'main.path': 'monograph/pdf/en/main_monograph.pdf'
+    }
+  };
+  var TABLE = [
+    ['T01', { ru: 'Алгебра доски: группа симметрий и цензы орбит', en: 'The algebra of the chessboard: the symmetry group and orbit censuses' }, 'orbits V4 20 · D4 10', 'C1'],
+    ['T02', { ru: 'Кинематика частиц: графы ходов и цензы', en: 'Particle kinematics: move graphs and censuses' }, 'R448/B280/N168/K210/Q728', 'C2'],
+    ['T03', { ru: 'Мобильность: кинетические инварианты', en: 'Mobility: the kinetic invariants' }, 'sums 420/336/560/896/1456 · max 27', 'C3'],
+    ['T04', { ru: 'Поля угроз: аддитивность и эквивариантность', en: 'Threat fields: additivity and equivariance' }, 'mass 38 · anomaly 176', 'C6'],
+    ['T05', { ru: 'Лагранжиан позиции: энергия частиц', en: 'The position Lagrangian: the particle energy' }, 'E, μ = 0.1 · +1.0 after e4', 'C7'],
+    ['T06', { ru: 'Поток ходов: завершение t* и бильярд', en: 'The flow of moves: termination t* and billiards' }, 't* = lcm(·) · γ = π⁴/256', 'C4'],
+    ['T07', { ru: 'Обход коня: сертификат Варнсдорфа', en: 'The knight tour: the Warnsdorff certificate' }, '64 moves from f5 · closure d6→f5', 'C10'],
+    ['T08', { ru: 'Перфт-тождества', en: 'Perft identities' }, '20/400/8902/197281/4865609', 'C5'],
+    ['T09', { ru: 'Хеширование Цобриста: splitmix64', en: 'Zobrist hashing: splitmix64' }, '1562 keys · birthday 0.027', 'C9'],
+    ['T10', { ru: 'Границы альфа-бета и детерминизм', en: 'The alpha-beta bounds and determinism' }, '×256.8 at depth 5', 'C8'],
+    ['T11', { ru: 'Сертификаты мата: KQK/KRK и тактика', en: 'Mate certificates: KQK/KRK and tactics' }, 'KRK 16 moves · KQK 10 moves', 'C8'],
+    ['T12', { ru: 'Пространство состояний и протокол C1–C9', en: 'The state space and the C1–C9 protocol' }, 'ALL CHECKS PASSED', 'C1–C9']
+  ];
+  var lang = 'ru';
+  function t(k) { return (I18N[lang] && I18N[lang][k]) || I18N.ru[k] || k; }
+  function renderTable() {
+    var body = document.getElementById('docsTableBody');
+    var html = '';
+    for (var i = 0; i < TABLE.length; i++) {
+      var r = TABLE[i];
+      html += '<tr><td class="proto-id">' + r[0] + '</td><td>' + r[1][lang] +
+        '</td><td class="mono td-comp">' + r[2] + '</td><td class="mono td-exp">' + r[3] + '</td></tr>';
+    }
+    html += '<tr><td class="proto-id">MAIN</td><td>' + t('main.title') + ' — ' +
+      (lang === 'ru' ? 'Динамика шахматных частиц' : 'Chess Particle Dynamics') +
+      '</td><td class="mono td-comp">12 chapters · 5 figures</td><td class="mono td-exp">C1–C9</td></tr>';
+    body.innerHTML = html;
+  }
+  function apply() {
+    document.documentElement.lang = lang;
+    var els = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < els.length; i++) {
+      var k = els[i].getAttribute('data-i18n');
+      if (I18N[lang][k]) els[i].textContent = I18N[lang][k];
+    }
+    renderTable();
+    document.getElementById('langRu').className = 'lang-btn' + (lang === 'ru' ? ' active' : '');
+    document.getElementById('langEn').className = 'lang-btn' + (lang === 'en' ? ' active' : '');
+    try { localStorage.setItem('cdl-docs-lang', lang); } catch (e) {}
+  }
+  document.getElementById('langRu').addEventListener('click', function () { lang = 'ru'; apply(); });
+  document.getElementById('langEn').addEventListener('click', function () { lang = 'en'; apply(); });
+  try { var saved = localStorage.getItem('cdl-docs-lang'); if (saved === 'en' || saved === 'ru') lang = saved; } catch (e) {}
+  apply();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+[Event "Engine self-play (laboratory)"]
+[Site "chess-dynamics-lab"]
+[Date "2026.10.01"]
+[White "AlphaBeta-W"]
+[Black "AlphaBeta-B"]
+[Result "*"]
+[TimeControl "-"]
+[Source "engine"]
+1. e3 d5 2. Qh5 Qd6 3. d4 Nc6 4. Bd3 Nf6 5. Qg5 h6 6. Qh4 Bg4 7. f3 g5 8. Qg3
+Be6 9. Qxd6 exd6 10. Nc3 Bg7 11. Nb5 Kd7 12. Bd2 a6 13. Na3 Ne7 14. Ne2 Bf5
+15. Bxf5+ Nxf5 *
+
+[Event "Engine self-play (laboratory)"]
+[Site "chess-dynamics-lab"]
+[Date "2026.10.01"]
+[White "AlphaBeta-W"]
+[Black "AlphaBeta-B"]
+[Result "*"]
+[TimeControl "-"]
+[Source "engine"]
+1. e3 d5 2. Qh5 Qd6 3. d4 Nc6 4. Bd3 Nf6 5. Qg5 h6 6. Qh4 Bg4 7. f3 g5 8. Qg3
+Be6 9. Qxd6 exd6 10. Nc3 Bg7 11. Nb5 Kd7 12. Bd2 a6 13. Na3 Ne7 14. Ne2 Bf5
+15. Bxf5+ Nxf5 *
+

@@ -1,0 +1,350 @@
+{
+ "experiment": "E1 particles vs oracle",
+ "solver": "ParticleSolver (three-layer greedy, no DTM knowledge)",
+ "sample": 5000,
+ "seed": 42,
+ "results": {
+  "R": {
+   "piece": "R",
+   "sample_size": 5000,
+   "evaluated": 5000,
+   "seed": 42,
+   "won_wtm_states": 175168,
+   "oracle": {
+    "states": 399112,
+    "max_moves": 16
+   },
+   "saved": 4122,
+   "lost": 878,
+   "save_rate": 0.8244,
+   "optimal_rate": 0.303,
+   "mean_delta_plies": 2.9452,
+   "max_delta_plies": 18,
+   "mean_dtm_moves": 9.8698,
+   "elapsed_seconds": 4.7,
+   "depth_table": [
+    {
+     "depth_moves": 1,
+     "positions": 50,
+     "saved": 50,
+     "save_rate": 1.0,
+     "optimal_rate": 0.14,
+     "mean_delta": 5.64
+    },
+    {
+     "depth_moves": 2,
+     "positions": 134,
+     "saved": 122,
+     "save_rate": 0.9104,
+     "optimal_rate": 0.306,
+     "mean_delta": 3.852
+    },
+    {
+     "depth_moves": 3,
+     "positions": 107,
+     "saved": 106,
+     "save_rate": 0.9907,
+     "optimal_rate": 0.4206,
+     "mean_delta": 3.679
+    },
+    {
+     "depth_moves": 4,
+     "positions": 57,
+     "saved": 50,
+     "save_rate": 0.8772,
+     "optimal_rate": 0.3509,
+     "mean_delta": 3.0
+    },
+    {
+     "depth_moves": 5,
+     "positions": 136,
+     "saved": 131,
+     "save_rate": 0.9632,
+     "optimal_rate": 0.3235,
+     "mean_delta": 3.069
+    },
+    {
+     "depth_moves": 6,
+     "positions": 234,
+     "saved": 205,
+     "save_rate": 0.8761,
+     "optimal_rate": 0.2222,
+     "mean_delta": 4.517
+    },
+    {
+     "depth_moves": 7,
+     "positions": 307,
+     "saved": 259,
+     "save_rate": 0.8436,
+     "optimal_rate": 0.316,
+     "mean_delta": 3.66
+    },
+    {
+     "depth_moves": 8,
+     "positions": 504,
+     "saved": 427,
+     "save_rate": 0.8472,
+     "optimal_rate": 0.3075,
+     "mean_delta": 3.728
+    },
+    {
+     "depth_moves": 9,
+     "positions": 555,
+     "saved": 426,
+     "save_rate": 0.7676,
+     "optimal_rate": 0.2811,
+     "mean_delta": 3.394
+    },
+    {
+     "depth_moves": 10,
+     "positions": 577,
+     "saved": 454,
+     "save_rate": 0.7868,
+     "optimal_rate": 0.312,
+     "mean_delta": 3.101
+    },
+    {
+     "depth_moves": 11,
+     "positions": 568,
+     "saved": 455,
+     "save_rate": 0.8011,
+     "optimal_rate": 0.2606,
+     "mean_delta": 3.033
+    },
+    {
+     "depth_moves": 12,
+     "positions": 635,
+     "saved": 492,
+     "save_rate": 0.7748,
+     "optimal_rate": 0.1937,
+     "mean_delta": 2.813
+    },
+    {
+     "depth_moves": 13,
+     "positions": 530,
+     "saved": 432,
+     "save_rate": 0.8151,
+     "optimal_rate": 0.2962,
+     "mean_delta": 1.94
+    },
+    {
+     "depth_moves": 14,
+     "positions": 425,
+     "saved": 369,
+     "save_rate": 0.8682,
+     "optimal_rate": 0.4165,
+     "mean_delta": 1.247
+    },
+    {
+     "depth_moves": 15,
+     "positions": 152,
+     "saved": 123,
+     "save_rate": 0.8092,
+     "optimal_rate": 0.6118,
+     "mean_delta": 0.504
+    },
+    {
+     "depth_moves": 16,
+     "positions": 29,
+     "saved": 21,
+     "save_rate": 0.7241,
+     "optimal_rate": 0.6897,
+     "mean_delta": 0.095
+    }
+   ],
+   "lost_examples": [
+    {
+     "dtm_before_moves": 10,
+     "fen_before": "2k5/8/8/8/1R6/8/2K5/8 w - - 0 1",
+     "particle_move": "b4b7",
+     "fen_after": "2k5/1R6/8/8/8/8/2K5/8 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 10,
+     "fen_before": "8/8/8/8/2K4k/1R6/8/8 w - - 0 1",
+     "particle_move": "b3g3",
+     "fen_after": "8/8/8/8/2K4k/6R1/8/8 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 2,
+     "fen_before": "8/8/8/8/8/2R2K2/8/3k4 w - - 0 1",
+     "particle_move": "c3c2",
+     "fen_after": "8/8/8/8/8/5K2/2R5/3k4 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 2,
+     "fen_before": "8/4K3/8/7k/5R2/8/8/8 w - - 0 1",
+     "particle_move": "f4g4",
+     "fen_after": "8/4K3/8/7k/6R1/8/8/8 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 13,
+     "fen_before": "8/6K1/8/8/8/8/4k3/1R6 w - - 0 1",
+     "particle_move": "b1d1",
+     "fen_after": "8/6K1/8/8/8/8/4k3/3R4 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 12,
+     "fen_before": "1R6/3k4/8/8/8/2K5/8/8 w - - 0 1",
+     "particle_move": "b8e8",
+     "fen_after": "4R3/3k4/8/8/8/2K5/8/8 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 10,
+     "fen_before": "8/4K3/8/8/3R4/8/8/2k5 w - - 0 1",
+     "particle_move": "d4d2",
+     "fen_after": "8/4K3/8/8/8/8/3R4/2k5 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 8,
+     "fen_before": "3k4/8/8/4R3/2K5/8/8/8 w - - 0 1",
+     "particle_move": "e5e7",
+     "fen_after": "3k4/4R3/8/8/2K5/8/8/8 b - - 1 1"
+    }
+   ]
+  },
+  "Q": {
+   "piece": "Q",
+   "sample_size": 5000,
+   "evaluated": 5000,
+   "seed": 42,
+   "won_wtm_states": 144508,
+   "oracle": {
+    "states": 368452,
+    "max_moves": 10
+   },
+   "saved": 4781,
+   "lost": 219,
+   "save_rate": 0.9562,
+   "optimal_rate": 0.2648,
+   "mean_delta_plies": 2.3301,
+   "max_delta_plies": 10,
+   "mean_dtm_moves": 5.6032,
+   "elapsed_seconds": 6.9,
+   "depth_table": [
+    {
+     "depth_moves": 1,
+     "positions": 101,
+     "saved": 92,
+     "save_rate": 0.9109,
+     "optimal_rate": 0.0,
+     "mean_delta": 3.826
+    },
+    {
+     "depth_moves": 2,
+     "positions": 164,
+     "saved": 160,
+     "save_rate": 0.9756,
+     "optimal_rate": 0.1646,
+     "mean_delta": 3.913
+    },
+    {
+     "depth_moves": 3,
+     "positions": 310,
+     "saved": 298,
+     "save_rate": 0.9613,
+     "optimal_rate": 0.1742,
+     "mean_delta": 3.094
+    },
+    {
+     "depth_moves": 4,
+     "positions": 718,
+     "saved": 691,
+     "save_rate": 0.9624,
+     "optimal_rate": 0.1643,
+     "mean_delta": 3.071
+    },
+    {
+     "depth_moves": 5,
+     "positions": 893,
+     "saved": 865,
+     "save_rate": 0.9686,
+     "optimal_rate": 0.2251,
+     "mean_delta": 2.675
+    },
+    {
+     "depth_moves": 6,
+     "positions": 1076,
+     "saved": 1025,
+     "save_rate": 0.9526,
+     "optimal_rate": 0.2305,
+     "mean_delta": 2.353
+    },
+    {
+     "depth_moves": 7,
+     "positions": 1123,
+     "saved": 1071,
+     "save_rate": 0.9537,
+     "optimal_rate": 0.3134,
+     "mean_delta": 1.742
+    },
+    {
+     "depth_moves": 8,
+     "positions": 532,
+     "saved": 500,
+     "save_rate": 0.9398,
+     "optimal_rate": 0.4906,
+     "mean_delta": 0.988
+    },
+    {
+     "depth_moves": 9,
+     "positions": 83,
+     "saved": 79,
+     "save_rate": 0.9518,
+     "optimal_rate": 0.759,
+     "mean_delta": 0.405
+    }
+   ],
+   "lost_examples": [
+    {
+     "dtm_before_moves": 8,
+     "fen_before": "8/KQ6/4k3/8/8/8/8/8 w - - 0 1",
+     "particle_move": "b7d5",
+     "fen_after": "8/K7/4k3/3Q4/8/8/8/8 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 6,
+     "fen_before": "8/5Q2/8/8/4k3/2K5/8/8 w - - 0 1",
+     "particle_move": "f7d5",
+     "fen_after": "8/8/8/3Q4/4k3/2K5/8/8 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 6,
+     "fen_before": "8/8/1K3k2/8/8/8/7Q/8 w - - 0 1",
+     "particle_move": "h2e5",
+     "fen_after": "8/8/1K3k2/4Q3/8/8/8/8 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 9,
+     "fen_before": "7Q/8/8/2k5/8/8/7K/8 w - - 0 1",
+     "particle_move": "h8d4",
+     "fen_after": "8/8/8/2k5/3Q4/8/7K/8 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 5,
+     "fen_before": "8/8/2Q5/2K5/8/3k4/8/8 w - - 0 1",
+     "particle_move": "c6e4",
+     "fen_after": "8/8/8/2K5/4Q3/3k4/8/8 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 5,
+     "fen_before": "8/8/8/6K1/Q7/3k4/8/8 w - - 0 1",
+     "particle_move": "a4d4",
+     "fen_after": "8/8/8/6K1/3Q4/3k4/8/8 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 8,
+     "fen_before": "8/8/3k4/Q7/8/8/8/4K3 w - - 0 1",
+     "particle_move": "a5d5",
+     "fen_after": "8/8/3k4/3Q4/8/8/8/4K3 b - - 1 1"
+    },
+    {
+     "dtm_before_moves": 8,
+     "fen_before": "Q7/8/8/5k2/8/1K6/8/8 w - - 0 1",
+     "particle_move": "a8e4",
+     "fen_after": "8/8/8/5k2/4Q3/1K6/8/8 b - - 1 1"
+    }
+   ]
+  }
+ }
+}

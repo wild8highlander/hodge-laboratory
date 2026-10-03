@@ -1,0 +1,154 @@
+ИНДИВИДУАНАЯ ИСКЛЮЧИТЕЛЬНАЯ ЛИЦЕНЗИЯ
+INDIVIDUAL EXCLUSIVE LICENSE
+
+Версия 1.0 · 2026
+
+════════════════════════════════════════════════════════════════════
+
+ПРАВООБЛАДАТЕЛЬ / COPYRIGHT HOLDER:
+
+    ИСАЕВ ИСХАК ХАМЗАТОВИЧ
+    ISAEV ISKHAK KHAMZATOVICH
+
+ОБЪЕКТ ЛИЦЕНЗИИ / LICENSED WORK:
+
+    Настоящая лицензия распространяется на весь программно-
+    исследовательский комплекс «Динамика шахматных частиц»
+    (репозиторий chess-dynamics-lab), включая, но не ограничиваясь:
+
+      • вычислительную лабораторию dynamics.py (единый файл,
+        протокол C1–C9, трёхслойная модель частиц, CLI);
+      • пакет engine/ (частицы, мат-решатель, играющий движок,
+        анализатор позиций);
+      • полиглот-ядро polyglot/ (батарея C1–C10 на семи языках:
+        Python, C, Rust, Go, Julia, JavaScript, Java);
+      • эндшпильные базы results/ (KRK/KQK DTM, обход коня,
+        замороженный baseline);
+      • монографию «Динамика шахматных частиц» и двенадцать
+        отдельных монографий теорем T01–T12 (monograph/: PDF и
+        DOCX, русская и английская редакции, исходники LaTeX и
+        docx-js);
+      • веб-лабораторию web/chess-particles/ и лендинг docs/;
+      • все математические результаты, формулы, теоремы,
+        доказательства, сертификаты и вычислительные протоколы
+        (C1–C10, ретроградный анализ, машина Беллмана);
+      • все таблицы данных, диаграммы, конфигурации, скрипты
+        сборки и публикации, документацию, README, инструкции и
+        материалы GitHub Pages.
+
+    This license covers the entire "Chess Particle Dynamics"
+    software and research complex (the chess-dynamics-lab
+    repository), including the single-file computational laboratory,
+    the engine package, the seven-language polyglot core, the
+    endgame bases, the main monograph and the twelve standalone
+    theorem monographs in all formats and languages, the web
+    laboratory and landing page, and all mathematical results,
+    formulas, theorems, proofs, certificates, protocols, data
+    tables, diagrams, scripts, documentation, and website materials.
+
+════════════════════════════════════════════════════════════════════
+
+1. ИСКЛЮЧИТЕЛЬНЫЕ ПРАВА / EXCLUSIVE RIGHTS
+
+    Все имущественные и неимущественные права на объект лицензии
+    принадлежат исключительно Исаеву Исхаку Хамзатовичу. Автору
+    принадлежат все права на все вычисления, формулы, теоремы,
+    методы, алгоритмы и тексты без возможности их использования
+    какими-либо третьими лицами без его прямого письменного ведома
+    (разрешения).
+
+    All property and moral rights in the Licensed Work belong
+    exclusively to Isaev Iskhak Khamzatovich. All rights to all
+    computations, formulas, theorems, methods, algorithms, and texts
+    belong to the Author alone, and no use by any third party is
+    permitted without the Author's direct written consent.
+
+2. ЗАПРЕТ ИСПОЛЬЗОВАНИЯ / PROHIBITED USE
+
+    Без отдельного письменного разрешения правообладателя
+    ЗАПРЕЩАЕТСЯ:
+
+      a) копирование, распространение, публикация, передача,
+         сублицензирование, продажа, аренда объекта лицензии или
+         любых его частей;
+      b) использование объекта лицензии или его частей в
+         производных работах, исследованиях, публикациях,
+         коммерческих продуктах, обучающих датасетах и любых иных
+         произведениях;
+      c) извлечение, переиспользование или воспроизведение формул,
+         теорем, алгоритмов, параметров, констант, таблиц данных и
+         численных результатов;
+      d) модификация, реверс-инжиниринг, декомпиляция и создание
+         попыток воссоздания функциональности;
+      e) использование в системах машинного обучения и для обучения
+         моделей любого вида;
+      f) удаление или изменение настоящей лицензии, авторских
+         указаний и атрибуции.
+
+    Without a separate written permission of the Copyright Holder it
+    is PROHIBITED to: (a) copy, distribute, publish, transfer,
+    sublicense, sell, rent the Licensed Work or any part thereof;
+    (b) use the Licensed Work in derivative works, research,
+    publications, commercial products, training datasets, or any
+    other works; (c) extract or reuse formulas, theorems,
+    algorithms, parameters, constants, data tables, or numerical
+    results; (d) modify, reverse engineer, decompile, or attempt to
+    recreate the functionality; (e) use in machine learning systems
+    or for training models of any kind; (f) remove or alter this
+    license, copyright notices, or attribution.
+
+3. ЛИЧНОЕ ИСПОЛЬЗОВАНИЕ ПРАВООБЛАДАТЕЛЕМ / OWNER'S OWN USE
+
+    Правообладатель вправе использовать, изменять, распространять и
+    лицензировать объект лицензии по собственному усмотрению, без
+    каких-либо ограничений настоящей лицензии.
+
+    The Copyright Holder may use, modify, distribute, and license
+    the Licensed Work at their sole discretion, free of any
+    restrictions of this license.
+
+4. ОТСУТСТВИЕ ПОДРАЗУМЕВАЕМЫХ ЛИЦЕНЗИЙ / NO IMPLIED LICENSES
+
+    Публикация объекта лицензии в репозитории GitHub или ином
+    хранилище не является передачей каких-либо прав и не создаёт
+    подразумеваемых лицензий. Отсутствие знака охраны на отдельной
+    части объекта не означает её свободное использование.
+
+    Publication of the Licensed Work in a GitHub repository or any
+    other storage does not transfer any rights and does not create
+    implied licenses. The absence of a protection notice on an
+    individual part of the Licensed Work does not imply free use.
+
+5. ОГРАНИЧЕНИЕ ОТВЕТСТВЕННОСТИ / DISCLAIMER
+
+    Объект лицензии предоставляется «как есть». Правообладатель не
+    несёт ответственности за какой-либо ущерб, возникший в
+    результате несанкционированного использования объекта лицензии.
+    Несанкционированное использование прекращается немедленно по
+    требованию правообладателя.
+
+    The Licensed Work is provided "as is". The Copyright Holder is
+    not liable for any damage arising from unauthorized use.
+    Unauthorized use ceases immediately upon the Copyright Holder's
+    demand.
+
+6. ПРИМЕНИМОЕ ПРАВО / GOVERNING LAW
+
+    Настоящая лицензия толкуется в соответствии с законодательством
+    по выбору правообладателя. Споры разрешаются по месту
+    нахождения правообладателя.
+
+    This license is interpreted under the law chosen by the
+    Copyright Holder. Disputes are resolved at the Copyright
+    Holder's location.
+
+════════════════════════════════════════════════════════════════════
+
+КОНТАКТ / CONTACT:
+    Права на использование — только через прямой контакт с
+    правообладателем: Исаев Исхак Хамзатович.
+    Licensing inquiries — only via direct contact with the
+    Copyright Holder: Isaev Iskhak Khamzatovich.
+
+© 2026 Исаев Исхак Хамзатович / Isaev Iskhak Khamzatovich.
+Все права защищены / All rights reserved.

@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chess-dynamics-lab"
+version = "2.2.0"
+description = "Chess Particle Dynamics: a certifiable laboratory (protocol C1-C9, three-layer particle model)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "LicenseRef-IndividualExclusive-Isaev" }
+authors = [{ name = "Isaev Iskhak Khamzatovich" }]
+keywords = ["chess", "particles", "verification", "retrograde analysis", "perft", "zobrist"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+plots = ["matplotlib"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

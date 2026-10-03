@@ -1,0 +1,321 @@
+{
+ "project": "chess-dynamics-lab",
+ "version": "1.0.0",
+ "author": "Isaev Iskhak Khamzatovich",
+ "protocol": {
+  "C1": {
+   "title": "board algebra: V4/D4 orbit census + Burnside",
+   "verdict": "PASS",
+   "details": {
+    "v4_orbits": 20,
+    "v4_sizes": [
+     2,
+     4
+    ],
+    "diag_orbits_size2": 8,
+    "offdiag_orbits_size4": 12,
+    "d4_orbits": 10,
+    "burnside_d4": 10
+   }
+  },
+  "C2": {
+   "title": "particle kinematics: move-graph census",
+   "verdict": "PASS",
+   "details": {
+    "directed": {
+     "rook": 896,
+     "bishop": 560,
+     "knight": 336,
+     "king": 420,
+     "queen": 1456
+    },
+    "edges": {
+     "rook": 448,
+     "bishop": 280,
+     "knight": 168,
+     "king": 210,
+     "queen": 728
+    },
+    "knight_connected": true,
+    "knight_bipartite": true,
+    "bishop_components": [
+     32,
+     32
+    ],
+    "rook_king_queen_connected": [
+     1,
+     1,
+     1
+    ]
+   }
+  },
+  "C3": {
+   "title": "mobility census: closed forms and maxima",
+   "verdict": "PASS",
+   "details": {
+    "max": {
+     "king": 8,
+     "knight": 8,
+     "bishop": 13,
+     "rook": 14,
+     "queen": 27
+    },
+    "sum": {
+     "king": 420,
+     "knight": 336,
+     "bishop": 560,
+     "rook": 896,
+     "queen": 1456
+    },
+    "queen_argmax": [
+     "d4",
+     "d5",
+     "e4",
+     "e5"
+    ],
+    "bishop_closed_form_ok": true,
+    "queen_closed_form_ok": true
+   }
+  },
+  "C4": {
+   "title": "flow termination t* + damped billiard",
+   "verdict": "PASS",
+   "details": {
+    "tstar_cases": [
+     {
+      "W": 8,
+      "H": 8,
+      "a": 1,
+      "b": 1,
+      "t*": 8,
+      "sim_steps": 8,
+      "cells": 8
+     },
+     {
+      "W": 8,
+      "H": 8,
+      "a": 3,
+      "b": 5,
+      "t*": 8,
+      "sim_steps": 8,
+      "cells": 8
+     },
+     {
+      "W": 8,
+      "H": 8,
+      "a": 2,
+      "b": 2,
+      "t*": 4,
+      "sim_steps": 4,
+      "cells": 4
+     },
+     {
+      "W": 8,
+      "H": 8,
+      "a": 1,
+      "b": 2,
+      "t*": 8,
+      "sim_steps": 8,
+      "cells": 8
+     },
+     {
+      "W": 8,
+      "H": 8,
+      "a": 1,
+      "b": 0,
+      "t*": 8,
+      "sim_steps": 8,
+      "cells": 8
+     },
+     {
+      "W": 8,
+      "H": 8,
+      "a": 2,
+      "b": 1,
+      "t*": 8,
+      "sim_steps": 8,
+      "cells": 8
+     },
+     {
+      "W": 48,
+      "H": 48,
+      "a": 1,
+      "b": 1,
+      "t*": 48,
+      "sim_steps": 48,
+      "cells": 48
+     },
+     {
+      "W": 24,
+      "H": 36,
+      "a": 3,
+      "b": 5,
+      "t*": 72,
+      "sim_steps": 72,
+      "cells": 72
+     },
+     {
+      "W": 12,
+      "H": 12,
+      "a": 4,
+      "b": 6,
+      "t*": 6,
+      "sim_steps": 6,
+      "cells": 6
+     },
+     {
+      "W": 7,
+      "H": 14,
+      "a": 1,
+      "b": 1,
+      "t*": 14,
+      "sim_steps": 14,
+      "cells": 14
+     }
+    ],
+    "sim_ok": true,
+    "billiard_ratio": 0.9999999999997425,
+    "billiard": {
+     "steps": 30,
+     "reflections": 0,
+     "at_rest": true,
+     "gamma": 0.38050426185157193,
+     "gamma_literal": "pi^4/256"
+    }
+   }
+  },
+  "C5": {
+   "title": "perft identities 20/400/8902/197281",
+   "verdict": "PASS",
+   "details": {
+    "perft": [
+     20,
+     400,
+     8902,
+     197281
+    ],
+    "expected": [
+     20,
+     400,
+     8902,
+     197281
+    ],
+    "divide_d4": "skipped"
+   }
+  },
+  "C6": {
+   "title": "threat fields: D4-equivariance + attack sum",
+   "verdict": "PASS",
+   "details": {
+    "attack_sum_white": 38,
+    "attack_sum_black": 38,
+    "identity_ok": true,
+    "pawnless_violations": {
+     "white": 0,
+     "black": 0
+    },
+    "pawn_anomaly_initial_position": 176,
+    "pawn_anomaly_expected": 176,
+    "note": "pawns are oriented particles: their forward attack breaks the D4 symmetry (documented anomaly)"
+   }
+  },
+  "C7": {
+   "title": "Lagrangian energy: E0 = 20, after e4 = 30",
+   "verdict": "PASS",
+   "details": {
+    "E0_mobility_white": 20,
+    "after_e4_mobility_white": 30,
+    "E0_energy": 0.0,
+    "energy_deterministic": true,
+    "hash_stable": true,
+    "splitmix_inverse_ok": true
+   }
+  },
+  "C8": {
+   "title": "mate certificates: retro DTM + tactical suite",
+   "verdict": "PASS",
+   "details": {
+    "problems": {
+     "morphy_m2": {
+      "fen": "kbK5/pp6/1P6/8/8/8/8/R7 w - - 0 1",
+      "expected_plies": 3,
+      "found_plies": 3,
+      "pv": "a1a6 b7a6 b6b7",
+      "nodes": 46,
+      "position_valid": true
+     },
+     "ladder_m2": {
+      "fen": "7k/8/8/8/8/8/R7/1R4K1 w - - 0 1",
+      "expected_plies": 3,
+      "found_plies": 3,
+      "pv": "b1b7 h8g8 a2a8",
+      "nodes": 49,
+      "position_valid": true
+     },
+     "nr_m1": {
+      "fen": "7k/8/5N1K/8/8/8/8/6R1 w - - 0 1",
+      "expected_plies": 1,
+      "found_plies": 1,
+      "pv": "g1g8",
+      "nodes": 1,
+      "position_valid": true
+     }
+    },
+    "retro": {
+     "KRK": {
+      "stats": {
+       "piece": "R",
+       "states": 399112,
+       "edges": 4447032,
+       "won": 376868,
+       "mates": 216,
+       "max_plies": 32,
+       "max_moves": 16
+      },
+      "expected": {
+       "states": 399112,
+       "edges": 4447032,
+       "won": 376868,
+       "mates": 216,
+       "max_plies": 32,
+       "max_moves": 16
+      },
+      "stats_ok": true,
+      "forward_spot_ok": true
+     },
+     "KQK": {
+      "stats": {
+       "piece": "Q",
+       "states": 368452,
+       "edges": 4869496,
+       "won": 345404,
+       "mates": 364,
+       "max_plies": 20,
+       "max_moves": 10
+      },
+      "expected": {
+       "states": 368452,
+       "edges": 4869496,
+       "won": 345404,
+       "mates": 364,
+       "max_plies": 20,
+       "max_moves": 10
+      },
+      "stats_ok": true,
+      "forward_spot_ok": true
+     }
+    }
+   }
+  },
+  "C9": {
+   "title": "Zobrist incrementality + splitmix64 bijection",
+   "verdict": "PASS",
+   "details": {
+    "playout_positions": 2393,
+    "incremental_ok": true,
+    "unmake_restores_hash": true,
+    "birthday_bound": "P(coll; n, 2^64) <= n(n-1)/2^65; n = 10^9 -> 0.027"
+   }
+  }
+ }
+}

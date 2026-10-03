@@ -1,0 +1,319 @@
+{
+ "experiment": "E4 — vortex-value correspondence (T16)",
+ "constants": {
+  "gamma": 0.9,
+  "kappa": 3.2,
+  "j_neutral": 0.5,
+  "zeta": 2.0,
+  "swirl_gate": 3.0,
+  "dt": 0.02,
+  "steps": 1100,
+  "n_particles": 144,
+  "capture_radius": 0.3,
+  "capture_hold": 20,
+  "win_capture_min": 0.98,
+  "draw_capture_max": 0.98,
+  "cone_eps": 0.15
+ },
+ "samples_per_class": 150,
+ "classes": {
+  "krk/wtm_won": {
+   "n": 150,
+   "agreed": 150,
+   "cf_min": 1.0,
+   "cf_mean": 1.0,
+   "terminal_mates": 0
+  },
+  "krk/wtm_drawn": {
+   "n": 0,
+   "agreed": 0,
+   "empty": true
+  },
+  "krk/btm_won": {
+   "n": 150,
+   "agreed": 150,
+   "cf_min": 1.0,
+   "cf_mean": 1.0,
+   "terminal_mates": 2
+  },
+  "krk/btm_drawn": {
+   "n": 150,
+   "agreed": 150,
+   "cf_min": 0.0,
+   "cf_mean": 0.0,
+   "terminal_mates": 0
+  },
+  "kqk/wtm_won": {
+   "n": 150,
+   "agreed": 150,
+   "cf_min": 1.0,
+   "cf_mean": 1.0,
+   "terminal_mates": 0
+  },
+  "kqk/wtm_drawn": {
+   "n": 0,
+   "agreed": 0,
+   "empty": true
+  },
+  "kqk/btm_won": {
+   "n": 150,
+   "agreed": 150,
+   "cf_min": 1.0,
+   "cf_mean": 1.0,
+   "terminal_mates": 1
+  },
+  "kqk/btm_drawn": {
+   "n": 150,
+   "agreed": 150,
+   "cf_min": 0.0,
+   "cf_mean": 0.0,
+   "terminal_mates": 0
+  },
+  "knk/wtm_won": {
+   "n": 0,
+   "agreed": 0,
+   "empty": true
+  },
+  "knk/wtm_drawn": {
+   "n": 150,
+   "agreed": 150,
+   "cf_min": 0.0,
+   "cf_mean": 0.0,
+   "terminal_mates": 0
+  },
+  "knk/btm_won": {
+   "n": 0,
+   "agreed": 0,
+   "empty": true
+  },
+  "knk/btm_drawn": {
+   "n": 150,
+   "agreed": 150,
+   "cf_min": 0.0,
+   "cf_mean": 0.0,
+   "terminal_mates": 0
+  },
+  "kpk/wtm_won": {
+   "n": 150,
+   "agreed": 150,
+   "cf_min": 1.0,
+   "cf_mean": 1.0,
+   "terminal_mates": 0
+  },
+  "kpk/wtm_drawn": {
+   "n": 150,
+   "agreed": 150,
+   "cf_min": 0.0,
+   "cf_mean": 0.0,
+   "terminal_mates": 0
+  },
+  "kpk/btm_won": {
+   "n": 150,
+   "agreed": 150,
+   "cf_min": 1.0,
+   "cf_mean": 1.0,
+   "terminal_mates": 0
+  },
+  "kpk/btm_drawn": {
+   "n": 150,
+   "agreed": 150,
+   "cf_min": 0.0,
+   "cf_mean": 0.0,
+   "terminal_mates": 0
+  }
+ },
+ "anchors": {
+  "mate-krk": {
+   "state": 2097440,
+   "unpack": [
+    32,
+    2,
+    0,
+    1
+   ],
+   "table": "LOSS",
+   "flow": "LOSS",
+   "agree": true,
+   "cf": 0.0,
+   "dtm": 0
+  },
+  "deepest-krk": {
+   "state": 295159,
+   "unpack": [
+    119,
+    1,
+    18,
+    0
+   ],
+   "table": "WIN",
+   "flow": "WIN",
+   "agree": true,
+   "cf": 1.0,
+   "dtm": 31
+  },
+  "mate-kqk": {
+   "state": 2097282,
+   "unpack": [
+    2,
+    1,
+    0,
+    1
+   ],
+   "table": "LOSS",
+   "flow": "LOSS",
+   "agree": true,
+   "cf": 0.0,
+   "dtm": 0
+  },
+  "deepest-kqk": {
+   "state": 586615,
+   "unpack": [
+    119,
+    102,
+    35,
+    0
+   ],
+   "table": "WIN",
+   "flow": "WIN",
+   "agree": true,
+   "cf": 1.0,
+   "dtm": 19
+  },
+  "deepest-kpk": {
+   "state": 3148576,
+   "unpack": [
+    32,
+    22,
+    64,
+    1
+   ],
+   "table": "LOSS",
+   "flow": "LOSS",
+   "agree": true,
+   "cf": 1.0,
+   "dtm": 56
+  },
+  "krk-box-wtm": {
+   "state": 1848273,
+   "unpack": [
+    81,
+    103,
+    112,
+    0
+   ],
+   "table": "WIN",
+   "flow": "WIN",
+   "agree": true,
+   "cf": 1.0,
+   "dtm": 1
+  },
+  "krk-box-btm": {
+   "state": 3945425,
+   "unpack": [
+    81,
+    103,
+    112,
+    1
+   ],
+   "table": "LOSS",
+   "flow": "LOSS",
+   "agree": true,
+   "cf": 1.0,
+   "dtm": 2
+  },
+  "knk-rotation": {
+   "state": 1065251,
+   "unpack": [
+    35,
+    2,
+    65,
+    0
+   ],
+   "table": "DRAW",
+   "flow": "DRAW",
+   "agree": true,
+   "cf": 0.0,
+   "dtm": null
+  }
+ },
+ "robustness": {
+  "kappa-20%": {
+   "n": 480,
+   "agreed": 480,
+   "rate": 1.0
+  },
+  "kappa+20%": {
+   "n": 480,
+   "agreed": 480,
+   "rate": 1.0
+  },
+  "zeta-20%": {
+   "n": 480,
+   "agreed": 480,
+   "rate": 1.0
+  },
+  "zeta+20%": {
+   "n": 480,
+   "agreed": 480,
+   "rate": 1.0
+  },
+  "gamma-20%": {
+   "n": 480,
+   "agreed": 480,
+   "rate": 1.0
+  },
+  "gamma+20%": {
+   "n": 480,
+   "agreed": 480,
+   "rate": 1.0
+  },
+  "j_neutral-20%": {
+   "n": 480,
+   "agreed": 480,
+   "rate": 1.0
+  },
+  "j_neutral+20%": {
+   "n": 480,
+   "agreed": 480,
+   "rate": 1.0
+  }
+ },
+ "class_counts": {
+  "krk": {
+   "wtm_won": 175168,
+   "wtm_drawn": 0,
+   "btm_won": 201700,
+   "btm_drawn": 22244
+  },
+  "kqk": {
+   "wtm_won": 144508,
+   "wtm_drawn": 0,
+   "btm_won": 200896,
+   "btm_drawn": 23048
+  },
+  "knk": {
+   "wtm_won": 0,
+   "wtm_drawn": 205496,
+   "btm_won": 0,
+   "btm_drawn": 223944
+  },
+  "kpk": {
+   "wtm_won": 124954,
+   "wtm_drawn": 93518,
+   "btm_won": 97604,
+   "btm_drawn": 126340
+  }
+ },
+ "agreement": {
+  "total": 1800,
+  "agreed": 1800,
+  "rate": 1.0
+ },
+ "margins": {
+  "capture_min_won_loss": 1.0,
+  "capture_max_drawn": 0.0,
+  "gate_win_capture_min": 0.98,
+  "gate_draw_capture_max": 0.98
+ },
+ "runtime_s": 91.4
+}

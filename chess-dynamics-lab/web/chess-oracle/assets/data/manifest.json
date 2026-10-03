@@ -1,0 +1,59 @@
+{
+ "tables": {
+  "krk": {
+   "source": "results/dtm_krk.json.gz",
+   "source_sha256": "8d7aff722d4d91268d15fc436ae1d44e2317d20479b35dbc91d79513455c6317",
+   "stats": {
+    "piece": "R",
+    "states": 399112,
+    "edges": 4447032,
+    "won": 376868,
+    "mates": 216,
+    "max_plies": 32,
+    "max_moves": 16
+   }
+  },
+  "kqk": {
+   "source": "results/dtm_kqk.json.gz",
+   "source_sha256": "ef3c3c6f1ad51acf2af5e6e2bd63c6fa987f9dc21a5caa33cd36e7cf010bb56b",
+   "stats": {
+    "piece": "Q",
+    "states": 368452,
+    "edges": 4869496,
+    "won": 345404,
+    "mates": 364,
+    "max_plies": 20,
+    "max_moves": 10
+   }
+  },
+  "knk": {
+   "source": "results/dtm_knk.json.gz",
+   "source_sha256": "243379dbc67ae5225ee98824f616a97f9911c212eec237febf1def8fead1d740",
+   "stats": {
+    "piece": "N",
+    "states": 429440,
+    "edges": 3521256,
+    "won": 0,
+    "mates": 0,
+    "max_plies": 0,
+    "max_moves": 0
+   }
+  },
+  "kpk": {
+   "source": "results/dtm_kpk.json.gz",
+   "source_sha256": "48fcff6d38353d1d4efe70ba5bc300167916f1b7f32e142dfa7919254014a367",
+   "stats": {
+    "piece": "P",
+    "states": 331352,
+    "edges": 2125630,
+    "won": 222558,
+    "mates": 0,
+    "max_plies": 56,
+    "max_moves": 28,
+    "promotion_seeds": 25482,
+    "boundary": "frozen KQK certificate (results/dtm_kqk.json.gz)"
+   }
+  }
+ },
+ "export_sha256": "e9f806b9035c0a99ce6d0dd4fe793b07f00526e734278b302b59c5cde85ec52d"
+}

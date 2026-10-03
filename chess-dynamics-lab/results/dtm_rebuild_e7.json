@@ -1,0 +1,54 @@
+{
+ "all_ok": true,
+ "certificate": "E7 \u2014 fresh rebuild provenance for the frozen DTM family",
+ "kbk": {
+  "action": "new certificate frozen (results/dtm_kbk.json.gz)",
+  "bellman_verified_fresh": true,
+  "bytes": 5856,
+  "seconds": 10.2,
+  "stats": {
+   "edges": 3946992,
+   "mates": 0,
+   "max_moves": 0,
+   "max_plies": 0,
+   "piece": "B",
+   "stalemates": 136,
+   "states": 417228,
+   "won": 0
+  }
+ },
+ "knk": {
+  "bellman_verified_fresh": true,
+  "blob_bit_identical": true,
+  "rebuilt_edges": 3521256,
+  "rebuilt_states": 429440,
+  "seconds": 6.0,
+  "stats_match": true
+ },
+ "kpk": {
+  "bellman_verified_fresh": true,
+  "blob_bit_identical": true,
+  "rebuilt_edges": 2125630,
+  "rebuilt_states": 331352,
+  "seconds": 14.3,
+  "stats_match": true
+ },
+ "kqk": {
+  "bellman_verified_fresh": true,
+  "blob_bit_identical": true,
+  "rebuilt_edges": 4869496,
+  "rebuilt_states": 368452,
+  "seconds": 9.5,
+  "stats_match": true
+ },
+ "krk": {
+  "bellman_verified_fresh": true,
+  "blob_bit_identical": true,
+  "rebuilt_edges": 4447032,
+  "rebuilt_states": 399112,
+  "seconds": 8.3,
+  "stats_match": true
+ },
+ "method": "every table rebuilt from an empty table by the checked-in builders; values compared byte-for-byte after gzip decompression; stats compared as dicts",
+ "verdict": "ALL PRE-EXISTING CERTIFICATES BIT-IDENTICAL; KBK ADDED"
+}
