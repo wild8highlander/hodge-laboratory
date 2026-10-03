@@ -1,0 +1,264 @@
+{
+ "engines": [
+  "fresh class-reduction chain (v1.9)",
+  "peel closure (v1.8)"
+ ],
+ "engines_cross_check": {
+  "all_agree": true,
+  "n_degenerate": 0,
+  "n_psi_per_prime": 16,
+  "n_tests": 48,
+  "pass": true,
+  "primes": [
+   101,
+   191,
+   281
+  ],
+  "sample": [
+   {
+    "engines_agree": true,
+    "gamma": [
+     "26",
+     "73",
+     "75",
+     "60"
+    ],
+    "p": 101,
+    "psi": 2
+   },
+   {
+    "engines_agree": true,
+    "gamma": [
+     "58",
+     "85",
+     "21",
+     "5"
+    ],
+    "p": 101,
+    "psi": 3
+   },
+   {
+    "engines_agree": true,
+    "gamma": [
+     "23",
+     "67",
+     "9",
+     "75"
+    ],
+    "p": 101,
+    "psi": 4
+   },
+   {
+    "engines_agree": true,
+    "gamma": [
+     "44",
+     "68",
+     "28",
+     "56"
+    ],
+    "p": 101,
+    "psi": 5
+   }
+  ]
+ },
+ "operator_match": {
+  "numeric_verdict": "L_true annihilates the certified period (residual ~1e-61); L_c does not (residual O(1)) \u2014 computed in psi_form_residual_check and in the dev session",
+  "operator_chain": "(psi^5-1) f'''' + 10 psi^4 f''' + 25 psi^3 f'' + 15 psi^2 f' + psi f = 0",
+  "operator_true": "(psi^5-1) f'''' + (6psi^4+4psi^-1) f''' + (7psi^3-12psi^-2) f'' + (psi^2+24psi^-3) f' - 24 psi^-4 f = 0",
+  "pass": false,
+  "root_cause": "the Griffiths divergence step is INCOMPLETE: k[sum C_j j_j/P^(k+1)] = [Div(C)/P^k] misses the residue class of d(iota_R xi); iota_R xi has homogeneity -1 and does not descend to P^4, so the missing term is cohomologically alive and carries the psi^-1..psi^-4 structure",
+  "rows": [
+   {
+    "gamma_chain": [
+     "-2/31",
+     "-60/31",
+     "-200/31",
+     "-160/31"
+    ],
+    "gamma_true": [
+     "3/62",
+     "-7/31",
+     "-53/31",
+     "-98/31"
+    ],
+    "psi": 2
+   },
+   {
+    "gamma_chain": [
+     "-3/242",
+     "-135/242",
+     "-675/242",
+     "-405/121"
+    ],
+    "gamma_true": [
+     "4/3267",
+     "-89/2178",
+     "-563/726",
+     "-731/363"
+    ],
+    "psi": 3
+   },
+   {
+    "gamma_chain": [
+     "-5/3124",
+     "-375/3124",
+     "-3125/3124",
+     "-3125/1562"
+    ],
+    "gamma_true": [
+     "6/488125",
+     "-3149/390500",
+     "-21863/78100",
+     "-9377/7810"
+    ],
+    "psi": 5
+   },
+   {
+    "gamma_chain": [
+     "-7/16806",
+     "-245/5602",
+     "-8575/16806",
+     "-12005/8403"
+    ],
+    "gamma_true": [
+     "4/6725201",
+     "-16831/5764458",
+     "-117637/823494",
+     "-50423/58821"
+    ],
+    "psi": 7
+   }
+  ],
+  "status": "RESOLVED in v1.10 (see verhodge/gauge.py, V23_gauge_closure): the divergence step is exact (the d(iota_R xi) class is trivial) and the operator mismatch is the psi-normalization gauge f = psi*g; C-012 closed"
+ },
+ "pass": true,
+ "reduction_machinery": {
+  "pass": true,
+  "rows": [
+   {
+    "group": "A (independent: S5 + sum rule)",
+    "n_tests": 16,
+    "pass": true
+   },
+   {
+    "group": "B (consistency: chain == peel, closed ids)",
+    "n_tests": 8,
+    "pass": true
+   }
+  ]
+ },
+ "singular_fibers": {
+  "all_degenerate": true,
+  "rows": [
+   {
+    "degenerate": true,
+    "note": "psi^5 = 1: singular fiber",
+    "p": 101,
+    "psi": 1
+   },
+   {
+    "degenerate": true,
+    "note": "psi^5 = 1: singular fiber",
+    "p": 101,
+    "psi": 36
+   },
+   {
+    "degenerate": true,
+    "note": "psi^5 = 1: singular fiber",
+    "p": 191,
+    "psi": 1
+   },
+   {
+    "degenerate": true,
+    "note": "psi^5 = 1: singular fiber",
+    "p": 191,
+    "psi": 39
+   },
+   {
+    "degenerate": true,
+    "note": "psi^5 = 1: singular fiber",
+    "p": 281,
+    "psi": 1
+   },
+   {
+    "degenerate": true,
+    "note": "psi^5 = 1: singular fiber",
+    "p": 281,
+    "psi": 86
+   }
+  ]
+ },
+ "stand": "Dwork pencil \u2014 PF operator stand (v1.9)",
+ "target": "theta_w^4 - w prod(theta_w+i/5), w = psi^-5; psi-form (psi^5-1) f'''' + (6psi^4+4psi^-1) f''' + (7psi^3-12psi^-2) f'' + (psi^2+24psi^-3) f' - 24 psi^-4 f = 0",
+ "target_certification": {
+  "psi_form_residual": {
+   "check": "certified period satisfies the psi-form ODE",
+   "operator": "(psi^5-1) f'''' + (6 psi^4+4 psi^-1) f''' + (7 psi^3-12 psi^-2) f'' + (psi^2+24 psi^-3) f' - 24 psi^-4 f = 0",
+   "pass": true,
+   "rows": [
+    {
+     "pass": true,
+     "psi": 2,
+     "relative": "6.8238e-72",
+     "residual": "3.6223e-71"
+    },
+    {
+     "pass": true,
+     "psi": 3,
+     "relative": "2.5108e-72",
+     "residual": "4.5278e-72"
+    },
+    {
+     "pass": true,
+     "psi": 5,
+     "relative": "5.1299e-73",
+     "residual": "5.6598e-73"
+    },
+    {
+     "pass": true,
+     "psi": 7,
+     "relative": "1.3779e-73",
+     "residual": "1.4149e-73"
+    }
+   ]
+  },
+  "series_recurrence": {
+   "check": "operator recurrence == certified series ratios",
+   "n_range": [
+    1,
+    30
+   ],
+   "pass": true
+  },
+  "target_algebra": {
+   "check": "Krylov(cvec targets) == gamma targets (exact Q)",
+   "pass": true,
+   "rows": [
+    {
+     "cvec": 4,
+     "g_index": 3,
+     "krylov_coef": 5,
+     "match": true
+    },
+    {
+     "cvec": 3,
+     "g_index": 2,
+     "krylov_coef": 75,
+     "match": true
+    },
+    {
+     "cvec": 2,
+     "g_index": 1,
+     "krylov_coef": 750,
+     "match": true
+    },
+    {
+     "cvec": 1,
+     "g_index": 0,
+     "krylov_coef": 3750,
+     "match": true
+    }
+   ]
+  }
+ }
+}

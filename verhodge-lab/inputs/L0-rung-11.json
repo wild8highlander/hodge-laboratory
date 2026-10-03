@@ -1,0 +1,7 @@
+{
+  "schema": "HODGE-INPUT v1",
+  "variety": {"kind": "fermat-stand", "N": 11, "m": 2},
+  "hodge_class": {"basis": "gamma-monomial", "data": {"rung": "quintic (certificate K)"}},
+  "verification": {"type": "exact-layer", "dps": 40},
+  "provenance": {"source": "roadmap v1.5 wave, certificate K"}
+}

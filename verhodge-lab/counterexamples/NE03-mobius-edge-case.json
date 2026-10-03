@@ -1,0 +1,37 @@
+{
+ "id": "NE03",
+ "wave": "v1.5-pre",
+ "title": "Moebius census summed over divisors of N instead of d",
+ "claim_falsified": "any divisor-lattice shortcut reproduces Scheme B",
+ "computed": {
+  "N": 30,
+  "wrong_scheme": {
+   "2": 276,
+   "3": 276,
+   "5": 276,
+   "6": 276,
+   "10": 276,
+   "15": 276,
+   "30": 276
+  },
+  "correct_scheme": {
+   "3": 1,
+   "5": 6,
+   "6": 9,
+   "10": 30,
+   "15": 84,
+   "30": 276
+  },
+  "direct_scheme": {
+   "3": 1,
+   "5": 6,
+   "6": 9,
+   "10": 30,
+   "15": 84,
+   "30": 276
+  },
+  "genus": 406,
+  "disagrees": true,
+  "note": "the inversion runs over divisors of EACH CONDUCTOR d, not of N"
+ }
+}

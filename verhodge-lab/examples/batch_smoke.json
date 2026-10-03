@@ -1,0 +1,10 @@
+{
+  "batch": "smoke-v18",
+  "documents": [
+    "inputs/L0-rung-7.json",
+    "inputs/L0-rung-9.json",
+    "inputs/L0-rung-11.json",
+    "inputs/L0-fermat-15-5.json",
+    "inputs/L0-gross-15.json"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+ "id": "NE04",
+ "wave": "v1.8",
+ "title": "the singular fiber psi^5 = 1 passes naive validation",
+ "claim_falsified": "any rational psi gives a smooth Dwork pencil",
+ "computed": {
+  "psi": "1",
+  "psi^5": 1,
+  "singular_fiber": true,
+  "parser_verdict": "flagged by HODGE-INPUT v1 (singular_fiber: true)",
+  "note": "psi = 1 is the conifold point: the PF operator has its finite singularity exactly there (psi^5 - 1 denominator); the stand must emit NOT_DETERMINED or the singular branch"
+ }
+}

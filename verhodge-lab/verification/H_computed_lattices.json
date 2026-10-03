@@ -1,0 +1,107 @@
+{
+ "N15": {
+  "N": 15,
+  "det_matches_snf": true,
+  "determinant": 1265625,
+  "dimension": 8,
+  "disc_from_snf": 1265625,
+  "positive_definite": true,
+  "snf_invariants": [
+   1,
+   1,
+   5,
+   5,
+   15,
+   15,
+   15,
+   15
+  ],
+  "sqrt_disc": 1125,
+  "sqrt_disc_integral": true,
+  "sylvester_pivots": [
+   "8",
+   "63/8",
+   "70/9",
+   "50/7",
+   "48/7",
+   "75/16",
+   "9/2",
+   "5/2"
+  ]
+ },
+ "N30": {
+  "N": 30,
+  "det_matches_snf": true,
+  "determinant": 1265625,
+  "dimension": 8,
+  "disc_from_snf": 1265625,
+  "positive_definite": true,
+  "snf_invariants": [
+   1,
+   1,
+   5,
+   5,
+   15,
+   15,
+   15,
+   15
+  ],
+  "sqrt_disc": 1125,
+  "sqrt_disc_integral": true,
+  "sylvester_pivots": [
+   "8",
+   "63/8",
+   "70/9",
+   "50/7",
+   "48/7",
+   "75/16",
+   "9/2",
+   "5/2"
+  ]
+ },
+ "k3": {
+  "det_ok": true,
+  "det_target": 64,
+  "family_relation_h": true,
+  "gram_size": 49,
+  "lines": 48,
+  "pass": true,
+  "rank_Q": 20,
+  "rank_ok": true,
+  "rank_target": 20,
+  "signature": [
+   1,
+   19
+  ],
+  "signature_ok": true,
+  "signature_target": [
+   1,
+   19
+  ],
+  "snf_nonzero_invariants": [
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   1,
+   8,
+   8
+  ],
+  "stand": "K3 \u2014 Fermat quartic",
+  "sublattice_determinant": 64
+ },
+ "zeta30_is_zeta15": true
+}

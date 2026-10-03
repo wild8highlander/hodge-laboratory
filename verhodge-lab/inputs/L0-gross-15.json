@@ -1,0 +1,7 @@
+{
+  "schema": "HODGE-INPUT v1",
+  "variety": {"kind": "fermat-stand", "N": 15, "m": 5},
+  "hodge_class": {"basis": "gamma-monomial", "data": {"exponent_rule": "c_k = 4 + 2*[3|k]"}},
+  "verification": {"type": "gross-normalization", "dps": 120},
+  "provenance": {"source": "certificate H2: Gross normalization computed"}
+}

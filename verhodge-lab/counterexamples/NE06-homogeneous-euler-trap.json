@@ -1,0 +1,11 @@
+{
+  "id": "NE06",
+  "title": "the homogeneous-Euler trap on the affine chart",
+  "date": "2026-10-03",
+  "version_introduced": "v1.11 analysis",
+  "claim_trapped": "d(iota_R Omega'/Q^2) = 14 dx^4/Q^2 on the chart x_5 = 1 (the constant 14 = 4 + 2 deg Q by homogeneous-Euler analogy with the cone computation of v1.10)",
+  "why_plausible": "the v1.10 descent certificate uses the homogeneous Euler relation sum x_j dP_j = 5P on the cone C^5, where the same constant structure (n + 2*deg) is exactly right; the chart form Q = P(x,1) looks like 'the same polynomial, one variable fixed'",
+  "what_computation_shows": "Q is INHOMOGENEOUS on the chart (the constant 1): the Euler relation is sum x_j Q_j = 5(Q-1), so the exact identity is Q^3 d(iota_R Omega'/Q^2) = (4Q + 2 sum_j x_j Q_j) dx^4 = (14Q - 10) dx^4, NOT 14 dx^4; the naive constant is off by the exact correction -10/Q, and the class-exactness statement must be phrased through the corrected primitive structure",
+  "resolution": "chart_exactness_certificate in verhodge/dwork_family.py verifies the corrected identity exactly (polynomial form algebra, Q^3-cleared); the trap is registered as part of C-019's evidence",
+  "lesson": "affine-chart pullbacks of cone identities inherit the inhomogeneity of the section; every Euler-type constant must be recomputed, never transported"
+}

@@ -1,0 +1,6 @@
+name = "Verhodge"
+version = "1.8.0"
+defaultTargets = ["Verhodge"]
+
+[[lean_lib]]
+name = "Verhodge"

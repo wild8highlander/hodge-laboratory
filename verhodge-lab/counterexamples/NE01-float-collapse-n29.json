@@ -1,0 +1,15 @@
+{
+ "id": "NE01",
+ "wave": "v1.5",
+ "title": "float-precision integrality detection fails at n=29",
+ "claim_falsified": "naive float collapse can replace the exact Z[zeta]/(Phi_n) layer",
+ "computed": {
+  "n": 29,
+  "minpoly_degree": 14,
+  "max_abs_coefficient": 210,
+  "residual_at_30dps": 5.174533107797227e-27,
+  "residual_at_60dps": 7.608414054094978e-58,
+  "note": "the exact collapse certifies the coefficients as integers; float-30 cannot separate 2cos(2pi/29) from its Galois conjugates to the required ~10^-9 accuracy"
+ },
+ "lesson": "the exact layer is load-bearing; numerics only cross-check"
+}

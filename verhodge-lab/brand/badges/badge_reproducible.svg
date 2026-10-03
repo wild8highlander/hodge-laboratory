@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1719" height="28" role="img" aria-label="reproducible: clean-room OK">
+  <linearGradient id="g" x2="0" y2="100%">
+    <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+    <stop offset="1" stop-opacity=".1"/>
+  </linearGradient>
+  <clipPath id="r"><rect width="1719" height="28" rx="4" fill="#fff"/></clipPath>
+  <g clip-path="url(#r)">
+    <rect width="854" height="28" fill="#162032"/>
+    <rect x="854" width="865" height="28" fill="#2E7D32"/>
+    <rect width="1719" height="28" fill="url(#g)"/>
+  </g>
+  <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11.5">
+    <text x="427.0" y="18.5" fill="#F1F5F9" font-weight="bold">reproducible</text>
+    <text x="1286.5" y="18.5">clean-room OK</text>
+  </g>
+</svg>

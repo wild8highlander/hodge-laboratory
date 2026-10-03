@@ -1,0 +1,191 @@
+# Complexity ledger — verhodge-lab v1.8
+# Bit-complexity accounting per subroutine (WP2).  Each row: the
+# subroutine, its input measure, the bound SOURCE (literature /
+# derived / measured), and the measured timing on the reference
+# machine for the protocol run.  The ledger is the accounting
+# substrate of the target theorem (polynomial verification for the
+# Fermat family, Level 0).
+#
+# status vocabulary:
+#   literature  — the bound is cited (the reference column)
+#   derived     — the bound is derived in the source comments
+#   measured    — the timing is empirical (this machine, this run)
+
+meta:
+  version: "1.8.0"
+  machine_note: >
+    measured on the release CI runner; the absolute numbers move,
+    the polynomial shape does not.  Bit sizes stay tiny (the
+    flagship matrices have entries <= 10 and determinants <= 10^7),
+    so every exact step is polynomial in the input bit length with
+    small constants.
+
+ledger:
+  - subroutine: parse_hodge_input
+    input: JSON document of size B bytes
+    bound: O(B) time, O(B) memory
+    source: derived (single pass, canonical json.dumps)
+    status: derived
+    measured_ms: 0.4          # per document (V20, five documents)
+
+  - subroutine: provenance_hash
+    input: canonical document, B bytes
+    bound: O(B) (sha256)
+    source: literature (FIPS 180-4)
+    status: literature
+    measured_ms: 0.1
+
+  - subroutine: census_direct (Scheme A)
+    input: level N
+    bound: O(N^2 * log N) bit operations (gcd per pair)
+    source: derived
+    status: derived
+    measured_ms: 12.0         # N = 30 (V1)
+
+  - subroutine: census_mobius (Scheme B)
+    input: level N
+    bound: O(N * d(N) * M(N)) with d(N) the divisor count
+    source: derived
+    status: derived
+    measured_ms: 1.2          # N = 30 (V1)
+
+  - subroutine: cyclotomic (Phi_n)
+    input: level n
+    bound: prod over proper divisors of poly divisions; degrees
+      <= phi(n); O(2^{omega(n)} * phi(n)^2) integer ops
+    source: derived (divisor product formula, exact monic division)
+    status: derived
+    measured_ms: 0.3          # n = 30
+
+  - subroutine: minpoly_2cos (the collapse)
+    input: level n; degree d = phi(n)/2
+    bound: O(d^2 * phi(n)^2) integer ops for the product
+      prod (T - x_k) with coefficients in Z[zeta]/(Phi_n)
+    source: derived
+    status: derived
+    measured_ms: 45.0         # n = 30, d = 4 (V13); dominated by
+                              # the numeric cross-check at 40 dps
+
+  - subroutine: g2_is_irreducible (Rabin over GF(2))
+    input: polynomial of degree d
+    bound: O(d^2 * log d) GF(2) ops (binary modular exponentiation)
+    source: literature (Rabin 1980; standard finite-field test)
+    status: literature
+    measured_ms: 0.1          # d = 5
+
+  - subroutine: bch_resolvent_11 (certificate K radical layer)
+    input: fixed (n = 11); bivariate Z[zeta_11, zeta_5] arithmetic
+    bound: O(1) for the fixed stand; the branch search is 5^5 = 3125
+      numeric reconstructions at 40 dps
+    source: derived (Lagrange resolvents of the cyclic quintic)
+    status: derived
+    measured_ms: 850.0
+
+  - subroutine: smith_normal_form
+    input: m x n integer matrix, entries |a_ij| <= 2^b
+    bound: polynomial in m, n, b under the Kannan-Bachem pivot
+      discipline [Kannan-Bachem 1979]; the Storjohann refinement
+      [Storjohann 1996] gives O~(n^5 b + n^4 b^2) for the algorithm
+      class.  This implementation follows the same pivot discipline
+      (minimal-entry pivots, canonical Bezout coefficients, 2x2
+      gcd/lcm repair with a monotone exponent measure) and is
+      validated by the regression suite; the asymptotic claim is
+      attached to the algorithm class, not re-proven here.
+    source: literature (KB 1979; Storjohann 1996) + derived repair
+    status: literature + derived
+    measured_ms: 1.8          # the 8x8 cert-H lattice
+    measured_ms_k3: 22.0      # the 49x49 K3 Gram matrix
+
+  - subroutine: k3_certificate
+    input: the 49x49 Gram matrix (entries in {-2,0,1,2,4})
+    bound: SNF (above) + Bareiss determinant O(n^5) integer ops +
+      one numeric eigenspectrum (Sylvester bridging rule)
+    source: derived
+    status: derived + measured
+    measured_ms: 22.0
+
+  - subroutine: gross_normalization
+    input: level N, exponent vector c, dps D
+    bound: O(N) gamma evaluations at D dps; each gamma at D dps
+      costs poly(D) [mpmath; Brent-McMillan-style AGM internals]
+    source: literature (mpmath) + derived (the product)
+    status: literature + measured
+    measured_ms: 310.0        # N = 15/30 at 120 dps
+
+  - subroutine: gd peel recursion (Dwork stand)
+    input: invariant monomial (b, kappa) at pole m
+    bound: O(m^2) reduction steps, each O(1) rational ops with
+      denominators dividing 5*(m-1)! (Laurent psi-monomials)
+    source: derived (the closed peel recursion + the exact sum rule)
+    status: derived
+    measured_ms: 2.0          # the full cohomology certificate
+
+  - subroutine: period_series
+    input: n_terms T at dps D
+    bound: O(T) exact rational steps (coefficients) + O(T) mpmath
+      evaluations
+    source: derived
+    status: derived
+    measured_ms: 3.0          # T = 40 per psi point
+
+  - subroutine: point_count_fermat
+    input: prime p
+    bound: O(p^2) modular additions (meet in the middle over the
+      5th-power table)
+    source: derived
+    status: derived
+    measured_ms: 4.0          # p = 31
+
+target_theorem_note: >
+  For the Fermat family at Level 0, every subroutine above is
+  polynomial in the input bit length (the cyclotomic level n
+  enters through phi(n) <= n and the small entry bounds), so the
+  full verification pipeline VER-HODGE(C_0, p) runs in polynomial
+  time -- the trilemma (polynomial / exact / explicit) collapses
+  on Level 0, exactly as registered in the roadmap.  Beyond Level
+  0 no polynomial claim is made (C-015).
+
+  # ── v1.9: the PF operator stand (V22) ─────────────────────────────
+  - subroutine: gdreduce representation solve (pole q)
+    input: the specialized psi0 in F_p (or Q), the invariant numerator
+    bound: RREF on a (dim S^5(q-1)_inv) x (1 + 5 dim J-class) system:
+      pole 5: 126 x 286; pole 4: 56 x 127; pole 3: 21 x 37;
+      pole 2: 6 x 7 -- O(N^3) with N <= 286, independent of psi
+    source: derived
+    status: derived
+    measured_ms: 25.0         # the full 4-step chain per psi0 (F_p)
+
+  - subroutine: pf_certificate_v19 grid
+    input: 3 primes x 16 psi points
+    bound: 48 chain evaluations + 48 peel evaluations + the battery
+    source: derived
+    status: derived
+    measured_ms: 14500.0      # the full V22 stand (dominated by the
+                              # char-0 Fraction RREFs in the battery)
+
+  # ── v1.10: the PF derivation closure (V23) ─────────────────────────
+  - subroutine: gauge_psi (the exact psi-gauge recursion)
+    input: the Laurent operator coefficients (5 orders, O(1) terms)
+    bound: O(1) Laurent-dict operations (4 recursion steps)
+    source: derived (D^m(psi g) = psi g^(m) + m g^(m-1))
+    status: derived
+    measured_ms: 0.05
+
+  - subroutine: descent_certificate (the d(iota_R xi) class)
+    input: the pole-5 representation C (21 class-[e_j] numerators,
+      degree 16) at a specialized psi0 over Q
+    bound: exact polynomial form algebra; the heavy products are
+      P*Div and P*dC_j (degree <= 21, < 10^3 monomials each) and
+      the wedges with dxhat_j (the i != j terms vanish identically,
+      so the 5-form stage is vol-only); O(10^6) Fraction ops total
+    source: derived (the master form identity + the Cartan identity)
+    status: derived
+    measured_ms: 300.0         # per psi0 (I1 + I2 + homogeneity)
+
+  - subroutine: modp_gauge_closure grid
+    input: 3 primes x 12 psi points x 2 engines
+    bound: 72 engine evaluations (the v1.9 chain, O(N^3) RREF each)
+      + 72 O(1) gauge recursions + 72 certified-target comparisons
+    source: derived
+    status: derived
+    measured_ms: 7700.0        # the full V23 closed loop

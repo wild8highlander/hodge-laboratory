@@ -1,0 +1,14 @@
+{
+ "id": "NE05",
+ "wave": "v1.9",
+ "title": "a Laurent-polynomial psi-target without the singular poles is not the PF operator",
+ "claim_falsified": "the v1.8 CLASSICAL_GAMMA target: f'''' = (5psi^4+4psi^-1) f''' + (15psi^3-12psi^-2) f'' + (5psi^2+24psi^-3) f' - 24psi^-4 f",
+ "computed": {
+  "v1_8_target_form": "Laurent polynomial coefficients; the only pole is psi = 0",
+  "certified_target_form": "(psi^5-1) f'''' + (6psi^4+4psi^-1) f''' + (7psi^3-12psi^-2) f'' + (psi^2+24psi^-3) f' - 24 psi^-4 f = 0",
+  "certified_residual_on_hyper_period": "~1e-61 (computed at psi = 2, 3, 5, 7, dps 60-70)",
+  "v1_8_target_residual_on_hyper_period": "O(1) (the v1.8 target does NOT annihilate the certified period)",
+  "structural_argument": "a Picard-Fuchs operator of a pencil with singular fibers psi^5 = 1 MUST have poles exactly there; the certified psi-form has the (psi^5-1) denominator (and the psi = 0 irregular pole inherited from w = infinity); the v1.8 target has neither",
+  "note": "the entire v1.8 'mod-p derivation mismatch' (C-012 in v1.8) was measured against this wrong target; the derivation machinery itself agreed with the corrected machinery of v1.9 on every test"
+ }
+}

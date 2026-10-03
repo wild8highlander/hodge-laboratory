@@ -1,0 +1,235 @@
+{
+ "gamma_check": {
+  "V": 1.0707258684301557,
+  "available": true,
+  "note": "no V-relation in the 6-dim Gamma-sin log lattice (or degenerate algebraic relation returned)",
+  "pass": false,
+  "pslq_relation": null,
+  "recognized": false
+ },
+ "gd": {
+  "b3_invariant": 4,
+  "connection": [
+   {
+    "claim": "d(omega_1) = 5*1 * omega_2",
+    "free_coeff_at_psi0": "1",
+    "free_coeff_at_psi1": "0",
+    "m": 1
+   },
+   {
+    "claim": "d(omega_2) = 5*2 * omega_3",
+    "free_coeff_at_psi0": "1",
+    "free_coeff_at_psi1": "0",
+    "m": 2
+   },
+   {
+    "claim": "d(omega_3) = 5*3 * omega_4",
+    "free_coeff_at_psi0": "1",
+    "free_coeff_at_psi1": "0",
+    "m": 3
+   }
+  ],
+  "graded_pieces": [
+   {
+    "all_reduce_into_free_basis": true,
+    "graded_dim": 1,
+    "pole": 1
+   },
+   {
+    "all_reduce_into_free_basis": true,
+    "graded_dim": 1,
+    "pole": 2
+   },
+   {
+    "all_reduce_into_free_basis": true,
+    "graded_dim": 1,
+    "pole": 3
+   },
+   {
+    "all_reduce_into_free_basis": true,
+    "graded_dim": 1,
+    "pole": 4
+   }
+  ],
+  "hodge_invariant": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "pass": true,
+  "stand": "Dwork pencil \u2014 invariant Griffiths-Dwork cohomology",
+  "sum_rule_tests": [
+   {
+    "monomial": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     0
+    ],
+    "pole": 2,
+    "sum_rule_ok": true
+   },
+   {
+    "monomial": [
+     [
+      1,
+      0,
+      0,
+      0,
+      0
+     ],
+     0
+    ],
+    "pole": 3,
+    "sum_rule_ok": true
+   },
+   {
+    "monomial": [
+     [
+      2,
+      1,
+      0,
+      0,
+      0
+     ],
+     0
+    ],
+    "pole": 5,
+    "sum_rule_ok": true
+   },
+   {
+    "monomial": [
+     [
+      1,
+      1,
+      1,
+      0,
+      0
+     ],
+     1
+    ],
+    "pole": 6,
+    "sum_rule_ok": true
+   },
+   {
+    "monomial": [
+     [
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     1
+    ],
+    "pole": 3,
+    "sum_rule_ok": true
+   },
+   {
+    "monomial": [
+     [
+      2,
+      0,
+      0,
+      0,
+      0
+     ],
+     1
+    ],
+    "pole": 5,
+    "sum_rule_ok": true
+   },
+   {
+    "monomial": [
+     [
+      1,
+      1,
+      0,
+      0,
+      0
+     ],
+     2
+    ],
+    "pole": 6,
+    "sum_rule_ok": true
+   }
+  ]
+ },
+ "periods": {
+  "pass": true,
+  "quadrature_note": "the Euler triple integral scheme is implemented (period_quadrature) but excluded from pass criteria: endpoint singularities x^{-4/5} stress generic adaptive quadrature; spot-checkable at fixed psi",
+  "rows": [
+   {
+    "hyper": 1.0012115112871418,
+    "pass": true,
+    "psi": 2,
+    "res_series_hyper": 5.345529420184391e-51,
+    "series": 1.0012115112871418
+   },
+   {
+    "hyper": 1.0001582217292668,
+    "pass": true,
+    "psi": 3,
+    "res_series_hyper": 0.0,
+    "series": 1.0001582217292668
+   },
+   {
+    "hyper": 1.0000122891892658,
+    "pass": true,
+    "psi": 5,
+    "res_series_hyper": 2.6727647100921956e-51,
+    "series": 1.0000122891892658
+   },
+   {
+    "hyper": 1.0000022848034111,
+    "pass": true,
+    "psi": 7,
+    "res_series_hyper": 0.0,
+    "series": 1.0000022848034111
+   }
+  ],
+  "series": "_4F_3(1/5,2/5,3/5,4/5;1,1,1; psi^-5), exact rational coefficients",
+  "stand": "Dwork pencil \u2014 certified invariant periods"
+ },
+ "point_counts": {
+  "brute_force_cross_check": {
+   "brute": 1925,
+   "match": true,
+   "meet_in_middle": 1925,
+   "p": 11
+  },
+  "enumeration": [
+   {
+    "1+p+p2+p3": 1464,
+    "count": 1925,
+    "p": 11,
+    "t_p = -Tr(F|H^3)": -461,
+    "weil_bound": 7442.506029557518,
+    "within_bound": true
+   },
+   {
+    "1+p+p2+p3": 30784,
+    "count": 47425,
+    "p": 31,
+    "t_p = -Tr(F|H^3)": -16641,
+    "weil_bound": 35210.541830537055,
+    "within_bound": true
+   },
+   {
+    "1+p+p2+p3": 70644,
+    "count": 53175,
+    "p": 41,
+    "t_p = -Tr(F|H^3)": 17469,
+    "weil_bound": 53555.73112188835,
+    "within_bound": true
+   }
+  ],
+  "pass": true,
+  "stand": "Fermat fiber point counts (Level-0 sanity layer)"
+ }
+}

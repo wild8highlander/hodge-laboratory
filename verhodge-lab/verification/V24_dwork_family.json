@@ -1,0 +1,486 @@
+{
+ "all_ok": true,
+ "chart_exactness": {
+  "chart": "x5 = 1, psi = 0 (Fermat slice; Q inhomogeneous)",
+  "consequence": "the chart form of eta has an explicit rational primitive structure; combined with the smooth-divisor double-pole residue vanishing the chart class [eta|chart] = 0, so the naive affine period formula cannot produce the projective periods: the Cech twist is load-bearing; tube stamp deferred (C-019)",
+  "constant": "4Q + 2*sum x_j Q_j = 14Q - 10 (Euler: sum x_j Q_j = 5(Q-1) on the chart)",
+  "exact": true,
+  "identity": "Q^3 d(iota_R Omega'/Q^2) = (4Q + 2 sum_j x_j dQ_j) dx1..dx4"
+ },
+ "stands": {
+  "3": {
+   "all_ok": true,
+   "char0_loop": {
+    "all_ok": true,
+    "degree": 3,
+    "field": "Q",
+    "points": [
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "psi0": "2"
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "psi0": "3"
+     }
+    ]
+   },
+   "gauge_identity": {
+    "a_ops": {
+     "0": {
+      "1": "1"
+     },
+     "1": {
+      "2": "3"
+     },
+     "2": {
+      "0": "-1",
+      "3": "1"
+     }
+    },
+    "b_ops": {
+     "0": {
+      "-2": "-2"
+     },
+     "1": {
+      "-1": "2",
+      "2": "1"
+     },
+     "2": {
+      "0": "-1",
+      "3": "1"
+     }
+    },
+    "degree": 3,
+    "exact": true,
+    "identity": "L_true(psi g) = psi L_c(g)",
+    "violations": []
+   },
+   "hyper_seal": {
+    "degree": 3,
+    "points": [
+     {
+      "psi": 2.0,
+      "rel_residual": 0.0
+     },
+     {
+      "psi": 3.0,
+      "rel_residual": 6.085224979753885e-92
+     },
+     {
+      "psi": 5.0,
+      "rel_residual": 0.0
+     }
+    ],
+    "psis": [
+     2.0,
+     3.0,
+     5.0
+    ],
+    "worst_rel_residual": 6.085224979753885e-92
+   },
+   "modp_loop": {
+    "all_ok": true,
+    "degree": 3,
+    "n_points": 9,
+    "points": [
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 103,
+      "psi0": 2
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 103,
+      "psi0": 3
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 103,
+      "psi0": 5
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 109,
+      "psi0": 2
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 109,
+      "psi0": 3
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 109,
+      "psi0": 5
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 193,
+      "psi0": 2
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 193,
+      "psi0": 3
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 193,
+      "psi0": 5
+     }
+    ],
+    "primes": [
+     103,
+     109,
+     193
+    ],
+    "psis": [
+     2,
+     3,
+     5
+    ]
+   },
+   "series_annihilation": {
+    "degree": 3,
+    "exact": true,
+    "n_checked": 32,
+    "violated_at": []
+   }
+  },
+  "4": {
+   "all_ok": true,
+   "char0_loop": {
+    "all_ok": true,
+    "degree": 4,
+    "field": "Q",
+    "points": [
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "psi0": "2"
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "psi0": "3"
+     }
+    ]
+   },
+   "gauge_identity": {
+    "a_ops": {
+     "0": {
+      "1": "1"
+     },
+     "1": {
+      "2": "7"
+     },
+     "2": {
+      "3": "6"
+     },
+     "3": {
+      "0": "-1",
+      "4": "1"
+     }
+    },
+    "b_ops": {
+     "0": {
+      "-3": "6"
+     },
+     "1": {
+      "-2": "-6",
+      "2": "1"
+     },
+     "2": {
+      "-1": "3",
+      "3": "3"
+     },
+     "3": {
+      "0": "-1",
+      "4": "1"
+     }
+    },
+    "degree": 4,
+    "exact": true,
+    "identity": "L_true(psi g) = psi L_c(g)",
+    "violations": []
+   },
+   "hyper_seal": {
+    "degree": 4,
+    "points": [
+     {
+      "psi": 2.0,
+      "rel_residual": 0.0
+     },
+     {
+      "psi": 3.0,
+      "rel_residual": 6.1292366298530166e-92
+     },
+     {
+      "psi": 5.0,
+      "rel_residual": 1.5338614775558621e-92
+     }
+    ],
+    "psis": [
+     2.0,
+     3.0,
+     5.0
+    ],
+    "worst_rel_residual": 6.1292366298530166e-92
+   },
+   "modp_loop": {
+    "all_ok": true,
+    "degree": 4,
+    "n_points": 9,
+    "points": [
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 101,
+      "psi0": 2
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 101,
+      "psi0": 3
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 101,
+      "psi0": 5
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 281,
+      "psi0": 2
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 281,
+      "psi0": 3
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 281,
+      "psi0": 5
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 401,
+      "psi0": 2
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 401,
+      "psi0": 3
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 401,
+      "psi0": 5
+     }
+    ],
+    "primes": [
+     101,
+     281,
+     401
+    ],
+    "psis": [
+     2,
+     3,
+     5
+    ]
+   },
+   "series_annihilation": {
+    "degree": 4,
+    "exact": true,
+    "n_checked": 32,
+    "violated_at": []
+   }
+  },
+  "5": {
+   "all_ok": true,
+   "char0_loop": {
+    "all_ok": true,
+    "degree": 5,
+    "field": "Q",
+    "points": [
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "psi0": "2"
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "psi0": "3"
+     }
+    ]
+   },
+   "gauge_identity": {
+    "a_ops": {
+     "0": {
+      "1": "1"
+     },
+     "1": {
+      "2": "15"
+     },
+     "2": {
+      "3": "25"
+     },
+     "3": {
+      "4": "10"
+     },
+     "4": {
+      "0": "-1",
+      "5": "1"
+     }
+    },
+    "b_ops": {
+     "0": {
+      "-4": "-24"
+     },
+     "1": {
+      "-3": "24",
+      "2": "1"
+     },
+     "2": {
+      "-2": "-12",
+      "3": "7"
+     },
+     "3": {
+      "-1": "4",
+      "4": "6"
+     },
+     "4": {
+      "0": "-1",
+      "5": "1"
+     }
+    },
+    "degree": 5,
+    "exact": true,
+    "identity": "L_true(psi g) = psi L_c(g)",
+    "violations": []
+   },
+   "hyper_seal": {
+    "degree": 5,
+    "points": [
+     {
+      "psi": 2.0,
+      "rel_residual": 0.0
+     },
+     {
+      "psi": 3.0,
+      "rel_residual": 0.0
+     },
+     {
+      "psi": 5.0,
+      "rel_residual": 1.5340728553938721e-92
+     }
+    ],
+    "psis": [
+     2.0,
+     3.0,
+     5.0
+    ],
+    "worst_rel_residual": 1.5340728553938721e-92
+   },
+   "modp_loop": {
+    "all_ok": true,
+    "degree": 5,
+    "n_points": 9,
+    "points": [
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 101,
+      "psi0": 2
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 101,
+      "psi0": 3
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 101,
+      "psi0": 5
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 191,
+      "psi0": 2
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 191,
+      "psi0": 3
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 191,
+      "psi0": 5
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 281,
+      "psi0": 2
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 281,
+      "psi0": 3
+     },
+     {
+      "mismatch_at": [],
+      "ok": true,
+      "p": 281,
+      "psi0": 5
+     }
+    ],
+    "primes": [
+     101,
+     191,
+     281
+    ],
+    "psis": [
+     2,
+     3,
+     5
+    ]
+   },
+   "series_annihilation": {
+    "degree": 5,
+    "exact": true,
+    "n_checked": 32,
+    "violated_at": []
+   }
+  }
+ }
+}

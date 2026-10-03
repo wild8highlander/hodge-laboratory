@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: verhodge-lab — polynomial-time exact verification of algebraic Hodge classes, waves v1.5-v1.8
+message: >-
+  If you use this software, cite the roadmap document
+  (docs/ROADMAP.md, "From Stands to Algorithms") and the
+  hodge-laboratory baseline it extends.
+authors:
+  - family-names: Isaev
+    given-names: Iskhak Khamzatovich
+    orcid: https://orcid.org/0009-0003-7299-0701
+version: 1.10.0
+date-released: 2026-10-03
+license: MIT
+repository-code: https://github.com/wild8highlander/hodge-laboratory

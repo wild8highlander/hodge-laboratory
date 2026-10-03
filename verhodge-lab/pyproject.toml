@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "verhodge-lab"
+version = "1.11.0"
+description = "VER-HODGE: polynomial-time exact verification of algebraic Hodge classes (waves v1.5-v1.10)"
+authors = [{name = "Isaev Iskhak Khamzatovich", orcid = "0009-0003-7299-0701"}]
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = ["mpmath>=1.3", "numpy>=1.24"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "sympy>=1.12", "scipy>=1.11"]
+
+[tool.setuptools]
+packages = ["verhodge"]

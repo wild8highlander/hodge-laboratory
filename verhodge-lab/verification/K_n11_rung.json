@@ -1,0 +1,34 @@
+{
+ "bch_radical_installed": false,
+ "bch_radical_residual": null,
+ "collapse": true,
+ "deg_matches_phi_half": true,
+ "degree": 5,
+ "gf2_irreducible": true,
+ "gf2_status": "irreducible",
+ "n": 11,
+ "numeric_residual": 0.0,
+ "numeric_threshold": 1e-25,
+ "pass": true,
+ "phi_n_degree": 10,
+ "poly_high": [
+  1,
+  1,
+  -4,
+  -3,
+  3,
+  1
+ ],
+ "rung_names": {
+  "7": "Hurwitz",
+  "9": "Macbeath",
+  "11": "quintic (cert K)"
+ },
+ "vieta": [
+  1,
+  -4,
+  -3,
+  3,
+  1
+ ]
+}

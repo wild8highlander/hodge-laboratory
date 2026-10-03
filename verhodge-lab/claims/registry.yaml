@@ -1,0 +1,355 @@
+# Claim registry — verhodge-lab v1.10
+# The asymmetric contract: every claim carries status computed /
+# documented / registered / NOT_DETERMINED.  Computed claims cite the
+# protocol run and the verification artifact; the acceptance criteria
+# are the falsifiable commitments of docs/ROADMAP.md (Criterion 3.3).
+#
+# id: C-NNN | wave | title | status | evidence | falsified_by
+
+claims:
+  - id: C-001
+    wave: v1.5-pre
+    title: >
+      The character census of the Fermat level N satisfies
+      sum_d h_d = g(N) = (N-1)(N-2)/2, computed by two independent
+      schemes (direct gcd enumeration and Moebius inversion) that
+      agree on every conductor for N in [3, 64].
+    status: computed
+    evidence: protocol run V1_census_two_scheme; frozen baseline
+      hodge-laboratory v1.4 (N = 7, 9, 15, 30)
+    falsified_by: any conductor disagreement between the schemes
+
+  - id: C-002
+    wave: v1.7
+    title: >
+      For arbitrary n >= 3 the minimal polynomial of 2cos(2*pi/n)
+      is computed by the collapse algorithm in Z[zeta]/(Phi_n): the
+      elementary symmetric functions of the conjugates collapse to
+      integer constants; the degree equals phi(n)/2.
+    status: computed
+    evidence: protocol run V13_unified_exact_layer (n up to 30);
+      frozen cubics n = 7, 9 and the certificate-K quintic n = 11
+    falsified_by: a non-collapsing coefficient at any n
+
+  - id: C-003
+    wave: v1.5
+    title: >
+      Certificate K (the N=11 rung): census {11: 45}, genus 45,
+      minpoly x^5+x^4-4x^3-3x^2+3x+1 (GF(2)-irreducible), Vieta
+      data (1, -4, -3, 3, 1), and the cyclic-quintic Lagrange
+      resolvent identity with eta_j = R_j^5 computed exactly in
+      Z[zeta_5] and compatible 5th-root branches (2,4,4,1,1).
+    status: computed
+    evidence: protocol run K_n11_rung; verification/K_n11_rung.json
+    falsified_by: a branch-search failure or an eta collapse failure
+
+  - id: C-004
+    wave: v1.6
+    title: >
+      The Smith normal form engine (Kannan-Bachem pivot discipline
+      with canonical Bezout coefficients and the 2x2 gcd/lcm
+      divisibility repair) computes the polarization type of the
+      N=15/30 trace-form lattice as (1,1,5,5,15,15,15,15) --
+      byte-identical to the frozen v1.4 literal -- with product
+      3^4 * 5^6 = 1265625 = 1125^2.
+    status: computed
+    evidence: protocol run V16_snf_engine; regression 80/80 with
+      unimodular round trip and true-diagonal checks
+    falsified_by: any regression mismatch or round-trip failure
+
+  - id: C-005
+    wave: v1.6
+    title: >
+      The K3 Fermat-quartic intersection lattice is COMPUTED: 48
+      lines + h, rank_Q = 20 = rho (Shioda), sublattice determinant
+      64 = 8^2 (SNF nonzero invariants 1^18 x 8^2), signature
+      (1,19) by the numerical-exact Sylvester bridging rule, and
+      the family relation sum_b L1(a,b) ~ h.
+    status: computed
+    evidence: protocol run H_computed_lattices (k3 certificate)
+    falsified_by: any rank/det/signature deviation from the targets
+
+  - id: C-006
+    wave: v1.6+
+    title: >
+      The Gross Gamma-normalization vol_h = (2*pi)^32 *
+      prod Gamma(k/N)^{-c_k} equals 1125 for BOTH N=15 and N=30:
+      N=15 with the certified exponent rule c_k = 4 + 2*[3|k];
+      N=30 derived by the duplication/reflection sine count (even
+      indices inherit c^15, odd pairs cancel, c_15 = 0 forced).
+    status: computed
+    evidence: protocol run H2_gross_normalization; residual 5.9e-118
+      (N=15) and 1.8e-116 (N=30) at 120 dps
+    falsified_by: a residual above 1e-60 at 120 dps
+
+  - id: C-007
+    wave: v1.7
+    title: >
+      HODGE-INPUT v1: the grammar (four levels), the parser with
+      canonicalization and sha256 provenance hashes, and the
+      dispatch table honor the asymmetric contract -- level-3
+      inputs and unsupported (kind, type) pairs yield
+      NOT_DETERMINED, never a fabricated verdict.
+    status: computed
+    evidence: protocol run V19_hodge_input_parser (5 malformed
+      documents rejected; level-3 dispatch = NOT_DETERMINED)
+    falsified_by: any accepted malformed document or fabricated verdict
+
+  - id: C-008
+    wave: v1.7
+    title: >
+      Five Level-0 instances (rungs 7, 9, 11; the flagship (15,5)
+      SNF stand; the Gross stand) run END TO END from JSON inputs
+      through the parser into ALGEBRAIC_CERTIFICATE verdicts.
+    status: computed
+    evidence: protocol run V20_level0_documents_e2e
+    falsified_by: any end-to-end failure
+
+  - id: C-009
+    wave: v1.8
+    title: >
+      The invariant Griffiths-Dwork cohomology of the Dwork pencil:
+      every invariant numerator at pole m reduces (closed peel
+      recursion, verified by the exact symmetry sum rule
+      sum_j y_j = P + 5 psi Pi) into the free basis omega_1..omega_m;
+      the graded dimensions are 1 at poles 1..4, hence b3_inv = 4
+      with Hodge numbers (1,1,1,1).
+    status: computed
+    evidence: protocol run V21_dwork stand (gd_cohomology)
+    falsified_by: a sum-rule failure or a residual y-part
+
+  - id: C-010
+    wave: v1.8
+    title: >
+      The invariant periods Pi(psi) = _4F_3(1/5,2/5,3/5,4/5;1,1,1;
+      psi^-5) are certified by two independent schemes (the exact
+      rational PF-recurrence series and mpmath's hypergeometric
+      evaluation) agreeing to < 1e-38 on the rational psi-grid.
+    status: computed
+    evidence: protocol run V21_dwork stand (periods)
+    falsified_by: a grid disagreement above 1e-38
+
+  - id: C-011
+    wave: v1.8
+    title: >
+      The Fermat fiber point counts #X_0(F_p) are certified by two
+      independent enumeration schemes (meet-in-the-middle and the
+      literal O(p^4) loop) agreeing at p = 11, with the Weil bound
+      |t_p| <= 204 p^{3/2} satisfied at p = 11, 31, 41.
+    status: computed
+    evidence: protocol run V21_dwork stand (point_counts)
+    falsified_by: a scheme disagreement or a Weil-bound violation
+
+  - id: C-012
+    wave: v1.8 (opened) / v1.10 (closed)
+    title: >
+      The Picard-Fuchs operator of the invariant piece is the
+      classical order-4 operator theta_w^4 - w prod(theta_w+i/5)
+      (w = psi^-5) [Candelas et al. 1991]; its series solution is
+      the certified period series (C-010).  The independent
+      character-isotypic mod-p Griffiths-Dwork DERIVATION of the
+      operator is COMPLETE (closed in v1.10): the v1.9 engines
+      derive, class-exactly, the operator L_c = (psi^5-1) D^4 +
+      10 psi^4 D^3 + 25 psi^3 D^2 + 15 psi^2 D + psi — the true PF
+      equation of the RAW invariant period g = <[dx/P]> — and the
+      exact psi-gauge L_true(psi g) = psi L_c(g) carries L_c onto
+      the certified operator; the closed loop (engine + gauge ==
+      certified) is EXACT at every (p, psi_0) of the mod-p grid,
+      both engines (C-018).
+    status: computed
+    evidence: protocol runs V22_pf_operator_v19 + V23_pf_closure_v110;
+      verification/V22_pf_operator.json, V23_gauge_closure.json
+    falsified_by: >
+      a grid point where the gauge recursion fails to reproduce the
+      certified target, or a correct derivation whose closed loop
+      disagrees with the classical operator
+
+  - id: C-013
+    wave: v1.8
+    title: >
+      The Fermat-point value V = _4F_3(1/5,2/5,3/5,4/5;1,1,1;1) =
+      1.0707258684... is recorded at 100 dps.  PSLQ over the
+      6-dimensional Gamma-sine log lattice finds NO relation with
+      nonzero V-coefficient up to maxcoeff 10^8: the value is NOT a
+      pure Gamma(1/5),Gamma(2/5),pi,sin-monomial -- the conifold
+      point mixes the Hodge filtration (a genuinely new computed
+      negative).
+    status: computed
+    evidence: protocol run V21_dwork stand (fermat_point_gamma)
+    falsified_by: a PSLQ relation with a nonzero V-coefficient
+
+  - id: C-014
+    wave: v1.6+ (open)
+    title: >
+      CONJECTURE (registered, not computed): the census-weighted
+      exponent rule of the Gross normalization generalizes to
+      arbitrary N.  The N=15/30 instance is certified (C-006); the
+      general rule is open.  The parametric evaluator returns
+      NOT_DETERMINED for other levels.
+    status: registered
+    evidence: verhodge/gross.py (exponent_rule_15_30 returns None)
+    falsified_by: a counterexample to any proposed general rule
+
+  - id: C-015
+    wave: scope
+    title: >
+      EXCLUSION (falsifiable commitment): no polynomial-time claim
+      is made beyond Level 0 (the Fermat family); no P vs NP
+      statement is made or implied anywhere in the program.
+    status: registered
+    evidence: docs/ROADMAP.md (the exclusions section)
+    falsified_by: any Level-1+ polytime claim in the codebase
+
+  - id: C-016
+    wave: v1.9
+    title: >
+      The Picard-Fuchs stand, v1.9 state.  CLOSED pieces: the
+      certified psi-form target of the invariant PF operator
+      (psi^5-1) f'''' + (6psi^4+4psi^-1) f''' + (7psi^3-12psi^-2) f''
+      + (psi^2+24psi^-3) f' - 24 psi^-4 f = 0 -- certified in code by
+      the series-recurrence identity, the exact Laurent algebra, and
+      a ~1e-61 residual on the independently evaluated hypergeometric
+      period; the v1.8 Laurent comparison target REFUTED (NE05: it
+      lacked the structural singular poles entirely); two independent
+      class-reduction engines (the v1.9 representation chain and the
+      v1.8 peel closure) agreeing on the full 48-point mod-p grid,
+      the 24-test algebraic battery (S5-symmetry values, sum rules at
+      every pole, closed Jacobian identities, char-0 exactness), and
+      degenerating exactly at the singular fibers psi^5 = 1.
+      OPEN piece (sharpened C-012): the operator implied by the
+      engines, (psi^5-1) f'''' + 10 psi^4 f''' + 25 psi^3 f'' +
+      15 psi^2 f' + psi f = 0, does NOT annihilate the certified
+      period (computed, residual O(1) vs ~1e-61).
+    status: computed (the closed pieces) / registered (the open piece)
+    evidence: protocol run V22_pf_operator_v19;
+      verification/V22_pf_operator.json
+    falsified_by: >
+      a correct derivation whose operator fails the psi-form residual,
+      or a completed reduction matching the certified operator (which
+      would close the open piece)
+
+  - id: C-017
+    wave: v1.10 (resolved)
+    title: >
+      RESOLVED (the C-012 root-cause conjecture — answered
+      NEGATIVELY, computed).  The conjecture attributed the v1.9
+      operator mismatch to the residue class of d(iota_R xi)|_(P^4\X)
+      being cohomologically alive.  The v1.10 descent certificate
+      COMPUTES that class and finds it TRIVIAL: the Cartan primitive
+      iota_R eta_C of the Griffiths divergence form is BASIC —
+      horizontal (iota_R^2 = 0) and of homogeneity degree 0 (every
+      numerator of degree 17, form degree 3, pole denominator P^4:
+      17 + 3 - 20 = 0) — hence it DESCENDS to P^4, and
+      d(iota_R eta_C)|_(P^4\X) is exact.  The master divergence
+      identity k[sum C_j j_j/P^(k+1)] = [Div(C)/P^k] is verified as
+      an exact FORM identity (P^5 d(eta_C) = [P Div(C) -
+      4 sum C_j j_j] vol) together with the Cartan identity
+      P^5 d(iota_R eta_C) = -iota_R(P^5 d(eta_C)) — the divergence
+      step loses nothing.  The true closure mechanism is the
+      normalization gauge (C-018).
+    status: resolved (computed negative)
+    evidence: verhodge/gauge.py (descent_certificate);
+      verification/V23_gauge_closure.json (descent_certificate rows
+      at psi_0 = 2, 3: I1, I2, homogeneity all exact)
+    falsified_by: >
+      a pole-q representation at any (psi_0, prime) for which the
+      form identities (I1)/(I2) fail, or a basicness violation
+      (a numerator of iota_R eta_C off the homogeneity-0 bookkeeping)
+
+  - id: C-018
+    wave: v1.10
+    title: >
+      THE PSI-GAUGE THEOREM (closes C-012).  The v1.9 derivation
+      engines output, class-exactly, the operator L_c = (psi^5-1)D^4
+      + 10psi^4 D^3 + 25psi^3 D^2 + 15psi^2 D + psi, which is the
+      TRUE Picard-Fuchs equation of the RAW invariant period
+      g = <omega_1, gamma>, omega_1 = [dx/P] (the pole-1 class).
+      The certified fundamental period f (the series
+      _4F_3(1/5,2/5,3/5,4/5; 1,1,1; psi^-5), c_0 = 1 at psi = inf)
+      is the NORMALIZED period f = psi * g — the period of the class
+      [psi dx/P].  The exact gauge identity L_true(psi g) =
+      psi L_c(g), with the triangular coefficient recursion
+      b_4 = a_4, b_m = a_m - (m+1) b_(m+1)/psi, carries L_c EXACTLY
+      onto the certified operator: b_3 = 6psi^4+4psi^-1,
+      b_2 = 7psi^3-12psi^-2, b_1 = psi^2+24psi^-3, b_0 = -24psi^-4 —
+      the psi^-1..psi^-4 structure is the GAUGE SHADOW of the
+      (psi^5-1) leading coefficient (computed, term by term).
+      Numerical seal: L_c annihilates g = f/psi with residual
+      ~1e-71 (independently evaluated period).  Closed loop: at
+      every (p, psi_0) of the mod-p grid (p = 101, 191, 281) the
+      engine gamma values, carried by the gauge recursion, equal
+      the certified target's specializations EXACTLY, both engines
+      (72/72 tests).  The mod-p Griffiths-Dwork derivation of the
+      classical PF operator of the Dwork pencil is COMPLETE.
+    status: computed
+    evidence: verhodge/gauge.py (gauge_identity_check exact both
+      directions; psi_gauge_residual_check ~1e-71;
+      modp_gauge_closure 72/72); protocol run
+      V23_pf_closure_v110; verification/V23_gauge_closure.json
+    falsified_by: >
+      a grid point where engine + gauge != certified, or a violation
+      of the exact gauge identity in the Laurent-operator algebra
+  - id: C-019
+    claim: >
+      THE TUBE-INTEGRAL NORMALIZATION STAMP (v1.11, the open half of
+      the directive).  The direct identification of the period
+      f = psi*<omega_1> through the Griffiths tube integral
+      (1/(2pi i)^4) int_{Gamma} Omega/P as an INDEPENDENT geometric
+      normalization stamp requires the Cech/twist computation across
+      affine-chart boundaries.  COMPUTED IN v1.11 (the blocking
+      evidence): the exact chart identity
+        Q^3 d(iota_R Omega'/Q^2) = (4Q + 2 sum_j x_j dQ_j) dx^4
+      on the chart x_5 = 1 (Q = P(x,1) INHOMOGENEOUS: the Euler
+      relation is sum x_j Q_j = 5(Q-1) = 14Q - 10 - 4Q, NOT 5Q — the
+      homogeneous-Euler shortcut is a computed trap), verified by
+      exact polynomial form algebra.  Combined with the
+      smooth-divisor double-pole residue vanishing (the theta-loop
+      e^{-i theta}-cancellation), the chart class [eta|chart] = 0:
+      the naive affine period formula dx1 dx2 dx3/(dQ_4) computes
+      ZERO for every cycle contained in the chart, and the honest
+      tube stamp must integrate the level-set tube
+      {P = eps e^{i theta}} over the real projective slice
+      X_psi cap RP^4 (not chart-contained) and identify the raw
+      period within the certified 4-period basis by an
+      over-determined exact solve + PSLQ recognition of the cycle
+      constants against the Gamma(1/5)-lattice.
+    status: open
+    evidence: verhodge/dwork_family.py
+      (chart_exactness_certificate exact); protocol run V24b;
+      verification/V24_dwork_family.json
+    falsified_by: >
+      an explicit chart-contained cycle with a nonzero projective
+      residue period, or a violation of the computed chart identity
+  - id: C-020
+    claim: >
+      THE GENERAL-DEGREE GAUGE THEOREM (the v1.11 extension of
+      C-018 to the whole Calabi-Yau ladder).  For the Dwork pencil of
+      degree d in P^{d-1} (d = 3 cubic/elliptic, d = 4 quartic/K3,
+      d = 5 quintic/CY3), the raw Griffiths-Dwork operator
+      L_c^{(d)} annihilates the raw period g = <[dx/P], gamma>,
+      the certified period is f_d = psi * g_d, and the exact gauge
+      L_true^{(d)}(psi g) = psi L_c^{(d)}(g) with the triangular
+      recursion b_{d-1} = a_{d-1}, b_m = a_m - (m+1)b_{m+1}/psi
+      carries the mod-p derivation EXACTLY onto the certified
+      classical operator
+        theta_z^{d-1} - z prod_{j=1}^{d-1} (theta_z + j/d),
+        z = psi^{-d},
+      converted to the psi-form with the STRUCTURAL (psi^d - 1)
+      leading coefficient:
+        d=3: (psi^3-1)f'' + (psi^2+2psi^-1)f' - 2psi^-2 f = 0,
+        d=4: (psi^4-1)f''' + (3psi^3+3psi^-1)f'' + (psi^2-6psi^-2)f'
+             + 6psi^-3 f = 0,
+        d=5: the v1.10 certified operator (regression-exact).
+      Certified: the exact series annihilation (n <= 31, all d), the
+      exact two-directional gauge identity (all d), the char-0
+      closed loop over Q, the mod-p closed loop on degree-adapted
+      grids (p = 1 mod d), and the ~1e-92 hypergeometric seals.
+    status: computed
+    evidence: verhodge/dwork_family.py (pf_family_certificate:
+      series_annihilation_check, gauge_identity_check_general,
+      char0_closed_loop_d, closed_loop_d, hyper_seal_d); protocol
+      run V24_dwork_family_v111; verification/V24_dwork_family.json
+    falsified_by: >
+      a violated series-annihilation coefficient, a Laurent gauge
+      residual, or a mod-p grid point where engine + gauge !=
+      certified at any degree d = 3, 4, 5

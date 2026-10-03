@@ -1,0 +1,253 @@
+{
+ "c017_resolution": "the residue class of d(iota_R xi)|_(P^4\\X) is TRIVIAL (computed):  iota_R xi is basic and descends;  the divergence step is exact \u2014 the psi^-1..psi^-4 structure is the gauge shadow of the (psi^5-1) leading coefficient",
+ "descent_certificate": [
+  {
+   "I1_master_form_identity": true,
+   "I2_cartan_identity": true,
+   "character_classes_ok": true,
+   "check": "residue class of d(iota_R xi)|_(P^4\\X) computed: TRIVIAL (the descent certificate)",
+   "conclusion": "iota_R eta_C is basic (horizontal, homogeneity 0) hence descends to P^4; d(iota_R eta_C)|_(P^4\\X) is exact; the class [4 sum C_j j_j dx/P^5 - Div dx/P^4] = 0 \u2014 the Griffiths divergence step loses nothing",
+   "homogeneity_ok": true,
+   "lambda5": "0",
+   "pass": true,
+   "psi0": "2"
+  },
+  {
+   "I1_master_form_identity": true,
+   "I2_cartan_identity": true,
+   "character_classes_ok": true,
+   "check": "residue class of d(iota_R xi)|_(P^4\\X) computed: TRIVIAL (the descent certificate)",
+   "conclusion": "iota_R eta_C is basic (horizontal, homogeneity 0) hence descends to P^4; d(iota_R eta_C)|_(P^4\\X) is exact; the class [4 sum C_j j_j dx/P^5 - Div dx/P^4] = 0 \u2014 the Griffiths divergence step loses nothing",
+   "homogeneity_ok": true,
+   "lambda5": "0",
+   "pass": true,
+   "psi0": "3"
+  }
+ ],
+ "gauge_identity": {
+  "check": "gauge_psi(L_c) == L_true (exact Laurent algebra)",
+  "pass": true,
+  "recursion": "b_4 = a_4;  b_m = a_m - (m+1) b_(m+1)/psi",
+  "reverse": "a_m = b_m + (m+1) psi^-1 b_(m+1) recovers L_c",
+  "reverse_ok": true,
+  "rows": [
+   {
+    "gauged": {
+     "-4": "-24"
+    },
+    "match": true,
+    "order": 0,
+    "true": {
+     "-4": "-24"
+    }
+   },
+   {
+    "gauged": {
+     "-3": "24",
+     "2": "1"
+    },
+    "match": true,
+    "order": 1,
+    "true": {
+     "-3": "24",
+     "2": "1"
+    }
+   },
+   {
+    "gauged": {
+     "-2": "-12",
+     "3": "7"
+    },
+    "match": true,
+    "order": 2,
+    "true": {
+     "-2": "-12",
+     "3": "7"
+    }
+   },
+   {
+    "gauged": {
+     "-1": "4",
+     "4": "6"
+    },
+    "match": true,
+    "order": 3,
+    "true": {
+     "-1": "4",
+     "4": "6"
+    }
+   },
+   {
+    "gauged": {
+     "0": "-1",
+     "5": "1"
+    },
+    "match": true,
+    "order": 4,
+    "true": {
+     "0": "-1",
+     "5": "1"
+    }
+   }
+  ]
+ },
+ "modp_closed_loop": {
+  "check": "closed loop: engine operator + psi-gauge == certified operator (exact, mod p)",
+  "engines": [
+   "fresh",
+   "peel"
+  ],
+  "n_fail": 0,
+  "n_psi_per_prime": 12,
+  "n_tests": 72,
+  "pass": true,
+  "primes": [
+   101,
+   191,
+   281
+  ],
+  "sample": [
+   {
+    "certified": [
+     "31",
+     "91",
+     "83",
+     "62"
+    ],
+    "engine": "fresh",
+    "gauged": [
+     "31",
+     "91",
+     "83",
+     "62"
+    ],
+    "match": true,
+    "p": 101,
+    "psi": 2
+   },
+   {
+    "certified": [
+     "31",
+     "91",
+     "83",
+     "62"
+    ],
+    "engine": "peel",
+    "gauged": [
+     "31",
+     "91",
+     "83",
+     "62"
+    ],
+    "match": true,
+    "p": 101,
+    "psi": 2
+   },
+   {
+    "certified": [
+     "3",
+     "64",
+     "82",
+     "40"
+    ],
+    "engine": "fresh",
+    "gauged": [
+     "3",
+     "64",
+     "82",
+     "40"
+    ],
+    "match": true,
+    "p": 101,
+    "psi": 3
+   },
+   {
+    "certified": [
+     "3",
+     "64",
+     "82",
+     "40"
+    ],
+    "engine": "peel",
+    "gauged": [
+     "3",
+     "64",
+     "82",
+     "40"
+    ],
+    "match": true,
+    "p": 101,
+    "psi": 3
+   }
+  ]
+ },
+ "pass": true,
+ "raw_period_residual": {
+  "check": "L_c annihilates the raw period g = f/psi",
+  "operator": "(psi^5-1) g'''' + 10 psi^4 g''' + 25 psi^3 g'' + 15 psi^2 g' + psi g = 0",
+  "pass": true,
+  "rows": [
+   {
+    "pass": true,
+    "psi": 2,
+    "relative": "1.6145e-71",
+    "residual": "-4.5278e-70"
+   },
+   {
+    "pass": true,
+    "psi": 3,
+    "relative": "5.7084e-72",
+    "residual": "-1.4489e-70"
+   },
+   {
+    "pass": true,
+    "psi": 5,
+    "relative": "1.809e-71",
+    "residual": "4.5278e-70"
+   },
+   {
+    "pass": true,
+    "psi": 7,
+    "relative": "1.5935e-71",
+    "residual": "-3.9845e-70"
+   }
+  ]
+ },
+ "singular_fibers": {
+  "all_degenerate": true,
+  "rows": [
+   {
+    "engine_degenerate": true,
+    "p": 101,
+    "psi": 1
+   },
+   {
+    "engine_degenerate": true,
+    "p": 101,
+    "psi": 36
+   },
+   {
+    "engine_degenerate": true,
+    "p": 191,
+    "psi": 1
+   },
+   {
+    "engine_degenerate": true,
+    "p": 191,
+    "psi": 39
+   },
+   {
+    "engine_degenerate": true,
+    "p": 281,
+    "psi": 1
+   },
+   {
+    "engine_degenerate": true,
+    "p": 281,
+    "psi": 86
+   }
+  ]
+ },
+ "stand": "Dwork pencil \u2014 PF derivation closure (v1.10)",
+ "theorem": "L_true(psi g) = psi L_c(g):  the certified operator is the exact psi-gauge of the derived operator;  the certified period f = psi * <dx/P> (the normalized period of the class [psi dx/P])"
+}

@@ -1,0 +1,7 @@
+{
+  "schema": "HODGE-INPUT v1",
+  "variety": {"kind": "fermat-stand", "N": 15, "m": 5},
+  "hodge_class": {"basis": "gamma-monomial", "data": {"stand": "N=15/30"}},
+  "verification": {"type": "snf", "dps": 40},
+  "provenance": {"source": "certificate H1: cyclotomic trace-form lattice"}
+}
