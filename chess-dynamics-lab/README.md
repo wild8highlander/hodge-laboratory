@@ -29,7 +29,7 @@ verdict: 10/10               (polyglot battery C1–C10, seven languages)
 5. [The protocol C1–C9](#5-the-protocol-c1c9)
 6. [The polyglot core: seven languages](#6-the-polyglot-core-seven-languages)
 7. [The engine package](#7-the-engine-package)
-8. [The Outcome Dynamics program (epochs I–III)](#8-the-outcome-dynamics-program-epochs-iiiiii)
+8. [The Outcome Dynamics program (epochs I–VIII)](#8-the-outcome-dynamics-program-epochs-i-viii)
 9. [The web laboratory](#9-the-web-laboratory)
 10. [Monographs (PDF/DOCX × RU/EN)](#10-monographs-pdfdocx--ruen)
 11. [Frozen constants](#11-frozen-constants)
@@ -47,13 +47,13 @@ verdict: 10/10               (polyglot battery C1–C10, seven languages)
 | [`dynamics.py`](dynamics.py) | **The single-file laboratory**: 0x88 board with full legal generation (castling, en passant, promotion), the three-layer particle model, retrograde KRK/KQK bases, alpha-beta search, the protocol C1–C9, plots, CLI |
 | [`large_board_lab.jl`](large_board_lab.jl) | **The Julia large-board laboratory (single file, zero packages)**: the generalized n×n particle dynamics verified on big matrices up to **112×112** — interactive RU/EN menu, T1–T9 test battery, the MAIN test issuing the **partial-policy verdict** (an ensemble of named policies: particle / pressure / mobility / material / random, per-policy verdicts + consensus + coverage), exact retrograde oracle, four 600-dpi charts (PNG+SVG) written by a built-in PNG encoder, reports in TXT/JSON/CSV/MD |
 | [`engine/`](engine/README.md) | The importable package: `particles.py` (three-layer facade), `mate_solver.py`, `game_player.py` (with `--selfplay`), `analyzer.py` |
-| [`outcome/`](outcome/README.md) | **The Outcome Dynamics program (epochs I–III)**: the exact WDL/DTM oracle over the frozen certificates, the 40-coordinate phase-space feature extractor, deterministic dataset machinery, the zero-dependency tablebase distillation benchmark and **Outcome Field v0.1** — P(W/D/L) + entropy + criticality + the counterfactual move-impact surface |
+| [`outcome/`](outcome/README.md) | **The Outcome Dynamics program (epochs I–VIII)**: the exact WDL/DTM oracle over the frozen certificates, the 40-coordinate phase-space feature extractor, deterministic dataset machinery, the zero-dependency tablebase distillation benchmark and **Outcome Field v0.1** — P(W/D/L) + entropy + criticality + the counterfactual move-impact surface |
 | [`polyglot/`](polyglot/README.md) | The same 10-check battery **C1–C10 in seven languages** — Python, C, Rust, Go, Julia, JavaScript, Java — printing a byte-identical verdict `10/10` |
-| [`tests/`](tests/README.md) | 92 pytest tests over the core, the engine, the frozen baseline, the vortex layer, the E5 solution ladder and the outcome program |
+| [`tests/`](tests/README.md) | 181 pytest tests over the core, the engine, the frozen baseline, the vortex layer, the E5 solution ladder and the outcome program |
 | [`results/`](results/README.md) | The frozen certificates: KRK/KQK/KNK/KPK DTM bases, the knight tour, `baseline_c1_c9.json`, the E4 vortex report, the T17 trap census, the E5 solution-level ladder, the outcome distillation certificate and the frozen outcome model |
 | [`vortex/`](vortex/README.md) | **T16 — the vortex-value correspondence**: the DTM certificate re-encoded as a planar flow (vortices + descent currents); the outcome of a perfect game becomes the topology of particle trajectories — E4: 1800/1800 agreement, capture separation 1.000/0.000 |
 | [`reports/`](reports/README.md) | The protocol plots (600 dpi) |
-| [`monograph/`](monograph/README.md) | **26 documents**: the main monograph + 12 theorem monographs, each in RU and EN, each in PDF and DOCX |
+| [`monograph/`](monograph/README.md) | **14 titles / 56 files**: the main monograph + 12 theorem monographs + the research paper «The Particle Limit», each in RU and EN, each in PDF and DOCX |
 | [`web/chess-particles/`](web/README.md) | The web laboratory: glowing particle pieces on a canvas board, the threat-field heatmap and its Θ-flow animation, the Lagrangian panel, the t\* billiard, and an **honestly computed** browser protocol |
 | [`docs/`](docs/README.md) | The GitHub Pages landing |
 | [`scripts/`](scripts/README.md) | `termux_push.sh` — one-command publication of the repository |
@@ -74,7 +74,7 @@ python3 dynamics.py --report          # the full protocol C1–C9 + the verdict
 python3 dynamics.py --run C5          # one check (perft identities)
 python3 dynamics.py --run C5 --deep   # adds perft(5) = 4865609 and the divide table
 python3 dynamics.py --plots reports/plots   # regenerate the 600 dpi plots
-python3 -m pytest tests/ -q           # 164 tests
+python3 -m pytest tests/ -q           # 181 tests
 ```
 
 Position analysis, mate solving and self-play:
@@ -85,7 +85,7 @@ python3 dynamics.py --mate "kbK5/pp6/1P6/8/8/8/8/R7 w - - 0 1"   # the Morphy ma
 python3 engine/game_player.py --selfplay --depth 4               # a deterministic game
 ```
 
-The Outcome Dynamics program (epochs I–III, see section 8):
+The Outcome Dynamics program (epochs I–VIII, see section 8):
 
 ```bash
 python3 -m outcome analyze "R5k1/8/6K1/8/8/8/8/8 b - - 0 1" --moves
@@ -1035,7 +1035,7 @@ and the web laboratory.
 
 - **CI** ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)): the full protocol on
   Python 3.9/3.11/3.13, deep perft, the pytest suite, the outcome dynamics smoke
-  experiment (epochs I–III), the self-play determinism check,
+  experiment (epochs I–VIII), the self-play determinism check,
   the polyglot battery in all seven languages (gcc, node, rustc, go, julia, javac), and
   a Node sanity run of the web core (`verdict: 10/10`).
 - **Tests**: `python3 -m pytest tests/ -q` — 92 tests over the move generation, the

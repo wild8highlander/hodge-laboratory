@@ -2,6 +2,11 @@
  "bch_radical_installed": false,
  "bch_radical_residual": null,
  "collapse": true,
+ "conventions": {
+  "poly_high": "coefficients of the monic polynomial, highest degree first",
+  "syms": "signed elementary symmetric values (e1..e5), the convention of results/baseline_v1_v9.json block V13_cyc (cf. N=7: syms [-1,-2,1])",
+  "vieta": "raw monic coefficients [c1..c5] (kept for backward compatibility; c_i = (-1)^i * e_i for the monic polynomial)"
+ },
  "deg_matches_phi_half": true,
  "degree": 5,
  "gf2_irreducible": true,
@@ -20,10 +25,17 @@
   1
  ],
  "rung_names": {
+  "11": "quintic (cert K)",
   "7": "Hurwitz",
-  "9": "Macbeath",
-  "11": "quintic (cert K)"
+  "9": "Macbeath"
  },
+ "syms": [
+  -1,
+  -4,
+  3,
+  3,
+  -1
+ ],
  "vieta": [
   1,
   -4,

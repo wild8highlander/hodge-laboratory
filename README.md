@@ -518,14 +518,20 @@ and follow the same six-block scheme as the PDFs.
 | III. Certificates | `T10_certificate_b` … `T16_certificate_h_klein` | certificates B–H with the Klein quartic finale |
 | IV. The cubic rungs | `T17_certificate_i_hurwitz` · `T18_certificate_j_macbeath` | certificate I (N=7, the Cardano pairing 7/9) · certificate J (N=9, radicals are roots of unity) |
 | V. The exact layer | `T19_quartic_tower` · `T20_conductor_census` | the quartic tower of N=15/30, one field — two rungs · the conductor census, two schemes — one genus |
+| VI. The quintic rung and the SNF engine | `T21_certificate_k_quintic` · `T22_snf_spectra` | certificate K (N=11, the cyclic quintic + the C₅-resolvent, bit-for-bit with VER-HODGE) · the SNF spectra of all rungs (S1: G = pI−J; certificate H reproduced) |
 
 The full index with reading paths and cross-references lives in
 [`theorems/README.md`](theorems/README.md). The collection **grows
 together with the program**: every newly proved roadmap item arrives
 as the same four-format package — LaTeX → PDF (tectonic) → DOCX
-(native OMML via `scripts/build_theorem_docx.py`). Next in line:
-T21 = the cyclic quintic rung N = 11 (roadmap v1.5) and
-T22 = the SNF spectra of the rungs (v1.6).
+(native OMML via `scripts/build_theorem_docx.py`). Delivered beyond
+the plan: T21 = the cyclic quintic rung N = 11 (certificate K,
+monograph 21/22, with the executable stand) and T22 = the SNF engine
+and the computed polarization types (monograph 22/22, certificate H
+reproduced bit-for-bit) — the collection is now 22 monographs,
+88 PDF/DOCX documents. Next in line: T23 = the computed Gross
+normalization and the sine count (v1.6+) and T24 = the Dwork pencil:
+the invariant cohomology and the certified periods (v1.8).
 
 ---
 

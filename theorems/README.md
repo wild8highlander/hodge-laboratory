@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**20 self-sufficient studies · 80 documents · PDF + DOCX · RU/EN · complete proofs**
+**22 self-sufficient studies · 88 documents · PDF + DOCX · RU/EN · complete proofs**
 
 Each theorem of the program is packaged as a standalone monograph:
 statement, complete proof, protocol data, summary of what is proved,
@@ -60,11 +60,18 @@ individually — at any time and in any order.
 | 19 | [`T19_quartic_tower`](T19_quartic_tower/) | **The quartic tower of N = 15/30** | b_Ch(15) = (7−√5−√(30−6√5))/8, b_Ch(30) = (9−√5−√(30+6√5))/8; minimal quartics with P₃₀(x) = P₁₅(−x); ββ′ = 12√5 — one cyclic field, two rungs; disc = 1125 |
 | 20 | [`T20_conductor_census`](T20_conductor_census/) | **The conductor census** | the triangle c(N) = (N−1)(N−2)/2; lifting lemma + Möbius inversion; self-similarity h_d(N) = h_d(d); 15, 28 = 1+27, 91 = 1+6+84, 406 = 1+6+9+30+84+276 — two schemes, bit-for-bit |
 
+### Part VI. The quintic rung and the SNF engine (the v1.5/v1.6 slots)
+
+| № | Folder | Theorem | Core result |
+|---|---|---|---|
+| 21 | [`T21_certificate_k_quintic`](T21_certificate_k_quintic/) | **Certificate K: the cyclic quintic rung N = 11** | census {11: 45}, g = 45; quintic x⁵+x⁴−4x³−3x²+3x+1, Vieta (−1,−4,3,3,−1), GF(2) irreducible; b_Ch(11): −32y⁵+176y⁴−352y³+308y²−110y+11 (casus irreducibilis quinticus); disc 11⁹ and 11⁴ with SNF (1, 11×9) and (1,11,11,11,11); the C₅-resolvent η ∈ ℤ[ζ₅], branches (2,4,4,1,1) — bit-for-bit with VER-HODGE |
+| 22 | [`T22_snf_spectra`](T22_snf_spectra/) | **The SNF engine and the computed polarization types** | S1: G = pI−J, SNF = (1, p^{p−2}) for primes; N=7 (1,7×5)/7⁵; N=9 (3,3,3,9,9,9)/3⁹; N=11 (1,11×9)/11⁹; N=15/30 (1,1,5,5,15,15,15,15)/1125² — certificate H bit-for-bit; the dual layer (mirror lemma); real layers and the conductor pattern S3 (1125 in three roles) |
+
 ---
 
 ## 📐 The uniform structure of every monograph
 
-All 80 documents (PDF and DOCX in both languages) follow one scheme:
+All 88 documents (PDF and DOCX in both languages) follow one scheme:
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -96,6 +103,7 @@ Files in each folder:
 | `monograph_EN.docx` | Word edition of the same monograph with native OMML equations (English) |
 | `latex/ru/monograph.tex` | LaTeX source (Russian) |
 | `latex/en/monograph.tex` | LaTeX source (English) |
+| `stand_*.py` (T21/T22 only) | the executable verification stand of the monograph (exit 0 = accepted) |
 
 The DOCX editions are generated from the same LaTeX sources
 (`scripts/build_theorem_docx.py`: pandoc + a styled reference
@@ -121,10 +129,16 @@ shape:
 4. register  the row in the index above + the roadmap checkbox
 ```
 
-Next slots: **T21 = the cyclic quintic rung N = 11** (roadmap v1.5,
-certificate K) and **T22 = the SNF spectra of the rungs**
-(v1.6) — their content is fixed by the laboratory once the
-respective roadmap items are proved.
+Delivered beyond the plan (the v1.5/v1.6 slots, closed by the
+research package with executable stands): **T21 = the cyclic
+quintic rung N = 11** (certificate K, bit-for-bit with VER-HODGE)
+and **T22 = the SNF engine and the computed polarization types**
+(the spectral column of every rung, certificate H reproduced).
+Next slots: **T23 = the computed Gross normalization and the sine
+count** (v1.6+) and **T24 = the Dwork pencil: the invariant
+cohomology and the certified periods** (v1.8) — their content is
+fixed by the laboratory once the respective roadmap items are
+proved.
 
 ---
 
@@ -149,6 +163,8 @@ T18 Macbeath N=9 ─┼── the cubic rungs (certificates I, J)
                   │
 T19 quartic tower (15/30) ── the exact layer of v1.2
 T20 census ──────────────── the multiplicities behind G/H
+T21 quintic N=11 (cert. K) ── the first quintic rung (v1.5)
+T22 SNF engine ────────────── the polarization types of all rungs (v1.6)
 ```
 
 Every monograph is self-sufficient: reading its proof requires none
@@ -180,6 +196,8 @@ of the others — the cross-references are navigation, not dependency.
 | 18 J | Certificates → J; Stands → N=9 | — |
 | 19 tower | Designer item 5; batch `bch` (N=15/30) | `bch_radicals` |
 | 20 census | Protocol V1; `--check-baseline` | `genus_fermat` |
+| 21 quintic | the stand `stand_t21_n11.py` in the monograph folder (17/17); VER-HODGE certificate K (`K_n11_rung.json`, `K_n11_resolvent.json`) | — (Lean queue 1) |
+| 22 SNF | the stand `stand_t22_snf.py` in the monograph folder (24/24); `--check-baseline` (the certificate-H block) | `SnfSpec` |
 
 The exit codes of all implementations: `0` — accepted, `1` — failure.
 

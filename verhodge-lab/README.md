@@ -94,15 +94,15 @@ the claim registry (C-007).
 ```
 verhodge/        the engine: poly, census, cyclotomic, snf, lattice,
                  gross, dwork, gdreduce, input_schema, protocol, cli
-claims/          registry.yaml — 15 claims with statuses and evidence
+claims/          registry.yaml — 20 claims with statuses and evidence
 complexity/      ledger.yaml — bit-complexity accounting per subroutine
-counterexamples/ the computed near-miss corpus (NE01..NE04)
+counterexamples/ the computed near-miss corpus (NE01..NE06)
 inputs/          Level-0 executable JSON documents
 verification/    emitted certificate artifacts
 results/         baseline_v15_v18.json (the frozen reference)
 theorems/Lean/   the Lean 4 layer (grammar, census, SNF spec)
 polyglot/        C kernel (bit-identical) + rust slot
-tests/           pytest suite (31 tests)
+tests/           pytest suite (53 tests)
 docs/            ROADMAP.md (the plan of record) + VERIFICATION.md
 monograph/       the T21–T24 slots
 ```
