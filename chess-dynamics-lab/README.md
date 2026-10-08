@@ -55,7 +55,6 @@ verdict: 10/10               (polyglot battery C1–C10, seven languages)
 | [`monograph/`](monograph/README.md) | **14 titles / 56 files**: the main monograph + 12 theorem monographs + the research paper «The Particle Limit», each in RU and EN, each in PDF and DOCX |
 | [`web/chess-particles/`](web/README.md) | The web laboratory: glowing particle pieces on a canvas board, the threat-field heatmap and its Θ-flow animation, the Lagrangian panel, the t\* billiard, and an **honestly computed** browser protocol |
 | [`docs/`](docs/README.md) | The GitHub Pages landing |
-| [`scripts/`](scripts/README.md) | `termux_push.sh` — one-command publication of the repository |
 | [`.github/workflows/`](.github/workflows/ci.yml) | CI: the protocol on three Python versions + the polyglot battery in all seven languages + web sanity; Pages deployment |
 
 ---
