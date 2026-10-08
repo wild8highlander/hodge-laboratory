@@ -34,9 +34,8 @@ verdict: 10/10               (polyglot battery C1–C10, seven languages)
 10. [Monographs (PDF/DOCX × RU/EN)](#10-monographs-pdfdocx--ruen)
 11. [Frozen constants](#11-frozen-constants)
 12. [Repository layout](#12-repository-layout)
-13. [Publishing your fork](#14-publishing-your-fork)
-14. [Development and CI](#15-development-and-ci)
-15. [Citation and license](#16-citation-and-license)
+13. [Development and CI](#13-development-and-ci)
+14. [Citation and license](#14-citation-and-license)
 
 ---
 
@@ -1017,21 +1016,7 @@ chess-dynamics-lab/
 
 ---
 
-## 13. Publishing your fork
-
-```bash
-bash scripts/termux_push.sh
-```
-
-The script checks the environment (git + `gh` or `GH_TOKEN`), makes the initial
-commit, creates the repository `wild8highlander/chess-dynamics-lab` under your account
-(override with `GH_USER`/`GH_REPO`) and pushes `main`. The CI then verifies the
-protocol and the polyglot battery automatically; the Pages workflow deploys `docs/`
-and the web laboratory.
-
----
-
-## 14. Development and CI
+## 13. Development and CI
 
 - **CI** ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)): the full protocol on
   Python 3.9/3.11/3.13, deep perft, the pytest suite, the outcome dynamics smoke
@@ -1047,7 +1032,7 @@ and the web laboratory.
 
 ---
 
-## 15. Citation and license
+## 14. Citation and license
 
 Cite via [CITATION.cff](CITATION.cff):
 
