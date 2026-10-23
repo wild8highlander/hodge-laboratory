@@ -13,6 +13,17 @@ language receives an exact definition, every definition becomes a theorem, and e
 theorem becomes an executable check of the protocol **C1–C9** — reproducible by a single
 command on any machine, from a server to an Android phone under Termux.
 
+<div align="center">
+
+[⬆ Hodge Laboratory / главный репозиторий](../README.md) · [🧪 Hodge Laboratory Web (live)](https://wild8highlander.github.io/hodge-laboratory-web/) · [♞ Hodge Flow Chess (live)](https://wild8highlander.github.io/hodge-flow-chess/) · [✅ VER-HODGE](../verhodge-lab/README.md)
+
+</div>
+
+<p align="center">
+  <img src="docs/assets/svg/chess_hero.svg" alt="Chess Particle Dynamics hero — a glowing chessboard with gold and violet particle-pieces and threat-field auras, the three layer cards K3 potential, TORUS energy, KLEIN flow, the twelve theorem monographs T01–T12, the verdict ALL CHECKS PASSED and the seven-language polyglot battery 10/10" width="100%"><br>
+  <sub>Every piece is a particle — the three layers, the twelve theorems and the verdict, as one animated picture (pure SVG + CSS, no JavaScript).</sub>
+</p>
+
 ```text
 verdict: ALL CHECKS PASSED   (protocol C1–C9)
 verdict: 10/10               (polyglot battery C1–C10, seven languages)
@@ -160,6 +171,16 @@ verdict: ALL CHECKS PASSED
 
 ## 3. The three-layer particle model
 
+One position, three exact layers — each a theorem, each an executable check:
+
+```mermaid
+flowchart LR
+    POS["a position FEN"] --> L1["K3 · the potential layer<br/>Θ(c) — threat fields<br/>additivity · D4-equivariance"]
+    POS --> L2["TORUS · the energy layer<br/>E = [M(w)−M(b)] + μ(w)−m(b)<br/>μ = 0.1 · 20 → 30"]
+    POS --> L3["KLEIN · the flow layer<br/>t* = lcm(W/gcd(a,W), H/gcd(b,H))<br/>billiard γ = π⁴/256"]
+    L1 & L2 & L3 --> V["the ParticleSolver move<br/>O(n⁴k²) · deterministic"]
+```
+
 ### Layer K3 — the potential layer (threat fields)
 
 Every piece-particle emits a field on the board: **Θ(c)** = the number of particles of
@@ -255,6 +276,11 @@ and the knight-and-rook mate in one (`g1g8`, 1 node).
 ---
 
 ## 6. The polyglot core: seven languages
+
+<p align="center">
+  <img src="docs/assets/svg/chess_terminal.svg" alt="Animated terminal — the battery C1-C10 runs in seven languages: Python, C, Rust, Go, Julia, JavaScript and Java; every progress bar ends with PASS and the final verdict is 10/10" width="78%"><br>
+  <sub>The polyglot battery as an animated terminal — seven stacks, one byte-identical verdict (pure SVG + CSS, no JavaScript).</sub>
+</p>
 
 The same battery **C1–C10** is implemented independently in seven languages. Each
 backend prints the same line format — `[PASS] Cn note` — and the final line

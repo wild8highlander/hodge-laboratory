@@ -1,9 +1,30 @@
 # outcome/ — the Outcome Dynamics program (epochs I–VIII)
 
+
+<div align="center">
+
+[⬆ Chess Particle Dynamics](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
 The engine (`dynamics.py`, `engine/`) answers *what is the best move*.
 This package answers a different question: **what is the probability
 distribution of the game's result from a position** — and it refuses to
 guess where it cannot know.
+
+The eight epochs as a pipeline (each one certified before the next):
+
+```mermaid
+flowchart LR
+    E1["Epoch I<br/>exact oracle<br/>WDL + DTM"] --> E2["Epoch II<br/>phase space<br/>67 coordinates"]
+    E2 --> E3["Epoch III<br/>distillation<br/>E8 certificate"]
+    E3 --> E4["Epoch IV<br/>player context<br/>Elo prior"]
+    E4 --> E5["Epoch V<br/>trajectories<br/>E9"]
+    E5 --> E6["Epoch VI<br/>falsification<br/>E10 corpus"]
+    E6 --> E7["Epoch VII<br/>nonlinear head<br/>E11–E14"]
+    E7 --> E8["Epoch VIII<br/>adjudication<br/>E15 referee"]
+    E6 -.->|"the corpus re-mined"| CORR["counterexamples/"]
+```
+
 
 The eight epochs, each certified:
 

@@ -1,6 +1,12 @@
 # VER-HODGE Laboratory
 
 <div align="center">
+
+[⬆ Hodge Laboratory / главный репозиторий](../README.md) · [📚 Theorem monographs T01–T20](../theorems/README.md) · [✅ Verification stack](../verification/README.md)
+
+</div>
+
+<div align="center">
   <img src="brand/logo_wordmark.png" alt="VER-HODGE Laboratory" width="560"/>
 </div>
 
@@ -21,12 +27,29 @@
 of algebraic Hodge data with an asymmetric output contract:
 **ALGEBRAIC CERTIFICATE** or **NOT-DETERMINED** — never a guess.
 
+<p align="center">
+  <img src="figures/svg/verhodge_waves.svg" alt="The VER-HODGE wave map: the computed waves v1.5 through v1.11 on an ascending animated path — census and certificate K, the SNF engine, the K3 lattice and Gross volume, the psi-form target, the psi-gauge theorem, the Dwork family at degrees 3, 4, 5 and the i18n layer — under the asymmetric output contract banner: ALGEBRAIC CERTIFICATE or NOT-DETERMINED, never a guess" width="96%"><br>
+  <sub>The computed wave map v1.5 → v1.11 and the asymmetric contract (pure SVG + CSS, no JavaScript).</sub>
+</p>
+
 [ Монография EN ](monograph/VERHODGE_monograph_en.pdf) ·
 [ Монография RU ](monograph/VERHODGE_monograph_ru.pdf) ·
 [ Data appendix ](appendix/VERHODGE_data_appendix_v1.11.xlsx) ·
 [ Figures 600 DPI ](figures/manifest.json)
 
 </div>
+
+The engine, layer by layer:
+
+```mermaid
+flowchart LR
+    IN["HODGE-INPUT v1<br/>level-0 executable JSON"] --> SCHEMA["input_schema.py<br/>the asymmetric contract<br/>level-3 → NOT-DETERMINED"]
+    SCHEMA --> ENG["the engine: verhodge/<br/>poly · census · cyclotomic · snf<br/>lattice · gross · dwork · gdreduce"]
+    ENG --> PROT["protocol.py<br/>V1..V24 · claims C-001..C-020"]
+    PROT --> OUT{{"ALGEBRAIC CERTIFICATE<br/>or<br/>NOT-DETERMINED"}}
+    OUT --> RES["results/baseline_v15_v18.json<br/>ALL CHECKS PASSED"]
+    ENG -.->|"machine-checked"| LEAN["theorems/Lean/<br/>Grammar · Census · SnfSpec"]
+```
 
 ---
 

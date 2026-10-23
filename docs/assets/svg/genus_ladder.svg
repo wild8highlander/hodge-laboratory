@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="900" height="500" role="img" aria-labelledby="glTitle glDesc">
+  <title id="glTitle">Genus growth along the ladder of stands</title>
+  <desc id="glDesc">Animated step chart: the genus climbs from the torus (1) through Klein (3), the Hurwitz rung F7 (15) and the Macbeath rung F9 (28) to the cyclotomic levels F15 (91) and F30 (406) — g(N) = (N-1)(N-2)/2.</desc>
+  <defs>
+    <linearGradient id="gBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0B1026"/>
+      <stop offset="1" stop-color="#161945"/>
+    </linearGradient>
+    <linearGradient id="gStroke" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="0.5" stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#FBBF24"/>
+    </linearGradient>
+    <linearGradient id="barG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0.06"/>
+    </linearGradient>
+    <linearGradient id="barG6" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FBBF24" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#FBBF24" stop-opacity="0.06"/>
+    </linearGradient>
+    <filter id="gGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .t1{font:bold 20px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#E5ECFF;letter-spacing:2px}
+      .t2{font:600 12px 'SFMono-Regular',Consolas,monospace;fill:#9AB0D8}
+      .xl{font:600 12px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#9AB0D8}
+      .vl{font:bold 17px 'SFMono-Regular',Consolas,monospace;fill:#FFFFFF}
+      .lg{animation:linePulse 4.8s ease-in-out infinite}
+      .pt{animation:ptPulse 4.8s ease-in-out infinite}
+      .d2{animation-delay:.4s}.d3{animation-delay:.8s}.d4{animation-delay:1.2s}.d5{animation-delay:1.6s}.d6{animation-delay:2s}
+      .num{opacity:0;animation:numIn 7s ease-out infinite}
+      .n2{animation-delay:1s}.n3{animation-delay:2s}.n4{animation-delay:3s}.n5{animation-delay:4s}.n6{animation-delay:5s}
+      .burst{opacity:0;animation:burst 7s ease-out infinite}
+      .br2{animation-delay:1s}.br3{animation-delay:2s}.br4{animation-delay:3s}.br5{animation-delay:4s}.br6{animation-delay:5s}
+      @keyframes linePulse{0%,100%{opacity:.7}50%{opacity:1}}
+      @keyframes ptPulse{0%,100%{r:5;opacity:.8}50%{r:7;opacity:1}}
+      @keyframes numIn{0%,10%{opacity:0;transform:translateY(8px)}16%,88%{opacity:1;transform:translateY(0)}95%,100%{opacity:0}}
+      @keyframes burst{0%,10%{opacity:0;transform:scale(.2)}16%{opacity:.9;transform:scale(1.25)}26%,100%{opacity:0;transform:scale(1.9)}}
+      @media (prefers-reduced-motion: reduce){.lg,.pt,.num,.burst{animation:none}.lg{opacity:1}.pt{opacity:1}.num,.burst{opacity:1}.burst{opacity:.35}}
+    </style>
+  </defs>
+
+  <rect width="900" height="500" fill="url(#gBg)"/>
+  <g stroke="#4C6FFF" stroke-opacity="0.07"><path d="M70 100H860M70 170H860M70 240H860M70 310H860M70 380H860"/></g>
+  <text x="70" y="40" class="t1">GENUS GROWTH ALONG THE LADDER OF STANDS</text>
+  <text x="70" y="62" class="t2">Fermat rungs: g(N) = (N−1)(N−2)/2 · the complexity jump 91 and 406 at the cyclotomic levels</text>
+
+  <!-- axes -->
+  <line x1="70" y1="420" x2="860" y2="420" stroke="#5871A3" stroke-width="1.6"/>
+  <line x1="70" y1="70" x2="70" y2="420" stroke="#5871A3" stroke-width="1.6"/>
+  <g stroke="#3A4666" stroke-width="1" stroke-dasharray="2 5">
+    <path d="M70 350H860M70 262H860M70 116H860"/>
+  </g>
+  <g class="t2" text-anchor="end">
+    <text x="62" y="424">0</text><text x="62" y="354">100</text><text x="62" y="266">200</text><text x="62" y="120">400</text>
+  </g>
+  <text x="26" y="250" transform="rotate(-90 26 250)" text-anchor="middle" class="t2" style="letter-spacing:2px">GENUS</text>
+
+  <!-- step platforms baseline y=420; tops: 1→419, 3→418, 15→409, 28→399, 91→351, 406→109 -->
+  <!-- x centers: 130 260 390 520 650 790 -->
+  <!-- bars -->
+  <g>
+    <rect x="105" y="419" width="50" height="1" fill="url(#barG)"/>
+    <rect x="235" y="418" width="50" height="2" fill="url(#barG)"/>
+    <rect x="365" y="409" width="50" height="11" fill="url(#barG)"/>
+    <rect x="495" y="399" width="50" height="21" fill="url(#barG)"/>
+    <rect x="625" y="351" width="50" height="69" fill="url(#barG)"/>
+    <rect x="765" y="109" width="50" height="311" fill="url(#barG6)"/>
+  </g>
+
+  <!-- glowing polyline -->
+  <g class="lg" filter="url(#gGlow)">
+    <path d="M130 419 260 418 390 409 520 399 650 351 790 109" fill="none" stroke="url(#gStroke)" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"/>
+  </g>
+
+  <!-- points + bursts + numbers -->
+  <g>
+    <circle class="pt" cx="130" cy="419" r="5" fill="#22D3EE"/>
+    <circle class="pt d2" cx="260" cy="418" r="5" fill="#38BDF8"/>
+    <circle class="pt d3" cx="390" cy="409" r="5" fill="#A78BFA"/>
+    <circle class="pt d4" cx="520" cy="399" r="5" fill="#C4B5FD"/>
+    <circle class="pt d5" cx="650" cy="351" r="5" fill="#E879F9"/>
+    <circle class="pt d6" cx="790" cy="109" r="6" fill="#FBBF24"/>
+    <g class="burst br2" transform-origin="260 418"><circle cx="260" cy="418" r="12" fill="none" stroke="#38BDF8" stroke-width="1.6"/></g>
+    <g class="burst br3" transform-origin="390 409"><circle cx="390" cy="409" r="12" fill="none" stroke="#A78BFA" stroke-width="1.6"/></g>
+    <g class="burst br4" transform-origin="520 399"><circle cx="520" cy="399" r="12" fill="none" stroke="#C4B5FD" stroke-width="1.6"/></g>
+    <g class="burst br5" transform-origin="650 351"><circle cx="650" cy="351" r="12" fill="none" stroke="#E879F9" stroke-width="1.6"/></g>
+    <g class="burst br6" transform-origin="790 109"><circle cx="790" cy="109" r="14" fill="none" stroke="#FBBF24" stroke-width="2"/></g>
+  </g>
+
+  <!-- counting numbers -->
+  <g text-anchor="middle">
+    <g class="num"><text x="130" y="399" class="vl" fill="#7DD3FC">1</text></g>
+    <g class="num n2"><text x="260" y="398" class="vl" fill="#7DD3FC">3</text></g>
+    <g class="num n3"><text x="390" y="389" class="vl" fill="#CBB8FF">15</text></g>
+    <g class="num n4"><text x="520" y="379" class="vl" fill="#DDD6FE">28</text></g>
+    <g class="num n5"><text x="650" y="331" class="vl" fill="#F5C4FF">91</text></g>
+    <g class="num n6"><text x="790" y="89" class="vl" fill="#FDE68A" style="font-size:22px">406</text></g>
+  </g>
+
+  <!-- x labels -->
+  <g class="xl" text-anchor="middle">
+    <text x="130" y="446">Torus</text>
+    <text x="260" y="446">Klein · N7</text>
+    <text x="390" y="446">F₇ Hurwitz</text>
+    <text x="520" y="446">F₉ Macbeath</text>
+    <text x="650" y="446">Fermat N=15</text>
+    <text x="790" y="446">Fermat N=30</text>
+  </g>
+  <g class="t2" text-anchor="middle" style="fill:#5871A3">
+    <text x="130" y="464">g = 1</text>
+    <text x="260" y="464">g = 3</text>
+    <text x="390" y="464">g = 15</text>
+    <text x="520" y="464">g = 28</text>
+    <text x="650" y="464">g = 91</text>
+    <text x="790" y="464">g = 406</text>
+  </g>
+
+  <!-- annotation: the jump -->
+  <g>
+    <path d="M650 335C690 300 740 220 782 130" fill="none" stroke="#FBBF24" stroke-width="1" stroke-dasharray="3 6" opacity="0.7"/>
+    <text x="700" y="242" class="t2" fill="#FDE68A" transform="rotate(-33 700 242)">×4.5 per level</text>
+  </g>
+</svg>

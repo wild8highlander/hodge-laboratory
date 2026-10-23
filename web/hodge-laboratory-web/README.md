@@ -1,5 +1,13 @@
 # 🧮 HODGE LABORATORY WEB
 
+<div align="center">
+
+[⬆ Main repo / главный репозиторий](../../README.md) · [✅ Verification](../../verification/README.md) · [📚 Theorems](../../theorems/README.md) · [♞ Hodge Flow Chess](../hodge-flow-chess/README.md)
+
+**[▶ OPEN THE APP / ОТКРЫТЬ ПРИЛОЖЕНИЕ](https://wild8highlander.github.io/hodge-laboratory-web/)**
+
+</div>
+
 ### Лаборатория динамического принципа — в браузере / The Dynamic Principle Laboratory — in the browser
 
 **Полноценное двуязычное (RU/EN) веб-приложение** репозитория
@@ -11,6 +19,27 @@
 ---
 
 ## Что внутри / What is inside
+
+<p align="center">
+  <a href="https://wild8highlander.github.io/hodge-laboratory-web/">
+    <img src="../../docs/assets/svg/web_hodge_lab_preview.svg" alt="Hodge Laboratory Web — preview card: a dark navy interface with the roadmap runner progress, the animated ladder of stands, the verdict card ALL CHECKS PASSED with V1-V9, A-J, C1-C10 and Lean chips, and the experiment designer strip" width="88%"></a>
+  <sub>Клик открывает живое приложение / Click to open the live app.</sub>
+</p>
+
+**Карта разделов / Section map:**
+
+```mermaid
+flowchart LR
+    OV["◈ Overview<br/>статистика · лестница"] --> RR["▶ Roadmap Runner<br/>V1–V9 → стенды → сертификаты<br/>→ C1–C10 → базлайн → графики"]
+    RR --> PR["∑ Protocol V1–V9"]
+    RR --> ST["△ Stands<br/>тор · K3 · Клейн · N7 · N9 · E8"]
+    RR --> CT["✦ Certificates A–J"]
+    CT --> DS["⚗ Designer<br/>N ≤ 4096 · dps ≤ 200"]
+    DS --> HC["🕸 Hodge Cycles C1–C10"]
+    HC --> RP["▤ Reports · 600 dpi"]
+    RP --> MF["📕 Monograph Forge"]
+    MF --> VF["✔ Verification · 5 + Lean"]
+```
 
 | Раздел / Section | Описание / Description |
 |---|---|

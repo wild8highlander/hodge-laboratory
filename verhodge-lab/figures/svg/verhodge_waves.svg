@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 430" width="1100" height="430" role="img" aria-labelledby="vhTitle vhDesc">
+  <title id="vhTitle">VER-HODGE — the wave map and the asymmetric contract</title>
+  <desc id="vhDesc">The computed waves v1.5 through v1.11 on an ascending path — from the census and the SNF engine to the psi-gauge theorem and the Dwork family at degrees 3, 4, 5 — under the asymmetric output contract: ALGEBRAIC CERTIFICATE or NOT-DETERMINED, never a guess.</desc>
+  <defs>
+    <linearGradient id="vhBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0B1026"/>
+      <stop offset="1" stop-color="#171542"/>
+    </linearGradient>
+    <linearGradient id="vhPath" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#FBBF24"/>
+    </linearGradient>
+    <filter id="vhGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .t{font:bold 24px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#F3F6FF;letter-spacing:3px}
+      .st{font:600 13px 'SFMono-Regular',Consolas,monospace;fill:#9AB0D8}
+      .w{font:bold 14px 'SFMono-Regular',Consolas,monospace}
+      .note{font:600 10.5px 'SFMono-Regular',Consolas,monospace;fill:#8FA3CF}
+      .nd{animation:ndP 4s ease-in-out infinite}
+      .dash{stroke-dasharray:5 9;animation:dashF 2.8s linear infinite}
+      @keyframes ndP{0%,100%{opacity:.55}50%{opacity:1}}
+      @keyframes dashF{to{stroke-dashoffset:-56}}
+      @media (prefers-reduced-motion: reduce){.nd,.dash{animation:none}.nd{opacity:.9}}
+    </style>
+  </defs>
+
+  <rect width="1100" height="430" fill="url(#vhBg)"/>
+  <g stroke="#4C6FFF" stroke-opacity="0.07"><path d="M0 90H1100M0 170H1100M0 250H1100M0 330H1100"/><path d="M137 60V430M275 60V430M413 60V430M550 60V430M688 60V430M825 60V430M963 60V430"/></g>
+
+  <text x="40" y="42" class="t">VER-HODGE · THE WAVE MAP</text>
+  <text x="1060" y="42" text-anchor="end" class="st">polynomial-time · exact · explicit</text>
+
+  <!-- ascending wave path -->
+  <path class="dash" d="M80 330C160 322 220 290 275 282S400 240 413 224S520 170 550 160S670 116 688 106S940 58 963 52" fill="none" stroke="url(#vhPath)" stroke-width="3" filter="url(#vhGlow)"/>
+
+  <!-- wave nodes -->
+  <g text-anchor="middle">
+    <g>
+      <circle cx="80" cy="330" r="9" fill="#0E2A3A" stroke="#22D3EE" stroke-width="2"/>
+      <text x="80" y="335" class="w" fill="#5BD6F5" style="font-size:11px">v1.5</text>
+      <text x="80" y="366" class="note">census · cert K (N=11)</text>
+      <text x="80" y="381" class="note">HODGE-INPUT v1</text>
+    </g>
+    <g>
+      <circle cx="275" cy="282" r="9" fill="#13203E" stroke="#38BDF8" stroke-width="2"/>
+      <text x="275" y="287" class="w" fill="#7CD3FA" style="font-size:11px">v1.6</text>
+      <text x="275" y="318" class="note">SNF engine</text>
+      <text x="275" y="333" class="note">(1,1,5,5,15,15,15,15)</text>
+    </g>
+    <g>
+      <circle cx="413" cy="224" r="9" fill="#241A3E" stroke="#A78BFA" stroke-width="2"/>
+      <text x="413" y="229" class="w" fill="#CBB8FF" style="font-size:11px">v1.8</text>
+      <text x="413" y="260" class="note">K3 lattice rank 20</text>
+      <text x="413" y="275" class="note">Gross vol_h = 1125</text>
+    </g>
+    <g>
+      <circle cx="550" cy="160" r="9" fill="#2B1A3E" stroke="#C4B5FD" stroke-width="2"/>
+      <text x="550" y="165" class="w" fill="#DDD6FE" style="font-size:11px">v1.9</text>
+      <text x="550" y="196" class="note">ψ-form PF target</text>
+      <text x="550" y="211" class="note">NE05 refutation</text>
+    </g>
+    <g>
+      <circle cx="688" cy="106" r="9" fill="#36163C" stroke="#E879F9" stroke-width="2"/>
+      <text x="688" y="111" class="w" fill="#F5C4FF" style="font-size:11px">v1.10</text>
+      <text x="688" y="142" class="note">ψ-gauge theorem</text>
+      <text x="688" y="157" class="note">L_true(ψg) = ψ·L_c(g)</text>
+    </g>
+    <g>
+      <circle cx="830" cy="72" r="9" fill="#3A2B0E" stroke="#FBBF24" stroke-width="2"/>
+      <text x="830" y="77" class="w" fill="#FDE68A" style="font-size:11px">v1.11</text>
+      <text x="830" y="108" class="note">Dwork family d = 3, 4, 5</text>
+      <text x="830" y="123" class="note">five certification layers</text>
+    </g>
+    <g>
+      <circle cx="963" cy="52" r="9" fill="#3A2B0E" stroke="#FDE68A" stroke-width="2"/>
+      <text x="963" y="57" class="w" fill="#FEF3C7" style="font-size:11px">i18n</text>
+      <text x="963" y="88" class="note">EN/RU monographs</text>
+      <text x="963" y="103" class="note">60 figures @ 600 dpi</text>
+    </g>
+  </g>
+
+  <!-- asymmetric contract banner -->
+  <g transform="translate(60 268)">
+    <rect width="500" height="128" rx="14" fill="#0D1830" stroke="#2C3A5E" stroke-width="1.4"/>
+    <text x="20" y="30" class="st" style="fill:#E5ECFF;letter-spacing:2px">THE ASYMMETRIC OUTPUT CONTRACT</text>
+    <g>
+      <rect x="20" y="46" width="222" height="30" rx="15" fill="#12261C" stroke="#2EA043" stroke-width="1.3"/>
+      <text x="131" y="66" text-anchor="middle" style="font:700 12.5px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">ALGEBRAIC CERTIFICATE</text>
+    </g>
+    <text x="258" y="66" text-anchor="middle" style="font:600 13px 'SFMono-Regular',Consolas,monospace" fill="#8FA3CF">or</text>
+    <g class="nd">
+      <rect x="270" y="46" width="210" height="30" rx="15" fill="#2B2113" stroke="#FBBF24" stroke-width="1.3"/>
+      <text x="375" y="66" text-anchor="middle" style="font:700 12.5px 'SFMono-Regular',Consolas,monospace" fill="#FBBF24">NOT-DETERMINED</text>
+    </g>
+    <text x="20" y="94" class="note">never a guess · level-3 inputs dispatch to NOT-DETERMINED</text>
+    <text x="20" y="111" class="note">enforced in code + Lean (level3_never_certified) + C-007</text>
+  </g>
+</svg>

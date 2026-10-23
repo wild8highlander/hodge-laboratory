@@ -1,5 +1,11 @@
 # monograph/ — the document corpus (28 files × RU/EN × PDF/DOCX)
 
+
+<div align="center">
+
+[⬆ Chess Particle Dynamics](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
 The printed body of the program: the main monograph, twelve theorem monographs and
 the research paper «Предел частиц» / The Particle Limit, each in **Russian and
 English**, each in **PDF and DOCX** — 56 documents in total.

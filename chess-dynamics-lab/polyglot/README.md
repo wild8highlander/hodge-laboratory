@@ -1,5 +1,24 @@
 # polyglot/ — the C1–C10 battery in seven languages
 
+
+<div align="center">
+
+[⬆ Chess Particle Dynamics](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
+
+```mermaid
+flowchart TB
+    BAT["the battery C1–C10<br/>perft · censuses · mobility · fields<br/>energy · mates · zobrist · tour"] --> PY["Python"]
+    BAT --> C["C"]
+    BAT --> RS["Rust"]
+    BAT --> GO["Go"]
+    BAT --> JL["Julia"]
+    BAT --> JS["JavaScript"]
+    BAT --> JV["Java"]
+    PY & C & RS & GO & JL & JS & JV --> V["verdict: 10/10 — byte-identical<br/>in all seven ecosystems"]
+```
+
 The same verification battery is implemented **independently** in seven languages.
 Each backend builds its own tables, recomputes its own censuses and prints the same
 protocol lines; the final line of every run is `verdict: 10/10`.

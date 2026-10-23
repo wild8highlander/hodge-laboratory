@@ -1,6 +1,17 @@
 # Monograph slots (T21-T24)
 
+<div align="center">
+
+[⬆ VER-HODGE](../README.md) · [⬆ Theorems T01–T20](../../theorems/README.md)
+
+</div>
+
 The monograph continues the hodge-laboratory numbering (T01-T20).
+
+```mermaid
+flowchart LR
+    T20["T20 conductor census<br/>(hodge-laboratory)"] --> T21["T21 · v1.5<br/>N=11 quintic · certificate K"] --> T22["T22 · v1.6<br/>SNF engine"] --> T23["T23 · v1.6+<br/>Gross normalization"] --> T24["T24 · v1.8<br/>Dwork pencil"]
+```
 
 | slot | wave | title | status |
 |------|------|-------|--------|

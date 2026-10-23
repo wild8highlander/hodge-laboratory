@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-labelledby="chTitle chDesc">
+  <title id="chTitle">Chess Particle Dynamics — a certifiable laboratory</title>
+  <desc id="chDesc">Hero banner: chess as the dynamics of a particle system — the threat field layer K3, the Lagrangian energy layer TORUS and the discrete flow layer KLEIN; protocol C1-C9 ALL PASS; the polyglot battery 10/10 in seven languages.</desc>
+  <defs>
+    <linearGradient id="chBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0A1120"/>
+      <stop offset="0.6" stop-color="#101B33"/>
+      <stop offset="1" stop-color="#152242"/>
+    </linearGradient>
+    <radialGradient id="goldP2" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFE9B8" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#C9A96A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="violP2" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#D9C2FF" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#9D7BD8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="chGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .t{font:bold 42px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#F3F6FF;letter-spacing:8px}
+      .st{font:600 16px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#5BD6F5;letter-spacing:3px}
+      .fm{font:600 15px 'SFMono-Regular',Consolas,monospace}
+      .lay{font:bold 15px 'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:2px}
+      .sub{font:600 12px 'SFMono-Regular',Consolas,monospace;fill:#8FA3CF}
+      .badge{font:700 12.5px 'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:1px}
+      .pW{animation:floatA 5.2s ease-in-out infinite}
+      .pB{animation:floatB 6.1s ease-in-out infinite}
+      .field{animation:fieldP 6s ease-in-out infinite}
+      .card{animation:cardP 5.4s ease-in-out infinite}
+      .c2{animation-delay:1.8s}.c3{animation-delay:3.6s}
+      @keyframes floatA{0%,100%{transform:translate(0,0)}50%{transform:translate(-5px,-4px)}}
+      @keyframes floatB{0%,100%{transform:translate(0,0)}50%{transform:translate(5px,4px)}}
+      @keyframes fieldP{0%,100%{opacity:.3}50%{opacity:.75}}
+      @keyframes cardP{0%,100%{opacity:.6}50%{opacity:1}}
+      @media (prefers-reduced-motion: reduce){.pW,.pB,.field,.card{animation:none}.field{opacity:.55}.card{opacity:.95}}
+    </style>
+  </defs>
+
+  <rect width="1200" height="420" fill="url(#chBg)"/>
+  <g stroke="#3FC9AD" stroke-opacity="0.06"><path d="M0 70H1200M0 140H1200M0 210H1200M0 280H1200M0 350H1200M100 0V420M200 0V420M300 0V420M400 0V420M500 0V420M600 0V420M700 0V420M800 0V420M900 0V420M1000 0V420M1100 0V420"/></g>
+
+  <text x="600" y="56" text-anchor="middle" class="t">CHESS DYNAMICS LAB</text>
+  <text x="600" y="82" text-anchor="middle" class="st">EVERY PIECE IS A PARTICLE · EVERY THEOREM IS AN EXECUTABLE CHECK</text>
+
+  <!-- board with particles -->
+  <g transform="translate(64 130)">
+    <rect x="-12" y="-12" width="288" height="288" rx="12" fill="#0E1730" stroke="#2C3A5E"/>
+    <g>
+      <rect width="264" height="264" rx="6" fill="#16233F"/>
+      <g fill="#1E2E52">
+        <rect x="33" width="33" height="33"/><rect x="99" width="33" height="33"/><rect x="165" width="33" height="33"/><rect x="231" width="33" height="33"/>
+        <rect y="33" width="33" height="33"/><rect x="66" y="33" width="33" height="33"/><rect x="132" y="33" width="33" height="33"/><rect x="198" y="33" width="33" height="33"/>
+        <rect x="33" y="66" width="33" height="33"/><rect x="99" y="66" width="33" height="33"/><rect x="165" y="66" width="33" height="33"/><rect x="231" y="66" width="33" height="33"/>
+        <rect y="99" width="33" height="33"/><rect x="66" y="99" width="33" height="33"/><rect x="132" y="99" width="33" height="33"/><rect x="198" y="99" width="33" height="33"/>
+        <rect x="33" y="132" width="33" height="33"/><rect x="99" y="132" width="33" height="33"/><rect x="165" y="132" width="33" height="33"/><rect x="231" y="132" width="33" height="33"/>
+        <rect y="165" width="33" height="33"/><rect x="66" y="165" width="33" height="33"/><rect x="132" y="165" width="33" height="33"/><rect x="198" y="165" width="33" height="33"/>
+        <rect x="33" y="198" width="33" height="33"/><rect x="99" y="198" width="33" height="33"/><rect x="165" y="198" width="33" height="33"/><rect x="231" y="198" width="33" height="33"/>
+        <rect y="231" width="33" height="33"/><rect x="66" y="231" width="33" height="33"/><rect x="132" y="231" width="33" height="33"/><rect x="198" y="231" width="33" height="33"/>
+      </g>
+      <rect width="264" height="264" rx="6" fill="none" stroke="#3FC9AD" stroke-opacity="0.3"/>
+    </g>
+    <!-- threat field aura -->
+    <g class="field" filter="url(#chGlow)">
+      <circle cx="198" cy="66" r="40" fill="#C9A96A" fill-opacity="0.12"/>
+      <circle cx="66" cy="198" r="34" fill="#9D7BD8" fill-opacity="0.12"/>
+    </g>
+    <!-- particles -->
+    <g class="pW">
+      <circle cx="198" cy="66" r="20" fill="url(#goldP2)"/>
+      <text x="198" y="75" text-anchor="middle" style="font-size:20px" fill="#FFE9B8">♕</text>
+    </g>
+    <g class="pW">
+      <circle cx="99" cy="33" r="14" fill="url(#goldP2)"/>
+      <text x="99" y="40" text-anchor="middle" style="font-size:13px" fill="#FFE9B8">♘</text>
+    </g>
+    <g class="pB">
+      <circle cx="66" cy="198" r="18" fill="url(#violP2)"/>
+      <text x="66" y="206" text-anchor="middle" style="font-size:18px" fill="#E6DAFF">♚</text>
+    </g>
+    <g class="pB">
+      <circle cx="231" cy="231" r="14" fill="url(#violP2)"/>
+      <text x="231" y="238" text-anchor="middle" style="font-size:13px" fill="#E6DAFF">♟</text>
+    </g>
+    <text x="132" y="292" text-anchor="middle" class="sub">threat field Θ(c) · heatmap · μ₄ phases</text>
+  </g>
+
+  <!-- three layer cards -->
+  <g transform="translate(408 122)" text-anchor="middle">
+    <g class="card">
+      <rect width="248" height="88" rx="14" fill="#101F33" stroke="#3FC9AD" stroke-opacity="0.7"/>
+      <text x="124" y="30" class="lay" fill="#5FE3C0">K3 · POTENTIAL LAYER</text>
+      <text x="124" y="56" class="fm" fill="#C9E8E0" style="font-size:13.5px">ΣΘ(c) = Σa(π)</text>
+      <text x="124" y="76" class="sub" style="font-size:10.5px">threat field · additivity · D4-equivariance</text>
+    </g>
+    <g class="card c2">
+      <rect y="104" width="248" height="88" rx="14" fill="#1C1833" stroke="#9D7BD8" stroke-opacity="0.7"/>
+      <text x="124" y="134" class="lay" fill="#C9B8FF">TORUS · ENERGY LAYER</text>
+      <text x="124" y="160" class="fm" fill="#E6DAFF" style="font-size:13.5px">E = [M(w)−M(b)] + μ(w)−m(b)</text>
+      <text x="124" y="180" class="sub" style="font-size:10.5px">Lagrangian · μ = 0.1 · 20 → 30 certificates</text>
+    </g>
+    <g class="card c3">
+      <rect y="208" width="248" height="88" rx="14" fill="#241B10" stroke="#C9A96A" stroke-opacity="0.8"/>
+      <text x="124" y="238" class="lay" fill="#FDE68A">KLEIN · FLOW LAYER</text>
+      <text x="124" y="264" class="fm" fill="#F5E6C4" style="font-size:13.5px">t* = lcm(W/gcd(a,W), H/gcd(b,H))</text>
+      <text x="124" y="284" class="sub" style="font-size:10.5px">billiard γ = π⁴/256 · termination · order 7</text>
+    </g>
+  </g>
+
+  <!-- theorems + verdict column -->
+  <g transform="translate(704 122)">
+    <rect width="432" height="150" rx="14" fill="#0D1830" stroke="#2C3A5E"/>
+    <text x="18" y="30" class="sub" style="fill:#9AB0D8;letter-spacing:1.5px">TWELVE THEOREM MONOGRAPHS · T01–T12</text>
+    <g class="fm" style="font-size:12px">
+      <text x="18" y="58" fill="#5FE3C0">T01 board algebra</text><text x="222" y="58" fill="#5FE3C0">T02 kinematics</text>
+      <text x="18" y="82" fill="#C9B8FF">T03 mobility</text><text x="222" y="82" fill="#C9B8FF">T04 threat fields</text>
+      <text x="18" y="106" fill="#FDE68A">T05 lagrangian</text><text x="222" y="106" fill="#FDE68A">T06 flow termination</text>
+      <text x="18" y="130" fill="#5BD6F5">T07–T12: tour · perft · zobrist · α-β · mates · protocol</text>
+    </g>
+    <g class="card c2" transform="translate(0 166)">
+      <rect width="432" height="64" rx="12" fill="#101F16" stroke="#2EA043"/>
+      <text x="20" y="27" class="fm" fill="#3FD16B" style="font-size:17px">✔ verdict: ALL CHECKS PASSED</text>
+      <text x="20" y="50" class="sub" style="font-size:11px">protocol C1–C9 · 181 pytest · bit-exact retrograde bases</text>
+    </g>
+    <g class="card c3" transform="translate(0 244)">
+      <rect width="432" height="52" rx="12" fill="#131A2C" stroke="#3FC9AD" stroke-opacity="0.6"/>
+      <text x="20" y="23" class="fm" fill="#5FE3C0" style="font-size:14px">polyglot C1–C10: 10/10 · seven languages</text>
+      <text x="20" y="42" class="sub" style="font-size:10.5px">Python · C · Rust · Go · Julia · JavaScript · Java</text>
+    </g>
+  </g>
+
+  <text x="600" y="406" text-anchor="middle" class="sub" style="fill:#5871A3">generalized boards n×n · exact retrograde oracles · EXPTIME barrier · P ⊊ EXPTIME</text>
+</svg>

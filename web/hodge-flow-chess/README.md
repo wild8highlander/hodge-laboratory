@@ -1,5 +1,13 @@
 # ♞ Hodge Flow — Шахматная Лаборатория / Chess Flow Laboratory
 
+<div align="center">
+
+[⬆ Main repo / главный репозиторий](../../README.md) · [🧪 Hodge Laboratory Web](../hodge-laboratory-web/README.md) · [✅ Verification](../../verification/README.md)
+
+**[▶ OPEN THE APP / ОТКРЫТЬ ПРИЛОЖЕНИЕ](https://wild8highlander.github.io/hodge-flow-chess/)**
+
+</div>
+
 **Версия / Version:** 1.0.0
 **Программа: Исаев Исхак Хамзатович / Program: Isaev Iskhak Khamzatovich**
 Репозиторий монографии / Monograph repository: [github.com/wild8highlander/hodge-laboratory](https://github.com/wild8highlander/hodge-laboratory)
@@ -9,6 +17,12 @@
 A static bilingual (RU/EN) web app: an interactive implementation of the "chessboard idea" of the monograph **"The Dynamic Principle"** (Part XV) — the real-time discrete flow on the chessboard grid, the μ₄-equivariance formula grid, the torus → K3 → Klein layers, large matrix towers and Protocol E. No build step, no server, no dependencies — plain HTML + CSS + JS.
 
 ---
+
+<p align="center">
+  <a href="https://wild8highlander.github.io/hodge-flow-chess/">
+    <img src="../../docs/assets/svg/web_chess_preview.svg" alt="Hodge Flow Chess — preview card: an 8x8 board with glowing gold and violet particles, the flow formulas t* = lcm and gamma = pi^4/k, the protocol E chips E1 through E6 and the mu4-equivariance deviation 0.000" width="88%"></a>
+  <sub>Клик открывает живое приложение / Click to open the live app.</sub>
+</p>
 
 ## 🇷🇺 Русский
 

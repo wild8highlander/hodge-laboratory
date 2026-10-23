@@ -2,6 +2,12 @@
 
 <div align="center">
 
+[⬆ Main README](../README.md) · [📕 Unified monograph](../monograph/README.md) · [✅ Verification stack](../verification/README.md) · [🌐 Web suite](../README.md#Live-web-suite-and-the-five-language-analogues)
+
+</div>
+
+<div align="center">
+
 **22 self-sufficient studies · 88 documents · PDF + DOCX · RU/EN · complete proofs**
 
 Each theorem of the program is packaged as a standalone monograph:
@@ -14,6 +20,31 @@ individually — at any time and in any order.
 ---
 
 ## 🗂 Full index
+
+The shape of the collection — six parts, one spine, two continuation
+slots in VER-HODGE:
+
+```mermaid
+flowchart LR
+    subgraph I["Part I · foundations"]
+        A1["T01–T06<br/>genus · periods · Γ · Riemann<br/>normalization · indices"]
+    end
+    subgraph II["Parts II–III · calibration & certificates"]
+        A2["T07–T09<br/>torus · K3 · errata E8"]
+        A3["T10–T16<br/>certificates B–H<br/>+ Klein"]
+    end
+    subgraph III["Parts IV–VI · rungs"]
+        A4["T17–T18<br/>cubic rungs N=7/9"]
+        A5["T19–T20<br/>tower · census"]
+        A6["T21–T22<br/>quintic N=11 · SNF"]
+    end
+    A1 --> A3
+    A2 --> A3
+    A3 --> A4
+    A3 --> A5
+    A5 --> A6
+    A6 -.->|"next slots"| NX["T23 Gross normalization<br/>T24 Dwork pencil"]
+```
 
 ### Part I. The foundation of the cyclotomic stand N=15/30
 
@@ -169,6 +200,29 @@ T22 SNF engine ────────────── the polarization types
 
 Every monograph is self-sufficient: reading its proof requires none
 of the others — the cross-references are navigation, not dependency.
+
+<details>
+<summary><b>The reading path as an interactive diagram (Mermaid)</b></summary>
+
+```mermaid
+flowchart TB
+    T01["T01 genus"] --> T02["T02 period"] --> T03["T03 Γ-identities"] --> T04["T04 Riemann"]
+    T07["T07 torus"] --> T08["T08 K3"] --> T10["T10 cert B"] --> T11["T11 cert C"] --> T12["T12 cert D"]
+    T09["T09 errata E8"] --> T14["T14 cert F"] --> T15["T15 cert G"] --> T06["T06 indices"]
+    T02 --> T05["T05 normalization"]
+    T03 --> T05
+    T13["T13 cert E · flow"]
+    T06 --> T16["T16 cert H + Klein — closing the arch"]
+    T17["T17 Hurwitz N=7"] & T18["T18 Macbeath N=9"]
+    T19["T19 quartic tower"] --> T21["T21 quintic N=11"]
+    T20["T20 census"] --> T22["T22 SNF engine"]
+```
+
+The ASCII map above and this diagram carry the same information —
+the Mermaid version renders natively on GitHub and stays diffable
+in pull requests.
+
+</details>
 
 ---
 

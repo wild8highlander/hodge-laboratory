@@ -1,5 +1,11 @@
 # tests/ — the pytest suite
 
+
+<div align="center">
+
+[⬆ Chess Particle Dynamics](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
 181 tests over the core, the engine package, the frozen baseline, the
 vortex layer, the E5 solution ladder and the outcome program (epochs
 I–VII + the real-game pipeline). Run:

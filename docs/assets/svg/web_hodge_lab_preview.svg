@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" role="img" aria-labelledby="wp1Title wp1Desc">
+  <title id="wp1Title">Hodge Laboratory Web — live app preview card</title>
+  <desc id="wp1Desc">Stylized preview of the Hodge Laboratory web app: a dark navy interface with the roadmap runner V1-V9, the ladder of stands, the certificates A-J, the experiment designer and a live ALL PASS verdict.</desc>
+  <defs>
+    <linearGradient id="wBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0B1026"/>
+      <stop offset="1" stop-color="#171542"/>
+    </linearGradient>
+    <filter id="wGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .url{font:600 13px 'SFMono-Regular',Consolas,monospace;fill:#8FA3CF}
+      .sec{font:600 13px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#9AB0D8}
+      .secA{fill:#E5ECFF}
+      .fm{font:600 15px 'SFMono-Regular',Consolas,monospace}
+      .chip{font:600 10.5px 'SFMono-Regular',Consolas,monospace}
+      .runbar{animation:run 9s ease-in-out infinite}
+      .verdict{animation:vpulse 3.2s ease-in-out infinite}
+      .spot{animation:spot 6s ease-in-out infinite}
+      @keyframes run{0%{width:8px}45%{width:436px}70%{width:436px}86%{width:8px}100%{width:8px}}
+      @keyframes vpulse{0%,100%{opacity:.75}50%{opacity:1}}
+      @keyframes spot{0%,100%{opacity:.25}50%{opacity:.7}}
+      @media (prefers-reduced-motion: reduce){.runbar,.verdict,.spot{animation:none}}
+    </style>
+  </defs>
+
+  <rect width="1000" height="560" rx="18" fill="url(#wBg)" stroke="#2C3A5E" stroke-width="1.5"/>
+  <rect width="1000" height="560" rx="18" fill="none" stroke="#22D3EE" stroke-opacity="0.25" stroke-width="2.5"/>
+  <g stroke="#4C6FFF" stroke-opacity="0.06"><path d="M0 90H1000M250 90V560M500 90V560M750 90V560"/></g>
+
+  <!-- browser chrome -->
+  <rect x="1" y="1" width="998" height="46" rx="17" fill="#151B31"/>
+  <circle cx="28" cy="24" r="5.5" fill="#FF5F56"/>
+  <circle cx="48" cy="24" r="5.5" fill="#FFBD2E"/>
+  <circle cx="68" cy="24" r="5.5" fill="#27C93F"/>
+  <rect x="96" y="10" width="620" height="28" rx="14" fill="#0D1322" stroke="#26324F"/>
+  <circle cx="116" cy="24" r="3" fill="#22D3EE" class="spot"/>
+  <text x="132" y="29" class="url">https://wild8highlander.github.io/hodge-laboratory-web/</text>
+  <g transform="translate(906 14)">
+    <rect width="76" height="22" rx="11" fill="#12261C" stroke="#2EA043" stroke-width="1.2"/>
+    <text x="38" y="15.5" text-anchor="middle" class="chip" fill="#3FD16B">LIVE · RU/EN</text>
+  </g>
+
+  <!-- sidebar -->
+  <rect x="1" y="47" width="228" height="512" fill="#0E1428"/>
+  <text x="22" y="84" style="font:bold 14px 'Segoe UI',sans-serif;letter-spacing:1.5px" fill="#F3F6FF">HODGE LABORATORY</text>
+  <text x="22" y="102" class="chip" fill="#5871A3">WEB · zero-dependency</text>
+  <line x1="14" y1="114" x2="214" y2="114" stroke="#26324F"/>
+  <g class="sec">
+    <text x="22" y="142" class="secA">◈ Overview</text>
+    <text x="22" y="170">▶ Roadmap Runner</text>
+    <text x="22" y="198">∑ Protocol V1–V9</text>
+    <text x="22" y="226">△ Stands · torus → N30</text>
+    <text x="22" y="254">✦ Certificates A–J</text>
+    <text x="22" y="282">⚗ Designer</text>
+    <text x="22" y="310">🕸 Hodge cycles C1–C10</text>
+    <text x="22" y="338">▤ Reports · 600 dpi</text>
+    <text x="22" y="366">📕 Monograph forge</text>
+    <text x="22" y="394">✔ Verification · 5+Lean</text>
+  </g>
+  <g transform="translate(22 470)">
+    <rect width="184" height="52" rx="10" fill="#0D1830" stroke="#2C3A5E"/>
+    <text x="14" y="21" class="chip" fill="#5871A3">RUNS OFFLINE</text>
+    <text x="14" y="40" class="chip" fill="#9AB0D8">any phone · no install</text>
+  </g>
+
+  <!-- main area -->
+  <text x="268" y="98" style="font:bold 21px 'Segoe UI',sans-serif" fill="#F3F6FF">The Dynamic Principle — in your browser</text>
+  <text x="268" y="126" class="fm" fill="#FBBF24" filter="url(#wGlow)">Δ_Ch = λ₀ − R/4 + δ²/2 − δ⁵/k</text>
+
+  <!-- roadmap runner progress -->
+  <g transform="translate(268 152)">
+    <text class="chip" fill="#9AB0D8">ROADMAP RUNNER · V1 → V9 → stands → certificates → plots</text>
+    <rect x="0" y="14" width="460" height="12" rx="6" fill="#0D1830" stroke="#26324F"/>
+    <rect class="runbar" x="3" y="17" width="8" height="6" rx="3" fill="#22D3EE"/>
+    <text x="476" y="24" class="chip" fill="#3FD16B">~6 s</text>
+  </g>
+
+  <!-- mini ladder plot -->
+  <g transform="translate(268 216)">
+    <rect width="300" height="196" rx="12" fill="#0D1830" stroke="#2C3A5E"/>
+    <text x="16" y="28" class="chip" fill="#9AB0D8">THE LADDER OF STANDS</text>
+    <line x1="26" y1="160" x2="280" y2="160" stroke="#3A4666"/>
+    <path d="M50 158 110 156 170 150 230 138 270 44" fill="none" stroke="#22D3EE" stroke-width="2.4" filter="url(#wGlow)"/>
+    <circle cx="50" cy="158" r="3" fill="#7DD3FC"/>
+    <circle cx="110" cy="156" r="3" fill="#A5E8F5"/>
+    <circle cx="170" cy="150" r="3" fill="#CBB8FF"/>
+    <circle cx="230" cy="138" r="3" fill="#E879F9"/>
+    <circle cx="270" cy="44" r="4" fill="#FBBF24"/>
+    <text x="46" y="178" class="chip" fill="#5871A3">1</text>
+    <text x="104" y="178" class="chip" fill="#5871A3">3</text>
+    <text x="162" y="178" class="chip" fill="#5871A3">28</text>
+    <text x="216" y="178" class="chip" fill="#5871A3">91</text>
+    <text x="252" y="178" class="chip" fill="#FDE68A">406</text>
+  </g>
+
+  <!-- verdict card -->
+  <g transform="translate(596 216)">
+    <rect width="380" height="196" rx="12" fill="#101f16" stroke="#2EA043" stroke-width="1.4"/>
+    <text x="20" y="32" class="chip" fill="#7EE787">SUMMARY VERDICT</text>
+    <g class="verdict" filter="url(#wGlow)">
+      <text x="20" y="72" style="font:bold 27px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✔ ALL CHECKS PASSED</text>
+    </g>
+    <g class="chip">
+      <rect x="20" y="94" width="86" height="22" rx="11" fill="#0D1830" stroke="#26324F"/><text x="63" y="109" text-anchor="middle" fill="#5BD6F5">V1–V9 ✓</text>
+      <rect x="112" y="94" width="86" height="22" rx="11" fill="#0D1830" stroke="#26324F"/><text x="155" y="109" text-anchor="middle" fill="#FDE68A">A–J ✓</text>
+      <rect x="204" y="94" width="86" height="22" rx="11" fill="#0D1830" stroke="#26324F"/><text x="247" y="109" text-anchor="middle" fill="#CBB8FF">C1–C10 ✓</text>
+      <rect x="296" y="94" width="64" height="22" rx="11" fill="#0D1830" stroke="#26324F"/><text x="328" y="109" text-anchor="middle" fill="#7EE787">Lean ✓</text>
+    </g>
+    <text x="20" y="142" class="chip" fill="#9AB0D8">residual 1.7e-71 @ dps=70 · deterministic</text>
+    <text x="20" y="164" class="chip" fill="#5871A3">BigInt engine · Chudnovsky π · Stirling Γ</text>
+    <text x="20" y="186" class="chip" fill="#5871A3">tanh–sinh quadratures · exact SNF</text>
+  </g>
+
+  <!-- designer strip -->
+  <g transform="translate(268 442)">
+    <rect width="708" height="74" rx="12" fill="#0D1830" stroke="#2C3A5E"/>
+    <text x="18" y="26" class="chip" fill="#E5C4FF">⚗ DESIGNER — unlimited experiments: period · omega · census · cm · flow · bch · arf · k3</text>
+    <text x="18" y="50" class="chip" fill="#9AB0D8">N up to 4096 · dps 15–200 · grids 384×384 · batch JSON · mini-certificate per run</text>
+  </g>
+
+  <text x="500" y="546" text-anchor="middle" class="chip" fill="#5871A3">static · offline-capable · open source · web/hodge-laboratory-web/</text>
+</svg>

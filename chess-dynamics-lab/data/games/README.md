@@ -1,8 +1,23 @@
 # data/games/ — the E12 real-game corpus
 
+
+<div align="center">
+
+[⬆ Chess Particle Dynamics](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
 The frozen corpus behind the E12 certificate (`results/outcome_realgames_e12.json`):
 real games flowing through the Epoch IV player-context layer. Three sources
 with an explicit honesty contract:
+
+```mermaid
+flowchart LR
+    H["human-classical<br/>3 immortal games<br/>(no Elo headers — strict no-op)"] --> AUD["the E12 audit<br/>29 games · 508 entries"]
+    E["engine self-play<br/>2 deterministic games"] --> AUD
+    W["tablebase-walks<br/>24 seeded optimal lines<br/>(SIMULATED Elo, known results)"] --> AUD
+    AUD --> RES["results/outcome_realgames_e12.json<br/>the Result header is the oracle"]
+```
+
 
 | File | Source | Games | What it is |
 |---|---|---|---|

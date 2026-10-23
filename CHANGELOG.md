@@ -3,6 +3,54 @@
 All notable changes to Hodge Laboratory are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased] — the README visual upgrade: a scientific artifact
+
+### Added
+
+* **All 30 READMEs upgraded into a visual scientific artifact**
+  (purely additive — no existing text removed; the glossary table
+  rows are preserved verbatim inside the new accordion):
+  * **11 hand-written animated SVG assets** — the hero banner
+    "the ladder of stands" (torus → N=7/9 → the cyclotomic web),
+    the five-language verification terminal, the 60-seconds terminal,
+    the certificates A–J marquee, the universal pipeline blueprint,
+    the animated genus ladder (1 → 3 → 15 → 28 → 91 → 406), two web
+    app preview cards, the chess-dynamics hero and its seven-language
+    terminal, the VER-HODGE wave map. Pure SVG + CSS/SMIL, zero
+    JavaScript, `prefers-reduced-motion` respected everywhere.
+  * **26 new Mermaid diagrams** across the repository: the data-flow
+    architecture view, the genus growth `xychart-beta`, the theorem
+    collection map, the three-layer particle model, the protocol
+    layers, the polyglot hubs, the epochs I–VIII pipeline, the
+    verification matrix — all versioned and diffable.
+  * **The Bento-grid dashboard** at the top of the main README
+    (60 seconds · ladder · verification · certificates · quick start)
+    and the **Theorem of the Week** block.
+  * **The interactive accordion glossary** — every term now unfolds
+    with its formula; three new entries (Δ_Ch, the correction family,
+    b_Ch radicals, protocol V1–V9, the Lean kernel).
+  * **A Lean 4 code block** with syntax highlighting in Section 8.
+  * **Navigation bars** in every sub-README (theorems, verification,
+    monograph, polyglot, the web mirrors, both labs).
+* **Two GitHub Actions workflows**: `theorem-of-week.yml` (a weekly
+  deterministic rotation of the Theorem of the Week block through
+  the twenty monographs) and `refresh-visuals.yml` (SVG validation,
+  README link checks and the regeneration of `docs/assets/genus.png`
+  from the frozen baseline).
+* **`scripts/theorem_of_week.py`** — the deterministic ISO-week
+  rotation (zero dependencies); **`scripts/refresh_visuals.py`** —
+  the visual-layer validator and regenerator.
+* **CONTRIBUTING.md**: two new guides — "How to add a new stand to
+  the ladder" and "How to update the visual layer (README, SVG,
+  Mermaid)" with the design-system palette.
+
+### Changed
+
+* `docs/assets/genus.png` is now generated from the frozen baseline
+  (`results/baseline_v1_v9.json`) in the dark design-system style by
+  `scripts/refresh_visuals.py` — the figure can no longer drift from
+  the certified numbers.
+
 ## [Unreleased] — roadmap v1.7 (the theorem monograph collection: 20)
 
 ### Added

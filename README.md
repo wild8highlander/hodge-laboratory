@@ -24,7 +24,14 @@ reproducible verification in 5 languages + the Lean 4 kernel**
 [![License](https://img.shields.io/badge/license-individual_exclusive-red)](LICENSE)
 [![Web suite](https://img.shields.io/badge/web_suite-2_live_apps_·_5_languages-2EA043)](#what-we-built-the-live-web-suite-and-the-five-language-analogues)
 
+<img src="docs/assets/svg/hero_ladder.svg" alt="Hodge Laboratory — the animated ladder of stands: from the glowing calibration torus through the rungs N=7 and N=9 to the cyclotomic web of level 30, genera 1 → 3 → 28 → 91 → 406, the united formula Δ_Ch = λ₀ − R/4 + δ²/2 − δ⁵/k and the verification badges — protocol V1–V9 ALL PASS, certificates A–J 10/10, Lean 4 kernel verified, 5 independent languages" width="100%">
+
+<details>
+<summary><b>Static banner (PNG fallback)</b></summary>
+
 <img src="docs/assets/banner.png" alt="Hodge Laboratory — the Dynamic Principle: Δ_Ch = λ₀ − R/4 + δ²/2 − δ⁵/k, phase lattice motif, protocol V1–V9 ALL PASS, certificates A–J" width="100%">
+
+</details>
 
 </div>
 
@@ -37,6 +44,88 @@ reproducible verification in 5 languages + the Lean 4 kernel**
 > stands from the calibration torus through the cubic rungs N = 7/9
 > (the Hurwitz and Macbeath levels) to the cyclotomic levels N = 15/30,
 > where the genera reach **91** and **406**.
+
+---
+
+## 🧭 The dashboard — the program at a glance
+
+<table>
+<tr>
+<td width="33%" valign="top">
+
+### ⏱ 60 seconds
+
+**Δ_Ch = λ₀ − R/4 + δ²/2 − δ⁵/k**
+
+- protocol **V1–V9** · `ALL PASS` in ~2 s
+- certificates **A–J** · 10/10 accepted
+- deterministic · no seeds · no free parameters
+
+[The program in 60 seconds →](#1-the-program-in-60-seconds)
+
+</td>
+<td width="34%" valign="top">
+
+### 🪜 The ladder of stands
+
+<img src="docs/assets/svg/genus_ladder.svg" alt="Animated genus ladder: 1 → 3 → 15 → 28 → 91 → 406 from the torus through Klein, the Hurwitz and Macbeath rungs to the cyclotomic levels N=15/30" width="100%">
+
+g = (N−1)(N−2)/2 · rungs 4 · 7 · 9 · 15 · 30
+
+[The ladder of stands →](#4-the-ladder-of-stands)
+
+</td>
+<td width="33%" valign="top">
+
+### ✅ Verification
+
+**5 languages + the Lean 4 kernel**
+
+- Python 3 · Lean 4 · Julia · Fortran · C · Rust
+- independent reimplementations · zero shared code
+- every backend exits `0` on agreement
+
+[Five-language verification →](#8-five-language-verification--the-lean-4-kernel)
+
+</td>
+</tr>
+<tr>
+<td colspan="3" valign="top">
+
+### 🎓 Certificates A–J
+
+**A** · cycle certifier &nbsp;·&nbsp; **B** · kernel 29 &nbsp;·&nbsp; **C** · μ₄-equivariance &nbsp;·&nbsp; **D** · universal theorem &nbsp;·&nbsp; **E** · flow termination &nbsp;·&nbsp; **F** · rationalization &nbsp;·&nbsp; **G** · Hodge indices &nbsp;·&nbsp; **H** · N=15/30 volume &nbsp;·&nbsp; **I** · Hurwitz N=7 &nbsp;·&nbsp; **J** · Macbeath N=9 — **10/10 accepted**
+
+[The certificates of the program →](#5-the-certificates-of-the-program) · [the animated marquee](#5-the-certificates-of-the-program)
+
+</td>
+</tr>
+<tr>
+<td colspan="3" valign="top">
+
+### 🚀 Quick start — one command
+
+```bash
+pip install mpmath numpy matplotlib && python3 laboratory.py --run all
+# → SUMMARY VERDICT: ALL CHECKS PASSED  (Time: ~2 s)
+```
+
+[Full quick start →](#12-quick-start) · [reproducing the numbers →](#13-reproducing-the-numbers) · [live web apps →](#Live-web-suite-and-the-five-language-analogues)
+
+</td>
+</tr>
+</table>
+
+<!-- THEOREM-OF-WEEK:START -->
+> ### 📖 Theorem of the week — T02: Closed period form
+>
+> **P = (1/N)·ζ^(ra+sb)·Ω(a,b); Ω = Γ(a/N)Γ(b/N)/Γ((a+b)/N)**
+>
+> Full monograph with the complete proof, protocol data and the verification
+> guide: [`theorems/T02_closed_period_form/`](theorems/T02_closed_period_form/) ·
+> index of all 20: [`theorems/README.md`](theorems/README.md).
+> (Rotation 2 of 20; T21 (certificate K, the cyclic quintic rung N = 11) and T22 (the SNF engine) are drafted in [`verhodge-lab/monograph/`](verhodge-lab/monograph/) — slots that continue this numbering.)
+<!-- THEOREM-OF-WEEK:END -->
 
 ---
 
@@ -106,6 +195,11 @@ by five independent language stacks and by the Lean 4 kernel. The
 agreement of independent implementations is the strongest
 reproducibility certificate a computational program can offer.
 
+<p align="center">
+  <img src="docs/assets/svg/sixty_seconds.svg" alt="Animated terminal — the program in 60 seconds: the protocol run types itself out with the census 91 = 1+6+84 and 406 = 1+6+9+30+84+276, the residuals 3.9e-36 and 1.7e-71, the certificates A–J 10/10, and the verdict ALL CHECKS PASSED in 1.9 seconds" width="92%"><br>
+  <sub>The program in 60 seconds as an animated terminal — every line is a certified number of the protocol (pure SVG + CSS, no JavaScript).</sub>
+</p>
+
 ---
 
 ## 2. The dynamic principle
@@ -124,6 +218,11 @@ $$
 \boxed{\;\Delta_{\mathrm{Ch}} \;=\; \lambda_{0} \;-\; \frac{R}{4}
 \;+\; \frac{\delta^{2}}{2} \;-\; \frac{\delta^{5}}{k}\;}
 $$
+
+<p align="center">
+  <img src="docs/assets/svg/pipeline.svg" alt="The universal parameter-free pipeline as an animated blueprint diagram: the integer triple (n, B, λ₀) enters as floating crystalline shapes, flows through translucent tubes computing the spin phase δ = π/N, the braking γ = δ⁴/k and the effective phase δ_eff = δ⁵/k, and exits as the united formula Δ_Ch with the periods, census, SNF and termination outputs" width="96%"><br>
+  <sub>The universal pipeline — one integer triple in, closed formulas out. Every stage is animated: the tubes stream, the crystals slowly rotate (pure SVG + CSS).</sub>
+</p>
 
 On the cyclotomic levels the pipeline produces the periods of the
 Fermat curve in **closed Gamma form**. For a character (a, b) with
@@ -246,6 +345,31 @@ same identity set** — they share no code. An error would have to be
 repeated simultaneously in five ecosystems and in the Lean kernel to
 slip through.
 
+The same architecture as a **data-flow diagram** — from the integer
+triple to the reproducibility record:
+
+```mermaid
+graph TD
+    A["Integer Triple (n, B, λ₀)"] --> B["Universal Pipeline"]
+    B --> C["Spin Phase δ = π/N"]
+    B --> D["Braking γ = δ⁴/k"]
+    B --> E["Effective Phase δ_eff = δ⁵/k"]
+    C --> F["Certificate A–J"]
+    D --> F
+    E --> F
+    F --> G["Closed Theorem System"]
+    G --> H["5-Language Verification"]
+    G --> I["Lean 4 Kernel"]
+    H --> J["Reproducibility Record V1–V9"]
+    I --> J
+```
+
+Both diagrams are versioned with the source: the `flowchart TB` view
+above mirrors the repository layer by layer, while the `graph TD` view
+follows one datum — the triple (n, B, λ₀) — through the whole program
+into the frozen record. They render natively on GitHub and diff
+cleanly in pull requests.
+
 ---
 
 ## 4. The ladder of stands
@@ -268,9 +392,35 @@ complex K3 surface, matching Shioda's theorem on the Fermat quartic.
 
 <p align="center">
   <img src="docs/assets/census.png" alt="Exact character census by conductors: 91 = 1+6+84 and 406 = 1+6+9+30+84+276" width="89%">
-  <img src="docs/assets/genus.png" alt="Fermat curve genus vs level N: g = (N−1)(N−2)/2 with the rungs 15, 91 and 406 marked" width="62%"><br>
+  <img src="docs/assets/genus.png" alt="Fermat curve genus vs level N: g = (N−1)(N−2)/2 with the rungs 15, 28, 91 and 406 marked — regenerated from the frozen baseline by scripts/refresh_visuals.py" width="62%"><br>
   <sub>The exact character census (V1) and the genus ladder g(N) — the two integer backbones of the stand.</sub>
 </p>
+
+**The genus ladder as a live chart.** The step jump of complexity is
+the visual thesis of the program — from the calibration torus (g = 1)
+through the Klein quartic (g = 3) and the cubic rungs F₇ (g = 15) and
+F₉ (g = 28) to the cyclotomic levels **g = 91** and **g = 406**:
+
+<p align="center">
+  <img src="docs/assets/svg/genus_ladder.svg" alt="Animated genus ladder chart: the genus climbs 1 → 3 → 15 → 28 → 91 → 406 along the rungs Torus, Klein N7, Hurwitz F7, Macbeath F9, Fermat N15 and Fermat N30, with a glowing pulsing stroke, counting numbers and particle bursts at each rung" width="88%"><br>
+  <sub>The genus ladder — animated (pure SVG + CSS, no JavaScript). The numbers count up as the animation progresses and each rung emits a burst.</sub>
+</p>
+
+The same ladder as a native GitHub chart (versioned, diffable):
+
+```mermaid
+xychart-beta
+    title "Genus growth along the ladder of stands"
+    x-axis ["Torus", "Klein N7", "Hurwitz F7", "Macbeath F9", "Fermat N15", "Fermat N30"]
+    y-axis "Genus" 0 --> 450
+    bar [1, 3, 15, 28, 91, 406]
+    line [1, 3, 15, 28, 91, 406]
+```
+
+The cubic rungs N = 7/9 (certificates I and J) sit between the Klein
+quartic and the cyclotomic flagship — their exact ℤ[ζ]/(Φₙ) layers are
+what make the jump from genus 3 to genus 91 continuous in method, not
+just in ambition.
 
 **How each rung is verified.** Every row of the table is backed by
 three independent confirmations:
@@ -296,6 +446,11 @@ enumeration itself has not reproduced.
 ---
 
 ## 5. The certificates of the program
+
+<p align="center">
+  <img src="docs/assets/svg/certificates_marquee.svg" alt="Animated marquee of ten glassmorphic cards — one per certificate A through J: cycle certifier, closing kernel 29, mu4-equivariance, universal theorem, flow termination, rationalization, Hodge indices, stand N=15/30, Hurwitz rung N=7, Macbeath rung N=9 — each with a subtle particle animation and its core result" width="100%"><br>
+  <sub>The certificates A–J as a seamless card marquee (pure SVG + CSS, no JavaScript). Hover pauses are unnecessary — the deck loops forever.</sub>
+</p>
 
 | № | Certificate | Core result | Verdict |
 |---|---|---|---|
@@ -461,6 +616,46 @@ counts, termination), the high-precision layer (closed form vs
 tanh-sinh, phases, equivariance, reflection), and the machine layer
 (Lean kernel, `native_decide`).
 
+<p align="center">
+  <img src="docs/assets/svg/verify_terminal.svg" alt="Animated verification terminal: the command verify --lang=python,julia,rust,c,lean types itself, five progress bars fill simultaneously in five colors, each stack ends with PASS, and the run finishes with ALL 5 PASSED plus a kernel-verified badge" width="82%"><br>
+  <sub>The five-language verification as an animated terminal — five progress bars, one verdict, the Lean kernel badge (pure SVG + CSS, no JavaScript).</sub>
+</p>
+
+<details>
+<summary><b>peek inside the Lean 4 kernel — the machine-checked layer</b></summary>
+
+The integer spine of the program as the Lean kernel sees it (from
+[`verification/lean/HodgeLaboratory.lean`](verification/lean/HodgeLaboratory.lean)
+— no axioms, no Mathlib, kernel-only `native_decide`):
+
+```lean
+namespace HodgeLaboratory
+
+def genus (N : Nat) : Nat := (N - 1) * (N - 2) / 2
+
+example : genus 15 = 91 := by native_decide
+example : genus 30 = 406 := by native_decide
+example : genus 7 = 15 := by native_decide
+example : genus 4 = 3 := by native_decide
+
+def h15 : List Nat := [1, 6, 84]           -- conductors 3, 5, 15
+def h30 : List Nat := [1, 6, 9, 30, 84, 276]  -- conductors 3,5,6,10,15,30
+
+example : h15.sum = 91 := by native_decide
+example : h30.sum = 406 := by native_decide
+
+example : 3^4 * 5^6 = 1265625 := by native_decide
+example : 1265625 = 1125 * 1125 := by native_decide
+
+end HodgeLaboratory
+```
+
+Every `example` is a machine-checkable proposition: the kernel computes
+both sides and compares them. The census sums, the discriminant and the
+SNF product are not trusted — they are *re-derived* by the kernel.
+
+</details>
+
 ### What is proved, what is computed, what is cited
 
 Scientific honesty requires saying which layer each claim lives on:
@@ -533,6 +728,36 @@ reproduced bit-for-bit) — the collection is now 22 monographs,
 normalization and the sine count (v1.6+) and T24 = the Dwork pencil:
 the invariant cohomology and the certified periods (v1.8).
 
+The anatomy of the collection — how the twenty-two monographs cover
+the program, and where the T21–T24 slots continue the numbering:
+
+```mermaid
+graph LR
+    subgraph P12["Parts I–II · foundations and calibration"]
+        T01["T01–T06<br/>cyclotomic stand<br/>genus · periods · Γ · Riemann"]
+        T07["T07–T09<br/>calibration<br/>torus · K3 · errata E8"]
+    end
+    subgraph P3["Part III–IV · certificates"]
+        T10["T10–T16<br/>certificates B–H<br/>+ the Klein finale"]
+        T17["T17–T18<br/>cubic rungs<br/>Hurwitz N7 · Macbeath N9"]
+    end
+    subgraph P5["Parts V–VI · exact and quintic layers"]
+        T19["T19–T20<br/>quartic tower ·<br/>conductor census"]
+        T21["T21–T22<br/>quintic N11 ·<br/>SNF spectra"]
+    end
+    T01 --> T10
+    T07 --> T10
+    T10 --> T17
+    T10 --> T19
+    T19 --> T21
+    T21 -.->|"T23–T24 drafted in verhodge-lab"| NEXT["T23 Gross normalization<br/>T24 Dwork pencil<br/>(v1.6+ · v1.8)"]
+```
+
+Reading paths: start at T07 (the torus) for the calibration story,
+at T01 for the cyclotomic spine, or at T17/T18 for the cubic rungs
+certificates I and J — every monograph is self-sufficient and cites
+its protocol data by check name.
+
 ---
 
 ## 11. Repository map
@@ -560,6 +785,7 @@ hodge-laboratory/
 ├── results/                       ← baseline JSON
 ├── reports/                       ← committed reference run artifacts
 ├── docs/                          ← GitHub Pages site
+│   └── assets/svg/                ← the animated SVG layer (hero · terminals · marquee · ladder)
 ├── scripts/                       ← termux_setup.sh · github_push_termux.sh
 ├── .github/                       ← CI + Pages + templates
 ├── CITATION.cff · .zenodo.json    ← citation and Zenodo metadata
@@ -717,6 +943,16 @@ checkable artifact on any machine, in any of the five languages, with
 one and the same answer.
 
 <!-- WEB-SUITE:END -->
+
+### App previews
+
+<p align="center">
+  <a href="https://wild8highlander.github.io/hodge-laboratory-web/">
+    <img src="docs/assets/svg/web_hodge_lab_preview.svg" alt="Hodge Laboratory Web — preview card: a dark navy interface with the roadmap runner progress, the animated ladder of stands, the verdict card ALL CHECKS PASSED with V1-V9, A-J, C1-C10 and Lean chips, and the experiment designer strip" width="49.5%"></a>
+  <a href="https://wild8highlander.github.io/hodge-flow-chess/">
+    <img src="docs/assets/svg/web_chess_preview.svg" alt="Hodge Flow Chess — preview card: an 8x8 board with glowing gold and violet particles, the flow formulas t* = lcm and gamma = pi^4/k, the protocol E chips E1 through E6 and the mu4-equivariance deviation 0.000" width="49.5%"></a><br>
+  <sub>Click a card to open the live app. Both are static, zero-dependency, bilingual RU/EN and run offline from any phone.</sub>
+</p>
 
 ## 15. Zenodo & DOI
 
@@ -957,21 +1193,203 @@ norm and is welcome.
 
 ## 22. Glossary
 
-| Term | Meaning in this repository |
-|---|---|
-| **Triple (n, B, λ₀)** | the only geometric input: rotation order, carrier index, spectral threshold |
-| **Stand** | a fixed geometric instance (torus, K3, Klein quartic, Fermat level) on which the pipeline is exercised |
-| **Ladder** | the ordered family of stands of growing scale, each calibrated against the previous |
-| **Conductor d** | d = N/gcd(N, a, b); the level of the character (a, b) |
-| **Census h_d** | the count of characters of conductor d; Σh_d = g is the V1 identity |
-| **Ω_{a,b}** | the Gamma quotient Γ(a/N)Γ(b/N)/Γ((a+b)/N) — the modulus of the period |
-| **Braking γ, effective phase δ_eff** | the δ⁴/k and δ⁵/k corrections of the united formula |
-| **Certificates A–J** | a certified block of the program: divisor, kernel closure, equivariance, termination, rationalization, indices, volume, and the cubic rungs N=7/9 (exact ℤ[ζ] layer + Cardano) |
-| **SNF** | Smith normal form of the N=15/30 lattice: (1,1,5,5,15,15,15,15) |
-| **vol_h** | the h-volume 1125 = √(3⁴·5⁶) from the Gross Γ-normalization |
-| **t\*** | the exact termination time of the (a, b)-flow: lcm(W/gcd(a,W), H/gcd(b,H)) |
-| **Arf invariant** | the parity invariant separating even (36) and odd (28) theta-characteristics on genus 3 |
-| **Baseline** | the frozen JSON of exact integer results used for cross-checks |
+An interactive accordion — click a term to unfold its meaning (and the
+formula behind it, where one exists). Every entry mirrors the frozen
+baseline of the program.
+
+<details>
+<summary><b>Triple (n, B, λ₀)</b> — the only geometric input</summary>
+
+The only geometric input: rotation order, carrier index, spectral
+threshold.
+
+On the calibration torus it is fixed to **(4, 1, 4π²)**; the Klein
+stand fixes **(7, 22, 3.338)**. Everything else in the program is
+built from these three numbers by the universal pipeline — no other
+input exists anywhere in the repository.
+
+</details>
+
+<details>
+<summary><b>Stand</b> — a fixed geometric instance</summary>
+
+A fixed geometric instance (torus, K3, Klein quartic, Fermat level)
+on which the pipeline is exercised.
+
+Each stand contributes its own exact layer to the frozen baseline:
+the torus the correction stack, K3 the rank-20 lattice, Klein the
+j-invariant j = −3375, the Fermat levels the censuses and the SNF.
+
+</details>
+
+<details>
+<summary><b>Ladder</b> — the ordered family of stands</summary>
+
+The ordered family of stands of growing scale, each calibrated
+against the previous.
+
+The rungs: torus (g = 1) → K3 (Fermat quartic) → Klein (g = 3) →
+the cubic rungs N = 7/9 → the cyclotomic levels N = 15/30
+(g = 91 and g = 406).
+
+</details>
+
+<details>
+<summary><b>Δ_Ch — the united formula</b></summary>
+
+$$\Delta_{\mathrm{Ch}} = \lambda_{0} - \frac{R}{4} + \frac{\delta^{2}}{2} - \frac{\delta^{5}}{k}$$
+
+The single closed expression the whole program certifies: the
+spectral threshold plus the curvature correction minus the effective
+phase. On the torus it evaluates to
+39.48799539346835051297464603266144167978… — verified at 40 digits.
+
+</details>
+
+<details>
+<summary><b>Spin phase δ · braking γ · effective phase δ_eff</b></summary>
+
+$$\delta = \frac{\pi}{N}, \qquad \gamma = \frac{\delta^{4}}{k}, \qquad \delta_{\mathrm{eff}} = \frac{\delta^{5}}{k}$$
+
+The δ⁴/k and δ⁵/k corrections of the united formula. The family
+δ = π/N is strictly decreasing; δ_eff < γ whenever δ < 1 (all
+levels N ≥ 4) — a structural fact checked on every rung.
+
+</details>
+
+<details>
+<summary><b>Conductor d</b> — the level of a character</summary>
+
+$$d = \frac{N}{\gcd(N, a, b)}$$
+
+The level of the character (a, b). The conductor splits the
+character group into the arithmetic layers that the census counts.
+
+</details>
+
+<details>
+<summary><b>Census h_d</b> — the character count by conductor</summary>
+
+The count of characters of conductor d; Σh_d = g is the V1 identity.
+
+$$91 = 1 + 6 + 84 \qquad\qquad 406 = 1 + 6 + 9 + 30 + 84 + 276$$
+
+Two independent schemes (direct enumeration and Möbius inversion)
+must agree — check V1 certifies both.
+
+</details>
+
+<details>
+<summary><b>Ω_{a,b}</b> — the period modulus</summary>
+
+The Gamma quotient Γ(a/N)Γ(b/N)/Γ((a+b)/N) — the modulus of the period.
+
+$$P(r,s) = \frac{1}{N}\,\zeta^{\,ra+sb}\,\Omega_{a,b}, \qquad \zeta = e^{2\pi i/N}$$
+
+The closed Gamma form is verified against tanh-sinh quadratures at
+relative deviation ~10⁻³⁶ (V2) and 10⁻⁷¹ at dps = 70 (V9).
+
+</details>
+
+<details>
+<summary><b>Certificates A–J</b> — the certified blocks</summary>
+
+A certified block of the program: divisor, kernel closure,
+equivariance, termination, rationalization, indices, volume, and the
+cubic rungs N=7/9 (exact ℤ[ζ] layer + Cardano).
+
+Ten blocks, ten monographs (T10–T18), all accepted — see
+[Section 5](#5-the-certificates-of-the-program) and the
+[animated marquee](#5-the-certificates-of-the-program).
+
+</details>
+
+<details>
+<summary><b>SNF — Smith normal form</b></summary>
+
+Smith normal form of the N=15/30 lattice: **(1,1,5,5,15,15,15,15)**.
+
+The product of the invariant factors equals the discriminant
+3⁴·5⁶ = 1265625 = 1125² — machine-checked exactly and by the Lean
+kernel.
+
+</details>
+
+<details>
+<summary><b>vol_h — the h-volume</b></summary>
+
+The h-volume 1125 = √(3⁴·5⁶) from the Gross Γ-normalization.
+
+$$\mathrm{vol}_{h} = (2\pi)^{32}\,\prod_{k} \Gamma(k/N)^{-c_{k}} = 1125$$
+
+</details>
+
+<details>
+<summary><b>t* — the exact termination time</b></summary>
+
+The exact termination time of the (a, b)-flow:
+
+$$t^{*} = \mathrm{lcm}\!\left(\tfrac{W}{\gcd(a,W)},\; \tfrac{H}{\gcd(b,H)}\right)$$
+
+Certificate E; the reference cases 48/212/432/114 are frozen in the
+baseline and re-derived by every stack.
+
+</details>
+
+<details>
+<summary><b>Arf invariant</b> — the parity invariant</summary>
+
+The parity invariant separating even (36) and odd (28)
+theta-characteristics on genus 3.
+
+The counts come from a **complete enumeration** of all 64 quadratic
+forms on (ℤ/2)⁶ — the errata E8 stand; the enumeration is the proof.
+
+</details>
+
+<details>
+<summary><b>b_Ch(15) and b_Ch(30) — the radical constants</b></summary>
+
+$$b_{\mathrm{Ch}}(15) = \frac{7 - \sqrt{5} - \sqrt{30 - 6\sqrt{5}}}{8}, \qquad b_{\mathrm{Ch}}(30) = \frac{9 - \sqrt{5} - \sqrt{30 + 6\sqrt{5}}}{8}$$
+
+Each certified by an exact integer layer in the tower Z[√5][√D]
+(roadmap v1.2): the radical satisfies its minimal quartic and is
+irreducible over GF(2).
+
+</details>
+
+<details>
+<summary><b>Protocol V1–V9</b> — the reproducibility record</summary>
+
+The nine deterministic checks of the laboratory: census, closed forms
+vs quadratures, phase law, equivariance, orbit sums, reflection
+ladder, completeness, DFT orthogonality, and the deep-precision
+record. One command reproduces all of them in ~2 seconds with the
+verdict `ALL PASS` — see [Section 6](#6-the-protocol-v1v9-reproducibility-record).
+
+</details>
+
+<details>
+<summary><b>Lean 4 kernel — the machine layer</b></summary>
+
+The interactive theorem prover that re-derives the integer spine of
+the program (genera, censuses, discriminant, SNF product, Klein
+invariants, Arf counts, termination) with `native_decide` — no
+axioms, no Mathlib. See
+[`verification/lean/HodgeLaboratory.lean`](verification/lean/HodgeLaboratory.lean)
+and the [Lean snippet in Section 8](#8-five-language-verification--the-lean-4-kernel).
+
+</details>
+
+<details>
+<summary><b>Baseline</b> — the frozen reference</summary>
+
+The frozen JSON of exact integer results used for cross-checks:
+[`results/baseline_v1_v9.json`](results/baseline_v1_v9.json). A
+recomputed value that disagrees with the baseline is a bug by
+definition — `--check-baseline` exits non-zero and CI fails.
+
+</details>
 
 ---
 

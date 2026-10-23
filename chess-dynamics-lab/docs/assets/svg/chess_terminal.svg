@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 640" width="880" height="640" role="img" aria-labelledby="ctTitle ctDesc">
+  <title id="ctTitle">Chess dynamics — the seven-language polyglot terminal</title>
+  <desc id="ctDesc">Animated terminal: the battery C1-C10 runs in seven languages — Python, C, Rust, Go, Julia, JavaScript and Java — every progress bar ends with PASS and the final verdict is 10/10.</desc>
+  <defs>
+    <linearGradient id="ctBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0D1117"/>
+      <stop offset="1" stop-color="#0A0E18"/>
+    </linearGradient>
+    <style>
+      .mono{font:14px 'SFMono-Regular',Consolas,'Liberation Mono',monospace}
+      .lang{font:600 13px 'Segoe UI',Helvetica,Arial,sans-serif}
+      .clip{animation:type 17s steps(41,end) infinite}
+      .bar{animation:fill 17s ease-in-out infinite}
+      .b2{animation-delay:.05s}.b3{animation-delay:.1s}.b4{animation-delay:.15s}.b5{animation-delay:.2s}.b6{animation-delay:.25s}.b7{animation-delay:.3s}
+      .tick{opacity:0;animation:tick 17s infinite}
+      .t1{animation-delay:5.2s}.t2{animation-delay:5.4s}.t3{animation-delay:5.6s}.t4{animation-delay:5.8s}.t5{animation-delay:6s}.t6{animation-delay:6.2s}.t7{animation-delay:6.4s}
+      .final{opacity:0;animation:final 17s infinite}
+      .cursor{animation:blink 1.1s steps(1) infinite}
+      .out{animation:cycleFade 17s linear infinite}
+      @keyframes type{0%{width:0}16%{width:320px}93%{width:320px}95%,100%{width:0}}
+      @keyframes fill{0%,19%{width:0}32%{width:420px}100%{width:420px}}
+      @keyframes tick{0%,33%{opacity:0}36%,92%{opacity:1}95%,100%{opacity:0}}
+      @keyframes final{0%,48%{opacity:0}53%,92%{opacity:1}95%,100%{opacity:0}}
+      @keyframes blink{50%{opacity:0}}
+      @keyframes cycleFade{0%,2%{opacity:0}4%,91%{opacity:1}95%,100%{opacity:0}}
+      @media (prefers-reduced-motion: reduce){.clip,.bar,.tick,.final,.cursor,.out{animation:none}
+        .clip{width:320px}.bar{width:420px}.tick,.final,.out{opacity:1}}
+    </style>
+    <clipPath id="typeClip2"><rect class="clip" x="46" y="76" width="0" height="26"/></clipPath>
+  </defs>
+
+  <rect x="8" y="8" width="864" height="624" rx="14" fill="#131A2C" stroke="#2C3A5E" stroke-width="1.5"/>
+  <rect x="8" y="8" width="864" height="624" rx="14" fill="none" stroke="#3FC9AD" stroke-opacity="0.25" stroke-width="3"/>
+  <rect x="8" y="8" width="864" height="40" rx="14" fill="#232A3F"/>
+  <rect x="8" y="34" width="864" height="14" fill="#232A3F"/>
+  <circle cx="34" cy="28" r="6.5" fill="#FF5F56"/>
+  <circle cx="56" cy="28" r="6.5" fill="#FFBD2E"/>
+  <circle cx="78" cy="28" r="6.5" fill="#27C93F"/>
+  <text x="440" y="33" text-anchor="middle" style="font:600 13px 'Segoe UI',sans-serif" fill="#8FA3CF">chess-dynamics-lab — polyglot battery C1–C10</text>
+
+  <rect x="24" y="60" width="832" height="556" rx="8" fill="url(#ctBg)"/>
+
+  <g class="out">
+    <text x="46" y="95" class="mono" fill="#7EE787"><tspan>$</tspan><tspan clip-path="url(#typeClip2)"> run polyglot --battery C1-C10 --lang all</tspan></text>
+    <rect class="cursor" x="46" y="82" width="9" height="17" fill="#7EE787"/>
+    <text x="46" y="126" class="mono" fill="#8FA3CF">byte-identical verdict contract · no shared code · 7 ecosystems</text>
+    <text x="46" y="146" class="mono" fill="#5871A3">─────────────────────────────────────────────</text>
+
+    <!-- 7 rows, y = 172, 224, 276, 328, 380, 432, 484 -->
+    <g>
+      <text x="46" y="177" class="lang" fill="#9DC7F0">Python</text>
+      <rect x="150" y="163" width="420" height="14" rx="7" fill="#162032" stroke="#22304E"/>
+      <rect class="bar" x="150" y="163" width="0" height="14" rx="7" fill="#4B8BBE"/>
+      <text class="tick t1" x="630" y="177" style="font:600 13px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✓ PASS</text>
+    </g>
+    <g>
+      <text x="46" y="229" class="lang" fill="#A5E8F5">C</text>
+      <rect x="150" y="215" width="420" height="14" rx="7" fill="#162032" stroke="#22304E"/>
+      <rect class="bar b2" x="150" y="215" width="0" height="14" rx="7" fill="#22D3EE"/>
+      <text class="tick t2" x="630" y="229" style="font:600 13px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✓ PASS</text>
+    </g>
+    <g>
+      <text x="46" y="281" class="lang" fill="#F5C9A8">Rust</text>
+      <rect x="150" y="267" width="420" height="14" rx="7" fill="#162032" stroke="#22304E"/>
+      <rect class="bar b3" x="150" y="267" width="0" height="14" rx="7" fill="#DE6B48"/>
+      <text class="tick t3" x="630" y="281" style="font:600 13px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✓ PASS</text>
+    </g>
+    <g>
+      <text x="46" y="333" class="lang" fill="#7EE7C7">Go</text>
+      <rect x="150" y="319" width="420" height="14" rx="7" fill="#162032" stroke="#22304E"/>
+      <rect class="bar b4" x="150" y="319" width="0" height="14" rx="7" fill="#3FC9AD"/>
+      <text class="tick t4" x="630" y="333" style="font:600 13px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✓ PASS</text>
+    </g>
+    <g>
+      <text x="46" y="385" class="lang" fill="#F3C4FF">Julia</text>
+      <rect x="150" y="371" width="420" height="14" rx="7" fill="#162032" stroke="#22304E"/>
+      <rect class="bar b5" x="150" y="371" width="0" height="14" rx="7" fill="#E879F9"/>
+      <text class="tick t5" x="630" y="385" style="font:600 13px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✓ PASS</text>
+    </g>
+    <g>
+      <text x="46" y="437" class="lang" fill="#F5E08A">JavaScript</text>
+      <rect x="150" y="423" width="420" height="14" rx="7" fill="#162032" stroke="#22304E"/>
+      <rect class="bar b6" x="150" y="423" width="0" height="14" rx="7" fill="#FBBF24"/>
+      <text class="tick t6" x="630" y="437" style="font:600 13px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✓ PASS</text>
+    </g>
+    <g>
+      <text x="46" y="489" class="lang" fill="#F5A88A">Java</text>
+      <rect x="150" y="475" width="420" height="14" rx="7" fill="#162032" stroke="#22304E"/>
+      <rect class="bar b7" x="150" y="475" width="0" height="14" rx="7" fill="#FB7185"/>
+      <text class="tick t7" x="630" y="489" style="font:600 13px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✓ PASS</text>
+    </g>
+
+    <text x="46" y="524" class="mono" fill="#5871A3">─────────────────────────────────────────────</text>
+    <g class="final">
+      <circle cx="58" cy="558" r="11" fill="#12261C" stroke="#2EA043" stroke-width="1.6"/>
+      <path d="M52.5 558l4 4 8-9" fill="none" stroke="#3FD16B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="80" y="564" style="font:bold 21px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">verdict: 10/10</text>
+      <text x="268" y="564" class="mono" fill="#8FA3CF" opacity="0.85">· C1–C10 · byte-identical across seven languages</text>
+    </g>
+  </g>
+</svg>

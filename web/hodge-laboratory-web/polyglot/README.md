@@ -1,5 +1,24 @@
 # POLYGLOT CORE · ПОЛИГЛОТ-ЯДРО / One theorem — five languages
 
+<div align="center">
+
+[⬆ Hodge Laboratory Web](../README.md) · [⬆ Main repo / главный репозиторий](../../../README.md) · [✅ Verification](../../../verification/README.md)
+
+</div>
+
+═══════════════════════════════════════════════════════════════════
+
+```mermaid
+flowchart TB
+    BAT["the 19-check battery / батарея из 19 проверок<br/>census · cert E · binary flow · Arf<br/>K3 · Klein · cyclotomic · BCH tower<br/>Δ_Ch · Ω · Γ-reflection · periods"]
+    BAT --> PY["Python 3<br/>Decimal 60 + Fraction"]
+    BAT --> C["C<br/>long double + __int128"]
+    BAT --> RS["Rust<br/>i128 + Lanczos Γ"]
+    BAT --> GO["Go<br/>int64 fractions + f64"]
+    BAT --> JL["Julia<br/>BigFloat 256 + Rational{BigInt}"]
+    PY & C & RS & GO & JL --> V["ALL 19 CHECKS PASSED<br/>identical verdict in five ecosystems"]
+```
+
 ═══════════════════════════════════════════════════════════════════
 
 **RU:** Одно и то же verification-ядро лаборатории, независимо реализованное

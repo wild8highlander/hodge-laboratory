@@ -1,5 +1,11 @@
 # chess-oracle — play against perfection, watch the proof run
 
+
+<div align="center">
+
+[⬆ the browser laboratories](../README.md) · [⬆ Chess Particle Dynamics](../../README.md) · [⬆ Hodge Laboratory](../../../README.md)
+
+</div>
 An advanced static web laboratory for four pawnless-and-pawn endgames:
 **K+R vs K**, **K+Q vs K**, **K+N vs K** and **K+P vs K**: you play against
 the *frozen DTM tablebase* — perfect play by construction — while the
@@ -14,6 +20,16 @@ server) — including Termux on a phone.
 The retrograde analyzer (Task 12) certified a Bellman fixpoint over ALL
 states in Python and froze it (`results/dtm_*.json.gz`). This app turns
 that frozen artifact into a *live process*:
+
+```mermaid
+flowchart LR
+    FROZEN["the frozen DTM tables<br/>.json.gz payloads"] --> GATE["1 · integrity gate on load<br/>states · edges · mates re-counted"]
+    GATE --> BELL["2 · live Bellman audit<br/>every visited position re-verified"]
+    BELL --> PLAY["3 · perfect play<br/>argmin / argmax DTM"]
+    PLAY --> TREE["4 · strategy-tree explorer<br/>T(w) = 1 + min(1 + ΣT(r)) — E3 live"]
+    TREE --> E1L["5 · E1 replay in-browser<br/>the greedy ParticleSolver re-measured"]
+```
+
 
 1. **Integrity gate on load** — the payload is checked against the frozen
    build certificate (states 399,112 / edges 4,447,032 / mates 216 /

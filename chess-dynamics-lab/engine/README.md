@@ -1,8 +1,23 @@
 # engine/ — the importable engine package
 
+
+<div align="center">
+
+[⬆ Chess Particle Dynamics](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
 The package wraps the single-file core `dynamics.py` into four CLI-capable modules.
 Everything imports the core directly (`sys.path` bootstrap), so the package carries
 **zero dependencies** beyond the standard library.
+
+```mermaid
+flowchart LR
+    CORE["dynamics.py<br/>the single-file core"] --> P1["particles.py<br/>the three-layer facade"]
+    CORE --> P2["mate_solver.py<br/>forced mates + PV"]
+    CORE --> P3["game_player.py<br/>negamax + quiescence"]
+    CORE --> P4["analyzer.py<br/>best line + heatmaps"]
+```
+
 
 ## Files
 

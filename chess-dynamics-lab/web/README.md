@@ -1,5 +1,11 @@
 # web/ — the browser laboratories
 
+
+<div align="center">
+
+[⬆ Chess Particle Dynamics](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
 ## chess-particles — the particle laboratory
 
 `chess-particles/index.html` — a single-page, build-free application (pure HTML/CSS/JS)

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 560" width="880" height="560" role="img" aria-labelledby="vtTitle vtDesc">
+  <title id="vtTitle">Five-language verification terminal</title>
+  <desc id="vtDesc">Animated terminal: the command verify --lang=python,julia,rust,c,lean types itself, five progress bars fill simultaneously, each stack ends with PASS, and the run finishes with ALL 5 PASSED and a kernel-verified badge.</desc>
+  <defs>
+    <linearGradient id="termBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0D1117"/>
+      <stop offset="1" stop-color="#0A0E18"/>
+    </linearGradient>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#232A3F"/>
+      <stop offset="1" stop-color="#1A2033"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="typeClip"><rect class="clip" x="46" y="70" width="0" height="26"/></clipPath>
+    <style>
+      .mono{font:15px 'SFMono-Regular',Consolas,'Liberation Mono',monospace}
+      .lang{font:600 14px 'Segoe UI',Helvetica,Arial,sans-serif}
+      .clip{animation:type 16s steps(38,end) infinite}
+      .bar{animation:fill 16s ease-in-out infinite}
+      .b2{animation-delay:.06s}.b3{animation-delay:.12s}.b4{animation-delay:.18s}.b5{animation-delay:.24s}
+      .tick{opacity:0;animation:tick 16s infinite}
+      .t1{animation-delay:4.9s}.t2{animation-delay:5.1s}.t3{animation-delay:5.3s}.t4{animation-delay:5.5s}.t5{animation-delay:5.7s}
+      .final{opacity:0;animation:final 16s infinite}
+      .badge{opacity:0;animation:badge 16s infinite}
+      .cursor{animation:blink 1.1s steps(1) infinite}
+      .scan{animation:scan 7.5s linear infinite}
+      .out{animation:cycleFade 16s linear infinite}
+      @keyframes type{0%{width:0}15%{width:297px}93%{width:297px}95%,100%{width:0}}
+      @keyframes fill{0%,18%{width:0}30%{width:430px}100%{width:430px}}
+      @keyframes tick{0%,31%{opacity:0}34%,92%{opacity:1}95%,100%{opacity:0}}
+      @keyframes final{0%,47%{opacity:0}52%,92%{opacity:1}95%,100%{opacity:0}}
+      @keyframes badge{0%,53%{opacity:0;transform:scale(.85)}58%,92%{opacity:1;transform:scale(1)}95%,100%{opacity:0}}
+      @keyframes blink{50%{opacity:0}}
+      @keyframes scan{0%{transform:translateY(0)}100%{transform:translateY(396px)}}
+      @keyframes cycleFade{0%,2%{opacity:0}4%,91%{opacity:1}95%,100%{opacity:0}}
+      @media (prefers-reduced-motion: reduce){.clip,.bar,.tick,.final,.badge,.cursor,.scan,.out{animation:none}
+        .clip{width:297px}.bar{width:430px}.tick,.final,.badge{opacity:1}.out{opacity:1}}
+    </style>
+  </defs>
+
+  <!-- window -->
+  <rect x="8" y="8" width="864" height="544" rx="14" fill="#131A2C" stroke="#2C3A5E" stroke-width="1.5"/>
+  <rect x="8" y="8" width="864" height="544" rx="14" fill="none" stroke="#22D3EE" stroke-opacity="0.22" stroke-width="3"/>
+  <rect x="8" y="8" width="864" height="40" rx="14" fill="url(#chrome)"/>
+  <rect x="8" y="34" width="864" height="14" fill="url(#chrome)"/>
+  <circle cx="34" cy="28" r="6.5" fill="#FF5F56"/>
+  <circle cx="56" cy="28" r="6.5" fill="#FFBD2E"/>
+  <circle cx="78" cy="28" r="6.5" fill="#27C93F"/>
+  <text x="440" y="33" text-anchor="middle" style="font:600 13px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#8FA3CF">hodge-laboratory — verification suite</text>
+
+  <!-- terminal body -->
+  <rect x="24" y="60" width="832" height="476" rx="8" fill="url(#termBg)"/>
+  <g clip-path="url(#winClip)"><clipPath id="winClip"><rect x="24" y="60" width="832" height="476" rx="8"/></clipPath></g>
+
+  <!-- scanline sheen -->
+  <rect class="scan" x="24" y="64" width="832" height="46" fill="#22D3EE" opacity="0.045"/>
+
+  <g class="out">
+    <!-- typed command -->
+    <text x="46" y="89" class="mono" fill="#7EE787">
+      <tspan fill="#7EE787">$</tspan>
+      <tspan clip-path="url(#typeClip)"> verify --lang=python,julia,rust,c,lean</tspan>
+    </text>
+    <rect class="cursor" x="46" y="76" width="9" height="17" fill="#7EE787" opacity="0.9"/>
+
+    <text x="46" y="121" class="mono" fill="#8FA3CF">running the identity battery · deterministic · no seeds</text>
+    <text x="46" y="141" class="mono" fill="#5871A3">─────────────────────────────────────────────────────</text>
+
+    <!-- five progress rows: y = 178, 240, 302, 364, 426 -->
+    <g>
+      <text x="46" y="183" class="lang" fill="#9DC7F0">Python 3</text>
+      <rect x="150" y="169" width="430" height="14" rx="7" fill="#162032" stroke="#22304E" stroke-width="1"/>
+      <rect class="bar" x="150" y="169" width="0" height="14" rx="7" fill="#4B8BBE"/>
+      <text class="tick t1" x="640" y="183" style="font:600 14px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✓ PASS</text>
+      <text x="740" y="183" class="mono" fill="#5871A3" opacity="0.85">0</text>
+    </g>
+    <g>
+      <text x="46" y="245" class="lang" fill="#F3C4FF">Julia</text>
+      <rect x="150" y="231" width="430" height="14" rx="7" fill="#162032" stroke="#22304E" stroke-width="1"/>
+      <rect class="bar b2" x="150" y="231" width="0" height="14" rx="7" fill="#E879F9"/>
+      <text class="tick t2" x="640" y="245" style="font:600 14px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✓ PASS</text>
+      <text x="740" y="245" class="mono" fill="#5871A3" opacity="0.85">0</text>
+    </g>
+    <g>
+      <text x="46" y="307" class="lang" fill="#F5C9A8">Rust</text>
+      <rect x="150" y="293" width="430" height="14" rx="7" fill="#162032" stroke="#22304E" stroke-width="1"/>
+      <rect class="bar b3" x="150" y="293" width="0" height="14" rx="7" fill="#DE6B48"/>
+      <text class="tick t3" x="640" y="307" style="font:600 14px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✓ PASS</text>
+      <text x="740" y="307" class="mono" fill="#5871A3" opacity="0.85">0</text>
+    </g>
+    <g>
+      <text x="46" y="369" class="lang" fill="#A5E8F5">C</text>
+      <rect x="150" y="355" width="430" height="14" rx="7" fill="#162032" stroke="#22304E" stroke-width="1"/>
+      <rect class="bar b4" x="150" y="355" width="0" height="14" rx="7" fill="#22D3EE"/>
+      <text class="tick t4" x="640" y="369" style="font:600 14px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✓ PASS</text>
+      <text x="740" y="369" class="mono" fill="#5871A3" opacity="0.85">0</text>
+    </g>
+    <g>
+      <text x="46" y="431" class="lang" fill="#CBB8FF">Lean 4</text>
+      <rect x="150" y="417" width="430" height="14" rx="7" fill="#162032" stroke="#22304E" stroke-width="1"/>
+      <rect class="bar b5" x="150" y="417" width="0" height="14" rx="7" fill="#A78BFA"/>
+      <text class="tick t5" x="640" y="431" style="font:600 14px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">✓ PASS</text>
+      <text x="740" y="431" class="mono" fill="#5871A3" opacity="0.85">0</text>
+    </g>
+
+    <!-- separators -->
+    <text x="46" y="466" class="mono" fill="#5871A3">─────────────────────────────────────────────────────</text>
+
+    <!-- final verdict -->
+    <g class="final">
+      <circle cx="58" cy="500" r="11" fill="#12261C" stroke="#2EA043" stroke-width="1.6"/>
+      <path d="M52.5 500l4 4 8-9" fill="none" stroke="#3FD16B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="80" y="506" style="font:bold 21px 'SFMono-Regular',Consolas,monospace" fill="#3FD16B">ALL 5 PASSED</text>
+      <text x="262" y="506" class="mono" fill="#8FA3CF" opacity="0.8">· independent stacks agree · exit 0</text>
+    </g>
+    <g class="badge">
+      <g transform="translate(700 498)" filter="url(#glow)">
+        <rect x="-64" y="-18" width="128" height="36" rx="18" fill="#241A38" stroke="#C9A2F0" stroke-width="1.4"/>
+        <path d="M-46-2v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#C9A2F0" stroke-width="2"/>
+        <rect x="-49" y="-2" width="20" height="15" rx="3" fill="none" stroke="#C9A2F0" stroke-width="2"/>
+        <text x="14" y="7" text-anchor="middle" style="font:700 11.5px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#E4D4FF">KERNEL VERIFIED</text>
+      </g>
+    </g>
+  </g>
+</svg>

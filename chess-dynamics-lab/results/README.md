@@ -1,9 +1,26 @@
 # results/ — the frozen certificates
 
+
+<div align="center">
+
+[⬆ Chess Particle Dynamics](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
 The data files of the program. They are **inputs to the verification**, not artefacts:
 the protocol and the tests load them and compare against the live computation. A
 mismatch is a bug by definition — and by convention the implementation is fixed, not
 the file.
+
+The freeze-and-rebuild loop:
+
+```mermaid
+flowchart LR
+    B["the retrograde builders<br/>(from an empty table)"] --> F["the frozen .json.gz files<br/>KRK · KQK · KNK · KPK · KBK"]
+    F --> C["every CI run + E7<br/>rebuild and compare"]
+    C -->|"bit-identical"| OK["PASS — provenance kept"]
+    C -->|"any byte differs"| BUG["a bug by definition<br/>fix the implementation"]
+```
+
 
 ## Files
 

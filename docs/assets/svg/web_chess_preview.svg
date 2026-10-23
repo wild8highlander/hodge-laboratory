@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560" role="img" aria-labelledby="wp2Title wp2Desc">
+  <title id="wp2Title">Hodge Flow Chess — live app preview card</title>
+  <desc id="wp2Desc">Stylized preview of the Hodge Flow Chess web app: an 8x8 board where pieces are glowing particles, the flow layer with termination time t* = lcm(...), the mu4-equivariance formula grid and live protocol E checks.</desc>
+  <defs>
+    <linearGradient id="cBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0A1120"/>
+      <stop offset="1" stop-color="#101B33"/>
+    </linearGradient>
+    <radialGradient id="goldP" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFE9B8" stop-opacity="0.9"/>
+      <stop offset="0.55" stop-color="#C9A96A" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#C9A96A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="violP" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#D9C2FF" stop-opacity="0.9"/>
+      <stop offset="0.55" stop-color="#9D7BD8" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#9D7BD8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2.8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .url{font:600 13px 'SFMono-Regular',Consolas,monospace;fill:#8FA3CF}
+      .fm{font:600 14px 'SFMono-Regular',Consolas,monospace}
+      .chip{font:600 10.5px 'SFMono-Regular',Consolas,monospace}
+      .h{font:bold 20px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#F3F6FF}
+      .pcW{animation:wp 4.4s ease-in-out infinite}
+      .pcB{animation:bp 5.2s ease-in-out infinite}
+      .trail{stroke-dasharray:3 9;animation:tf 2.4s linear infinite}
+      .eP{animation:vpulse 2.8s ease-in-out infinite}
+      @keyframes wp{0%,100%{transform:translate(0,0)}50%{transform:translate(-4px,-3px)}}
+      @keyframes bp{0%,100%{transform:translate(0,0)}50%{transform:translate(4px,3px)}}
+      @keyframes tf{to{stroke-dashoffset:-48}}
+      @keyframes vpulse{0%,100%{opacity:.65}50%{opacity:1}}
+      @media (prefers-reduced-motion: reduce){.pcW,.pcB,.trail,.eP{animation:none}}
+    </style>
+  </defs>
+
+  <rect width="1000" height="560" rx="18" fill="url(#cBg)" stroke="#243050" stroke-width="1.5"/>
+  <rect width="1000" height="560" rx="18" fill="none" stroke="#C9A96A" stroke-opacity="0.3" stroke-width="2.5"/>
+
+  <!-- chrome -->
+  <rect x="1" y="1" width="998" height="46" rx="17" fill="#131B2E"/>
+  <circle cx="28" cy="24" r="5.5" fill="#FF5F56"/>
+  <circle cx="48" cy="24" r="5.5" fill="#FFBD2E"/>
+  <circle cx="68" cy="24" r="5.5" fill="#27C93F"/>
+  <rect x="96" y="10" width="560" height="28" rx="14" fill="#0B1322" stroke="#22304E"/>
+  <circle cx="116" cy="24" r="3" fill="#3FC9AD" class="eP"/>
+  <text x="132" y="29" class="url">https://wild8highlander.github.io/hodge-flow-chess/</text>
+  <g transform="translate(846 14)">
+    <rect width="136" height="22" rx="11" fill="#102019" stroke="#3FC9AD" stroke-width="1.2"/>
+    <text x="68" y="15.5" text-anchor="middle" class="chip" fill="#5FE3C0">LIVE · RU/EN · OFFLINE</text>
+  </g>
+
+  <text x="36" y="92" class="h">The chessboard idea of the monograph — in real time</text>
+  <text x="36" y="116" class="fm" fill="#5BD6F5">p → p + (a, b) mod (W, H) · φ → φ·i · φ ∈ μ₄</text>
+
+  <!-- board -->
+  <g transform="translate(56 148)">
+    <rect x="-14" y="-14" width="428" height="428" rx="14" fill="#0E1730" stroke="#2C3A5E"/>
+    <g>
+      <!-- 8x8 checkerboard -->
+      <g fill="#16233F">
+        <rect width="400" height="400" rx="6"/>
+      </g>
+      <g fill="#1E2E52">
+        <rect x="50" width="50" height="50"/><rect x="150" width="50" height="50"/><rect x="250" width="50" height="50"/><rect x="350" width="50" height="50"/>
+        <rect y="50" width="50" height="50"/><rect x="100" y="50" width="50" height="50"/><rect x="200" y="50" width="50" height="50"/><rect x="300" y="50" width="50" height="50"/>
+        <rect x="50" y="100" width="50" height="50"/><rect x="150" y="100" width="50" height="50"/><rect x="250" y="100" width="50" height="50"/><rect x="350" y="100" width="50" height="50"/>
+        <rect y="150" width="50" height="50"/><rect x="100" y="150" width="50" height="50"/><rect x="200" y="150" width="50" height="50"/><rect x="300" y="150" width="50" height="50"/>
+        <rect x="50" y="200" width="50" height="50"/><rect x="150" y="200" width="50" height="50"/><rect x="250" y="200" width="50" height="50"/><rect x="350" y="200" width="50" height="50"/>
+        <rect y="250" width="50" height="50"/><rect x="100" y="250" width="50" height="50"/><rect x="200" y="250" width="50" height="50"/><rect x="300" y="250" width="50" height="50"/>
+        <rect x="50" y="300" width="50" height="50"/><rect x="150" y="300" width="50" height="50"/><rect x="250" y="300" width="50" height="50"/><rect x="350" y="300" width="50" height="50"/>
+        <rect y="350" width="50" height="50"/><rect x="100" y="350" width="50" height="50"/><rect x="200" y="350" width="50" height="50"/><rect x="300" y="350" width="50" height="50"/>
+      </g>
+      <rect width="400" height="400" rx="6" fill="none" stroke="#3FC9AD" stroke-opacity="0.35" stroke-width="1.5"/>
+    </g>
+    <!-- flow trail -->
+    <path class="trail" d="M325 375C260 330 300 250 210 235S90 150 140 90" fill="none" stroke="#3FC9AD" stroke-width="2" filter="url(#cGlow)"/>
+    <!-- white particles (gold): king + rook -->
+    <g class="pcW">
+      <circle cx="325" cy="375" r="26" fill="url(#goldP)"/>
+      <text x="325" y="383" text-anchor="middle" style="font-size:24px" fill="#FFE9B8">♔</text>
+    </g>
+    <g class="pcW">
+      <circle cx="140" cy="90" r="22" fill="url(#goldP)"/>
+      <text x="140" y="98" text-anchor="middle" style="font-size:21px" fill="#FFE9B8">♖</text>
+    </g>
+    <!-- black particle (violet): king -->
+    <g class="pcB">
+      <circle cx="210" cy="235" r="24" fill="url(#violP)"/>
+      <text x="210" y="243" text-anchor="middle" style="font-size:22px" fill="#E6DAFF">♚</text>
+    </g>
+    <!-- phase ring -->
+    <g transform="translate(325 375)">
+      <circle r="34" fill="none" stroke="#C9A96A" stroke-opacity="0.5" stroke-dasharray="4 6">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="9s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+    <text x="200" y="432" text-anchor="middle" class="chip" fill="#5871A3">states (p, φ ∈ μ₄) · μ₄-orbits · K3 reflections · Klein order-7 layer</text>
+  </g>
+
+  <!-- side panel -->
+  <g transform="translate(536 148)">
+    <rect width="428" height="182" rx="12" fill="#0D1830" stroke="#2C3A5E"/>
+    <text x="18" y="30" class="chip" fill="#C9A96A">FLOW LAYER · KLEIN</text>
+    <text x="18" y="64" class="fm" fill="#FDE68A">t* = lcm(W/gcd(a,W), H/gcd(b,H))</text>
+    <text x="18" y="92" class="fm" fill="#5BD6F5">γ = δ⁴/k · δ = π/n</text>
+    <text x="18" y="120" class="fm" fill="#CBB8FF">Δ_Ch(cell) = λ₀ + δ²/2·s − δ⁵/k·s</text>
+    <text x="18" y="152" class="chip" fill="#9AB0D8">terminal cycle: L = lcm(t*, 4) · monovariant: |visited| ↑</text>
+    <text x="18" y="172" class="chip" fill="#5871A3">matrix towers · Kronecker spectra · Gram G_N levels 22k</text>
+  </g>
+
+  <g transform="translate(536 352)">
+    <rect width="428" height="128" rx="12" fill="#101f16" stroke="#2EA043" stroke-width="1.3"/>
+    <text x="18" y="30" class="chip" fill="#7EE787">PROTOCOL E · LIVE IN BROWSER</text>
+    <g class="chip">
+      <g class="eP"><rect x="18" y="44" width="58" height="22" rx="11" fill="#0D1830" stroke="#26539A"/><text x="47" y="59" text-anchor="middle" fill="#5BD6F5">E1 ✓</text></g>
+      <g class="eP" style="animation-delay:.3s"><rect x="84" y="44" width="58" height="22" rx="11" fill="#0D1830" stroke="#26539A"/><text x="113" y="59" text-anchor="middle" fill="#5BD6F5">E2 ✓</text></g>
+      <g class="eP" style="animation-delay:.6s"><rect x="150" y="44" width="58" height="22" rx="11" fill="#0D1830" stroke="#26539A"/><text x="179" y="59" text-anchor="middle" fill="#5BD6F5">E3 ✓</text></g>
+      <g class="eP" style="animation-delay:.9s"><rect x="216" y="44" width="58" height="22" rx="11" fill="#0D1830" stroke="#26539A"/><text x="245" y="59" text-anchor="middle" fill="#5BD6F5">E4 ✓</text></g>
+      <g class="eP" style="animation-delay:1.2s"><rect x="282" y="44" width="58" height="22" rx="11" fill="#0D1830" stroke="#26539A"/><text x="311" y="59" text-anchor="middle" fill="#5BD6F5">E5 ✓</text></g>
+      <g class="eP" style="animation-delay:1.5s"><rect x="348" y="44" width="58" height="22" rx="11" fill="#0D1830" stroke="#26539A"/><text x="377" y="59" text-anchor="middle" fill="#5BD6F5">E6 ✓</text></g>
+    </g>
+    <text x="18" y="94" class="chip" fill="#9AB0D8">E7 documented reference: 48/212/432/114 · sum 806</text>
+    <text x="18" y="114" class="chip" fill="#7EE787">μ₄-equivariance deviation 0.000 (encoding A) vs 1.000 (B)</text>
+  </g>
+
+  <text x="500" y="528" text-anchor="middle" class="chip" fill="#5871A3">static · offline-capable · open source · web/hodge-flow-chess/</text>
+</svg>

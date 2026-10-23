@@ -1,5 +1,16 @@
 # Verification in five languages and the Lean 4 kernel
 
+<div align="center">
+
+[⬆ Main README](../README.md) · [📚 Theorem monographs](../theorems/README.md) · [🧪 The laboratory](../README.md#7-the-laboratory-one-file-ten-powers) · [🌐 Web suite](../README.md#Live-web-suite-and-the-five-language-analogues)
+
+</div>
+
+<p align="center">
+  <img src="../docs/assets/svg/verify_terminal.svg" alt="Animated verification terminal: the command verify --lang=python,julia,rust,c,lean types itself, five progress bars fill simultaneously in five colors, each stack ends with PASS, and the run finishes with ALL 5 PASSED plus a kernel-verified badge" width="72%"><br>
+  <sub>Five independent stacks, one identity set, one verdict (pure SVG + CSS, no JavaScript).</sub>
+</p>
+
 Each implementation checks **the same base set of identities** of the
 program: the genera 91 and 406; the censuses 1+6+84 and
 1+6+9+30+84+276; the discriminant 1125²; the product of the SNF type;
@@ -8,6 +19,28 @@ genus 3); the termination t* = lcm(…); the binary-code cross-check
 48/212/432/114. The agreement of independent implementations —
 different languages, different ecosystems, no shared code — is the
 strongest form of a reproducibility certificate.
+
+**The three layers, one picture:**
+
+```mermaid
+flowchart LR
+    IDS["the identity set<br/>genera · censuses · SNF · disc<br/>Klein · Arf · t* · binary"]
+    subgraph L1["integer layer — exact"]
+        PY["Python int/Fraction"]
+        CR["C rational elimination"]
+        RU["Rust i128"]
+        FO["Fortran int64"]
+    end
+    subgraph L2["high-precision layer — analytic"]
+        MP["Python mpmath 35–70 dps"]
+        JB["Julia BigFloat 240-bit"]
+    end
+    subgraph L3["machine layer — proof"]
+        LE["Lean 4 kernel<br/>native_decide · no axioms"]
+    end
+    IDS --> L1 & L2 & L3
+    L1 & L2 & L3 --> V["verdict agreement<br/>exit 0 = ALL PASS"]
+```
 
 | Language | File | Run |
 |---|---|---|
@@ -79,6 +112,24 @@ is practically impossible — and the pytest suite
 ([`../tests/`](../tests/)) plus the baseline cross-check
 (`laboratory.py --check-baseline`) close the loop inside Python
 itself.
+
+<details>
+<summary><b>The verification matrix — stack × layer (click to unfold)</b></summary>
+
+| Stack | Integer layer | High-precision layer | Machine layer |
+|---|---|---|---|
+| **Python 3** (`laboratory.py`) | ✅ int · Fraction | ✅ mpmath 35–70 dps | — |
+| **Lean 4** | — | — | ✅ `native_decide` |
+| **Julia** | ✅ Int128/BigInt | ✅ BigFloat 240-bit | — |
+| **Fortran** | ✅ int64 | — | — |
+| **C** | ✅ rational elimination | — | — |
+| **Rust** | ✅ i128 | — | — |
+
+Every cell is an *independent* implementation of the same identity —
+no shared code, no shared numeric libraries. The agreement of all
+cells is the reproducibility certificate of the program.
+
+</details>
 
 ---
 

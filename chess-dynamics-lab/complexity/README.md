@@ -1,5 +1,11 @@
 # complexity/ — the EXPTIME Barrier Laboratory
 
+
+<div align="center">
+
+[⬆ Chess Particle Dynamics](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
 This module answers a big question with precise tools:
 
 > *Generalized chess on an n×n board is EXPTIME-complete. If someone found
@@ -11,6 +17,20 @@ impossible**: `P ⊊ EXPTIME` is a *theorem* (deterministic time hierarchy,
 Hartmanis–Stearns 1965), and generalized chess is EXPTIME-complete
 (Fraenkel–Lichtenstein 1981). What IS possible — and what this module
 builds, measures and freezes — is:
+
+The three faces of the barrier, one picture:
+
+```mermaid
+flowchart TD
+    EXPTIME["generalized n×n chess<br/>EXPTIME-complete<br/>(Fraenkel–Lichtenstein 1981)"]
+    WALL["P ⊊ EXPTIME — a theorem<br/>(Hartmanis–Stearns 1965)"]
+    ISLAND["T14(ii) polynomial islands<br/>fixed k pieces → O(n^2k) states<br/>KRK 8×8 reproduced bit-exactly"]
+    MYOPIA["T14(i) polynomial myopia<br/>ParticleSolver picks in O(n^4k^2)<br/>never touches a DTM table"]
+    TUNNEL["T14(iii) the tunnel argument<br/>win-pairs 2^Θ(m) plies deep<br/>17.56% of greedy moves lose the win"]
+    EXPTIME --> WALL
+    WALL --> ISLAND & MYOPIA & TUNNEL
+```
+
 
 1. **T14(ii) — polynomial islands.** For a *fixed* number of pieces `k`
    the state space is `O(n^{2k})` — polynomial in `n`. The generalized

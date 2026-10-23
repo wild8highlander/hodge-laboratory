@@ -1,10 +1,27 @@
 # The near-miss corpus
 
+<div align="center">
+
+[⬆ VER-HODGE](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
+
 Every file is a COMPUTED counterexample to a tempting but false
 shortcut of the implementation.  The corpus is the falsification
 layer of the program (the chess-dynamics-lab honesty ladder,
 transplanted): each entry records the claim falsified, the exact
 computed data, and the lesson absorbed into the code.
+
+The falsification loop, as a diagram:
+
+```mermaid
+flowchart LR
+    T["a tempting shortcut"] --> E["the experiment<br/>recomputes it exactly"]
+    E -->|"matches"| K["KEPT<br/>(and documented)"]
+    E -->|"diverges"| NE["NE01..NE06<br/>the near-miss corpus"]
+    NE --> L["the lesson is absorbed<br/>into the engine + tests"]
+    L --> T
+```
 
 | id | wave | shortcut falsified |
 |----|------|--------------------|

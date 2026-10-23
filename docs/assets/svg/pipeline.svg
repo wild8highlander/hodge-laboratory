@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" width="1100" height="420" role="img" aria-labelledby="plTitle plDesc">
+  <title id="plTitle">The universal parameter-free pipeline</title>
+  <desc id="plDesc">Blueprint-style diagram: the integer triple (n, B, lambda_0) enters as crystalline shapes, flows through translucent tubes computing the spin phase delta = pi/N, the braking gamma = delta^4/k and the effective phase delta_eff = delta^5/k, and exits as the united formula Delta_Ch plus the period, census, SNF and termination outputs.</desc>
+  <defs>
+    <linearGradient id="pBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0B1026"/>
+      <stop offset="1" stop-color="#151844"/>
+    </linearGradient>
+    <linearGradient id="tube" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.55"/>
+      <stop offset="0.5" stop-color="#A78BFA" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#E879F9" stop-opacity="0.55"/>
+    </linearGradient>
+    <filter id="glowP" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .h{font:600 13px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#E5ECFF;letter-spacing:1.5px}
+      .f{font:600 16px 'SFMono-Regular',Consolas,monospace}
+      .lbl{font:600 12px 'SFMono-Regular',Consolas,monospace;fill:#9AB0D8}
+      .flow{stroke-dasharray:4 16;animation:flow 2.6s linear infinite}
+      .f2{animation-duration:3.4s}.f3{animation-duration:4.1s}
+      .float1{animation:float1 7s ease-in-out infinite}
+      .float2{animation:float1 8.2s ease-in-out infinite;animation-delay:-2.4s}
+      .float3{animation:float1 9.1s ease-in-out infinite;animation-delay:-4.7s}
+      .gem{animation:none}
+      .pulse{animation:npulse 4.6s ease-in-out infinite}
+      .p2{animation-delay:1.5s}.p3{animation-delay:3s}
+      @keyframes flow{to{stroke-dashoffset:-60}}
+      @keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+      @keyframes npulse{0%,100%{opacity:.55}50%{opacity:1}}
+      @media (prefers-reduced-motion: reduce){.flow,.float1,.float2,.float3,.gem,.pulse{animation:none}.pulse{opacity:.9}}
+    </style>
+  </defs>
+
+  <rect width="1100" height="420" fill="url(#pBg)"/>
+  <g stroke="#4C6FFF" stroke-opacity="0.08" stroke-width="1">
+    <path d="M0 60H1100M0 130H1100M0 200H1100M0 270H1100M0 340H1100"/>
+    <path d="M110 0V420M220 0V420M330 0V420M440 0V420M550 0V420M660 0V420M770 0V420M880 0V420M990 0V420"/>
+  </g>
+  <text x="40" y="40" class="h">THE UNIVERSAL PIPELINE · PARAMETER-FREE</text>
+  <text x="1060" y="40" text-anchor="end" class="lbl">input: one integer triple → outputs: closed formulas</text>
+
+  <!-- ══ INPUT: crystalline triple ══ -->
+  <g class="float1">
+    <g class="gem">
+      <animateTransform attributeName="transform" type="rotate" from="0 120 150" to="360 120 150" dur="26s" repeatCount="indefinite"/>
+      <path d="M120 108 152 128 152 172 120 192 88 172 88 128Z" fill="#0E3A52" fill-opacity="0.85" stroke="#22D3EE" stroke-width="2"/>
+      <path d="M120 108 152 128 120 150 88 128Z" fill="#22D3EE" fill-opacity="0.35"/>
+      <text x="120" y="157" text-anchor="middle" class="f" fill="#A5E8F5" style="font-size:21px">n</text>
+    </g>
+    <text x="120" y="216" text-anchor="middle" class="lbl">rotation order</text>
+  </g>
+  <g class="float2">
+    <g class="gem">
+      <animateTransform attributeName="transform" type="rotate" from="0 120 290" to="360 120 290" dur="26s" repeatCount="indefinite"/>
+      <path d="M120 248 152 268 152 312 120 332 88 312 88 268Z" fill="#241A3E" fill-opacity="0.85" stroke="#A78BFA" stroke-width="2"/>
+      <path d="M120 248 152 268 120 290 88 268Z" fill="#A78BFA" fill-opacity="0.35"/>
+      <text x="120" y="297" text-anchor="middle" class="f" fill="#CBB8FF" style="font-size:21px">B</text>
+    </g>
+    <text x="120" y="356" text-anchor="middle" class="lbl">carrier index</text>
+  </g>
+  <g class="float3">
+    <g class="gem">
+      <animateTransform attributeName="transform" type="rotate" from="0 225 222" to="360 225 222" dur="26s" repeatCount="indefinite"/>
+      <path d="M225 176 262 199 262 245 225 268 188 245 188 199Z" fill="#36163C" fill-opacity="0.85" stroke="#E879F9" stroke-width="2"/>
+      <path d="M225 176 262 199 225 222 188 199Z" fill="#E879F9" fill-opacity="0.35"/>
+      <text x="225" y="242" text-anchor="middle" class="f" fill="#F5C4FF" style="font-size:18px">λ₀</text>
+    </g>
+    <text x="225" y="292" text-anchor="middle" class="lbl">spectral threshold</text>
+  </g>
+
+  <!-- ══ TUBES: three stage nodes ══ -->
+  <!-- tube 1 -->
+  <rect x="286" y="128" width="180" height="26" rx="13" fill="url(#tube)" stroke="#22D3EE" stroke-opacity="0.5"/>
+  <line x1="292" y1="141" x2="460" y2="141" stroke="#A5E8F5" stroke-width="2" class="flow"/>
+  <g class="pulse">
+    <rect x="316" y="180" width="120" height="60" rx="12" fill="#0E2A3A" stroke="#22D3EE" stroke-width="1.6"/>
+    <text x="376" y="206" text-anchor="middle" class="f" fill="#5BD6F5">δ = π/N</text>
+    <text x="376" y="226" text-anchor="middle" class="lbl" style="font-size:10.5px">spin phase</text>
+  </g>
+  <path d="M376 154V180" stroke="#22D3EE" stroke-width="1.4" stroke-dasharray="3 5" fill="none"/>
+
+  <!-- tube 2 -->
+  <rect x="486" y="128" width="180" height="26" rx="13" fill="url(#tube)" stroke="#A78BFA" stroke-opacity="0.5"/>
+  <line x1="492" y1="141" x2="660" y2="141" stroke="#CBB8FF" stroke-width="2" class="flow f2"/>
+  <g class="pulse p2">
+    <rect x="516" y="180" width="120" height="60" rx="12" fill="#241A3E" stroke="#A78BFA" stroke-width="1.6"/>
+    <text x="576" y="206" text-anchor="middle" class="f" fill="#CBB8FF">γ = δ⁴/k</text>
+    <text x="576" y="226" text-anchor="middle" class="lbl" style="font-size:10.5px">braking</text>
+  </g>
+  <path d="M576 154V180" stroke="#A78BFA" stroke-width="1.4" stroke-dasharray="3 5" fill="none"/>
+
+  <!-- tube 3 -->
+  <rect x="686" y="128" width="180" height="26" rx="13" fill="url(#tube)" stroke="#E879F9" stroke-opacity="0.5"/>
+  <line x1="692" y1="141" x2="860" y2="141" stroke="#F5C4FF" stroke-width="2" class="flow f3"/>
+  <g class="pulse p3">
+    <rect x="716" y="180" width="120" height="60" rx="12" fill="#36163C" stroke="#E879F9" stroke-width="1.6"/>
+    <text x="776" y="206" text-anchor="middle" class="f" fill="#F5C4FF">δ_eff = δ⁵/k</text>
+    <text x="776" y="226" text-anchor="middle" class="lbl" style="font-size:10.5px">effective phase</text>
+  </g>
+  <path d="M776 154V180" stroke="#E879F9" stroke-width="1.4" stroke-dasharray="3 5" fill="none"/>
+
+  <!-- input connector -->
+  <path d="M236 141H286" stroke="#22D3EE" stroke-width="2" class="flow"/>
+
+  <!-- ══ OUTPUT: the united formula ══ -->
+  <path d="M866 141H912" stroke="#E879F9" stroke-width="2" class="flow f2"/>
+  <g filter="url(#glowP)">
+    <rect x="912" y="76" width="158" height="130" rx="14" fill="#241447" stroke="#FBBF24" stroke-width="1.8"/>
+    <text x="991" y="110" text-anchor="middle" class="f" fill="#FBBF24" style="font-size:19px">Δ_Ch =</text>
+    <text x="991" y="138" text-anchor="middle" class="f" fill="#FDE68A" style="font-size:14.5px">λ₀ − R/4</text>
+    <text x="991" y="162" text-anchor="middle" class="f" fill="#FDE68A" style="font-size:14.5px">+ δ²/2 − δ⁵/k</text>
+    <text x="991" y="190" text-anchor="middle" class="lbl" style="font-size:10px;fill:#C9B8FF">the united formula</text>
+  </g>
+
+  <!-- ══ OUTPUT STREAM: artifacts ══ -->
+  <g>
+    <path d="M376 240V286H560" stroke="#22D3EE" stroke-width="1.3" stroke-dasharray="3 6" fill="none"/>
+    <path d="M576 240V286" stroke="#A78BFA" stroke-width="1.3" stroke-dasharray="3 6" fill="none"/>
+    <path d="M776 240V286H592" stroke="#E879F9" stroke-width="1.3" stroke-dasharray="3 6" fill="none"/>
+    <g>
+      <rect x="316" y="286" width="470" height="98" rx="14" fill="#0D1830" stroke="#2C3A5E" stroke-width="1.4"/>
+      <text x="340" y="316" class="f" fill="#7EE787" style="font-size:13px">→</text>
+      <text x="362" y="316" class="f" fill="#A5E8F5" style="font-size:13px">periods Ω(a,b) = Γ(a/N)Γ(b/N)/Γ((a+b)/N)</text>
+      <text x="340" y="342" class="f" fill="#7EE787" style="font-size:13px">→</text>
+      <text x="362" y="342" class="f" fill="#CBB8FF" style="font-size:13px">census h_d · SNF (1,1,5,5,15,15,15,15) · vol_h = 1125</text>
+      <text x="340" y="368" class="f" fill="#7EE787" style="font-size:13px">→</text>
+      <text x="362" y="368" class="f" fill="#F5C4FF" style="font-size:13px">termination t* = lcm(W/gcd(a,W), H/gcd(b,H))</text>
+    </g>
+    <path d="M786 335H908" stroke="#E879F9" stroke-width="1.3" stroke-dasharray="3 6" fill="none"/>
+    <g>
+      <rect x="912" y="300" width="158" height="70" rx="12" fill="#12261C" stroke="#2EA043" stroke-width="1.5"/>
+      <text x="991" y="328" text-anchor="middle" class="f" fill="#3FD16B" style="font-size:14px">verified 2×</text>
+      <text x="991" y="350" text-anchor="middle" class="lbl" style="font-size:10px;fill:#9AB0D8">numeric 10⁻⁷¹ · exact Lean</text>
+    </g>
+  </g>
+</svg>

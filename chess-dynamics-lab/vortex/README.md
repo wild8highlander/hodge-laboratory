@@ -1,8 +1,24 @@
 # vortex — the vortex-value correspondence (T16)
 
+
+<div align="center">
+
+[⬆ Chess Particle Dynamics](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
 The vortex layer re-encodes the frozen DTM certificates as the **topology of a
 planar flow** on the 8×8 board, so that the outcome of a perfect game becomes
 literally visible — and machine-classifiable — in the particle dynamics:
+
+```mermaid
+flowchart LR
+    S["the frozen DTM certificates"] --> FLD["the vortex field<br/>vortices Γ = 0.9 + currents per move"]
+    FLD -->|"WIN (strong side)"| SINK["descending spiral sink<br/>capture_fraction = 1.000"]
+    FLD -->|"DRAW"| ORBIT["closed orbits<br/>capture_fraction = 0.000"]
+    FLD -->|"LOSS (weak side)"| SWEEP["every defence feeds the sink<br/>capture_fraction = 1.000"]
+    FLD -->|"mate on the board"| TERM["the terminal sink<br/>no moves, no currents"]
+```
+
 
 | Game value (side to move) | Flow topology | The metric ensemble |
 |---|---|---|

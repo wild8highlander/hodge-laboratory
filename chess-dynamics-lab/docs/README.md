@@ -1,5 +1,11 @@
 # docs/ — the GitHub Pages landing
 
+
+<div align="center">
+
+[⬆ Chess Particle Dynamics](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
 A single static page (`index.html` + `style.css`) summarizing the program for the
 front page of `https://wild8highlander.github.io/chess-dynamics-lab/`.
 

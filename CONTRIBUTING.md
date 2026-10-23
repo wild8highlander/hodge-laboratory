@@ -77,6 +77,65 @@ exit code `0`:
 5. Wait for CI — all jobs (protocol matrix, C/Fortran/Rust backends,
    lint, tests) must be green.
 
+## 🪜 How to add a new stand to the ladder
+
+The ladder of stands is the spine of the program: torus → K3 → Klein →
+N = 7/9 → N = 15/30 (→ N = 11 in progress). A new rung must earn its
+place — the geometry is the input, everything else is computed. The
+checklist a new stand must satisfy:
+
+1. **Fix the triple.** Decide the integer triple (n, B, λ₀) of the rung
+   and justify it geometrically — no tuning knobs, ever.
+2. **Exact layer first.** Provide the exact integer facts of the rung
+   (genus, census by conductors, discriminant, SNF type) and freeze
+   them in `results/baseline_v1_v9.json`.
+3. **Implement the stand** as a menu item in `laboratory.py` and mirror
+   it in `verification/` (at least one independent stack) — the
+   agreement of implementations is the certificate.
+4. **Write the theorem monograph** (T-numbered folder in `theorems/`,
+   the six-block scheme, RU/EN × PDF/DOCX) and add the row to
+   [`theorems/README.md`](theorems/README.md).
+5. **Update the ladder table** in `README.md` §4 and the genus chart
+   (`docs/assets/svg/genus_ladder.svg` — one rung = one point; the
+   `scripts/theorem_of_week.py` rotation list picks it up
+   automatically for the Theorem of the Week block).
+6. **Keep the Lean queue honest**: if the rung's integer layer is not
+   yet machine-checked, add it to the Lean queue list and say so in
+   the README — a labeled TODO is acceptable, an unlabeled gap is not.
+
+## 🎨 How to update the visual layer (README, SVG, Mermaid)
+
+The visual system is GitHub-native: **no JavaScript anywhere**, no
+external images, no build step. The rules that keep it that way:
+
+* **Animated SVG assets** live in `docs/assets/svg/` (main repo),
+  `chess-dynamics-lab/docs/assets/svg/` and `verhodge-lab/figures/svg/`.
+  They are hand-written SVG + CSS/SMIL, referenced from the READMEs as
+  `<img src="docs/assets/svg/NAME.svg">`. Every asset must:
+  - carry `role="img"`, `<title>` and a descriptive `<alt>` at the
+    reference site (accessibility is part of the design system);
+  - respect `prefers-reduced-motion` (every asset ships a
+    `@media (prefers-reduced-motion: reduce)` block);
+  - validate as XML — run `python3 scripts/refresh_visuals.py`
+    before committing (it also checks that every README image link
+    resolves).
+* **Mermaid diagrams** are versioned with the text and must render on
+  GitHub: `flowchart`, `graph`, `xychart-beta` and `sequenceDiagram`
+  are the supported vocabulary. Do not put Mermaid inside HTML table
+  cells — GitHub will not render it there.
+* **The Theorem of the Week block** in `README.md` lives between the
+  machine markers `<!-- THEOREM-OF-WEEK:START/END -->` — edit the
+  theorem list only in `scripts/theorem_of_week.py`, never inside the
+  markers by hand (the weekly workflow rewrites the block).
+* **Colors of the design system**: deep indigo `#0B1026` background,
+  cyan `#22D3EE` geometry, violet `#A78BFA` rungs, magenta `#E879F9`
+  spectra, gold `#FBBF24` certificates, green `#2EA043` verdicts.
+  Keep new assets inside this palette so the pages read as one object.
+* **Generated figures** (`docs/assets/genus.png` and friends) are
+  regenerated from the frozen baseline by
+  `python3 scripts/refresh_visuals.py` (CI runs it monthly and on
+  demand) — never hand-edit a generated PNG.
+
 ## 📮 Questions
 
 Open a [Discussion](https://github.com/wild8highlander/hodge-laboratory/discussions)

@@ -1,5 +1,11 @@
 # scripts/ — the publication utilities
 
+
+<div align="center">
+
+[⬆ Chess Particle Dynamics](../README.md) · [⬆ Hodge Laboratory](../../README.md)
+
+</div>
 ## termux_push.sh — one-command GitHub publication
 
 Creates the repository under your GitHub account and pushes the whole laboratory in a
