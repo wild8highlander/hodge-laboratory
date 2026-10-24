@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Hodge Laboratory t13 icon">
+  <rect x="4" y="4" width="248" height="248" rx="30" fill="#F1FAEE" stroke="rgba(29,53,87,0.22)" stroke-width="3"/>
+  <rect x="64" y="92" width="74" height="26" fill="#457B9D" rx="0" />
+  <polygon points="138,79 190,105 138,131" fill="#457B9D" stroke="none" stroke-width="0" />
+  <rect x="184" y="56" width="16" height="144" fill="#E63946" rx="0" />
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Hodge Laboratory t01 icon">
+  <rect x="4" y="4" width="248" height="248" rx="30" fill="#F1FAEE" stroke="rgba(29,53,87,0.22)" stroke-width="3"/>
+  <circle cx="65" cy="62" r="14" fill="#E63946" stroke="none" stroke-width="0" />
+  <circle cx="107" cy="62" r="14" fill="#457B9D" stroke="none" stroke-width="0" />
+  <circle cx="149" cy="62" r="14" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="191" cy="62" r="14" fill="#1D3557" stroke="none" stroke-width="0" />
+  <circle cx="86" cy="106" r="14" fill="#457B9D" stroke="none" stroke-width="0" />
+  <circle cx="128" cy="106" r="14" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="170" cy="106" r="14" fill="#1D3557" stroke="none" stroke-width="0" />
+  <circle cx="107" cy="150" r="14" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="149" cy="150" r="14" fill="#1D3557" stroke="none" stroke-width="0" />
+  <circle cx="128" cy="194" r="14" fill="#1D3557" stroke="none" stroke-width="0" />
+</svg>

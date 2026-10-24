@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Hodge Laboratory t04 icon">
+  <rect x="4" y="4" width="248" height="248" rx="30" fill="#F1FAEE" stroke="rgba(29,53,87,0.22)" stroke-width="3"/>
+  <rect x="71" y="71" width="54" height="54" fill="#E63946" rx="0" />
+  <rect x="131" y="71" width="54" height="54" fill="#457B9D" rx="0" />
+  <rect x="71" y="131" width="54" height="54" fill="#457B9D" rx="0" />
+  <rect x="131" y="131" width="54" height="54" fill="#E63946" rx="0" />
+  <line x1="128" y1="60" x2="128" y2="196" stroke="#1D3557" stroke-width="5" />
+  <line x1="60" y1="128" x2="196" y2="128" stroke="#1D3557" stroke-width="5" />
+</svg>

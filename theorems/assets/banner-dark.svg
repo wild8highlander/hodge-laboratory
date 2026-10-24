@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" role="img" aria-label="Hodge Laboratory — Theorem Monographs">
+  <rect width="1280" height="320" fill="#0A0A0A"/>
+  <!-- Swiss corner marks -->
+  <rect x="0" y="0" width="26" height="26" fill="#E63946"/>
+  <rect x="0" y="312" width="1280" height="8" fill="#E63946"/>
+  <!-- outer echo diamond -->
+  <polygon points="268,8 404,156 268,304 132,156" fill="none" stroke="#FFFFFF" stroke-width="1.4" opacity="0.35"/>
+  <g><polygon points="268,30 372,156 268,282 164,156" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round"/>
+    <line x1="216.0" y1="93.0" x2="320.0" y2="93.0" stroke="#FFFFFF" stroke-width="2.75" />
+    <line x1="320.0" y1="93.0" x2="320.0" y2="219.0" stroke="#FFFFFF" stroke-width="2.75" />
+    <line x1="320.0" y1="219.0" x2="216.0" y2="219.0" stroke="#FFFFFF" stroke-width="2.75" />
+    <line x1="216.0" y1="219.0" x2="216.0" y2="93.0" stroke="#FFFFFF" stroke-width="2.75" />
+    <circle cx="268" cy="30" r="6.050000000000001" fill="#FFFFFF" stroke="none" stroke-width="0" />
+    <circle cx="372" cy="156" r="6.050000000000001" fill="#FFFFFF" stroke="none" stroke-width="0" />
+    <circle cx="268" cy="282" r="6.050000000000001" fill="#FFFFFF" stroke="none" stroke-width="0" />
+    <circle cx="164" cy="156" r="6.050000000000001" fill="#FFFFFF" stroke="none" stroke-width="0" />
+    <circle cx="320.0" cy="93.0" r="6.050000000000001" fill="#FFFFFF" stroke="none" stroke-width="0" />
+    <circle cx="320.0" cy="219.0" r="6.050000000000001" fill="#FFFFFF" stroke="none" stroke-width="0" />
+    <circle cx="216.0" cy="219.0" r="6.050000000000001" fill="#FFFFFF" stroke="none" stroke-width="0" />
+    <circle cx="216.0" cy="93.0" r="6.050000000000001" fill="#FFFFFF" stroke="none" stroke-width="0" /></g>
+  <g><circle cx="268" cy="156" r="11" fill="#E63946" stroke="none" stroke-width="0"><animate attributeName="r" values="11;15.95;11" dur="2.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/></circle></g>
+  <!-- typography -->
+  <text x="536" y="118" font-family="Helvetica, Arial, sans-serif" font-size="56" fill="#FFFFFF" font-weight="700" letter-spacing="3" text-anchor="start" >HODGE LABORATORY</text>
+  <rect x="540" y="140" width="470" height="6" fill="#E63946"/>
+  <text x="542" y="184" font-family="Helvetica, Arial, sans-serif" font-size="23" fill="#FFFFFF" font-weight="500" letter-spacing="9" text-anchor="start" >THE THEOREM MONOGRAPHS</text>
+  <text x="542" y="224" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#9CA3AF" font-weight="400" letter-spacing="1" text-anchor="start" >22 studies · 88 documents · RU/EN · complete proofs</text>
+  <text x="542" y="268" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#9CA3AF" font-weight="400" letter-spacing="0" text-anchor="start" ><tspan>Δ</tspan><tspan font-size="12" dy="4">Ch</tspan><tspan dy="-4"> = λ</tspan><tspan font-size="12" dy="4">0</tspan><tspan dy="-4"> − R/4 + δ</tspan><tspan font-size="12" dy="-7">2</tspan><tspan dy="7">/2 − δ</tspan><tspan font-size="12" dy="-7">5</tspan><tspan dy="7">/k</tspan></text>
+</svg>

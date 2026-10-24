@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Hodge Laboratory animated avatar">
+  <defs>
+    <radialGradient id="bg" cx="0.5" cy="0.42" r="0.75">
+      <stop offset="0" stop-color="#23324E">
+        <animate attributeName="stop-color" values="#23324E;#2E4166;#23324E" dur="6s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="1" stop-color="#0B1220">
+        <animate attributeName="stop-color" values="#0B1220;#0E1626;#0B1220" dur="6s" repeatCount="indefinite"/>
+      </stop>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <rect x="10" y="10" width="492" height="492" rx="88" fill="none" stroke="rgba(148,163,184,0.30)" stroke-width="2"/>
+  <!-- corner ticks -->
+  <line x1="56" y1="36" x2="96" y2="36" stroke="#E2E8F0" stroke-width="3" opacity="0.5"/>
+  <line x1="56" y1="36" x2="56" y2="76" stroke="#E2E8F0" stroke-width="3" opacity="0.5"/>
+  <line x1="456" y1="476" x2="416" y2="476" stroke="#E2E8F0" stroke-width="3" opacity="0.5"/>
+  <line x1="456" y1="476" x2="456" y2="436" stroke="#E2E8F0" stroke-width="3" opacity="0.5"/>
+  <!-- rotating dashed rings -->
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="0 256 256" to="360 256 256" dur="26s" repeatCount="indefinite"/>
+    <circle cx="256" cy="256" r="212" fill="none" stroke="rgba(148,163,184,0.30)" stroke-width="2.5" stroke-dasharray="12 16"/>
+  </g>
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="360 256 256" to="0 256 256" dur="38s" repeatCount="indefinite"/>
+    <circle cx="256" cy="256" r="236" fill="none" stroke="rgba(230,57,70,0.35)" stroke-width="2" stroke-dasharray="3 26"/>
+  </g>
+  <!-- echo diamond -->
+  <polygon points="256,54 434,256 256,458 78,256" fill="none" stroke="#E2E8F0" stroke-width="2" opacity="0.28"/>
+  <polygon points="256,108 374,256 256,404 138,256" fill="none" stroke="#E2E8F0" stroke-width="10" stroke-linejoin="round"/>
+    <line x1="197.0" y1="182.0" x2="315.0" y2="182.0" stroke="#E2E8F0" stroke-width="5.5" />
+    <line x1="315.0" y1="182.0" x2="315.0" y2="330.0" stroke="#E2E8F0" stroke-width="5.5" />
+    <line x1="315.0" y1="330.0" x2="197.0" y2="330.0" stroke="#E2E8F0" stroke-width="5.5" />
+    <line x1="197.0" y1="330.0" x2="197.0" y2="182.0" stroke="#E2E8F0" stroke-width="5.5" />
+    <circle cx="256" cy="108" r="11.0" fill="#E2E8F0" stroke="none" stroke-width="0" />
+    <circle cx="374" cy="256" r="11.0" fill="#E2E8F0" stroke="none" stroke-width="0" />
+    <circle cx="256" cy="404" r="11.0" fill="#E2E8F0" stroke="none" stroke-width="0" />
+    <circle cx="138" cy="256" r="11.0" fill="#E2E8F0" stroke="none" stroke-width="0" />
+    <circle cx="315.0" cy="182.0" r="11.0" fill="#E2E8F0" stroke="none" stroke-width="0" />
+    <circle cx="315.0" cy="330.0" r="11.0" fill="#E2E8F0" stroke="none" stroke-width="0" />
+    <circle cx="197.0" cy="330.0" r="11.0" fill="#E2E8F0" stroke="none" stroke-width="0" />
+    <circle cx="197.0" cy="182.0" r="11.0" fill="#E2E8F0" stroke="none" stroke-width="0" />
+  <circle cx="256" cy="256" r="20" fill="#E63946" stroke="none" stroke-width="0"><animate attributeName="r" values="20;29.0;20" dur="2.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/></circle>
+  <!-- orbiting particles -->
+  <circle r="6" fill="#E63946"><animateMotion dur="7.5" begin="0s" repeatCount="indefinite" path="M 492 256 A 236 236 0 1 1 20 256 A 236 236 0 1 1 492 256" calcMode="linear"/></circle>
+  <circle r="5" fill="#F4A261"><animateMotion dur="10" begin="2.1s" repeatCount="indefinite" path="M 468 256 A 212 212 0 1 1 44 256 A 212 212 0 1 1 468 256" calcMode="linear"/></circle>
+  <circle r="4" fill="#38BDF8"><animateMotion dur="12" begin="4.5s" repeatCount="indefinite" path="M 492 256 A 236 236 0 1 1 20 256 A 236 236 0 1 1 492 256" calcMode="linear"/></circle>
+  <g opacity="0.1">
+  <linearGradient id="sh" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+    <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="1"/>
+    <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+  </linearGradient>
+  <rect x="-512" y="0" width="170" height="512" fill="url(#sh)"
+        transform="skewX(-18)" opacity="0">
+    <animateTransform attributeName="transform" type="translate"
+        values="0 0; 716 0; 716 0" keyTimes="0;0.4;1"
+        dur="5.5s" repeatCount="indefinite" additive="sum"/>
+    <animate attributeName="opacity" values="0;1;0;0" keyTimes="0;0.2;0.4;1"
+        dur="5.5s" repeatCount="indefinite"/>
+  </rect>
+</g>
+</svg>

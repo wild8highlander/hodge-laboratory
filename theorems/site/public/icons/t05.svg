@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Hodge Laboratory t05 icon">
+  <rect x="4" y="4" width="248" height="248" rx="30" fill="#F1FAEE" stroke="rgba(29,53,87,0.22)" stroke-width="3"/>
+  <circle cx="128" cy="128" r="74" fill="none" stroke="#457B9D" stroke-width="12" />
+  <circle cx="128" cy="128" r="46" fill="none" stroke="#E63946" stroke-width="12" />
+  <circle cx="128" cy="128" r="20" fill="#F4A261" stroke="none" stroke-width="0" />
+</svg>

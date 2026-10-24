@@ -1,0 +1,23 @@
+{
+  "name": "hodge-theorems-vitrine",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Interactive vitrine of the Hodge Laboratory theorem monographs — 22 studies, dependency explorer, SNF dashboard, live playground.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "d3": "^7.9.0",
+    "katex": "^0.16.11",
+    "plotly.js-dist-min": "^2.35.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Hodge Laboratory t22 icon">
+  <rect x="4" y="4" width="248" height="248" rx="30" fill="#F1FAEE" stroke="rgba(29,53,87,0.22)" stroke-width="3"/>
+  <rect x="62" y="62" width="40" height="40" fill="#E63946" rx="0" />
+  <rect x="108" y="62" width="40" height="40" fill="#F1FAEE" rx="0" stroke="#1D3557" stroke-width="4"/>
+  <rect x="154" y="62" width="40" height="40" fill="#F1FAEE" rx="0" stroke="#1D3557" stroke-width="4"/>
+  <rect x="62" y="108" width="40" height="40" fill="#F1FAEE" rx="0" stroke="#1D3557" stroke-width="4"/>
+  <rect x="108" y="108" width="40" height="40" fill="#E63946" rx="0" />
+  <rect x="154" y="108" width="40" height="40" fill="#F1FAEE" rx="0" stroke="#1D3557" stroke-width="4"/>
+  <rect x="62" y="154" width="40" height="40" fill="#F1FAEE" rx="0" stroke="#1D3557" stroke-width="4"/>
+  <rect x="108" y="154" width="40" height="40" fill="#F1FAEE" rx="0" stroke="#1D3557" stroke-width="4"/>
+  <rect x="154" y="154" width="40" height="40" fill="#E63946" rx="0" />
+  <circle cx="196" cy="60" r="9" fill="#F4A261" stroke="none" stroke-width="0" />
+</svg>

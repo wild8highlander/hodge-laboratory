@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Hodge Laboratory t16 icon">
+  <rect x="4" y="4" width="248" height="248" rx="30" fill="#F1FAEE" stroke="rgba(29,53,87,0.22)" stroke-width="3"/>
+  <path d="M 128.0 174.0 L 163.9 208.4 L 92.1 208.4 Z" fill="#E63946"/>
+  <path d="M 92.0 156.7 L 87.6 206.2 L 42.8 150.0 Z" fill="#457B9D"/>
+  <path d="M 83.2 117.8 L 41.7 145.1 L 57.6 75.1 Z" fill="#E63946"/>
+  <path d="M 108.0 86.6 L 60.8 71.2 L 125.5 40.0 Z" fill="#457B9D"/>
+  <path d="M 148.0 86.6 L 130.5 40.0 L 195.2 71.2 Z" fill="#E63946"/>
+  <path d="M 172.8 117.8 L 198.4 75.1 L 214.3 145.1 Z" fill="#457B9D"/>
+  <path d="M 164.0 156.7 L 213.2 150.0 L 168.4 206.2 Z" fill="#E63946"/>
+  <circle cx="128" cy="128" r="24" fill="#1D3557" stroke="none" stroke-width="0" />
+  <circle cx="128" cy="128" r="10" fill="#F4A261" stroke="none" stroke-width="0" />
+</svg>

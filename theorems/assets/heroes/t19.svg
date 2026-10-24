@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="240" viewBox="0 0 880 240" role="img" aria-label="T19 Quartic tower hero card">
+  <defs>
+    <linearGradient id="hbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16223A"/><stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+  </defs>
+  <rect width="880" height="240" rx="20" fill="url(#hbg)"/>
+  <line x1="0" y1="0" x2="0" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="56" y1="0" x2="56" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="112" y1="0" x2="112" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="168" y1="0" x2="168" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="224" y1="0" x2="224" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="280" y1="0" x2="280" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="336" y1="0" x2="336" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="392" y1="0" x2="392" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="448" y1="0" x2="448" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="504" y1="0" x2="504" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="560" y1="0" x2="560" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="616" y1="0" x2="616" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="672" y1="0" x2="672" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="728" y1="0" x2="728" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="784" y1="0" x2="784" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="840" y1="0" x2="840" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="0" x2="880" y2="0" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="56" x2="880" y2="56" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="112" x2="880" y2="112" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="168" x2="880" y2="168" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="224" x2="880" y2="224" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <rect x="0" y="0" width="22" height="22" rx="6" fill="#E63946"/>
+  <rect x="0" y="232" width="880" height="8" rx="4" fill="#E63946" opacity="0.9"/>
+  <text x="856" y="74" font-family="Helvetica, Arial, sans-serif" font-size="64" fill="#E2E8F0" font-weight="800" letter-spacing="-2" text-anchor="end" opacity="0.09">T19</text>
+  <!-- living motif -->
+  <rect x="86.0" y="168" width="128" height="22" rx="6" fill="#94A3B8"><animate attributeName="opacity" values="0.45;1;0.45" dur="1.8s" begin="0.00s" repeatCount="indefinite"/></rect>
+  <rect x="99.0" y="136" width="102" height="22" rx="6" fill="#6FA3C7"><animate attributeName="opacity" values="0.45;1;0.45" dur="1.8s" begin="0.22s" repeatCount="indefinite"/></rect>
+  <rect x="112.0" y="104" width="76" height="22" rx="6" fill="#F4A261"><animate attributeName="opacity" values="0.45;1;0.45" dur="1.8s" begin="0.44s" repeatCount="indefinite"/></rect>
+  <rect x="125.0" y="72" width="50" height="22" rx="6" fill="#E63946"><animate attributeName="opacity" values="0.45;1;0.45" dur="1.8s" begin="0.66s" repeatCount="indefinite"/></rect>
+  <line x1="150" y1="30" x2="150" y2="56" stroke="#E2E8F0" stroke-width="4"><animate attributeName="opacity" values="0.4;1;0.4" dur="1.4s" begin="0s" repeatCount="indefinite"/></line>
+  <circle cx="150" cy="26" r="8" fill="#E63946"><animate attributeName="r" values="8.0;12.0;8.0" dur="1.2s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/></circle>
+  <circle r="3.5" fill="#E63946"><animateMotion dur="9" begin="0s" repeatCount="indefinite" path="M 242 120 A 92 92 0 1 1 58 120 A 92 92 0 1 1 242 120" calcMode="linear"/></circle>
+  <circle r="3" fill="#F4A261"><animateMotion dur="12.5" begin="3s" repeatCount="indefinite" path="M 242 120 A 92 92 0 1 1 58 120 A 92 92 0 1 1 242 120" calcMode="linear"/></circle>
+  <!-- text block -->
+  <text x="312" y="74" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#8B5CF6" font-weight="700" letter-spacing="3" text-anchor="start">T19 · Part V</text>
+  <text x="312" y="108" font-family="Helvetica, Arial, sans-serif" font-size="27" fill="#E2E8F0" font-weight="700" letter-spacing="0" text-anchor="start">The quartic tower of N =</text>
+  <text x="312" y="142" font-family="Helvetica, Arial, sans-serif" font-size="27" fill="#E2E8F0" font-weight="700" letter-spacing="0" text-anchor="start">15/30</text>
+  <rect x="312" y="154" height="5" rx="2.5" fill="#8B5CF6">
+    <animate attributeName="width" values="0;420;0" keyTimes="0;0.5;1" dur="3.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+  </rect>
+  <text x="312" y="184" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="14" fill="#CBD5E1" font-weight="400" letter-spacing="0" text-anchor="start">b_Ch(30) = (9−√5−√(30+6√5))/8</text>
+  <text x="312" y="214" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#94A3B8" font-weight="400" letter-spacing="4" text-anchor="start">HODGE LABORATORY · THE THEOREM MONOGRAPHS</text>
+  <g opacity="0.1">
+  <linearGradient id="sh" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+    <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="1"/>
+    <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+  </linearGradient>
+  <rect x="-880" y="0" width="293" height="240" fill="url(#sh)"
+        transform="skewX(-18)" opacity="0">
+    <animateTransform attributeName="transform" type="translate"
+        values="0 0; 1232 0; 1232 0" keyTimes="0;0.4;1"
+        dur="6s" repeatCount="indefinite" additive="sum"/>
+    <animate attributeName="opacity" values="0;1;0;0" keyTimes="0;0.2;0.4;1"
+        dur="6s" repeatCount="indefinite"/>
+  </rect>
+</g>
+</svg>

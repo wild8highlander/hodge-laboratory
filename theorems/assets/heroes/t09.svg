@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="240" viewBox="0 0 880 240" role="img" aria-label="T09 Errata E8 hero card">
+  <defs>
+    <linearGradient id="hbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16223A"/><stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+  </defs>
+  <rect width="880" height="240" rx="20" fill="url(#hbg)"/>
+  <line x1="0" y1="0" x2="0" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="56" y1="0" x2="56" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="112" y1="0" x2="112" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="168" y1="0" x2="168" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="224" y1="0" x2="224" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="280" y1="0" x2="280" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="336" y1="0" x2="336" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="392" y1="0" x2="392" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="448" y1="0" x2="448" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="504" y1="0" x2="504" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="560" y1="0" x2="560" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="616" y1="0" x2="616" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="672" y1="0" x2="672" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="728" y1="0" x2="728" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="784" y1="0" x2="784" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="840" y1="0" x2="840" y2="240" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="0" x2="880" y2="0" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="56" x2="880" y2="56" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="112" x2="880" y2="112" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="168" x2="880" y2="168" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="224" x2="880" y2="224" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <rect x="0" y="0" width="22" height="22" rx="6" fill="#E63946"/>
+  <rect x="0" y="232" width="880" height="8" rx="4" fill="#E63946" opacity="0.9"/>
+  <text x="856" y="74" font-family="Helvetica, Arial, sans-serif" font-size="64" fill="#E2E8F0" font-weight="800" letter-spacing="-2" text-anchor="end" opacity="0.09">T09</text>
+  <!-- living motif -->
+  <g><animateTransform attributeName="transform" type="rotate" from="0 150 120" to="360 150 120" dur="16s" begin="0s" repeatCount="indefinite"/></g>
+  <g><animateTransform attributeName="transform" type="rotate" from="0 150 120" to="360 150 120" dur="16s" begin="0s" repeatCount="indefinite"/>
+  <line x1="180.0" y1="120.0" x2="224.0" y2="120.0" stroke="#94A3B8" stroke-width="4" />
+  <line x1="177.7163859753386" y1="131.4805029709527" x2="218.3670854058352" y2="148.31857399501664" stroke="#94A3B8" stroke-width="4" />
+  <line x1="171.21320343559643" y1="141.21320343559643" x2="202.3259018078045" y2="172.3259018078045" stroke="#94A3B8" stroke-width="4" />
+  <line x1="161.4805029709527" y1="147.7163859753386" x2="178.31857399501666" y2="188.3670854058352" stroke="#94A3B8" stroke-width="4" />
+  <line x1="150.0" y1="150.0" x2="150.0" y2="194.0" stroke="#94A3B8" stroke-width="4" />
+  <line x1="138.5194970290473" y1="147.7163859753386" x2="121.68142600498336" y2="188.3670854058352" stroke="#94A3B8" stroke-width="4" />
+  <line x1="128.78679656440357" y1="141.21320343559643" x2="97.67409819219549" y2="172.3259018078045" stroke="#94A3B8" stroke-width="4" />
+  <line x1="122.2836140246614" y1="131.4805029709527" x2="81.63291459416479" y2="148.31857399501666" stroke="#94A3B8" stroke-width="4" />
+  <line x1="120.0" y1="120.0" x2="76.0" y2="120.00000000000001" stroke="#94A3B8" stroke-width="4" />
+  <line x1="122.28361402466139" y1="108.51949702904732" x2="81.63291459416477" y2="91.68142600498336" stroke="#94A3B8" stroke-width="4" />
+  <line x1="128.78679656440357" y1="98.78679656440357" x2="97.67409819219547" y2="67.67409819219549" stroke="#94A3B8" stroke-width="4" />
+  <line x1="138.51949702904733" y1="92.28361402466139" x2="121.68142600498338" y2="51.632914594164774" stroke="#94A3B8" stroke-width="4" />
+  <line x1="150.0" y1="90.0" x2="150.0" y2="46.0" stroke="#94A3B8" stroke-width="4" />
+  <line x1="161.4805029709527" y1="92.2836140246614" x2="178.31857399501666" y2="51.63291459416479" stroke="#94A3B8" stroke-width="4" />
+  <line x1="171.21320343559643" y1="98.78679656440357" x2="202.3259018078045" y2="67.67409819219547" stroke="#94A3B8" stroke-width="4" />
+  <line x1="177.7163859753386" y1="108.51949702904732" x2="218.3670854058352" y2="91.68142600498336" stroke="#94A3B8" stroke-width="4" />
+  </g>
+  <circle cx="224.0" cy="120.0" r="5" fill="#F4A261"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" begin="0.0s" repeatCount="indefinite"/></circle>
+  <circle cx="202.3" cy="172.3" r="5" fill="#F4A261"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" begin="0.2s" repeatCount="indefinite"/></circle>
+  <circle cx="150.0" cy="194.0" r="5" fill="#F4A261"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" begin="0.4s" repeatCount="indefinite"/></circle>
+  <circle cx="97.7" cy="172.3" r="5" fill="#F4A261"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" begin="0.6000000000000001s" repeatCount="indefinite"/></circle>
+  <circle cx="76.0" cy="120.0" r="5" fill="#F4A261"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" begin="0.8s" repeatCount="indefinite"/></circle>
+  <circle cx="97.7" cy="67.7" r="5" fill="#F4A261"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" begin="1.0s" repeatCount="indefinite"/></circle>
+  <circle cx="150.0" cy="46.0" r="5" fill="#F4A261"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" begin="1.2000000000000002s" repeatCount="indefinite"/></circle>
+  <circle cx="202.3" cy="67.7" r="5" fill="#F4A261"><animate attributeName="opacity" values="0.3;1;0.3" dur="1.6s" begin="1.4000000000000001s" repeatCount="indefinite"/></circle>
+  <circle cx="150" cy="120" r="20" fill="#F4A261" opacity="0.9"><animate attributeName="r" values="20.0;23.0;20.0" dur="1.8s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/></circle>
+  <circle cx="150" cy="120" r="9" fill="#E63946"><animate attributeName="r" values="9.0;12.6;9.0" dur="1.2s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/></circle>
+  <circle r="3.5" fill="#E63946"><animateMotion dur="9" begin="0s" repeatCount="indefinite" path="M 242 120 A 92 92 0 1 1 58 120 A 92 92 0 1 1 242 120" calcMode="linear"/></circle>
+  <circle r="3" fill="#F4A261"><animateMotion dur="12.5" begin="3s" repeatCount="indefinite" path="M 242 120 A 92 92 0 1 1 58 120 A 92 92 0 1 1 242 120" calcMode="linear"/></circle>
+  <!-- text block -->
+  <text x="312" y="94" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#457B9D" font-weight="700" letter-spacing="3" text-anchor="start">T09 · Part II</text>
+  <text x="312" y="128" font-family="Helvetica, Arial, sans-serif" font-size="27" fill="#E2E8F0" font-weight="700" letter-spacing="0" text-anchor="start">Errata E8</text>
+  <rect x="312" y="140" height="5" rx="2.5" fill="#457B9D">
+    <animate attributeName="width" values="0;420;0" keyTimes="0;0.5;1" dur="3.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+  </rect>
+  <text x="312" y="170" font-family="SFMono-Regular, Consolas, Menlo, monospace" font-size="14" fill="#CBD5E1" font-weight="400" letter-spacing="0" text-anchor="start">36 even / 28 odd (Arf) — enumeration</text>
+  <text x="312" y="214" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#94A3B8" font-weight="400" letter-spacing="4" text-anchor="start">HODGE LABORATORY · THE THEOREM MONOGRAPHS</text>
+  <g opacity="0.1">
+  <linearGradient id="sh" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+    <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="1"/>
+    <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+  </linearGradient>
+  <rect x="-880" y="0" width="293" height="240" fill="url(#sh)"
+        transform="skewX(-18)" opacity="0">
+    <animateTransform attributeName="transform" type="translate"
+        values="0 0; 1232 0; 1232 0" keyTimes="0;0.4;1"
+        dur="6s" repeatCount="indefinite" additive="sum"/>
+    <animate attributeName="opacity" values="0;1;0;0" keyTimes="0;0.2;0.4;1"
+        dur="6s" repeatCount="indefinite"/>
+  </rect>
+</g>
+</svg>

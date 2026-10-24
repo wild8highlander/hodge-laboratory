@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="348" viewBox="0 0 960 348" role="img" aria-label="the genus ladder, animated">
+  <rect width="960" height="348" rx="18" fill="url(#lbg)"/>
+  <defs>
+    <linearGradient id="lbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16223A"/><stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="22" height="22" rx="6" fill="#E63946"/>
+  <text x="36" y="30" font-family="Helvetica, Arial, sans-serif" font-size="22" fill="#F1F5F9" font-weight="700" letter-spacing="3" text-anchor="start" >THE GENUS LADDER</text>
+  <text x="942" y="30" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#94A3B8" font-weight="400" letter-spacing="0" text-anchor="end" >log scale · N = 4 → 30</text>
+  <line x1="301" y1="58" x2="301" y2="318" stroke="#94A3B8" stroke-width="1" opacity="0.15"/><text x="292.6737061506099" y="336" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#94A3B8" font-weight="400" letter-spacing="0" text-anchor="start" >1</text><line x1="479" y1="58" x2="479" y2="318" stroke="#94A3B8" stroke-width="1" opacity="0.15"/><text x="471.4097169009758" y="336" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#94A3B8" font-weight="400" letter-spacing="0" text-anchor="start" >10</text><line x1="712" y1="58" x2="712" y2="318" stroke="#94A3B8" stroke-width="1" opacity="0.15"/><text x="703.8769047861208" y="336" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#94A3B8" font-weight="400" letter-spacing="0" text-anchor="start" >100</text><line x1="856" y1="58" x2="856" y2="318" stroke="#94A3B8" stroke-width="1" opacity="0.15"/><text x="848.4428526338006" y="336" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#94A3B8" font-weight="400" letter-spacing="0" text-anchor="start" >400</text>
+    <text x="8" y="85" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="600" letter-spacing="0" text-anchor="start" >Torus N4</text>
+  <rect x="168" y="66" height="26" rx="7" fill="#E63946" opacity="0.24"/>
+  <rect x="168" y="66" height="26" rx="7" fill="#E63946" width="0">
+    <animate attributeName="width" values="0;133" dur="1.1s" begin="0.15s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1"/>
+  </rect>
+  <text x="314.6737061506099" y="85" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="700" letter-spacing="0" text-anchor="start" >g = 1</text>
+  <text x="8" y="121" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="600" letter-spacing="0" text-anchor="start" >Klein N7</text>
+  <rect x="168" y="102" height="26" rx="7" fill="#F4A261" opacity="0.24"/>
+  <rect x="168" y="102" height="26" rx="7" fill="#F4A261" width="0">
+    <animate attributeName="width" values="0;205" dur="1.1s" begin="0.28s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1"/>
+  </rect>
+  <text x="387.34741230121983" y="121" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="700" letter-spacing="0" text-anchor="start" >g = 3</text>
+  <text x="8" y="157" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="600" letter-spacing="0" text-anchor="start" >Hurwitz F7</text>
+  <rect x="168" y="138" height="26" rx="7" fill="#2A9D8F" opacity="0.24"/>
+  <rect x="168" y="138" height="26" rx="7" fill="#2A9D8F" width="0">
+    <animate attributeName="width" values="0;351" dur="1.1s" begin="0.41s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1"/>
+  </rect>
+  <text x="532.6948246024397" y="157" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="700" letter-spacing="0" text-anchor="start" >g = 15</text>
+  <text x="8" y="193" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="600" letter-spacing="0" text-anchor="start" >Macbeath F9</text>
+  <rect x="168" y="174" height="26" rx="7" fill="#457B9D" opacity="0.24"/>
+  <rect x="168" y="174" height="26" rx="7" fill="#457B9D" width="0">
+    <animate attributeName="width" values="0;413" dur="1.1s" begin="0.54s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1"/>
+  </rect>
+  <text x="595.0474833251487" y="193" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="700" letter-spacing="0" text-anchor="start" >g = 28</text>
+  <text x="8" y="229" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="600" letter-spacing="0" text-anchor="start" >Quintic N11</text>
+  <rect x="168" y="210" height="26" rx="7" fill="#8B5CF6" opacity="0.24"/>
+  <rect x="168" y="210" height="26" rx="7" fill="#8B5CF6" width="0">
+    <animate attributeName="width" values="0;461" dur="1.1s" begin="0.67s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1"/>
+  </rect>
+  <text x="643.4177184991755" y="229" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="700" letter-spacing="0" text-anchor="start" >g = 45</text>
+  <text x="8" y="265" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="600" letter-spacing="0" text-anchor="start" >Fermat N15</text>
+  <rect x="168" y="246" height="26" rx="7" fill="#1D3557" opacity="0.24"/>
+  <rect x="168" y="246" height="26" rx="7" fill="#1D3557" width="0">
+    <animate attributeName="width" values="0;534" dur="1.1s" begin="0.80s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1"/>
+  </rect>
+  <text x="716.0914246497855" y="265" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="700" letter-spacing="0" text-anchor="start" >g = 91</text>
+  <text x="8" y="301" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="600" letter-spacing="0" text-anchor="start" >Fermat N30</text>
+  <rect x="168" y="282" height="26" rx="7" fill="#38BDF8" opacity="0.24"/>
+  <rect x="168" y="282" height="26" rx="7" fill="#38BDF8" width="0">
+    <animate attributeName="width" values="0;690" dur="1.1s" begin="0.93s" fill="freeze" calcMode="spline" keySplines="0.2 0.8 0.2 1"/>
+  </rect>
+  <text x="872.0" y="301" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#F1F5F9" font-weight="700" letter-spacing="0" text-anchor="start" >g = 406</text>
+</svg>

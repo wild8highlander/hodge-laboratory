@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Hodge Laboratory t14 icon">
+  <rect x="4" y="4" width="248" height="248" rx="30" fill="#F1FAEE" stroke="rgba(29,53,87,0.22)" stroke-width="3"/>
+  <path d="M 56 196 Q 128 44 200 196" fill="none" stroke="#E63946" stroke-width="11"/>
+  <rect x="88" y="152" width="22" height="22" fill="#1D3557" rx="0" />
+  <rect x="146" y="152" width="22" height="22" fill="#1D3557" rx="0" />
+  <circle cx="128" cy="108" r="10" fill="#F4A261" stroke="none" stroke-width="0" />
+</svg>

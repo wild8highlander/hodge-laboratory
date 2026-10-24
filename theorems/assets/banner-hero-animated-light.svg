@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-label="Hodge Laboratory — animated banner">
+  <rect width="1280" height="360" fill="#FFFFFF"/>
+  <line x1="0" y1="0" x2="0" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="64" y1="0" x2="64" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="128" y1="0" x2="128" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="192" y1="0" x2="192" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="256" y1="0" x2="256" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="320" y1="0" x2="320" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="384" y1="0" x2="384" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="448" y1="0" x2="448" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="512" y1="0" x2="512" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="576" y1="0" x2="576" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="640" y1="0" x2="640" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="704" y1="0" x2="704" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="768" y1="0" x2="768" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="832" y1="0" x2="832" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="896" y1="0" x2="896" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="960" y1="0" x2="960" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="1024" y1="0" x2="1024" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="1088" y1="0" x2="1088" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="1152" y1="0" x2="1152" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="1216" y1="0" x2="1216" y2="360" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="0" y1="0" x2="1280" y2="0" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="0" y1="64" x2="1280" y2="64" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="0" y1="128" x2="1280" y2="128" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="0" y1="192" x2="1280" y2="192" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="0" y1="256" x2="1280" y2="256" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <line x1="0" y1="320" x2="1280" y2="320" stroke="#9CA3AF" stroke-width="1" opacity="0.16"/>
+  <rect x="0" y="0" width="26" height="26" fill="#E63946"/>
+  <rect x="0" y="352" width="1280" height="8" fill="#E63946"/>
+  <!-- rotating echo diamond -->
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="0 268 180" to="360 268 180" dur="48s" repeatCount="indefinite"/>
+    <polygon points="268,22 416,180 268,338 120,180" fill="none" stroke="#0A0A0A" stroke-width="1.2" opacity="0.3" stroke-dasharray="6 10"/>
+  </g>
+  <g><polygon points="268,50 372,180 268,310 164,180" fill="none" stroke="#0A0A0A" stroke-width="5" stroke-linejoin="round"/>
+    <line x1="216.0" y1="115.0" x2="320.0" y2="115.0" stroke="#0A0A0A" stroke-width="2.75" />
+    <line x1="320.0" y1="115.0" x2="320.0" y2="245.0" stroke="#0A0A0A" stroke-width="2.75" />
+    <line x1="320.0" y1="245.0" x2="216.0" y2="245.0" stroke="#0A0A0A" stroke-width="2.75" />
+    <line x1="216.0" y1="245.0" x2="216.0" y2="115.0" stroke="#0A0A0A" stroke-width="2.75" />
+    <circle cx="268" cy="50" r="6.050000000000001" fill="#0A0A0A" stroke="none" stroke-width="0" />
+    <circle cx="372" cy="180" r="6.050000000000001" fill="#0A0A0A" stroke="none" stroke-width="0" />
+    <circle cx="268" cy="310" r="6.050000000000001" fill="#0A0A0A" stroke="none" stroke-width="0" />
+    <circle cx="164" cy="180" r="6.050000000000001" fill="#0A0A0A" stroke="none" stroke-width="0" />
+    <circle cx="320.0" cy="115.0" r="6.050000000000001" fill="#0A0A0A" stroke="none" stroke-width="0" />
+    <circle cx="320.0" cy="245.0" r="6.050000000000001" fill="#0A0A0A" stroke="none" stroke-width="0" />
+    <circle cx="216.0" cy="245.0" r="6.050000000000001" fill="#0A0A0A" stroke="none" stroke-width="0" />
+    <circle cx="216.0" cy="115.0" r="6.050000000000001" fill="#0A0A0A" stroke="none" stroke-width="0" /></g>
+  <g><circle cx="268" cy="180" r="11" fill="#E63946" stroke="none" stroke-width="0"><animate attributeName="r" values="11;15.95;11" dur="2.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/></circle></g>
+  <circle r="5" fill="#E63946"><animateMotion dur="8" begin="0s" repeatCount="indefinite" path="M 436 180 A 168 168 0 1 1 100 180 A 168 168 0 1 1 436 180" calcMode="linear"/></circle>
+  <circle r="4" fill="#F4A261"><animateMotion dur="11" begin="3s" repeatCount="indefinite" path="M 436 180 A 168 168 0 1 1 100 180 A 168 168 0 1 1 436 180" calcMode="linear"/></circle>
+  <circle r="4" fill="#38BDF8"><animateMotion dur="14" begin="7s" repeatCount="indefinite" path="M 454 180 A 186 186 0 1 1 82 180 A 186 186 0 1 1 454 180" calcMode="linear"/></circle>
+  <text x="536" y="130" font-family="Helvetica, Arial, sans-serif" font-size="56" fill="#0A0A0A" font-weight="700" letter-spacing="3" text-anchor="start" >HODGE LABORATORY</text>
+  <rect x="540" y="152" width="470" height="6" fill="#E63946"/>
+  <rect x="540" y="152" height="6" fill="#FFFFFF" opacity="0.85">
+    <animate attributeName="width" values="0;470;0" keyTimes="0;0.5;1" dur="3.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+  </rect>
+  <text x="542" y="196" font-family="Helvetica, Arial, sans-serif" font-size="23" fill="#0A0A0A" font-weight="500" letter-spacing="9" text-anchor="start" >THE THEOREM MONOGRAPHS</text>
+  <text x="542" y="236" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#6B7280" font-weight="400" letter-spacing="0" text-anchor="start" >22 studies · 88 documents · RU/EN · complete proofs</text>
+  <text x="542" y="280" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#6B7280" font-weight="400" letter-spacing="0" text-anchor="start" ><tspan>Δ</tspan><tspan font-size="12" dy="4">Ch</tspan><tspan dy="-4"> = λ</tspan><tspan font-size="12" dy="4">0</tspan><tspan dy="-4"> − R/4 + δ</tspan><tspan font-size="12" dy="-7">2</tspan><tspan dy="7">/2 − δ</tspan><tspan font-size="12" dy="-7">5</tspan><tspan dy="7">/k</tspan></text>
+  <text x="542" y="322" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0A0A0A" font-weight="600" letter-spacing="4" text-anchor="start" >THE MOTION IDENTITY — EVERY ELEMENT ALIVE</text>
+  <g opacity="0.28">
+  <linearGradient id="sh" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+    <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="1"/>
+    <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+  </linearGradient>
+  <rect x="-1280" y="0" width="426" height="360" fill="url(#sh)"
+        transform="skewX(-18)" opacity="0">
+    <animateTransform attributeName="transform" type="translate"
+        values="0 0; 1792 0; 1792 0" keyTimes="0;0.4;1"
+        dur="6s" repeatCount="indefinite" additive="sum"/>
+    <animate attributeName="opacity" values="0;1;0;0" keyTimes="0;0.2;0.4;1"
+        dur="6s" repeatCount="indefinite"/>
+  </rect>
+</g>
+</svg>

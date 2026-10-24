@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Hodge Laboratory t06 icon">
+  <rect x="4" y="4" width="248" height="248" rx="30" fill="#F1FAEE" stroke="rgba(29,53,87,0.22)" stroke-width="3"/>
+  <rect x="64" y="64" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="64" y="107" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="64" y="150" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="64" y="193" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="107" y="64" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="107" y="107" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="107" y="150" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="107" y="193" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="150" y="64" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="150" y="107" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="150" y="150" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="150" y="193" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="193" y="64" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="193" y="107" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="193" y="150" width="16" height="16" fill="#1D3557" rx="0" />
+  <rect x="193" y="193" width="16" height="16" fill="#1D3557" rx="0" />
+  <line x1="62" y1="194" x2="194" y2="62" stroke="#E63946" stroke-width="9" />
+  <rect x="105" y="105" width="26" height="26" fill="#F4A261" rx="0" />
+</svg>

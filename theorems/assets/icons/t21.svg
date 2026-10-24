@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Hodge Laboratory t21 icon">
+  <rect x="4" y="4" width="248" height="248" rx="30" fill="#F1FAEE" stroke="rgba(29,53,87,0.22)" stroke-width="3"/>
+  <circle cx="128.0" cy="206.0" r="8" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="85.83001623846337" cy="193.61777556083211" r="8" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="57.04870436234758" cy="160.40237101414715" r="8" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="50.793927533287246" cy="116.89944261468374" r="8" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="69.05153320036786" cy="76.92086275226777" r="8" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="106.02486056636849" cy="53.159548058069205" r="8" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="149.97513943363157" cy="53.15954805806922" r="8" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="186.94846679963214" cy="76.92086275226778" r="8" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="205.20607246671275" cy="116.89944261468375" r="8" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="198.95129563765244" cy="160.40237101414718" r="8" fill="#F4A261" stroke="none" stroke-width="0" />
+  <circle cx="170.16998376153668" cy="193.61777556083211" r="8" fill="#F4A261" stroke="none" stroke-width="0" />
+  <polygon points="128.0,174.0 84.3,142.2 101.0,90.8 155.0,90.8 171.7,142.2" fill="none" stroke="#E63946" stroke-width="10" stroke-linejoin="round"/>
+  <circle cx="128" cy="128" r="11" fill="#1D3557" stroke="none" stroke-width="0" />
+</svg>

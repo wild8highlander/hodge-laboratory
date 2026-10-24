@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="250" viewBox="0 0 960 250" role="img" aria-label="collection statistics, animated">
+  <rect width="960" height="250" rx="18" fill="url(#sbg)"/>
+  <defs>
+    <linearGradient id="sbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16223A"/><stop offset="1" stop-color="#0B1220"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="22" height="22" rx="6" fill="#E63946"/>
+  <text x="36" y="30" font-family="Helvetica, Arial, sans-serif" font-size="22" fill="#F1F5F9" font-weight="700" letter-spacing="2" text-anchor="start" >THE COLLECTION IN THREE NUMBERS</text>
+    <circle cx="200" cy="128" r="74" fill="none" stroke="rgba(148,163,184,0.22)" stroke-width="9"/>
+  <circle cx="200" cy="128" r="74" fill="none" stroke="#8B5CF6" stroke-width="9"
+          stroke-linecap="round" stroke-dasharray="465.0" stroke-dashoffset="465.0"
+          transform="rotate(-90 200 128)">
+    <animate attributeName="stroke-dashoffset" values="465.0;0" dur="1.6s" begin="0.20s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.2 1"/>
+  </circle>
+  <text x="200" y="142" font-family="Helvetica, Arial, sans-serif" font-size="44" fill="#F1F5F9" font-weight="700" letter-spacing="0" text-anchor="middle" >22</text>
+  <text x="200" y="228" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#94A3B8" font-weight="400" letter-spacing="1.5" text-anchor="middle" >THEOREM MONOGRAPHS</text>
+  <circle cx="480" cy="128" r="74" fill="none" stroke="rgba(148,163,184,0.22)" stroke-width="9"/>
+  <circle cx="480" cy="128" r="74" fill="none" stroke="#457B9D" stroke-width="9"
+          stroke-linecap="round" stroke-dasharray="465.0" stroke-dashoffset="465.0"
+          transform="rotate(-90 480 128)">
+    <animate attributeName="stroke-dashoffset" values="465.0;0" dur="1.6s" begin="0.55s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.2 1"/>
+  </circle>
+  <text x="480" y="142" font-family="Helvetica, Arial, sans-serif" font-size="44" fill="#F1F5F9" font-weight="700" letter-spacing="0" text-anchor="middle" >88</text>
+  <text x="480" y="228" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#94A3B8" font-weight="400" letter-spacing="1.5" text-anchor="middle" >DOCUMENTS · 4 FORMATS</text>
+  <circle cx="760" cy="128" r="74" fill="none" stroke="rgba(148,163,184,0.22)" stroke-width="9"/>
+  <circle cx="760" cy="128" r="74" fill="none" stroke="#D4A017" stroke-width="9"
+          stroke-linecap="round" stroke-dasharray="465.0" stroke-dashoffset="465.0"
+          transform="rotate(-90 760 128)">
+    <animate attributeName="stroke-dashoffset" values="465.0;0" dur="1.6s" begin="0.90s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.2 1"/>
+  </circle>
+  <text x="760" y="142" font-family="Helvetica, Arial, sans-serif" font-size="44" fill="#F1F5F9" font-weight="700" letter-spacing="0" text-anchor="middle" >11</text>
+  <text x="760" y="228" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#94A3B8" font-weight="400" letter-spacing="1.5" text-anchor="middle" >CERTIFICATES A–K</text>
+</svg>

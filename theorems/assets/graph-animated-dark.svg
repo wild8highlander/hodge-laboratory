@@ -1,0 +1,377 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="854" viewBox="0 0 1180 854" role="img" aria-label="animated dependency graph of the 22 theorems">
+  <rect width="1180" height="854" rx="18" fill="#0B1220"/>
+  <line x1="0" y1="0" x2="0" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="64" y1="0" x2="64" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="128" y1="0" x2="128" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="192" y1="0" x2="192" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="256" y1="0" x2="256" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="320" y1="0" x2="320" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="384" y1="0" x2="384" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="448" y1="0" x2="448" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="512" y1="0" x2="512" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="576" y1="0" x2="576" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="640" y1="0" x2="640" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="704" y1="0" x2="704" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="768" y1="0" x2="768" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="832" y1="0" x2="832" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="896" y1="0" x2="896" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="960" y1="0" x2="960" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="1024" y1="0" x2="1024" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="1088" y1="0" x2="1088" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="1152" y1="0" x2="1152" y2="854" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="0" x2="1180" y2="0" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="64" x2="1180" y2="64" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="128" x2="1180" y2="128" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="192" x2="1180" y2="192" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="256" x2="1180" y2="256" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="320" x2="1180" y2="320" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="384" x2="1180" y2="384" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="448" x2="1180" y2="448" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="512" x2="1180" y2="512" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="576" x2="1180" y2="576" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="640" x2="1180" y2="640" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="704" x2="1180" y2="704" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="768" x2="1180" y2="768" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <line x1="0" y1="832" x2="1180" y2="832" stroke="#94A3B8" stroke-width="1" opacity="0.06"/>
+  <rect x="0" y="0" width="22" height="22" rx="6" fill="#E63946"/>
+  <text x="40" y="46" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#F1F5F9" font-weight="700" letter-spacing="3" text-anchor="start">THE LOGICAL READING PATH</text>
+  <text x="1140" y="46" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#94A3B8" font-weight="400" letter-spacing="0" text-anchor="end">22 theorems · 24 edges · every edge alive</text>
+  <path d="M 202 212 C 202 258, 202 42, 202 88" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.00s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="0.00s" repeatCount="indefinite" path="M 202 212 C 202 258, 202 42, 202 88"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="0.00s" repeatCount="indefinite"/>
+</circle>
+<path d="M 226 300 C 226 346, 202 130, 202 176" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.16s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="0.35s" repeatCount="indefinite" path="M 226 300 C 226 346, 202 130, 202 176"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="0.35s" repeatCount="indefinite"/>
+</circle>
+<path d="M 267 388 C 267 434, 226 218, 226 264" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.32s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="0.70s" repeatCount="indefinite" path="M 267 388 C 267 434, 226 218, 226 264"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="0.70s" repeatCount="indefinite"/>
+</circle>
+<path d="M 590 388 C 590 434, 202 130, 202 176" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.48s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="1.05s" repeatCount="indefinite" path="M 590 388 C 590 434, 202 130, 202 176"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="1.05s" repeatCount="indefinite"/>
+</circle>
+<path d="M 590 388 C 590 434, 226 218, 226 264" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.64s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="1.40s" repeatCount="indefinite" path="M 590 388 C 590 434, 226 218, 226 264"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="1.40s" repeatCount="indefinite"/>
+</circle>
+<path d="M 348 476 C 348 522, 590 306, 590 352" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.80s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="1.75s" repeatCount="indefinite" path="M 348 476 C 348 522, 590 306, 590 352"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="1.75s" repeatCount="indefinite"/>
+</circle>
+<path d="M 348 476 C 348 522, 711 218, 711 264" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.96s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="2.10s" repeatCount="indefinite" path="M 348 476 C 348 522, 711 218, 711 264"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="2.10s" repeatCount="indefinite"/>
+</circle>
+<path d="M 396 212 C 396 258, 396 42, 396 88" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="1.12s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="2.45s" repeatCount="indefinite" path="M 396 212 C 396 258, 396 42, 396 88"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="2.45s" repeatCount="indefinite"/>
+</circle>
+<path d="M 590 212 C 590 258, 396 42, 396 88" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.00s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="2.80s" repeatCount="indefinite" path="M 590 212 C 590 258, 396 42, 396 88"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="2.80s" repeatCount="indefinite"/>
+</circle>
+<path d="M 469 300 C 469 346, 396 130, 396 176" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.16s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="3.15s" repeatCount="indefinite" path="M 469 300 C 469 346, 396 130, 396 176"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="3.15s" repeatCount="indefinite"/>
+</circle>
+<path d="M 913 388 C 913 434, 469 218, 469 264" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.32s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="3.50s" repeatCount="indefinite" path="M 913 388 C 913 434, 469 218, 469 264"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="3.50s" repeatCount="indefinite"/>
+</circle>
+<path d="M 832 476 C 832 522, 913 306, 913 352" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.48s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="3.85s" repeatCount="indefinite" path="M 832 476 C 832 522, 913 306, 913 352"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="3.85s" repeatCount="indefinite"/>
+</circle>
+<path d="M 784 212 C 784 258, 590 42, 590 88" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.64s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="0.00s" repeatCount="indefinite" path="M 784 212 C 784 258, 590 42, 590 88"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="0.00s" repeatCount="indefinite"/>
+</circle>
+<path d="M 711 300 C 711 346, 784 130, 784 176" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.80s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="0.35s" repeatCount="indefinite" path="M 711 300 C 711 346, 784 130, 784 176"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="0.35s" repeatCount="indefinite"/>
+</circle>
+<path d="M 590 564 C 590 610, 832 394, 832 440" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.96s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="0.70s" repeatCount="indefinite" path="M 590 564 C 590 610, 832 394, 832 440"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="0.70s" repeatCount="indefinite"/>
+</circle>
+<path d="M 590 564 C 590 610, 711 218, 711 264" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="1.12s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="1.05s" repeatCount="indefinite" path="M 590 564 C 590 610, 711 218, 711 264"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="1.05s" repeatCount="indefinite"/>
+</circle>
+<path d="M 590 652 C 590 698, 590 482, 590 528" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.00s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="1.40s" repeatCount="indefinite" path="M 590 652 C 590 698, 590 482, 590 528"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="1.40s" repeatCount="indefinite"/>
+</circle>
+<path d="M 590 652 C 590 698, 784 42, 784 88" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.16s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="1.75s" repeatCount="indefinite" path="M 590 652 C 590 698, 784 42, 784 88"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="1.75s" repeatCount="indefinite"/>
+</circle>
+<path d="M 590 652 C 590 698, 978 42, 978 88" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.32s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="2.10s" repeatCount="indefinite" path="M 590 652 C 590 698, 978 42, 978 88"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="2.10s" repeatCount="indefinite"/>
+</circle>
+<path d="M 978 212 C 978 258, 202 42, 202 88" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.48s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="2.45s" repeatCount="indefinite" path="M 978 212 C 978 258, 202 42, 202 88"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="2.45s" repeatCount="indefinite"/>
+</circle>
+<path d="M 954 300 C 954 346, 978 130, 978 176" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.64s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="2.80s" repeatCount="indefinite" path="M 954 300 C 954 346, 978 130, 978 176"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="2.80s" repeatCount="indefinite"/>
+</circle>
+<path d="M 590 740 C 590 786, 590 570, 590 616" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.80s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="3.15s" repeatCount="indefinite" path="M 590 740 C 590 786, 590 570, 590 616"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="3.15s" repeatCount="indefinite"/>
+</circle>
+<path d="M 590 740 C 590 786, 978 130, 978 176" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="0.96s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="3.50s" repeatCount="indefinite" path="M 590 740 C 590 786, 978 130, 978 176"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="3.50s" repeatCount="indefinite"/>
+</circle>
+<path d="M 590 740 C 590 786, 954 218, 954 264" fill="none" stroke="#7C8DA6" stroke-width="2.2" stroke-dasharray="7 9" opacity="0.85">
+  <animate attributeName="stroke-dashoffset" values="16;0" dur="1.3s" begin="1.12s" repeatCount="indefinite"/>
+</path>
+<circle r="4" fill="#E63946">
+  <animateMotion dur="2.6s" begin="3.85s" repeatCount="indefinite" path="M 590 740 C 590 786, 954 218, 954 264"/>
+  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.9;1" dur="2.6s" begin="3.85s" repeatCount="indefinite"/>
+</circle>
+  <g>
+  <rect x="112" y="88" width="180" height="36" rx="10" fill="#E63946">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="0.4s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="112" y="88" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="202.0" y="112" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T01 · Genus formula</text>
+</g>
+<g>
+  <rect x="112" y="176" width="180" height="36" rx="10" fill="#E63946">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="0.8s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="112" y="176" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="202.0" y="200" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T02 · Period form</text>
+</g>
+<g>
+  <rect x="136" y="264" width="180" height="36" rx="10" fill="#E63946">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="1.2s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="136" y="264" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="226.25" y="288" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T03 · Γ-identities</text>
+</g>
+<g>
+  <rect x="177" y="352" width="180" height="36" rx="10" fill="#E63946">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="1.6s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="177" y="352" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="266.66666666666663" y="376" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T04 · Riemann identity</text>
+</g>
+<g>
+  <rect x="500" y="352" width="180" height="36" rx="10" fill="#E63946">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="2.0s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="500" y="352" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="590.0" y="376" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T05 · Γ-normalization</text>
+</g>
+<g>
+  <rect x="258" y="440" width="180" height="36" rx="10" fill="#E63946">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="2.4s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="258" y="440" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="347.5" y="464" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T06 · Polarization</text>
+</g>
+<g>
+  <rect x="306" y="88" width="180" height="36" rx="10" fill="#457B9D">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="0.0s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="306" y="88" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="396.0" y="112" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T07 · Torus triple</text>
+</g>
+<g>
+  <rect x="306" y="176" width="180" height="36" rx="10" fill="#457B9D">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="0.4s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="306" y="176" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="396.0" y="200" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T08 · K3 stand</text>
+</g>
+<g>
+  <rect x="500" y="176" width="180" height="36" rx="10" fill="#457B9D">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="0.8s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="500" y="176" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="590.0" y="200" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T09 · Errata E8</text>
+</g>
+<g>
+  <rect x="379" y="264" width="180" height="36" rx="10" fill="#F4A261">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="1.2s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="379" y="264" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="468.75" y="288" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T10 · Certificate B</text>
+</g>
+<g>
+  <rect x="823" y="352" width="180" height="36" rx="10" fill="#F4A261">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="1.6s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="823" y="352" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="913.3333333333333" y="376" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T11 · Certificate C</text>
+</g>
+<g>
+  <rect x="742" y="440" width="180" height="36" rx="10" fill="#F4A261">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="2.0s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="742" y="440" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="832.5" y="464" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T12 · Certificate D</text>
+</g>
+<g>
+  <rect x="500" y="88" width="180" height="36" rx="10" fill="#F4A261">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="2.4s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="500" y="88" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="590.0" y="112" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T13 · Certificate E</text>
+</g>
+<g>
+  <rect x="694" y="176" width="180" height="36" rx="10" fill="#F4A261">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="0.0s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="694" y="176" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="784.0" y="200" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T14 · Certificate F</text>
+</g>
+<g>
+  <rect x="621" y="264" width="180" height="36" rx="10" fill="#F4A261">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="0.4s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="621" y="264" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="711.25" y="288" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T15 · Certificate G</text>
+</g>
+<g>
+  <rect x="500" y="528" width="180" height="36" rx="10" fill="#F4A261">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="0.8s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="500" y="528" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="590.0" y="552" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T16 · Cert. H + Klein</text>
+</g>
+<g>
+  <rect x="694" y="88" width="180" height="36" rx="10" fill="#2A9D8F">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="1.2s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="694" y="88" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="784.0" y="112" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T17 · Hurwitz N=7</text>
+</g>
+<g>
+  <rect x="888" y="88" width="180" height="36" rx="10" fill="#2A9D8F">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="1.6s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="888" y="88" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="978.0" y="112" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T18 · Macbeath N=9</text>
+</g>
+<g>
+  <rect x="500" y="616" width="180" height="36" rx="10" fill="#8B5CF6">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="2.0s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="500" y="616" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="590.0" y="640" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T19 · Quartic tower</text>
+</g>
+<g>
+  <rect x="888" y="176" width="180" height="36" rx="10" fill="#8B5CF6">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="2.4s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="888" y="176" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="978.0" y="200" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T20 · Conductor census</text>
+</g>
+<g>
+  <rect x="864" y="264" width="180" height="36" rx="10" fill="#3E5C82">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="0.0s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="864" y="264" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="953.75" y="288" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T21 · Quintic N=11</text>
+</g>
+<g>
+  <rect x="500" y="704" width="180" height="36" rx="10" fill="#3E5C82">
+    <animate attributeName="opacity" values="0.88;1;0.88" dur="3s" begin="0.4s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="500" y="704" width="180" height="36" rx="10" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.4"/>
+  <text x="590.0" y="728" font-family="Helvetica, Arial, sans-serif" font-size="13.5" fill="#FFFFFF" font-weight="600" letter-spacing="0" text-anchor="middle">T22 · SNF engine</text>
+</g>
+  <rect x="60" y="848" width="16" height="16" rx="4" fill="#E63946"/><text x="84" y="861" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#94A3B8" font-weight="400" letter-spacing="0" text-anchor="start">I · The foundation of the cyclotomic s</text><rect x="321.4" y="848" width="16" height="16" rx="4" fill="#457B9D"/><text x="345.4" y="861" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#94A3B8" font-weight="400" letter-spacing="0" text-anchor="start">II · The calibration stands</text><rect x="536.5999999999999" y="848" width="16" height="16" rx="4" fill="#F4A261"/><text x="560.5999999999999" y="861" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#94A3B8" font-weight="400" letter-spacing="0" text-anchor="start">III · The certificates of the program</text><rect x="797.9999999999999" y="848" width="16" height="16" rx="4" fill="#2A9D8F"/><text x="821.9999999999999" y="861" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#94A3B8" font-weight="400" letter-spacing="0" text-anchor="start">IV · The cubic rungs</text><rect x="966.9999999999999" y="848" width="16" height="16" rx="4" fill="#8B5CF6"/><text x="990.9999999999999" y="861" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#94A3B8" font-weight="400" letter-spacing="0" text-anchor="start">V · The exact layer</text><rect x="1129.3999999999999" y="848" width="16" height="16" rx="4" fill="#3E5C82"/><text x="1153.3999999999999" y="861" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#94A3B8" font-weight="400" letter-spacing="0" text-anchor="start">VI · The quintic rung and the SNF engin</text>
+  <g opacity="0.06">
+  <linearGradient id="sh" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+    <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="1"/>
+    <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+  </linearGradient>
+  <rect x="-1180" y="0" width="393" height="854" fill="url(#sh)"
+        transform="skewX(-18)" opacity="0">
+    <animateTransform attributeName="transform" type="translate"
+        values="0 0; 1652 0; 1652 0" keyTimes="0;0.4;1"
+        dur="7s" repeatCount="indefinite" additive="sum"/>
+    <animate attributeName="opacity" values="0;1;0;0" keyTimes="0;0.2;0.4;1"
+        dur="7s" repeatCount="indefinite"/>
+  </rect>
+</g>
+</svg>

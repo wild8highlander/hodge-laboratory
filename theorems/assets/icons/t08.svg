@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Hodge Laboratory t08 icon">
+  <rect x="4" y="4" width="248" height="248" rx="30" fill="#F1FAEE" stroke="rgba(29,53,87,0.22)" stroke-width="3"/>
+  <line x1="46.0" y1="128.0" x2="210.0" y2="128.0" stroke="#1D3557" stroke-width="9" />
+  <line x1="70.01724394270309" y1="70.01724394270312" x2="185.9827560572969" y2="185.98275605729688" stroke="#1D3557" stroke-width="9" />
+  <line x1="128.0" y1="46.0" x2="128.0" y2="210.0" stroke="#1D3557" stroke-width="9" />
+  <line x1="185.98275605729688" y1="70.01724394270309" x2="70.01724394270312" y2="185.9827560572969" stroke="#1D3557" stroke-width="9" />
+  <line x1="210.0" y1="127.99999999999999" x2="46.0" y2="128.0" stroke="#1D3557" stroke-width="9" />
+  <line x1="185.9827560572969" y1="185.98275605729688" x2="70.01724394270309" y2="70.01724394270312" stroke="#1D3557" stroke-width="9" />
+  <line x1="128.00000000000003" y1="210.0" x2="127.99999999999999" y2="46.0" stroke="#1D3557" stroke-width="9" />
+  <line x1="70.01724394270312" y1="185.9827560572969" x2="185.98275605729688" y2="70.01724394270309" stroke="#1D3557" stroke-width="9" />
+  <rect x="112" y="112" width="32" height="32" fill="#E63946" rx="0" />
+</svg>
