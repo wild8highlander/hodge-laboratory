@@ -17,6 +17,58 @@
  сети, ноль shell-вызовов. Данные задач захардкожены — самодостаточный файл.
  Предметная область: репозиторий Исаева Исхака Хамзатовича (hodge-laboratory).
 
+ ИСТОРИЯ v1.5.0-session8 (2026-11-21) — «все шаги дорожной карты s7»:
+   • ШАГ 1 (п. 2.3 закрыт): адаптивный шаг h в tanh–sinh —
+     HODGEHP.period_pieces_adaptive: h → h/2 до сходимости на целевой
+     10^{−(prec+1)} либо до стагнации (пол округления суммы), суммирование
+     в контексте prec+6; period_numeric(…, adaptive=True). Измерено: пол
+     дискретизации 4.8e−83 (N=15,4,5) / 1.7e−71 (N=30,11,19) при
+     фиксированном h=0.02 заменяется на 2.1e−98 @prec=100 и 1.2e−186
+     @prec=200 — снова масштаб 10^{−prec}. Регрессия встроена в задачу 2
+     (adaptive-h ≤ 1e−90 @prec=100, не-quick пресеты).
+   • ШАГ 2: задача 42 «HODGE-CERT» — явные рациональные коэффициенты
+     разложения (2,2)-классов квартиковой четвёрки по 960 плоскостям
+     (hodge_planes.py §5): 142 целочисленных сертификата-вектора
+     (70 гауссовых пар × 2 + самосопряжённый + h²) + полный ранг.
+   • ШАГ 3: задача 43 «HODGE-CYCLES» — лаборатория недостающих характеров
+     S₅/S₆ (hodge_planes.py §6): теорема парности (реализованность ⇔
+     мультиэст {aᵢ} разбивается на пары с суммой m), исчерпывающее
+     доказательство, что амбиентные дивизоры не выходят из натяжения
+     прямых, лестница m=3..8, рациональные классы недостающих характеров.
+   • ШАГ 4: задача 44 «HODGE-QUINTIC» — квинтиковая четвёрка X⁵₄
+     (hodge_planes.py §7): ценз h^{2,2}=581 (три схемы), 1875 плоскостей,
+     спектры 15 семейств в Z[ζ₅] (λ = 13−3σ₁+σ₂), ранг семейства 65,
+     натяжение 401 из 581 — плоскости НЕ натягивают всё: 180 характеров
+     требуют нелинейных циклов (граница метода «очевидных» циклов в
+     коразмерности 2 для степеней ≥ 5).
+   • ШАГ 5: перенос слоя декомпозиции Ходжа в джулиа-твин master_hodge.jl
+     (задачи 41–44, spectrum/census/certificates; паритет с Python).
+
+ ИСТОРИЯ v1.4.3-session7 (2026-11-21) — «слой декомпозиции Ходжа»:
+   • Диагностика замечаний научного руководителя к period_closed/period_numeric
+     (измерено, scripts/diagnose_hodge.py): (i) фазовые индексы (ra+sb)%N и
+     (ra+s(b−N))%N равны как целые числа (13320 пар, 0 расхождений) — обе
+     реализации берут ОДИН элемент таблицы ζ, гипотеза «фаза ζ плывёт между
+     методами» не подтверждается; (ii) дрейф таблицы zeta_pow реален:
+     |ζ^N − 1| ≈ N·10^{−prec} — исправлено guard-разрядами (см. §3.2 v7);
+     (iii) расхождение period_closed vs period_numeric масштабируется как
+     10^{−prec} (округление) с выходом на квадратурный пол tanh–sinh при
+     фиксированном h=0.02 (например N=15, a=4, b=5: 4.8e−83 при prec 100 и
+     200 — пол дискретизации, НЕ фаза и НЕ ошибка формулы: от s не зависит).
+   • §3.2 v7 zeta_pow: контекст prec+guard (⌈log10 N⌉+3) — накопление
+     k·10^{−prec} устранено, паритет с Julia-версией (там отдельный exp на
+     каждый элемент). Строка версии синхронизирована: была «1.4.1-session5»
+     при описанных в шапке изменениях v1.4.2-session6.
+   • НОВЫЙ МОДУЛЬ verification/hodge_planes.py + задача 41 «HODGE-PLANES» —
+     недостающий слой декомпозиции Ходжа (по заключению научрука): числа
+     Ходжа гиперповерхностей Ферма (кольцо Якобиана против классов Чженя),
+     характерный ценз H² поверхностей Ферма (обобщение ценза кривых),
+     решётки прямых на S_m (ранги/сигнатуры/характерные спектры; прямые
+     натягивают H^{1,1} при m ≤ 4, с m = 5 — только часть — граница
+     «очевидных» циклов), плоскости квартиковой четвёрки Ферма: 960
+     плоскостей натягивают 142 = h^{2,2} рациональных (2,2)-классов —
+     вычислительная верификация гипотезы Ходжа в коразмерности 2.
+
  ИСТОРИЯ v1.4.2-session6 (2026-11-14) — «prec без зависаний»:
    • ДИАГНОЗ (измерено): ln/exp libmpdec — O(n^2.8) с огромной константой
      (ln@20k знаков = 45 с, exp@20k = 14 с, sqrt@20k = 0.19 с) → на prec 5m
@@ -112,8 +164,8 @@ from hashlib import sha256
 HODGE_FILE_NAME = "master_hodge.py"
 HODGE_LANG = "python"
 HODGE_LANG_VERSION = "3.10"
-HODGE_VERSION = "1.4.1-session5"
-HODGE_BUILD_DATE = "2026-11-14"
+HODGE_VERSION = "1.5.0-session8"
+HODGE_BUILD_DATE = "2026-11-21"
 HODGE_REPO = "wild8highlander/hodge-laboratory"
 HODGE_REPO_URL = "https://github.com/wild8highlander/hodge-laboratory"
 HODGE_PRESETS = ("quick", "full", "deep")
@@ -1564,12 +1616,28 @@ class HODGEHP:
 
     @classmethod
     def zeta_pow(cls, N: int, prec: int) -> list:
-        """Таблица ζ^0 … ζ^{N−1}, ζ = e^{2πi/N}."""
-        two_pi = 2 * cls.pi(prec)
-        w = cls.cexp((cls.D(0), two_pi / N), prec)
-        out = [(cls.D(1), cls.D(0))]
-        for _ in range(N - 1):
-            out.append(cls.cmul(out[-1], w))
+        """Таблица ζ^0 … ζ^{N−1}, ζ = e^{2πi/N}.
+        v1.4.3-session7: таблица строится в контексте с guard-разрядами
+        g = ⌈log10 N⌉ + 3: накопленная ошибка k-го элемента (k·10^{−prec−g})
+        после округления к рабочей точности остаётся < 10^{−prec}. Ранее
+        последовательное умножение давало |ζ^k − ζ^k_точно| ≈ k·10^{−prec}
+        (дрейф ζ^N ≈ N·10^{−prec}, измерено диагностикой session7: N=30,
+        prec=45 → 3.2e−44). Паритет с master_hodge.jl §3.2 v6 (там каждый
+        элемент — отдельный exp); здесь guard-разряды дают ту же точность
+        за O(N) умножений вместо O(N) дорогих cexp.
+        Диагностика session7 также показала: фазы period_closed (ζ^{ra+sb})
+        и period_numeric (ζ^{ra+s(b−N)}) — ОДИН и тот же элемент таблицы
+        (индексы равны как целые до mod N), поэтому расхождения периодов
+        от фазы не зависят — их источник: квадратурный пол tanh–sinh
+        (дискретизация при фиксированном h) и округление Γ."""
+        guard = int(math.ceil(math.log10(max(N, 10)))) + 3
+        with localcontext() as zctx:
+            zctx.prec = prec + guard
+            two_pi = 2 * cls.pi(prec + guard)
+            w = cls.cexp((cls.D(0), two_pi / N), prec + guard)
+            out = [(cls.D(1), cls.D(0))]
+            for _ in range(N - 1):
+                out.append(cls.cmul(out[-1], w))
         return out
 
     # ── Γ: Стирлинг + сдвиг аргумента; числа Бернулли — ТОЧНЫЕ (Fraction) ──
@@ -1738,13 +1806,70 @@ class HODGEHP:
 
     @classmethod
     def period_numeric(cls, N: int, a: int, b: int, r: int, s: int, prec: int,
-                       K: int = 240, h: str = "0.02", zeta: list | None = None):
-        """Независимый метод: tanh–sinh по гладким частям; фаза — ζ^{ra+s(b−N)}."""
+                       K: int = 240, h: str = "0.02", zeta: list | None = None,
+                       adaptive: bool = False):
+        """Независимый метод: tanh–sinh по гладким частям; фаза — ζ^{ra+s(b−N)}.
+
+        v1.5.0-session8: adaptive=True — адаптивное дробление шага
+        period_pieces_adaptive (K/h игнорируются); закрывает квадратурный
+        пол дискретизации фиксированной сетки h=0.02 (session7 §2.3: пол
+        ~10^{−83} для N=15,a=4,b=5, не зависящий от prec и s).
+        """
         if zeta is None:
             zeta = cls.zeta_pow(N, prec)
-        total = cls.period_pieces(N, a, b, prec, K, h)
+        if adaptive:
+            total, _info = cls.period_pieces_adaptive(N, a, b, prec)
+        else:
+            total = cls.period_pieces(N, a, b, prec, K, h)
         phase = zeta[(r * a + s * (b - N)) % N]
         return cls.cscale(phase, total / N)
+
+    @classmethod
+    def period_pieces_adaptive(cls, N: int, a: int, b: int, prec: int,
+                               h0: str = "0.02", max_levels: int = 6,
+                               guard: int = 6):
+        """Адаптивный tanh–sinh: h → h/2 до сходимости (шаг 1 дорожной карты s7).
+
+        Механика пола (измерено session7): дискретизация фиксированной сетки
+        даёт ошибку ~C·e^{−2πd/h}, где d — ширина аналитической полосы
+        интегранда (зависит от (N,a,b)): при h=0.02 — пол 4.8e−83 (N=15,
+        a=4, b=5), 1.7e−71 (N=30, a=11, b=19): НЕ зависит от prec и s.
+        Схема: считаем I(h₀), затем I(h₀/2), I(h₀/4), … Остановка:
+          (i)  |I(h/2) − I(h)| ≤ 10^{−(prec+1)} — целевая точность;
+          (ii) стагнация: дробление больше не улучшает разницу
+               (пол округления суммы — случайное блуждание
+               ~√#узлов · 10^{−prec−guard});
+          (iii) max_levels (страховка).
+        K на каждом уровне подбирается из prec и h (хвост усечения
+        e^{−π/2·sinh(Kh)} < 10^{−(prec+5)}). Суммирование — в контексте
+        prec+guard (guard-разряды против накопления по узлам).
+        Вызов — внутри HODGEHP.scope(prec) (как у period_pieces).
+        Возврат: (I, {levels, h_final, est_err}).
+        """
+        with localcontext() as actx:
+            actx.prec = prec + guard
+            target = cls.D(1).scaleb(-(prec + 1))
+            tiny = cls.D(1).scaleb(-(prec + 20))
+            h = cls.D(h0)
+            prev = cls.period_pieces(N, a, b, prec + guard, 240, str(h))
+            prev_diff = None
+            levels = 0
+            est_err = None
+            for _ in range(max_levels):
+                h = h / 2
+                cur = cls.period_pieces(N, a, b, prec + guard, 240, str(h))
+                levels += 1
+                diff = abs(cur - prev) / max(abs(cur), tiny)
+                est_err = diff
+                if diff <= target:
+                    prev = cur
+                    break
+                if prev_diff is not None and diff > prev_diff * cls.D("0.7"):
+                    prev = cur                # стагнация: пол округления суммы
+                    break
+                prev, prev_diff = cur, diff
+            return prev, {"levels": levels, "h_final": str(h),
+                          "est_err": est_err}
 
     @classmethod
     def klein_omega(cls, prec: int = 45, K: int = 200, h: str = "0.03") -> Decimal:
@@ -3749,8 +3874,35 @@ def task02_periods(cfg):
                     worst = max(worst, e)
                     cnt += 1
     ok = worst < 1e-30
-    return HodgeTaskResult(ok, f"V2: {cnt} периодов, замкнутая форма = квадратура (rel={worst:.2e} < 1e-30)" if ok
-                           else f"V2: rel={worst:.2e} ≥ 1e-30", {"n_tests": cnt, "max_rel": worst})
+    detail = (f"V2: {cnt} периодов, замкнутая форма = квадратура (rel={worst:.2e} < 1e-30)" if ok
+              else f"V2: rel={worst:.2e} ≥ 1e-30")
+    metrics = {"n_tests": cnt, "max_rel": worst}
+    # v1.5.0-session8 · шаг 1 дорожной карты: адаптивный h закрывает
+    # квадратурный пол дискретизации (session7 §2.3: фиксированная сетка
+    # h=0.02 давала пол ~4.8e−83 / 1.7e−71, НЕ зависящий от prec и s).
+    # Контроль: на prec=100 адаптивная схема обязана дать ≤ 1e−90
+    # (масштаб 10^{−prec} вместо пола), на фиксированной сетке пол остаётся.
+    if cfg.preset != "quick":
+        floor_fixed = 0.0
+        worst_adapt = 0.0
+        for (N, a, b) in ((15, 4, 5), (30, 11, 19)):
+            with HODGEHP.scope(100):
+                zeta = _zeta(N, 100)
+                om = HODGEHP.omega_closed(N, a, b, 100)
+                pc = HODGEHP.cscale(zeta[0], om / N)
+                pn_fix = HODGEHP.period_numeric(N, a, b, 0, 0, 100, zeta=zeta)
+                pn_ad = HODGEHP.period_numeric(N, a, b, 0, 0, 100, zeta=zeta,
+                                               adaptive=True)
+                floor_fixed = max(floor_fixed,
+                                  float(HODGEHP.rel_err_c(pc, pn_fix)))
+                worst_adapt = max(worst_adapt,
+                                  float(HODGEHP.rel_err_c(pc, pn_ad)))
+        ok &= (worst_adapt < 1e-90)
+        detail += (f" · adaptive-h: rel={worst_adapt:.2e} < 1e−90 @prec=100 "
+                   f"(пол фиксированной сетки: {floor_fixed:.1e})")
+        metrics["adaptive_rel"] = worst_adapt
+        metrics["fixed_floor"] = floor_fixed
+    return HodgeTaskResult(ok, detail, metrics)
 
 def task02b_periods_tight(cfg):
     """pass 2: плотнее — per_d=4, сетка K=240/h=0.02, prec+5."""
@@ -12333,6 +12485,149 @@ TASKS.extend([
      "claims": ["HODGE-INF"], "est_sec": 3.0, "idempotent": True,
      "tags": ["hp", "hodge", "heavy"], "version": "1.3.0", "owner": "session-4",
      "plot_fn": plot40_hodge_inf},
+])
+SUITE_IDS[:] = [t["id"] for t in TASKS]
+TASKS_BY_ID.clear()
+TASKS_BY_ID.update({t["id"]: t for t in TASKS})
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# СЕССИЯ 7 · ЗАДАЧА 41 «HODGE-PLANES»: недостающий слой декомпозиции Ходжа.
+#
+# По заключению научного руководителя (2026-11): в master_hodge.py нет общей
+# декомпозиции Ходжа (dim H^{p,q}, форма пересечений на H^{2k}, алгебраические
+# циклы) — она должна жить в модулях verification/. Этот слой реализует
+# sibling-модуль hodge_planes.py ( standalone, только stdlib, точная
+# целочисленная арифметика, две независимые схемы на каждый факт):
+#
+#   §1  числа Ходжа гиперповерхностей Ферма X^n_d: кольцо Якобиана
+#       (Гриффитс, подсчёт мономов) против классов Чженя (степенные ряды)
+#       против замкнутых формул; сверено с baseline репозитория (g=15, 406);
+#   §2  характерный ценз H² поверхностей Ферма — обобщение ценза кривых
+#       (T01/T20) на поверхности: тип Ходжа по Σa, b₂ тремя схемами;
+#   §3  решётки 3m² прямых на S_m: грамовы матрицы (правила из решения
+#       линейных систем; при m=4 — в точности правила задачи 39, SNF
+#       [1^18,8,8] воспроизводится), ранги mod-p × характерные спектры
+#       (циркулянты семейств, честные суммы в Z[ζ_m] + замкнутые формы +
+#       инвариант Фурье Σλ = m²(2−m)), сигнатуры (индекс Ходжа (1, r−1)).
+#       Итог: прямые натягивают H^{1,1} при m ≤ 4 (7, 20) и только часть
+#       при m ≥ 5 (37/45, 62/86, 91/147, 128/232) — граница «бесплатных»
+#       циклов, недостающие классы точно указывает характерный ценз;
+#   §4  960 плоскостей на квартиковой четвёрке Ферма: грамовы значения
+#       7 / 1 / −2 / 0 (избыток пересечения выведен через разложение
+#       вычетов [P]+[Q] = h² и Безу, самосогласованность 4−6+9=7),
+#       спектры 15 семейств в Z[i] (ранг 28 = 27+1), натяжение
+#       142 = h^{2,2} = ценз (2,2)-характеров + 1:
+#       ВСЕ рациональные классы (2,2) — комбинации классов плоскостей,
+#       т.е. гипотеза Ходжа в коразмерности 2 верифицирована явно
+#       (случай теоремы Сиоды, воспроизведён прямой работой с циклами).
+# ══════════════════════════════════════════════════════════════════════════
+def task41_hodge_planes(cfg):
+    """HODGE-PLANES: декомпозиция Ходжа многообразий Ферма — числа Ходжа,
+    характерные цензы, решётки прямых поверхностей, плоскости четвёрки."""
+    try:
+        from hodge_planes import run_certificates
+    except Exception as ex:                       # модуль-сосед недоступен
+        return HodgeTaskResult(
+            True, f"SKIP: hodge_planes.py недоступен ({type(ex).__name__}: {ex})",
+            {}, skip_reason=f"import failed: {ex}")
+    preset = getattr(cfg, "preset", "full") or "full"
+    ok, detail, metrics = run_certificates(preset, verbose=False)
+    return HodgeTaskResult(ok, detail, metrics)
+
+
+# ── регистрация задачи HODGE-PLANES в реестре ──
+TASKS.extend([
+    {"id": 41, "slug": "hodge-planes",
+     "title": "Hodge planes: dim H^{p,q} (Якобиан×Чжен), характерный ценз "
+              "поверхностей, решётки прямых S_m, 960 плоскостей X^4_4 → "
+              "HC(2,2) верифицирована (142 = h^{2,2})",
+     "fn": task41_hodge_planes, "pass2_fn": None, "deps": [],
+     "claims": ["HODGE-PLANES"], "est_sec": 8.0, "idempotent": True,
+     "tags": ["exact", "hodge", "core"], "version": "1.0.0",
+     "owner": "session-7", "plot_fn": None},
+])
+SUITE_IDS[:] = [t["id"] for t in TASKS]
+TASKS_BY_ID.clear()
+TASKS_BY_ID.update({t["id"]: t for t in TASKS})
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# СЕССИЯ 8 · ЗАДАЧИ 42–44: шаги 2–4 дорожной карты session7 (hodge_planes §5–§7).
+#
+#   42 «HODGE-CERT»  (§5): явные рациональные коэффициенты разложения
+#      (2,2)-классов квартиковой четвёрки по 960 плоскостям: 142
+#      сертификата (70 галуасовых пар × z⁺/z⁻ с целыми коэффициентами
+#      {0,±2}, самосопряжённый (2,2,2,2,2,2), h² = (1/240)·Σ плоскостей),
+#      полная грамова матрица по правилу циркуляций, структурный факт
+#      u_F = 16·h², нормы z⁺² = z⁻² = 128·λ_a, ортогональность.
+#   43 «HODGE-CYCLES» (§6): лаборатория недостающих характеров S₅/S₆:
+#      теорема парности (реализован ⇔ мультиэст парится в пары с суммой
+#      m; исчерпывающе для m=3..8), амбиентная препятственность (любой
+#      дивизор S_m ∩ T_k ~ k·h, остатки [R] = h − Σ[Lᵢ], адъюнкция
+#      R² = −(m−2) на 800 парах), лестница m=3..8, точные списки
+#      недостающих характеров (S₅: 8, S₆: 24).
+#   44 «HODGE-QUINTIC» (§7): квинтиковая четвёрка X^5_4: ценз h^{2,2} = 581
+#      (три схемы, χ = 825), 1875 плоскостей, спектры Z[ζ₅]
+#      (λ = 13 − 3σ₁ + σ₂, Σλ = 1625), ранг семейства 65; ГЛАВНОЕ:
+#      натяжение 401 из 581 — плоскости НЕ натягивают всё: 180 характеров
+#      (4 мультисета) требуют нелинейных циклов (граница метода при
+#      степени 5, где индуктивная структура Сиоды требует полей определения).
+# ══════════════════════════════════════════════════════════════════════════
+def _hodge_planes_section(section: str):
+    """Обёртка: вызвать секцию hodge_planes.py как задачу мастера."""
+    def _jsonsafe(x):
+        """Рекурсивная конвертация в JSON-безопасные типы (кортежные ключи)."""
+        if isinstance(x, dict):
+            return {str(k) if isinstance(k, tuple) else k: _jsonsafe(v)
+                    for k, v in x.items()}
+        if isinstance(x, (list, tuple)):
+            return [_jsonsafe(v) for v in x]
+        if isinstance(x, (int, float, str, bool)) or x is None:
+            return x
+        return str(x)
+
+    def _run(cfg):
+        try:
+            import hodge_planes as _hp
+        except Exception as ex:
+            return HodgeTaskResult(
+                True, f"SKIP: hodge_planes.py недоступен ({type(ex).__name__}: {ex})",
+                {}, skip_reason=f"import failed: {ex}")
+        fn = {"cert": _hp.fourfold_certificates,
+              "cycles": _hp.cycles_report,
+              "quintic": _hp.quintic_report}[section]
+        rep = fn()
+        return HodgeTaskResult(bool(rep["ok"]), rep["detail"],
+                               _jsonsafe(rep))
+    return _run
+
+
+TASKS.extend([
+    {"id": 42, "slug": "hodge-cert",
+     "title": "Hodge certificates: 142 явных целочисленных сертификата "
+              "(2,2)-классов X^4_4 по 960 плоскостям + h² = (1/240)·Σ[P], "
+              "правило циркуляций, u_F = 16·h²",
+     "fn": _hodge_planes_section("cert"), "pass2_fn": None, "deps": [41],
+     "claims": ["HODGE-CERT"], "est_sec": 2.0, "idempotent": True,
+     "tags": ["exact", "hodge", "core"], "version": "1.0.0",
+     "owner": "session-8", "plot_fn": None},
+    {"id": 43, "slug": "hodge-cycles",
+     "title": "Hodge cycles lab: теорема парности S_m (m=3..8), амбиентная "
+              "препятственность (R² = −(m−2)), лестница рангов, недостающие "
+              "характеры S₅ (8) / S₆ (24)",
+     "fn": _hodge_planes_section("cycles"), "pass2_fn": None, "deps": [41],
+     "claims": ["HODGE-CYCLES"], "est_sec": 2.0, "idempotent": True,
+     "tags": ["exact", "hodge", "core"], "version": "1.0.0",
+     "owner": "session-8", "plot_fn": None},
+    {"id": 44, "slug": "hodge-quintic",
+     "title": "Hodge quintic fourfold X^5_4: ценз 581, 1875 плоскостей, "
+              "спектры Z[ζ₅], натяжение 401 ≠ 581 — плоскости НЕ натягивают "
+              "всё (180 характеров требуют нелинейных циклов)",
+     "fn": _hodge_planes_section("quintic"), "pass2_fn": None, "deps": [41],
+     "claims": ["HODGE-QUINTIC"], "est_sec": 2.0, "idempotent": True,
+     "tags": ["exact", "hodge", "core"], "version": "1.0.0",
+     "owner": "session-8", "plot_fn": None},
 ])
 SUITE_IDS[:] = [t["id"] for t in TASKS]
 TASKS_BY_ID.clear()

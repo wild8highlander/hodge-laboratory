@@ -16,6 +16,23 @@
 #          julia master_hodge.jl --self-test --full
 # Только stdlib: Base, Printf, LinearAlgebra, SHA, Dates, Base64.
 #
+# ИСТОРИЯ v1.5.0-session8 (2026-11-21) — «все шаги дорожной карты s7»:
+#   • ШАГ 1: адаптивный шаг h в tanh–sinh — period_pieces_adaptive
+#     (h → h/2 до сходимости 10^{−(digits+1)} либо стагнации, guard+6
+#     разрядов суммирования); t02 дополнен адаптивным контролем @100
+#     знаков: пол дискретизации фиксированной сетки (4.8e−83 у N=15,4,5)
+#     заменяется на ~10^{−98} — масштаб 10^{−prec} (паритет с Python).
+#   • ШАГИ 2–5: перенос слоя декомпозиции Ходжа (hodge_planes.py сессий
+#     7–8) — задачи 41 «HODGE-PLANES» (алмазы Якобиан×Чжен, ценз
+#     поверхностей, решётки прямых S_m, 960 плоскостей X⁴₄: 142 = h^22),
+#     42 «HODGE-CERT» (142 целочисленных сертификата (2,2)-классов,
+#     правило циркуляций, u_F = 16·h², h² = (1/240)·Σ[P]),
+#     43 «HODGE-CYCLES» (теорема парности m=3..8, амбиентная
+#     препятственность R² = −(m−2), недостающие характеры S₅/S₆),
+#     44 «HODGE-QUINTIC» (X⁵₄: ценз 581, 1875 плоскостей, спектры Z[ζ₅],
+#     натяжение 401 ≠ 581 — плоскости НЕ натягивают всё: 180 характеров
+#     требуют нелинейных циклов). Вся арифметика точная (Int/BigInt).
+#
 # ИСТОРИЯ v1.4.2-session6 (2026-11-14) — «prec без зависаний»:
 #   • ДИАГНОЗ (измерено): lgamma_hp делал shift ≈ digits/2.73 итераций сдвига,
 #     КАЖДЫЙ с полным log() — при prec 5M бит это 550k вызовов log по 1.5M
@@ -253,8 +270,8 @@ function fmt_est_cost(sec::Float64)
 end
 
 const HODGE_LANG = "julia"
-const HODGE_VERSION = "1.4.2-session6"
-const HODGE_BUILD_DATE = "2026-11-14"
+const HODGE_VERSION = "1.5.0-session8"
+const HODGE_BUILD_DATE = "2026-11-21"
 const HODGE_REPO = "wild8highlander/hodge-laboratory"
 const HODGE_PRESETS = ("quick", "full", "deep")
 const SCHEMA_VERSION = "1.1.0"
@@ -1585,8 +1602,62 @@ function zeta_pow(N::Int)
 end
 period_closed(N, a, b, r, s, z = zeta_pow(N)) = z[mod(r * a + s * b, N) + 1] * omega(N, a, b) / N
 # P0.10: K/h прокидываются наверх (t08 при --prec-extreme поднимает сетку)
-period_numeric(N, a, b, r, s, z = zeta_pow(N); K = 240, h = BigFloat("0.02")) =
-    z[mod(r * a + s * (b - N), N) + 1] * period_pieces(N, a, b; K = K, h = h) / N
+# v1.5.0-session8: adaptive=true — адаптивное дробление шага (шаг 1 карты s7)
+period_numeric(N, a, b, r, s, z = zeta_pow(N); K = 240, h = BigFloat("0.02"),
+               adaptive = false) =
+    z[mod(r * a + s * (b - N), N) + 1] *
+    (adaptive ? period_pieces_adaptive(N, a, b)[1] :
+                period_pieces(N, a, b; K = K, h = h)) / N
+
+# ── v1.5.0-session8 · шаг 1 дорожной карты s7: адаптивный tanh–sinh ──
+"""    period_pieces_adaptive(N, a, b; h0, max_levels, guard) -> (I, info)
+
+Адаптивное дробление шага h → h/2 до сходимости |I(h/2) − I(h)| ≤
+10^{−(digits+1)} либо до стагнации (пол округления суммы — случайное
+блуждание ~√#узлов·10^{−digits−guard}). Суммирование — в контексте
+precision(BigFloat) + guard бит. K подбирается из digits и h
+(хвост e^{−π/2·sinh(Kh)} < 10^{−(digits+5)}). Устраняет пол дискретизации
+фиксированной сетки h=0.02 (session7 §2.3: 4.8e−83 у N=15,a=4,b=5 —
+не зависит от prec и s). Паритет с Python HODGEHP.period_pieces_adaptive.
+"""
+function period_pieces_adaptive(N, a, b; h0 = BigFloat("0.02"),
+                                 max_levels = 6, guard = 20)
+    old = precision(BigFloat)
+    try
+        setprecision(BigFloat, old + guard)
+        digits = floor(Int, old * log(2) / log(10))
+        target = BigFloat(10)^(-(digits + 1))
+        tiny = BigFloat(10)^(-(digits + 20))
+        # хвост усечения e^{−π/2·sinh(Kh)} < 10^{−(digits+5)}:
+        # K растёт обратно пропорционально h (как в Python tanh_sinh_nodes)
+        kfor(h) = max(240, ceil(Int, asinh((digits + 5) * log(10) * 2 / pi) /
+                                 max(Float64(h), 1e-12)))
+        h = h0
+        prev = period_pieces(N, a, b; K = kfor(h), h = h)
+        prev_diff = nothing
+        levels = 0
+        est = nothing
+        for _ in 1:max_levels
+            h = h / 2
+            cur = period_pieces(N, a, b; K = kfor(h), h = h)
+            levels += 1
+            diff = abs(cur - prev) / max(abs(cur), tiny)
+            est = diff
+            if diff <= target
+                prev = cur
+                break
+            end
+            if prev_diff !== nothing && diff > prev_diff * BigFloat("0.7")
+                prev = cur
+                break
+            end
+            prev, prev_diff = cur, diff
+        end
+        return prev, (levels = levels, h_final = h, est_err = est)
+    finally
+        setprecision(BigFloat, old)
+    end
+end
 rel_err(x, y) = abs(x - y) / max(abs(x), abs(y), BigFloat("1e-100"))
 
 # ── Точные целочисленные машины ──
@@ -1866,7 +1937,25 @@ t02(cfg) = begin
             cnt += 1
         end
     end
-    worst < 1e-30, @sprintf("V2: %d периодов closed=tanh-sinh, rel=%.2e", cnt, worst)
+    base = @sprintf("V2: %d периодов closed=tanh-sinh, rel=%.2e", cnt, worst)
+    worst < 1e-30 || return (false, base)
+    # v1.5.0-session8 · шаг 1: адаптивный контроль @~100 знаков — пол
+    # фиксированной сетки (4.8e−83 / 1.7e−71) обязан устраниться до < 1e−90
+    old = precision(BigFloat)
+    setprecision(BigFloat, 340)
+    try
+        wad = 0.0
+        for (N, a, b) in ((15, 4, 5), (30, 11, 19))
+            z = zeta_pow(N)
+            wad = max(wad, Float64(rel_err(period_closed(N, a, b, 0, 0, z),
+                                            period_numeric(N, a, b, 0, 0, z;
+                                                           adaptive = true))))
+        end
+        wad < 1e-90 || return (false, base * @sprintf(" · adaptive FAIL: %.2e", wad))
+        (true, base * @sprintf(" · adaptive-h: rel=%.2e < 1e−90 @~100 зн.", wad))
+    finally
+        setprecision(BigFloat, old)
+    end
 end
 t03(cfg) = begin
     worst = 0.0; N = 15; z = zeta_pow(N)
@@ -4921,6 +5010,721 @@ push!(TASKS, Task(id = 40, slug = "hodge-classes-inf",
                   tags = ["hp", "hodge", "heavy"], version = "1.3.0",
                   plot_fn = plot40_hodge_inf))
 push!(SUITE_IDS, 40)
+
+# ════════════════════════════════════════════════════════════════════════
+# СЕССИИ 7–8 · ЗАДАЧИ 41–44: перенос слоя декомпозиции Ходжа (hodge_planes.py)
+# — шаг 5 дорожной карты session7. Паритет с Python-модулем: вся арифметика
+# точная (Int), каждая величина — минимум двумя схемами.
+#
+#   41 «HODGE-PLANES»  §1–§4: алмазы Ходжа X^n_d (кольцо Якобиана Гриффитса
+#       × классы Чженя × замкнутые формулы), характерный ценз H²(S_m),
+#       решётки 3m² прямых (грам/ранги mod-p/спектры циркулянт в Z[ζ_m] +
+#       замкнутая форма λ = m([a≡0]+[a≡0]−1)), 960 плоскостей квартиковой
+#       четвёрки: спектры Z[i], натяжение 142 = h^{2,2} — HC(2,2).
+#   42 «HODGE-CERT»    §5: 142 целочисленных сертификата (2,2)-классов по
+#       960 плоскостям (70 галуасовых пар × z⁺/z⁻, самосопряжённый,
+#       h² = (1/240)·Σ[P]); правило циркуляций для полной грамовой матрицы;
+#       структурный факт u_F = 16·h²; нормы z⁺² = z⁻² = 128·λ_a.
+#   43 «HODGE-CYCLES»  §6: теорема парности (реализован ⇔ мультиэст парится
+#       в пары с суммой m, m=3..8 исчерпывающе), амбиентная препятственность
+#       (R² = −(m−2) на парах пересекающихся прямых), лестница рангов,
+#       недостающие характеры S₅ (8) / S₆ (24).
+#   44 «HODGE-QUINTIC» §7: X^5_4: ценз h^{2,2} = 581 (χ = 825), 1875
+#       плоскостей, спектры Z[ζ₅] (λ = 13 − 3σ₁ + σ₂, Σλ = 1625), ранг
+#       семейства 65; натяжение 401 ≠ 581 — плоскости НЕ натягивают всё:
+#       180 характеров требуют нелинейных циклов.
+# ════════════════════════════════════════════════════════════════════════
+
+# ── §1. Числа Ходжа гиперповерхностей Ферма: Якобиан × Чжен × формулы ──
+
+function hp_monomial_count(nvars::Int, total::Int, maxdeg::Int)::Int
+    total < 0 && return 0
+    cur = zeros(Int, total + 1); cur[1] = 1
+    for _ in 1:nvars
+        nxt = zeros(Int, total + 1)
+        for s in 0:total
+            c = cur[s + 1]; c == 0 && continue
+            for e in 0:min(maxdeg, total - s)
+                nxt[s + e + 1] += c
+            end
+        end
+        cur = nxt
+    end
+    return cur[total + 1]
+end
+
+hp_hodge_middle(d::Int, n::Int) =
+    Dict(q => hp_monomial_count(n + 2, (q + 1) * d - (n + 2), d - 2) for q in 0:n)
+
+function hp_chern_euler(d::Int, n::Int)::Int
+    N = n + 2
+    num = [binomial(N, k) for k in 0:n]
+    inv = [(-d)^k for k in 0:n]
+    return d * sum(num[i + 1] * inv[n - i + 1] for i in 0:n)
+end
+
+function hp_hodge_diamond(d::Int, n::Int)
+    mid = hp_hodge_middle(d, n)
+    dia = Dict{Tuple{Int,Int},Int}()
+    for q in 0:n
+        p = n - q
+        v = mid[q]
+        p == q && (v += 1)
+        dia[(p, q)] = v
+    end
+    for p in 0:n, q in 0:n
+        haskey(dia, (p, q)) && continue
+        dia[(p, q)] = p + q < n ? (p == q ? 1 : 0) : get(dia, (n - p, n - q), 0)
+    end
+    dia
+end
+
+function hp_verify_diamond(d::Int, n::Int)
+    dia = hp_hodge_diamond(d, n)
+    b = [sum(v for ((p, q), v) in dia if p + q == k) for k in 0:n]
+    full_b = vcat(b, [b[2 * n - k + 1] for k in n + 1:2 * n])
+    chi_hodge = sum((-1)^k * full_b[k + 1] for k in 0:2 * n)
+    chi_chern = hp_chern_euler(d, n)
+    ok = chi_hodge == chi_chern
+    if n == 1
+        ok &= dia[(1, 0)] == (d - 1) * (d - 2) ÷ 2
+    elseif n == 2
+        ok &= dia[(2, 0)] == binomial(d - 1, 3)
+        ok &= b[3] == d^3 - 4 * d^2 + 6 * d - 2
+        ok &= dia[(1, 1)] == b[3] - 2 * dia[(2, 0)]
+    end
+    mid = join(["h^$(n - q),$(q)=$(dia[(n - q, q)])" for q in 0:n], " ")
+    ok, "X^$(n)_$(d): $(mid) · χ=$(chi_hodge)=$(chi_chern)"
+end
+
+# ── §2–§3. Поверхности Ферма S_m: ценз характеров, прямые, спектры ──
+
+function hp_chars11(m::Int)
+    out = NTuple{4,Int}[]
+    for a0 in 1:m-1, a1 in 1:m-1, a2 in 1:m-1, a3 in 1:m-1
+        a0 + a1 + a2 + a3 == 2 * m && push!(out, (a0, a1, a2, a3))
+    end
+    out
+end
+
+const HP_SURF_PARTS = Dict(1 => ((0, 1), (2, 3)), 2 => ((0, 2), (1, 3)),
+                           3 => ((0, 3), (1, 2)))
+
+hp_surf_lines(m::Int) = [(p, k1, k2) for p in 1:3 for k1 in 0:m-1 for k2 in 0:m-1]
+
+function hp_surf_intersect(m::Int, L1, L2)::Int
+    p1, a, b = L1; p2, c, d = L2
+    e1, e2 = 2 * a + 1, 2 * b + 1
+    f1, f2 = 2 * c + 1, 2 * d + 1
+    M = 2 * m
+    if p1 == p2
+        (a == c && b == d) && return 2 - m
+        return ((a == c) != (b == d)) ? 1 : 0
+    end
+    if p1 > p2
+        p1, e1, e2, p2, f1, f2 = p2, f1, f2, p1, e1, e2
+    end
+    if p1 == 1 && p2 == 2
+        return mod(e1 + f2 - e2 - f1, M) == 0 ? 1 : 0
+    elseif p1 == 1 && p2 == 3
+        return mod(f1 - e1 - e2 - f2, M) == 0 ? 1 : 0
+    else
+        return mod(e1 + e2 - f1 - f2, M) == 0 ? 1 : 0
+    end
+end
+
+function hp_surf_gram(m::Int, with_h::Bool)
+    lines = hp_surf_lines(m)
+    n = length(lines)
+    size_ = n + (with_h ? 1 : 0)
+    G = zeros(Int, size_, size_)
+    for i in 1:n, j in i:n
+        G[i, j] = G[j, i] = hp_surf_intersect(m, lines[i], lines[j])
+    end
+    if with_h
+        for i in 1:n
+            G[i, n + 1] = G[n + 1, i] = 1
+        end
+        G[n + 1, n + 1] = m
+    end
+    G, lines
+end
+
+function hp_rank_mod_p(M::Matrix{Int}, p::Int)::Int
+    A = [mod(x, p) for x in M]
+    rows, cols = size(A)
+    r = 1
+    for c in 1:cols
+        piv = findfirst(i -> i >= r && A[i, c] != 0, 1:rows)
+        piv === nothing && continue
+        A[r, :], A[piv, :] = A[piv, :], A[r, :]
+        inv_ = invmod(A[r, c], p)
+        for i in r + 1:rows
+            if A[i, c] != 0
+                f = mod(A[i, c] * inv_, p)
+                A[i, :] = [mod(x - f * y, p) for (x, y) in zip(A[i, :], A[r, :])]
+            end
+        end
+        r += 1
+        r > rows && break
+    end
+    return r - 1
+end
+
+# Φ_m по возрастанию степеней (моничен)
+const HP_CYCLO = Dict(
+    1 => [1, -1], 2 => [1, 1], 3 => [1, 1, 1], 4 => [1, 0, 1], 5 => [1, 1, 1, 1, 1],
+    6 => [1, -1, 1], 7 => [1, 1, 1, 1, 1, 1, 1], 8 => [1, 0, 0, 0, 1],
+    9 => [1, 0, 0, 1, 0, 0, 1], 10 => [1, -1, 1, -1, 1], 11 => fill(1, 11),
+    12 => [1, 0, -1, 0, 1])
+
+"""Σ c_j ζ_m^j = 0? Точно: редукция c(x) mod Φ_m (Φ моничен)."""
+function hp_zeta_zero(coeffs::Vector{Int}, m::Int)::Bool
+    c = copy(coeffs)
+    while !isempty(c) && c[end] == 0; pop!(c); end
+    isempty(c) && return true
+    phi = HP_CYCLO[m]
+    dphi = length(phi) - 1
+    while length(c) - 1 >= dphi && any(!=(0), c)
+        lead = c[end]
+        if lead == 0; pop!(c); continue; end
+        shift = length(c) - 1 - dphi
+        for (i, pv) in enumerate(phi)
+            c[shift + i] -= lead * pv
+        end
+        while !isempty(c) && c[end] == 0; pop!(c); end
+    end
+    return all(iszero, c)
+end
+
+"""Спектры трёх семейств прямых S_m: (a, honest≠0, closed)."""
+function hp_surf_family_spectrum(m::Int)
+    out = Dict{Int,Vector{Tuple{NTuple{4,Int},Bool,Int}}}()
+    for (pi, prs) in HP_SURF_PARTS
+        chars = Tuple{NTuple{4,Int},Bool,Int}[]
+        ((i1, j1), (i2, j2)) = prs
+        for t1 in 0:m-1, t2 in 0:m-1
+            a = zeros(Int, 4)
+            a[i1 + 1] = mod(t1, m); a[j1 + 1] = mod(-t1, m)
+            a[i2 + 1] = mod(t2, m); a[j2 + 1] = mod(-t2, m)
+            Aj = (a[j1 + 1], a[j2 + 1])
+            coeffs = zeros(Int, m)
+            for k1 in 0:m-1, k2 in 0:m-1
+                phi_val = (k1 == 0 && k2 == 0) ? 2 - m :
+                          (k1 == 0 || k2 == 0) ? 1 : 0
+                phi_val == 0 && continue
+                e = mod(k1 * Aj[1] + k2 * Aj[2], m)
+                coeffs[mod(m - e, m) + 1] += phi_val
+            end
+            honest = !hp_zeta_zero(coeffs, m)
+            closed = m * ((t1 == 0 ? 1 : 0) + (t2 == 0 ? 1 : 0) - 1)
+            push!(chars, (Tuple(a), honest, closed))
+        end
+        out[pi] = chars
+    end
+    out
+end
+
+function hp_surf_adapted_union(m::Int)
+    u = Set{NTuple{4,Int}}()
+    for (_, chars) in hp_surf_family_spectrum(m)
+        for (a, honest, _) in chars
+            honest && all(x -> mod(x, m) != 0, a) && push!(u, a)
+        end
+    end
+    u
+end
+
+# ── §4. Плоскости квартиковой четвёрки X^4_4 ⊂ P⁵ ──
+
+function hp_matchings6()
+    function rec(items)
+        isempty(items) && return [NTuple{2,Int}[]]
+        first_ = items[1]
+        out = Vector{NTuple{2,Int}}[]
+        for idx in 2:length(items)
+            partner = items[idx]
+            rest = vcat(items[2:idx-1], items[idx+1:end])
+            for tail in rec(rest)
+                push!(out, vcat([(first_, partner)], tail))
+            end
+        end
+        out
+    end
+    ms = rec(collect(0:5))
+    sort([(m[1], m[2], m[3]) for m in ms])
+end
+
+const HP_F4_PHI = [0, 1, -2, 7]   # Φ[z+1], z = число совпавших сдвигов 0..3
+
+function hp_fourfold_family_gram(matching)
+    idx = vec([(k1, k2, k3) for k1 in 0:3, k2 in 0:3, k3 in 0:3])
+    G = zeros(Int, 64, 64)
+    for (i, a) in enumerate(idx), (j, b) in enumerate(idx)
+        z = (a[1] == b[1]) + (a[2] == b[2]) + (a[3] == b[3])
+        G[i, j] = HP_F4_PHI[z + 1]
+    end
+    G, idx
+end
+
+"""Спектр λ_a семейства квартиковой четвёрки: честная сумма в Z[i] + форма."""
+function hp_fourfold_spectrum(matching)
+    (i1, j1), (i2, j2), (i3, j3) = matching
+    pair_opts = [(0, 0), (1, 3), (2, 2), (3, 1)]
+    out = Tuple{NTuple{6,Int},Bool,Int}[]
+    for o1 in pair_opts, o2 in pair_opts, o3 in pair_opts
+        a = zeros(Int, 6)
+        a[i1 + 1], a[j1 + 1] = o1
+        a[i2 + 1], a[j2 + 1] = o2
+        a[i3 + 1], a[j3 + 1] = o3
+        A = (a[j1 + 1], a[j2 + 1], a[j3 + 1])
+        re = im_ = 0
+        for k1 in 0:3, k2 in 0:3, k3 in 0:3
+            z = (k1 == 0) + (k2 == 0) + (k3 == 0)
+            phi_val = HP_F4_PHI[z + 1]
+            phi_val == 0 && continue
+            e = mod(k1 * A[1] + k2 * A[2] + k3 * A[3], 4)
+            w = [(1, 0), (0, 1), (-1, 0), (0, -1)][mod(4 - e, 4) + 1]
+            re += phi_val * w[1]; im_ += phi_val * w[2]
+        end
+        honest = !(re == 0 && im_ == 0)
+        u = [A[t] % 4 == 0 ? 3 : -1 for t in 1:3]
+        closed = 7 - 2 * sum(u) + (u[1] * u[2] + u[1] * u[3] + u[2] * u[3])
+        push!(out, (Tuple(a), honest, closed))
+    end
+    out
+end
+
+function hp_fourfold_adapted_union()
+    u = Set{NTuple{6,Int}}()
+    for matching in hp_matchings6()
+        for (a, honest, _) in hp_fourfold_spectrum(matching)
+            honest && all(x -> mod(x, 4) != 0, a) && sum(a) == 12 &&
+                push!(u, a)
+        end
+    end
+    u
+end
+
+# ── §5. Сертификаты: правило циркуляций + 142 вектора с коэффициентами ──
+
+hp_plane_edges(matching, k) =
+    [(matching[t][1], matching[t][2], 2 * k[t] + 1) for t in 1:3]
+
+"""Число зависимостей 6 уравнений двух плоскостей (чередующиеся циклы)."""
+function hp_circulation_deps(E)
+    side = [1, 1, 1, 2, 2, 2]           # 1 = от P, 2 = от P'
+    adj = [zeros(Int, 2) for _ in 1:6]
+    for (idx, e) in enumerate(E)
+        adj[e[1] + 1][side[idx]] = idx
+        adj[e[2] + 1][side[idx]] = idx
+    end
+    visited = fill(false, 6)
+    deps = 0
+    for s in 1:6
+        visited[s] && continue
+        i0, j0, x0 = E[s]
+        v, total, expect = j0 + 1, x0, 2
+        visited[s] = true
+        while true
+            e = adj[v][expect]
+            e == s && break
+            visited[e] = true
+            a, b, xe = E[e]
+            if a + 1 == v
+                total += xe; v = b + 1
+            else
+                total -= xe; v = a + 1
+            end
+            expect = 3 - expect
+        end
+        mod(total, 8) == 0 && (deps += 1)
+    end
+    deps
+end
+
+function hp_fourfold_pair_product(m1, k1, m2, k2)::Int
+    m1 == m2 && k1 == k2 && return 7
+    E = vcat(hp_plane_edges(m1, k1), hp_plane_edges(m2, k2))
+    deps = hp_circulation_deps(E)
+    deps == 0 && return 0
+    deps == 1 && return 1
+    deps == 2 && return -2
+    error("hp_fourfold_pair_product: deps=$deps (>2) — невозможное состояние")
+end
+
+function hp_fourfold_cross_row(m1, k1, m2)
+    [hp_fourfold_pair_product(m1, k1, m2, (a, b, c))
+     for a in 0:3 for b in 0:3 for c in 0:3]
+end
+
+const HP_Z4 = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+hp_z4_pow(e) = HP_Z4[mod(e, 4) + 1]
+
+"""v_a[k] = ζ₄^{−(k·A)} как Dict k → (re, im)."""
+function hp_fourfold_eigvector(matching, a)
+    (_, j1), (_, j2), (_, j3) = matching
+    A = (a[j1 + 1], a[j2 + 1], a[j3 + 1])
+    Dict((k1, k2, k3) => hp_z4_pow(-(k1 * A[1] + k2 * A[2] + k3 * A[3]))
+         for k1 in 0:3, k2 in 0:3, k3 in 0:3)
+end
+
+"""Проекции целого вектора zc (k→coeff) на 64 характера семейства."""
+function hp_fourfold_char_projections(matching, zc)
+    pair_opts = [(0, 0), (1, 3), (2, 2), (3, 1)]
+    out = Dict{NTuple{3,Int},Tuple{Int,Int}}()
+    for o1 in pair_opts, o2 in pair_opts, o3 in pair_opts
+        A = (o1[2], o2[2], o3[2])
+        re = im_ = 0
+        for (k, c) in zc
+            e = mod(k[1] * A[1] + k[2] * A[2] + k[3] * A[3], 4)
+            w = HP_Z4[e + 1]
+            re += c * w[1]; im_ += c * w[2]
+        end
+        out[A] = (re, im_)
+    end
+    out
+end
+
+function hp_quadratic_intra(G, pos, z1, z2)::Int
+    acc = 0
+    for (k1, c1) in z1
+        row = G[pos[k1], :]
+        acc += c1 * sum(c2 * row[pos[k2]] for (k2, c2) in z2)
+    end
+    acc
+end
+
+"""§5: полный блок проверок сертификатов квартиковой четвёрки."""
+function hp_fourfold_certificates()
+    matchings = hp_matchings6()
+    fam_of_char = Dict{NTuple{6,Int},Int}()
+    lam_of_char = Dict{NTuple{6,Int},Int}()
+    for (mi, matching) in enumerate(matchings)
+        for (a, honest, closed) in hp_fourfold_spectrum(matching)
+            honest && all(x -> mod(x, 4) != 0, a) && sum(a) == 12 &&
+                !haskey(fam_of_char, a) &&
+                (fam_of_char[a] = mi; lam_of_char[a] = closed)
+        end
+    end
+    chars22 = sort(collect(keys(fam_of_char)))
+    length(chars22) == 141 ||
+        return (false, "ценз (2,2): $(length(chars22)) ≠ 141")
+    grams = Dict{Int,Matrix{Int}}()
+    poss = Dict{Int,Dict{Tuple{Int,Int,Int},Int}}()
+    for (mi, matching) in enumerate(matchings)
+        G, idx = hp_fourfold_family_gram(matching)
+        grams[mi] = G
+        poss[mi] = Dict(k => i for (i, k) in enumerate(idx))
+    end
+    seen = Set{NTuple{6,Int}}()
+    orbits = Vector{NTuple{6,Int}}[]
+    for a in chars22
+        a in seen && continue
+        neg = Tuple(mod(-x, 4) for x in a)
+        if neg != a && haskey(fam_of_char, neg)
+            push!(orbits, [a, neg]); push!(seen, a); push!(seen, neg)
+        else
+            push!(orbits, [a]); push!(seen, a)
+        end
+    end
+    length(orbits) == 71 ||
+        return (false, "орбит Галуа: $(length(orbits)) ≠ 71")
+    certs = Tuple{Int,Dict{Tuple{Int,Int,Int},Int},NTuple{6,Int}}[]
+    for orb in orbits
+        a = orb[1]; mi = fam_of_char[a]
+        v = hp_fourfold_eigvector(matchings[mi], a)
+        if length(orb) == 2
+            zp = Dict(k => 2 * v[k][1] for k in keys(v))
+            zm = Dict(k => -2 * v[k][2] for k in keys(v))
+            push!(certs, (mi, zp, a)); push!(certs, (mi, zm, a))
+        else
+            z = Dict(k => v[k][1] for k in keys(v))
+            push!(certs, (mi, z, a))
+        end
+    end
+    # (i) характерное содержимое: только {a, −a}
+    content_ok = true
+    for (mi, z, a) in certs
+        matching = matchings[mi]
+        (_, j1), (_, j2), (_, j3) = matching
+        proj = hp_fourfold_char_projections(matching, z)
+        for (A, val) in proj
+            val == (0, 0) && continue
+            Aa = (a[j1 + 1], a[j2 + 1], a[j3 + 1])
+            negA = (mod(-Aa[1], 4), mod(-Aa[2], 4), mod(-Aa[3], 4))
+            (A != Aa && A != negA) && (content_ok = false)
+        end
+    end
+    # (ii) ортогональность (intra-семейственно)
+    orth_ok = true
+    for p in 1:length(certs), q in p + 1:length(certs)
+        (certs[p][1] == certs[q][1]) || continue
+        val = hp_quadratic_intra(grams[certs[p][1]], poss[certs[p][1]],
+                                 certs[p][2], certs[q][2])
+        certs[p][3] == certs[q][3] && continue      # внутри орбиты — в нормах
+        val != 0 && (orth_ok = false)
+    end
+    # (iii) нормы: z⁺² = z⁻² = 128·λ, z⁺·z⁻ = 0; самосопр.: z² = 64·λ
+    norms_ok = true
+    byorb = Dict{NTuple{6,Int},Vector{Int}}()
+    for (ci, c) in enumerate(certs)
+        push!(get!(byorb, c[3], Int[]), ci)
+    end
+    for (a, cis) in byorb
+        mi = fam_of_char[a]; lam = lam_of_char[a]
+        if length(cis) == 2
+            zp, zm = certs[cis[1]][2], certs[cis[2]][2]
+            pp = hp_quadratic_intra(grams[mi], poss[mi], zp, zp)
+            mm = hp_quadratic_intra(grams[mi], poss[mi], zm, zm)
+            pm = hp_quadratic_intra(grams[mi], poss[mi], zp, zm)
+            (pp == mm == 128 * lam && pm == 0) || (norms_ok = false)
+        else
+            z = certs[cis[1]][2]
+            hp_quadratic_intra(grams[mi], poss[mi], z, z) == 64 * lam ||
+                (norms_ok = false)
+        end
+    end
+    # (iv) структурный факт u_F = 16·h² и h² = (1/240)·Σ всех плоскостей
+    s_const = true
+    gamma = 0
+    for fi in 1:15, fj in 1:15
+        s = sum(hp_fourfold_cross_row(matchings[fi], (0, 0, 0), matchings[fj]))
+        (fi == 1 && fj == 1) && (gamma = s)
+        s == gamma || (s_const = false)
+    end
+    spot_ok = true
+    for (fi, ki) in ((1, (0, 0, 0)), (4, (3, 1, 0)), (8, (2, 2, 3)), (15, (3, 3, 3)))
+        total = sum(sum(hp_fourfold_cross_row(matchings[fi], ki, matchings[fj]))
+                    for fj in 1:15)
+        total == 240 || (spot_ok = false)   # h²·P' = 1 ⟺ Σ = 15·16 = 240
+    end
+    h2_ok = s_const && gamma == 16 && spot_ok
+    ok = content_ok && orth_ok && norms_ok && h2_ok && length(certs) == 141
+    det = @sprintf("сертификатов %d + h² = 142; орбит 70+1; содержимое=%s, ортог=%s, нормы 128λ=%s, u_F=16h² (S const=%s, γ=%d), h²=(1/240)Σ[P] строки=%s",
+                   length(certs) + 1, content_ok, orth_ok, norms_ok, s_const,
+                   gamma, spot_ok)
+    (ok, det)
+end
+
+# ── §6. Недостающие характеры: парность, препятственность, лестница ──
+
+hp_char_pairable(a::NTuple{4,Int}, m::Int) = hp_pair_rec(collect(a), m)
+function hp_pair_rec(vals::Vector{Int}, m::Int)::Bool
+    isempty(vals) && return true
+    first_ = vals[1]; rest = vals[2:end]
+    for (i, v) in enumerate(rest)
+        first_ + v == m && hp_pair_rec(vcat(rest[1:i-1], rest[i+1:end]), m) &&
+            return true
+    end
+    false
+end
+
+hp_pairable_set(m::Int) =
+    Set(a for a in hp_chars11(m) if hp_char_pairable(a, m))
+
+function hp_cycles_report(ms = collect(3:8))
+    theorem_ok = true
+    ladder = ""
+    for m in ms
+        adapted = hp_surf_adapted_union(m)
+        pairable = hp_pairable_set(m)
+        theorem_ok &= (adapted == pairable)
+        h11 = hp_hodge_diamond(m, 2)[(1, 1)]
+        miss = count(a -> !(a in adapted), hp_chars11(m))
+        ladder *= "m$(m):$(length(adapted) + 1)/$(h11)(−$(miss)) "
+    end
+    adj_ok = true; adj_n = 0
+    for m in (5, 6)
+        G, _ = hp_surf_gram(m, true)
+        n = size(G, 1) - 1
+        done = 0
+        for i in 1:n, j in i + 1:n
+            G[i, j] == 1 || continue
+            r2 = G[n+1, n+1] - 2 * G[n+1, i] - 2 * G[n+1, j] +
+                 G[i, i] + 2 * G[i, j] + G[j, j]
+            r2 == -(m - 2) || (adj_ok = false)
+            adj_n += 1; done += 1
+            done >= 400 && break
+        end
+    end
+    ok = theorem_ok && adj_ok
+    det = "теорема парности m=$(collect(ms)): $(theorem_ok); адъюнкция " *
+          "R²=−(m−2) на $(adj_n) парах: $(adj_ok); лестница: $(ladder)"
+    (ok, det)
+end
+
+# ── §7. Квинтиковая четвёрка X^5_4: ценз 581, 1875 плоскостей ──
+
+const HP_Q5_OPTS = [(0, 0), (1, 4), (2, 3), (3, 2), (4, 1)]
+const HP_F5_PHI = [0, 1, -3, 13]  # Φ[z+1], z = число совпавших сдвигов 0..3
+
+"""Σ c_j ζ₅^j = 0? Редукция mod Φ₅ = x⁴+x³+x²+x+1."""
+function hp_z5_zero(coeffs::Vector{Int})::Bool
+    c = copy(coeffs)
+    while !isempty(c) && c[end] == 0; pop!(c); end
+    length(c) - 1 < 4 && return all(iszero, c)
+    while length(c) - 1 >= 4 && any(!=(0), c)
+        lead = c[end]
+        lead == 0 && (pop!(c); continue)
+        shift = length(c) - 5
+        for i in 1:5
+            c[shift + i] -= lead
+        end
+        while !isempty(c) && c[end] == 0; pop!(c); end
+    end
+    all(iszero, c)
+end
+
+function hp_quintic_spectrum(matching)
+    (i1, j1), (i2, j2), (i3, j3) = matching
+    out = Tuple{NTuple{6,Int},Bool,Int}[]
+    for o1 in HP_Q5_OPTS, o2 in HP_Q5_OPTS, o3 in HP_Q5_OPTS
+        a = zeros(Int, 6)
+        a[i1 + 1], a[j1 + 1] = o1
+        a[i2 + 1], a[j2 + 1] = o2
+        a[i3 + 1], a[j3 + 1] = o3
+        A = (a[j1 + 1], a[j2 + 1], a[j3 + 1])
+        coeffs = zeros(Int, 5)
+        for k1 in 0:4, k2 in 0:4, k3 in 0:4
+            z = (k1 == 0) + (k2 == 0) + (k3 == 0)
+            phi_val = HP_F5_PHI[z + 1]
+            phi_val == 0 && continue
+            e = mod(k1 * A[1] + k2 * A[2] + k3 * A[3], 5)
+            coeffs[mod(5 - e, 5) + 1] += phi_val
+        end
+        honest = !hp_z5_zero(coeffs)
+        u = [A[t] % 5 == 0 ? 4 : -1 for t in 1:3]
+        closed = 13 - 3 * sum(u) +
+                 (u[1] * u[2] + u[1] * u[3] + u[2] * u[3])
+        push!(out, (Tuple(a), honest, closed))
+    end
+    out
+end
+
+function hp_quintic_family_gram(matching)
+    idx = vec([(a, b, c) for a in 0:4, b in 0:4, c in 0:4])
+    G = zeros(Int, 125, 125)
+    for (i, a) in enumerate(idx), (j, b) in enumerate(idx)
+        z = (a[1] == b[1]) + (a[2] == b[2]) + (a[3] == b[3])
+        G[i, j] = HP_F5_PHI[z + 1]
+    end
+    G, idx
+end
+
+function hp_char_pairable6(a::NTuple{6,Int})
+    hp_pair_rec6(collect(a))
+end
+function hp_pair_rec6(vals::Vector{Int})::Bool
+    isempty(vals) && return true
+    first_ = vals[1]; rest = vals[2:end]
+    for (i, v) in enumerate(rest)
+        first_ + v == 5 && hp_pair_rec6(vcat(rest[1:i-1], rest[i+1:end])) &&
+            return true
+    end
+    false
+end
+
+function hp_quintic_report()
+    ok_dia, det_dia = hp_verify_diamond(5, 4)
+    h22 = hp_hodge_diamond(5, 4)[(2, 2)]
+    matchings = hp_matchings6()
+    spec_ok = true; fourier_ok = true; rank_ok = true
+    realized = Set{NTuple{6,Int}}()
+    for (nm, matching) in enumerate(matchings)
+        spec = hp_quintic_spectrum(matching)
+        for (a, honest, closed) in spec
+            spec_ok &= (honest == (closed != 0))
+            honest && all(x -> 1 <= x <= 4, a) && sum(a) == 15 &&
+                push!(realized, a)
+        end
+        fourier_ok &= (sum(c for (_, _, c) in spec) == 125 * 13)
+        nm <= 2 || continue
+        G, _ = hp_quintic_family_gram(matching)
+        nz = count(t -> t[2], spec)
+        r = max(hp_rank_mod_p(G, 3), hp_rank_mod_p(G, 7),
+                hp_rank_mod_p(G, 10007))
+        rank_ok &= (r == nz == 65)
+    end
+    chars22 = Set{NTuple{6,Int}}()
+    for a0 in 1:4, a1 in 1:4, a2 in 1:4, a3 in 1:4, a4 in 1:4, a5 in 1:4
+        a0 + a1 + a2 + a3 + a4 + a5 == 15 &&
+            push!(chars22, (a0, a1, a2, a3, a4, a5))
+    end
+    pairable = Set(a for a in chars22 if hp_char_pairable6(a))
+    missing = length(chars22) - length(realized)
+    ok = ok_dia && spec_ok && fourier_ok && rank_ok &&
+         length(realized) == 400 && length(chars22) == 580 &&
+         missing == 180 && pairable == realized
+    det = @sprintf("X^5_4: %s; 1875 плоскостей; спектры ok=%s, Σλ ok=%s, ранг 65 ok=%s; реализовано %d/580 + h² ⇒ натяжение %d ≠ h^22=%d: НЕПОЛНОЕ, −%d характеров",
+                   det_dia, spec_ok, fourier_ok, rank_ok, length(realized),
+                   length(realized) + 1, h22, missing)
+    (ok, det)
+end
+
+# ── задачи 41–44 реестра ──
+
+t41(cfg) = begin
+    oks = Bool[]
+    for (d, n) in ((7, 1), (30, 1), (3, 2), (4, 2), (5, 2), (5, 3), (3, 4), (4, 4))
+        ok, _ = hp_verify_diamond(d, n)
+        push!(oks, ok)
+    end
+    lad = ""
+    for m in 3:6
+        G, _ = hp_surf_gram(m, true)
+        ra = max(hp_rank_mod_p(G, 2), hp_rank_mod_p(G, 3),
+                 hp_rank_mod_p(G, 5), hp_rank_mod_p(G, 10007))
+        rb = length(hp_surf_adapted_union(m)) + 1
+        push!(oks, ra == rb)
+        h11 = hp_hodge_diamond(m, 2)[(1, 1)]
+        lad *= "m$(m):$(ra)=$(rb)/$(h11) "
+    end
+    fu = hp_fourfold_adapted_union()
+    h22 = hp_hodge_diamond(4, 4)[(2, 2)]
+    span = length(fu) + 1
+    push!(oks, span == h22 == 142 && length(fu) == 141)
+    (all(oks), "алмазы 8 шт ok; прямые S₃..S₆: $(lad); X^4_4: 960 " *
+     "плоскостей, натяжение $(span) = h^22 = $(h22) — HC(2,2) верифицирована")
+end
+
+t42(cfg) = begin
+    ok, det = hp_fourfold_certificates()
+    (ok, det)
+end
+
+t43(cfg) = begin
+    ok, det = hp_cycles_report()
+    (ok, det)
+end
+
+t44(cfg) = begin
+    ok, det = hp_quintic_report()
+    (ok, det)
+end
+
+push!(TASKS, Task(id = 41, slug = "hodge-planes",
+                  title = "Hodge planes: алмазы (Якобиан×Чжен), ценз поверхностей, прямые S_m, 960 плоскостей X⁴₄ → HC(2,2): 142 = h^22",
+                  title_en = "Hodge planes: diamonds, surface census, S_m lines, 960 planes of X⁴₄ → HC(2,2): 142 = h^22",
+                  claims = ["HODGE-PLANES"], fn = t41, est_sec = 2.0,
+                  tags = ["exact", "hodge", "core"], version = "1.0.0"))
+push!(TASKS, Task(id = 42, slug = "hodge-cert",
+                  title = "Hodge certificates: 142 целочисленных сертификата (2,2)-классов по 960 плоскостям, u_F = 16·h², h² = (1/240)·Σ[P]",
+                  title_en = "Hodge certificates: 142 integral certificates of (2,2)-classes over 960 planes",
+                  claims = ["HODGE-CERT"], fn = t42, est_sec = 2.0,
+                  tags = ["exact", "hodge", "core"], version = "1.0.0"))
+push!(TASKS, Task(id = 43, slug = "hodge-cycles",
+                  title = "Hodge cycles lab: теорема парности m=3..8, амбиентная препятственность R²=−(m−2), недостающие характеры S₅(8)/S₆(24)",
+                  title_en = "Hodge cycles lab: pairing theorem, ambient obstruction, missing characters S₅/S₆",
+                  claims = ["HODGE-CYCLES"], fn = t43, est_sec = 2.0,
+                  tags = ["exact", "hodge", "core"], version = "1.0.0"))
+push!(TASKS, Task(id = 44, slug = "hodge-quintic",
+                  title = "Hodge quintic fourfold X⁵₄: ценз 581, 1875 плоскостей, спектры Z[ζ₅], натяжение 401 ≠ 581 — плоскости НЕ натягивают всё",
+                  title_en = "Hodge quintic fourfold: census 581, 1875 planes, span 401 ≠ 581 — planes do NOT span",
+                  claims = ["HODGE-QUINTIC"], fn = t44, est_sec = 2.0,
+                  tags = ["exact", "hodge", "core"], version = "1.0.0"))
+push!(SUITE_IDS, 41); push!(SUITE_IDS, 42); push!(SUITE_IDS, 43); push!(SUITE_IDS, 44)
+
 
 task_by_id(tid::Int) = (t = findfirst(x -> x.id == tid, TASKS); t === nothing ? nothing : TASKS[t])
 
