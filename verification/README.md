@@ -231,6 +231,16 @@ as a first-class citizen. The ids are stable: console lines, CI logs and the mas
 <img src="assets/banners/mu_strip.svg" width="88%" alt="The Mobius strip: mu(n) for n = 1..30 as a vertical-bar strip, green +1, orange -1, gray dashes 0, gold dots over the divisors of 30">
 </div>
 
+
+
+<div align="center">
+<img src="assets/gifs/conductor_lattice.gif" width="66%" alt="Animated GIF: the divisor lattice of 30 reveals node by node with mu, c and h values, closing on the sum 406">
+</div>
+
+<div align="center">
+<img src="assets/charts/census_tree.png" width="64%" alt="Static divisor lattice of 30 annotated with mu, c and h — the census's whole world">
+</div>
+
 the gold markers are the stand's divisors.</sub></p>
 </div>
 
@@ -265,9 +275,17 @@ above are then `decide`-checked corollaries. See the
 
 </details>
 
-### 2.3 The stand discriminant and the SNF type
+### 2.3 The stand discriminant and the SNF type<div align="center">
+
 
 <div align="center">
+<img src="assets/charts/snf_ladder.png" width="80%" alt="The SNF divisibility ladder: 1|1|5|5|15|15|15|15 with the product 1265625 = 1125 squared">
+</div>
+
+<div align="center">
+<img src="assets/banners/snf_chain.svg" width="88%" alt="The SNF chain: eight invariant factor boxes chained by divisibility arrows">
+</div>
+
 <img src="assets/gifs/snf_product.gif" width="72%" alt="Animated GIF: the eight SNF invariant factors drop in one by one, the running product grows to 1265625 and meets the prime-power form 3^4*5^6">
 </div>
 
@@ -282,9 +300,7 @@ above are then `decide`-checked corollaries. See the
 | `S-prod` | product of the SNF invariants = disc | **∏ = 1 265 625** | Python · Julia · Rust · C · Fortran | [T22](../theorems/T22_snf_spectra/) |
 | `S-Q` | denominator bound Q_stand = 2N·max(sᵢ) | **2·30·8 = 480** | Python · Julia · Rust · C · Fortran | [T22](../theorems/T22_snf_spectra/) |
 
-### 2.4 The Klein quartic integers
-
-<div align="center">
+### 2.4 The Klein quartic integers<div align="center">
 <img src="assets/banners/klein_rosette.svg" width="86%" alt="The Klein rosette: a heptagram connecting every third vertex of a regular heptagon — the 7-fold symmetry of the Klein quartic, |PSL(2,7)| = 168">
 </div>
 
@@ -298,9 +314,7 @@ above are then `decide`-checked corollaries. See the
 | `K-D` | the discriminant | **Δ = −343 = −7³** | C · Python | [T16](../theorems/T16_certificate_h_klein/) |
 | `K-dv` | disc of v² + 7v + 14 | **49 − 56 = −7** | C · Python | [T16](../theorems/T16_certificate_h_klein/) |
 
-### 2.5 The Arf census of theta-characteristics (errata E8)
-
-<div align="center">
+### 2.5 The Arf census of theta-characteristics (errata E8)<div align="center">
 <img src="assets/gifs/arf_grid.gif" width="72%" alt="Animated GIF: a grid of 64 quadratic refinements at g=3 reveals cell by cell, 36 cyan even and 28 orange odd, with live counters">
 </div>
 
@@ -503,9 +517,7 @@ Each stack below is documented to the same standard: what it runs, what arithmet
 trusts, what it checks, what its output looks like, and where its deep-dive chapter
 lives. The check counts are exact and are asserted by CI.
 
-### 4.0 🐍 Python 3 — the reference stack
-
-<div align="center">
+### 4.0 🐍 Python 3 — the reference stack<div align="center">
 <img src="assets/banners/banner_python.svg" width="100%" alt="Python 3 reference stack banner: V1-V9 protocol, int and Fraction arithmetic, mpmath 35-70 dps">
 </div>
 
@@ -524,7 +536,15 @@ The Python stack is the *definition* of the identity set; the other five stacks 
 its independent re-derivations. Its own self-verification (the pytest suite plus the
 baseline cross-check) lives in [`../tests/`](../tests/).
 
-### 4.1 🟣 Lean 4 — the kernel
+### 4.1 🟣 Lean 4 — the kernel<div align="center">
+<img src="assets/banners/v1v9_pipeline.svg" width="100%" alt="The V1-V9 pipeline: nine stage boxes with their claims and thresholds from genus and census to the deep precision record at 1e-100">
+</div>
+
+<div align="center">
+<img src="assets/gifs/v1v9_protocol.gif" width="80%" alt="Animated GIF: the nine V1-V9 stages light up one by one, each with its real name, claim and threshold, ending 9/9 PASS">
+</div>
+
+
 
 <div align="center">
 <img src="assets/banners/lean_kernel.svg" width="100%" alt="Lean 4 kernel banner: 40 theorems, 12 machine-checked examples, 0 axioms; the proof pipeline statement → elaborator → kernel → accepted">
@@ -759,6 +779,17 @@ relatively, at nine points `(a, b) ∈ {(1,1), (1,2), (2,3)} × (r, s) ∈ {(0,0
 </div>
 
 <div align="center">
+
+
+<div align="center">
+<img src="assets/gifs/adaptive_tanhsinh.gif" width="78%" alt="Animated GIF: the adaptive tanh-sinh halves its step h again and again, the error estimate drops double-exponentially to the 1e-90 target at prec=100">
+</div>
+
+<div align="center">
+<img src="assets/charts/phase_table.png" width="60%" alt="The 15x15 addition table (r+s) mod 15: the phase law as a picture, every cell an exact phase the quadrature lands on">
+<p><sub>The phase law as a picture — (r + s) mod 15, the exact phases the quadrature must land on.</sub></p>
+</div>
+
 <img src="assets/gifs/phase_wheel.gif" width="62%" alt="Animated GIF: the circle of 15th roots of unity with the phase-law arc sweeping through the (r, s) combinations">
 </div>
 
@@ -1576,6 +1607,26 @@ quartic, |PSL(2,7)| = 168) and the [μ strip](assets/banners/mu_strip.svg).
 <sub>THE RANKER</sub><sub>THE GUARD</sub><sub>THE VETERAN</sub><sub>THE ANALYST</sub>
 </tr></table>
 </div>
+
+### 🧭 Batch 3 — the protocol, the lattice and the third dimension
+
+Eleven more: the nine-stage protocol animated, the adaptive quadrature, the
+Gram matrix in 3D, the divisor lattice, the precision story, the mutation map —
+every name, claim and threshold lifted straight from the source files:
+
+| asset | what it shows | exact content |
+|:---|:---|:---|
+| [`gifs/v1v9_protocol.gif`](assets/gifs/v1v9_protocol.gif) | the V1–V9 stages lighting up | real stage names/claims from master_hodge.py: V2 rel < 1e-30, V3 dev < 1e-25, V7 rank 91/91, V9 порог 1e-100 (prec=200, K=480, h=0.012) |
+| [`banners/v1v9_pipeline.svg`](assets/banners/v1v9_pipeline.svg) | the nine-stage pipeline, static | same nine thresholds as boxes |
+| [`gifs/adaptive_tanhsinh.gif`](assets/gifs/adaptive_tanhsinh.gif) | h → h/2 convergence | adaptive-h ≤ 1e-90 @ prec=100 (докстринг master-файла) |
+| [`gifs/k3_gram3d.gif`](assets/gifs/k3_gram3d.gif) | the 7×7 Gram matrix in 3D | self −2 · 0/1 crossings · h·h = +4 — recomputed from the real intersection rules |
+| [`gifs/conductor_lattice.gif`](assets/gifs/conductor_lattice.gif) | the divisor lattice of 30 | μ, c and h on every node, Σ h = 406 |
+| [`charts/census_tree.png`](assets/charts/census_tree.png) | the lattice, static | same annotation |
+| [`gifs/precision_timeline.gif`](assets/gifs/precision_timeline.gif) | the precision story | 70-bit bug → 240-bit golden → 5.8e-35 floor → 1e-100 record → 1e-90 adaptive |
+| [`gifs/mutation_map.gif`](assets/gifs/mutation_map.gif) | what breaks what | the six mutation rows of the C panel |
+| [`charts/phase_table.png`](assets/charts/phase_table.png) | (r+s) mod 15 as a table | the exact phases, < 1e-25 |
+| [`charts/snf_ladder.png`](assets/charts/snf_ladder.png) | the divisibility staircase | 1·1·5·5·15·15·15·15 = 1125² |
+| [`banners/snf_chain.svg`](assets/banners/snf_chain.svg) | the chain, static | same |
 
 
 ---

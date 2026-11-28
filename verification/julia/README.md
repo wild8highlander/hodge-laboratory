@@ -229,6 +229,12 @@ statement.
 
 ## 7. The precision story — the 70-bit bug and its lesson
 
+<div align="center">
+<img src="../assets/gifs/precision_timeline.gif" width="84%" alt="Animated GIF: the precision timeline from the 70-bit bug through 240-bit golden values to the 1e-100 record and the adaptive 1e-90 floor">
+</div>
+
+
+
 > **Julia precision note (from the file header).** v1.1.0 fixed an early bug: 70
 > was meant as decimal digits but `setprecision(BigFloat, 70)` sets 70 *bits*.
 > The current script sets 240 bits ≈ 72 digits and uses `big(π)` at working

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 210" width="880" height="210" role="img" aria-labelledby="vpT vpD">
+  <title id="vpT">The V1-V9 protocol pipeline</title>
+  <desc id="vpD">Nine stage boxes V1 through V9 with their claims and thresholds, connected left to right: genus and census, closed form vs quadrature at 1e-30, the phase law at 1e-25, equivariance, chain sums, the Gamma reflection ladder at 1e-30, the HP-QR rank check at 1e-9, DFT orthogonality on an 8x225 block, and the deep precision record at 1e-100.</desc>
+  <defs>
+    <linearGradient id="vbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0D1117"/><stop offset="1" stop-color="#131A2C"/>
+    </linearGradient>
+    <style>
+      .p0{animation:pulse 2.8s ease-in-out infinite;animation-delay:0.00s}
+      .p1{animation:pulse 2.8s ease-in-out infinite;animation-delay:0.22s}
+      .p2{animation:pulse 2.8s ease-in-out infinite;animation-delay:0.44s}
+      .p3{animation:pulse 2.8s ease-in-out infinite;animation-delay:0.66s}
+      .p4{animation:pulse 2.8s ease-in-out infinite;animation-delay:0.88s}
+      .p5{animation:pulse 2.8s ease-in-out infinite;animation-delay:1.10s}
+      .p6{animation:pulse 2.8s ease-in-out infinite;animation-delay:1.32s}
+      .p7{animation:pulse 2.8s ease-in-out infinite;animation-delay:1.54s}
+      .p8{animation:pulse 2.8s ease-in-out infinite;animation-delay:1.76s}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+      @media (prefers-reduced-motion: reduce){g[class^=p]{animation:none}}
+    </style>
+  </defs>
+  <rect width="880" height="210" fill="url(#vbg)"/>
+  <rect x="1.5" y="1.5" width="877" height="207" fill="none" stroke="#2C3A5E" stroke-width="1.5" rx="14"/>
+  <rect x="0" y="0" width="880" height="4" fill="#4B8BBE" rx="2"/>
+  <text x="440" y="34" text-anchor="middle" style="font:700 16px 'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.08em" fill="#E8EEFA">THE V1–V9 PROTOCOL — NINE CLAIMS, NINE THRESHOLDS</text>
+  <g class="p0">
+      <rect x="24" y="64" width="86" height="58" rx="10" fill="#162032" stroke="#2C3A5E" stroke-width="1"/>
+      <rect x="24" y="64" width="86" height="4" rx="2" fill="#4B8BBE"/>
+      <text x="67" y="86" text-anchor="middle" style="font:700 15px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">V1</text>
+      <text x="67" y="104" text-anchor="middle" style="font:8.5px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#C9D6F2">genus + census</text>
+      <text x="67" y="116" text-anchor="middle" style="font:8.5px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#22D3EE">&lt; 1e-0</text>
+    </g><line x1="112" y1="93" x2="116" y2="93" stroke="#2C3A5E" stroke-width="2"/><g class="p1">
+      <rect x="118" y="64" width="86" height="58" rx="10" fill="#162032" stroke="#2C3A5E" stroke-width="1"/>
+      <rect x="118" y="64" width="86" height="4" rx="2" fill="#4B8BBE"/>
+      <text x="161" y="86" text-anchor="middle" style="font:700 15px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">V2</text>
+      <text x="161" y="104" text-anchor="middle" style="font:8.5px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#C9D6F2">closed vs quad</text>
+      <text x="161" y="116" text-anchor="middle" style="font:8.5px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#22D3EE">&lt; 1e-30</text>
+    </g><line x1="206" y1="93" x2="210" y2="93" stroke="#2C3A5E" stroke-width="2"/><g class="p2">
+      <rect x="212" y="64" width="86" height="58" rx="10" fill="#162032" stroke="#2C3A5E" stroke-width="1"/>
+      <rect x="212" y="64" width="86" height="4" rx="2" fill="#4B8BBE"/>
+      <text x="255" y="86" text-anchor="middle" style="font:700 15px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">V3</text>
+      <text x="255" y="104" text-anchor="middle" style="font:8.5px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#C9D6F2">phase law</text>
+      <text x="255" y="116" text-anchor="middle" style="font:8.5px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#22D3EE">&lt; 1e-25</text>
+    </g><line x1="300" y1="93" x2="304" y2="93" stroke="#2C3A5E" stroke-width="2"/><g class="p3">
+      <rect x="306" y="64" width="86" height="58" rx="10" fill="#162032" stroke="#2C3A5E" stroke-width="1"/>
+      <rect x="306" y="64" width="86" height="4" rx="2" fill="#4B8BBE"/>
+      <text x="349" y="86" text-anchor="middle" style="font:700 15px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">V4</text>
+      <text x="349" y="104" text-anchor="middle" style="font:8.5px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#C9D6F2">equivariance</text>
+      <text x="349" y="116" text-anchor="middle" style="font:8.5px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#22D3EE">&lt; 1e-25</text>
+    </g><line x1="394" y1="93" x2="398" y2="93" stroke="#2C3A5E" stroke-width="2"/><g class="p4">
+      <rect x="400" y="64" width="86" height="58" rx="10" fill="#162032" stroke="#2C3A5E" stroke-width="1"/>
+      <rect x="400" y="64" width="86" height="4" rx="2" fill="#4B8BBE"/>
+      <text x="443" y="86" text-anchor="middle" style="font:700 15px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">V5</text>
+      <text x="443" y="104" text-anchor="middle" style="font:8.5px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#C9D6F2">chain sums</text>
+      <text x="443" y="116" text-anchor="middle" style="font:8.5px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#22D3EE">&lt; 1e-25</text>
+    </g><line x1="488" y1="93" x2="492" y2="93" stroke="#2C3A5E" stroke-width="2"/><g class="p5">
+      <rect x="494" y="64" width="86" height="58" rx="10" fill="#162032" stroke="#2C3A5E" stroke-width="1"/>
+      <rect x="494" y="64" width="86" height="4" rx="2" fill="#4B8BBE"/>
+      <text x="537" y="86" text-anchor="middle" style="font:700 15px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">V6</text>
+      <text x="537" y="104" text-anchor="middle" style="font:8.5px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#C9D6F2">Γ-reflection</text>
+      <text x="537" y="116" text-anchor="middle" style="font:8.5px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#22D3EE">&lt; 1e-30</text>
+    </g><line x1="582" y1="93" x2="586" y2="93" stroke="#2C3A5E" stroke-width="2"/><g class="p6">
+      <rect x="588" y="64" width="86" height="58" rx="10" fill="#162032" stroke="#2C3A5E" stroke-width="1"/>
+      <rect x="588" y="64" width="86" height="4" rx="2" fill="#4B8BBE"/>
+      <text x="631" y="86" text-anchor="middle" style="font:700 15px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">V7</text>
+      <text x="631" y="104" text-anchor="middle" style="font:8.5px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#C9D6F2">HP-QR rank</text>
+      <text x="631" y="116" text-anchor="middle" style="font:8.5px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#22D3EE">&lt; 1e-9</text>
+    </g><line x1="676" y1="93" x2="680" y2="93" stroke="#2C3A5E" stroke-width="2"/><g class="p7">
+      <rect x="682" y="64" width="86" height="58" rx="10" fill="#162032" stroke="#2C3A5E" stroke-width="1"/>
+      <rect x="682" y="64" width="86" height="4" rx="2" fill="#4B8BBE"/>
+      <text x="725" y="86" text-anchor="middle" style="font:700 15px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">V8</text>
+      <text x="725" y="104" text-anchor="middle" style="font:8.5px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#C9D6F2">DFT 8×225</text>
+      <text x="725" y="116" text-anchor="middle" style="font:8.5px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#22D3EE">&lt; 1e-25</text>
+    </g><line x1="770" y1="93" x2="774" y2="93" stroke="#2C3A5E" stroke-width="2"/><g class="p8">
+      <rect x="776" y="64" width="86" height="58" rx="10" fill="#162032" stroke="#2C3A5E" stroke-width="1"/>
+      <rect x="776" y="64" width="86" height="4" rx="2" fill="#4B8BBE"/>
+      <text x="819" y="86" text-anchor="middle" style="font:700 15px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">V9</text>
+      <text x="819" y="104" text-anchor="middle" style="font:8.5px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#C9D6F2">deep record</text>
+      <text x="819" y="116" text-anchor="middle" style="font:8.5px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#22D3EE">&lt; 1e-100</text>
+    </g>
+  <text x="440" y="188" text-anchor="middle" style="font:11px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#8FA3CF">master_hodge.py · python3 laboratory.py --run python · каждый порог — отдельное заявление, каждое — проверено</text>
+</svg>

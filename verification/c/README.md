@@ -185,6 +185,13 @@ panel *runs* it at N = 7, 15, 30. Proof and computation, same triangle.
 ## 6. The deep dive — the K3 rank by exact rational elimination
 
 <div align="center">
+
+
+<div align="center">
+<img src="../assets/gifs/k3_gram3d.gif" width="70%" alt="Animated GIF: the 7x7 Gram matrix as rotating 3D bars — six lines at self-intersection -2, pairwise crossings 0/1, the differential h with h-h = +4">
+<p><sub>The 7×7 seed of the 49×49 — six lines and the differential h, as a rotating 3D chart.</sub></p>
+</div>
+
 <img src="../assets/gifs/k3_rank_elimination.gif" width="82%" alt="Animated GIF: the exact Gauss-Jordan elimination on the real 49x49 K3 matrix, pivot by pivot, the rank counter climbing 0 to 20, ending with the mod-p fingerprint">
 </div>
 
@@ -577,7 +584,11 @@ machinery, Euclid.
 
 ## 12. The mutation map — what breaks what
 
-A verification panel is only as good as its sensitivity. This table is the
+A verification panel is only as good as its sensitivity.<div align="center">
+<img src="../assets/gifs/mutation_map.gif" width="84%" alt="Animated GIF: each plausible mutation flashes red with the exact checks that fire — wrong gcd, mod-4 sign, 105^3 typo, SNF swap, Arf sign, post-overflow lcm">
+</div>
+
+ This table is the
 honesty test: for each plausible mistake, which checks *should* fire?
 
 | mutation (a plausible bug) | which checks fire | why the coverage closes |

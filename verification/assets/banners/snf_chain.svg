@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 190" width="880" height="190" role="img" aria-labelledby="scT scD">
+  <title id="scT">The SNF chain</title>
+  <desc id="scD">Eight invariant factor boxes 1, 1, 5, 5, 15, 15, 15, 15 chained by divisibility arrows, with the product 1265625 = 3^4 times 5^6 = 1125 squared.</desc>
+  <rect width="880" height="190" fill="#0D1117"/>
+  <rect x="1.5" y="1.5" width="877" height="187" fill="none" stroke="#2C3A5E" stroke-width="1.5" rx="14"/>
+  <text x="440" y="36" text-anchor="middle" style="font:700 15px 'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.08em" fill="#E8EEFA">THE SNF CHAIN — EACH FACTOR DIVIDES THE NEXT</text>
+  
+    <rect x="61" y="86" width="72" height="44" rx="9" fill="#162032" stroke="#22D3EE" stroke-width="1.4"/>
+    <text x="97" y="114" text-anchor="middle" style="font:700 18px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#E8EEFA">1</text>
+    <text x="97" y="150" text-anchor="middle" style="font:9px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#5871A3">s1</text><line x1="136" y1="108" x2="156" y2="108" stroke="#22D3EE" stroke-opacity="0.6" stroke-width="2"/>
+    <rect x="159" y="86" width="72" height="44" rx="9" fill="#162032" stroke="#22D3EE" stroke-width="1.4"/>
+    <text x="195" y="114" text-anchor="middle" style="font:700 18px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#E8EEFA">1</text>
+    <text x="195" y="150" text-anchor="middle" style="font:9px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#5871A3">s2</text><line x1="234" y1="108" x2="254" y2="108" stroke="#22D3EE" stroke-opacity="0.6" stroke-width="2"/>
+    <rect x="257" y="86" width="72" height="44" rx="9" fill="#162032" stroke="#22D3EE" stroke-width="1.4"/>
+    <text x="293" y="114" text-anchor="middle" style="font:700 18px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#E8EEFA">5</text>
+    <text x="293" y="150" text-anchor="middle" style="font:9px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#5871A3">s3</text><line x1="332" y1="108" x2="352" y2="108" stroke="#22D3EE" stroke-opacity="0.6" stroke-width="2"/>
+    <rect x="355" y="86" width="72" height="44" rx="9" fill="#162032" stroke="#22D3EE" stroke-width="1.4"/>
+    <text x="391" y="114" text-anchor="middle" style="font:700 18px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#E8EEFA">5</text>
+    <text x="391" y="150" text-anchor="middle" style="font:9px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#5871A3">s4</text><line x1="430" y1="108" x2="450" y2="108" stroke="#22D3EE" stroke-opacity="0.6" stroke-width="2"/>
+    <rect x="453" y="86" width="72" height="44" rx="9" fill="#162032" stroke="#22D3EE" stroke-width="1.4"/>
+    <text x="489" y="114" text-anchor="middle" style="font:700 18px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#E8EEFA">15</text>
+    <text x="489" y="150" text-anchor="middle" style="font:9px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#5871A3">s5</text><line x1="528" y1="108" x2="548" y2="108" stroke="#22D3EE" stroke-opacity="0.6" stroke-width="2"/>
+    <rect x="551" y="86" width="72" height="44" rx="9" fill="#162032" stroke="#22D3EE" stroke-width="1.4"/>
+    <text x="587" y="114" text-anchor="middle" style="font:700 18px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#E8EEFA">15</text>
+    <text x="587" y="150" text-anchor="middle" style="font:9px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#5871A3">s6</text><line x1="626" y1="108" x2="646" y2="108" stroke="#22D3EE" stroke-opacity="0.6" stroke-width="2"/>
+    <rect x="649" y="86" width="72" height="44" rx="9" fill="#162032" stroke="#22D3EE" stroke-width="1.4"/>
+    <text x="685" y="114" text-anchor="middle" style="font:700 18px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#E8EEFA">15</text>
+    <text x="685" y="150" text-anchor="middle" style="font:9px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#5871A3">s7</text><line x1="724" y1="108" x2="744" y2="108" stroke="#22D3EE" stroke-opacity="0.6" stroke-width="2"/>
+    <rect x="747" y="86" width="72" height="44" rx="9" fill="#162032" stroke="#22D3EE" stroke-width="1.4"/>
+    <text x="783" y="114" text-anchor="middle" style="font:700 18px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#E8EEFA">15</text>
+    <text x="783" y="150" text-anchor="middle" style="font:9px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#5871A3">s8</text>
+  <text x="440" y="176" text-anchor="middle" style="font:12.5px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#F0C674">∏ sᵢ = 1 265 625 = 3⁴·5⁶ = 1125²</text>
+</svg>
