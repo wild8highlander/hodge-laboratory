@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" width="880" height="400" role="img" aria-labelledby="heroT heroD">
+  <title id="heroT">Verification — five languages and the Lean 4 kernel</title>
+  <desc id="heroD">Hero banner: six language chips light up one by one, the identity ticker cycles through the checked values, a scan line sweeps the panel.</desc>
+  <defs>
+    <linearGradient id="hbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0D1117"/><stop offset="0.55" stop-color="#131A2C"/><stop offset="1" stop-color="#0A0E18"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.32" r="0.75">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.16"/><stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="hglow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <style>
+      .t{font:700 44px 'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.02em}
+      .s{font:15px 'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.32em}
+
+      .c0 .dot{animation:pulse 2.4s ease-in-out infinite;animation-delay:0.00s}
+      .c1 .dot{animation:pulse 2.4s ease-in-out infinite;animation-delay:0.40s}
+      .c2 .dot{animation:pulse 2.4s ease-in-out infinite;animation-delay:0.80s}
+      .c3 .dot{animation:pulse 2.4s ease-in-out infinite;animation-delay:1.20s}
+      .c4 .dot{animation:pulse 2.4s ease-in-out infinite;animation-delay:1.60s}
+      .c5 .dot{animation:pulse 2.4s ease-in-out infinite;animation-delay:2.00s}
+      .tk{opacity:0}
+      .tk0{opacity:1;animation:tick 28.8s infinite;animation-delay:0.00s}
+      .tk1{opacity:0;animation:tick 28.8s infinite;animation-delay:4.80s}
+      .tk2{opacity:0;animation:tick 28.8s infinite;animation-delay:9.60s}
+      .tk3{opacity:0;animation:tick 28.8s infinite;animation-delay:14.40s}
+      .tk4{opacity:0;animation:tick 28.8s infinite;animation-delay:19.20s}
+      .tk5{opacity:0;animation:tick 28.8s infinite;animation-delay:24.00s}
+      .scan{animation:scan 5.5s linear infinite}
+      .rule{stroke-dasharray:6 10;animation:dash 2.6s linear infinite}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+      @keyframes tick{0%{opacity:0}3%,20%{opacity:1}24%,100%{opacity:0}}
+      @keyframes scan{0%{transform:translateY(0);opacity:0}8%{opacity:.5}92%{opacity:.5}100%{transform:translateY(388px);opacity:0}}
+      @keyframes dash{to{stroke-dashoffset:-32}}
+      @media (prefers-reduced-motion: reduce){.dot,.scan{animation:none}.rule{animation:none}}
+    </style>
+  </defs>
+  <rect width="880" height="400" fill="url(#hbg)"/>
+  <rect width="880" height="400" fill="url(#halo)"/>
+  <rect x="1.5" y="1.5" width="877" height="397" fill="none" stroke="#2C3A5E" stroke-width="1.5" rx="14"/>
+  <rect x="1.5" y="1.5" width="877" height="397" fill="none" stroke="#22D3EE" stroke-opacity="0.25" stroke-width="3" rx="14"/>
+  <rect class="scan" x="6" y="6" width="868" height="26" fill="#22D3EE" opacity="0.05"/>
+  <text x="440" y="92" text-anchor="middle" class="s" fill="#7EE787">H O D G E&#160;&#160;&#160;L A B O R A T O R Y</text>
+  <text x="440" y="150" text-anchor="middle" class="t" fill="#E8EEFA" filter="url(#hglow)">VERIFICATION</text>
+  <text x="440" y="186" text-anchor="middle" style="font:16px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#8FA3CF">five independent languages · one identity set · one verdict</text>
+  <line class="rule" x1="120" y1="212" x2="760" y2="212" stroke="#22D3EE" stroke-opacity="0.4" stroke-width="1"/>
+  <text x="440" y="232" text-anchor="middle" style="font:600 11px 'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.24em" fill="#5871A3">INDEPENDENT STACKS — NO SHARED CODE, NO SHARED NUMERIC LIBRARIES</text>
+    <g class="chip c0">
+      <rect x="74" y="238" width="116" height="34" rx="17" fill="#162032" stroke="#4B8BBE" stroke-width="1.4"/>
+      <circle class="dot" cx="90" cy="255" r="4" fill="#4B8BBE"/>
+      <text x="132" y="260" text-anchor="middle" style="font:600 12px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#4B8BBE">PYTHON 3</text>
+    </g>
+    <g class="chip c1">
+      <rect x="200" y="238" width="116" height="34" rx="17" fill="#162032" stroke="#E879F9" stroke-width="1.4"/>
+      <circle class="dot" cx="216" cy="255" r="4" fill="#E879F9"/>
+      <text x="258" y="260" text-anchor="middle" style="font:600 12px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#E879F9">JULIA</text>
+    </g>
+    <g class="chip c2">
+      <rect x="326" y="238" width="116" height="34" rx="17" fill="#162032" stroke="#DE6B48" stroke-width="1.4"/>
+      <circle class="dot" cx="342" cy="255" r="4" fill="#DE6B48"/>
+      <text x="384" y="260" text-anchor="middle" style="font:600 12px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#DE6B48">RUST</text>
+    </g>
+    <g class="chip c3">
+      <rect x="452" y="238" width="116" height="34" rx="17" fill="#162032" stroke="#22D3EE" stroke-width="1.4"/>
+      <circle class="dot" cx="468" cy="255" r="4" fill="#22D3EE"/>
+      <text x="510" y="260" text-anchor="middle" style="font:600 12px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#22D3EE">C</text>
+    </g>
+    <g class="chip c4">
+      <rect x="578" y="238" width="116" height="34" rx="17" fill="#162032" stroke="#8FA3CF" stroke-width="1.4"/>
+      <circle class="dot" cx="594" cy="255" r="4" fill="#8FA3CF"/>
+      <text x="636" y="260" text-anchor="middle" style="font:600 12px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#8FA3CF">FORTRAN</text>
+    </g>
+    <g class="chip c5">
+      <rect x="704" y="238" width="116" height="34" rx="17" fill="#162032" stroke="#F0C674" stroke-width="1.4"/>
+      <circle class="dot" cx="720" cy="255" r="4" fill="#F0C674"/>
+      <text x="762" y="260" text-anchor="middle" style="font:600 12px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#F0C674">LEAN 4</text>
+    </g>
+  <rect x="120" y="300" width="640" height="1" fill="#22304E"/>
+  <circle cx="440" cy="330" r="3" fill="#3FD16B"/>
+    <text class="tk tk0" x="440" y="352" text-anchor="middle" style="font:13px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#8FA3CF">g(15) = 91 · g(30) = 406 · g(7) = 15 · g(4) = 3</text>
+    <text class="tk tk1" x="440" y="352" text-anchor="middle" style="font:13px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#8FA3CF">Σ h_d = g · 1+6+84 = 91 · 1+6+9+30+84+276 = 406</text>
+    <text class="tk tk2" x="440" y="352" text-anchor="middle" style="font:13px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#8FA3CF">disc = 3⁴·5⁶ = 1 265 625 = 1125² · SNF ∏ sᵢ = disc</text>
+    <text class="tk tk3" x="440" y="352" text-anchor="middle" style="font:13px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#8FA3CF">Klein: j = −3375 = −15³ · Δ = −7³ · c₄³ = 105³</text>
+    <text class="tk tk4" x="440" y="352" text-anchor="middle" style="font:13px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#8FA3CF">Arf: 36 even + 28 odd = 64 · t* = lcm(·) · binary Σ = 806</text>
+    <text class="tk tk5" x="440" y="352" text-anchor="middle" style="font:13px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#8FA3CF">K3: rank₅₀ₓ₄₉(ℚ) = 20 · signature (1,19) · det = 8²</text>
+  <text x="440" y="382" text-anchor="middle" style="font:11px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#5871A3">exit 0 = ALL PASS · deterministic · no seeds · no randomness</text>
+</svg>

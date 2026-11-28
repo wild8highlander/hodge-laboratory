@@ -1,0 +1,446 @@
+# Changelog
+
+All notable changes to Hodge Laboratory are documented here.
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+
+## [Unreleased] — the README visual upgrade: a scientific artifact
+
+### Added
+* **GitLab-native infrastructure for this mirror** — `.gitlab-ci.yml`
+  with the full verification matrix (Python 3.10–3.12 protocol runs,
+  pytest with JUnit + coverage, batch smoke, C, Rust, Julia, Fortran and
+  the Lean 4 kernel), GitLab Pages deployment, merge-request and issue
+  templates, `CODEOWNERS`, Secret Detection + SAST + Code Quality,
+  `pip-audit` on the nightly schedule, automated tag releases assembled
+  from `CHANGELOG.md`, and one-command provisioning
+  (`push_to_gitlab.sh` — see `GITLAB_SETUP.md`).
+
+
+* **All 30 READMEs upgraded into a visual scientific artifact**
+  (purely additive — no existing text removed; the glossary table
+  rows are preserved verbatim inside the new accordion):
+  * **11 hand-written animated SVG assets** — the hero banner
+    "the ladder of stands" (torus → N=7/9 → the cyclotomic web),
+    the five-language verification terminal, the 60-seconds terminal,
+    the certificates A–J marquee, the universal pipeline blueprint,
+    the animated genus ladder (1 → 3 → 15 → 28 → 91 → 406), two web
+    app preview cards, the chess-dynamics hero and its seven-language
+    terminal, the VER-HODGE wave map. Pure SVG + CSS/SMIL, zero
+    JavaScript, `prefers-reduced-motion` respected everywhere.
+  * **26 new Mermaid diagrams** across the repository: the data-flow
+    architecture view, the genus growth `xychart-beta`, the theorem
+    collection map, the three-layer particle model, the protocol
+    layers, the polyglot hubs, the epochs I–VIII pipeline, the
+    verification matrix — all versioned and diffable.
+  * **The Bento-grid dashboard** at the top of the main README
+    (60 seconds · ladder · verification · certificates · quick start)
+    and the **Theorem of the Week** block.
+  * **The interactive accordion glossary** — every term now unfolds
+    with its formula; three new entries (Δ_Ch, the correction family,
+    b_Ch radicals, protocol V1–V9, the Lean kernel).
+  * **A Lean 4 code block** with syntax highlighting in Section 8.
+  * **Navigation bars** in every sub-README (theorems, verification,
+    monograph, polyglot, the web mirrors, both labs).
+* **Two GitHub Actions workflows**: `theorem-of-week.yml` (a weekly
+  deterministic rotation of the Theorem of the Week block through
+  the twenty monographs) and `refresh-visuals.yml` (SVG validation,
+  README link checks and the regeneration of `docs/assets/genus.png`
+  from the frozen baseline).
+* **`scripts/theorem_of_week.py`** — the deterministic ISO-week
+  rotation (zero dependencies); **`scripts/refresh_visuals.py`** —
+  the visual-layer validator and regenerator.
+* **CONTRIBUTING.md**: two new guides — "How to add a new stand to
+  the ladder" and "How to update the visual layer (README, SVG,
+  Mermaid)" with the design-system palette.
+
+### Changed
+
+* `docs/assets/genus.png` is now generated from the frozen baseline
+  (`results/baseline_v1_v9.json`) in the dark design-system style by
+  `scripts/refresh_visuals.py` — the figure can no longer drift from
+  the certified numbers.
+
+## [Unreleased] — roadmap v1.7 (the theorem monograph collection: 20)
+
+### Added
+
+* **Monographs T17–T20 — the collection grown to 20 theorems,
+  80 documents.** Four new standalone theorem monographs in the
+  uniform four-format package (RU/EN × PDF/DOCX + LaTeX sources):
+  * **T17 = Certificate I, the Hurwitz rung N = 7** — the prime-level
+    census 15 = h₇, the cubic layer x³+x²−2x−1 with the exact Vieta
+    integers (−1,−2,1) in ℤ[ζ]/(Φ₇), and the Cardano closed form
+    with the exact pairing |t|² = (7/9)³ → ∛t·∛t̄ = 7/9
+    (casus irreducibilis, Δ = −49/108) and the Viète trigonometric
+    form (2√7/3)·cos(⅓·arctan 3√3) − 1/3.
+  * **T18 = Certificate J, the Macbeath rung N = 9** — the census
+    28 = 1 + 27, the cubic x³−3x+1 with Vieta (0,−3,−1) (s₁ via the
+    Ramanujan sum c₉(1) = μ(9) = 0), and the Cardano form whose
+    arguments are primitive roots of unity: ∛ω = ζ₉ — the only rung
+    with the Cardano arguments on the unit circle.
+  * **T19 = The quartic tower of N = 15/30** — the exact layer of
+    roadmap v1.2 raised to theorem status: the closed radicals
+    b_Ch(15) = (7−√5−√(30−6√5))/8, b_Ch(30) = (9−√5−√(30+6√5))/8;
+    the minimal quartics derived from first principles (Ramanujan
+    sums + the doubling lemma + the tower norm + Newton), the
+    reflection identity P₃₀(x) = P₁₅(−x), the tower pairing
+    ββ′ = 12√5 — one cyclic quartic field ℚ(ζ₁₅)⁺ with
+    disc K = 1125 = 5·15·15 (the volume number of certificate H),
+    the integer tower certificate and the GF(2) fingerprint
+    (both quartics ≡ x⁴+x³+1).
+  * **T20 = The conductor census** — the arithmetic derivation of
+    the genus: the triangle c(N) = (N−1)(N−2)/2, the lifting lemma
+    (a bijection between level-d characters and level-N characters
+    with conductor dividing d), Möbius inversion, the
+    self-similarity h_d(N) = h_d(d), and the exact histograms of
+    all four rungs (15; 28 = 1+27; 91 = 1+6+84;
+    406 = 1+6+9+30+84+276) with the bit-for-bit agreement of the
+    two schemes (V1).
+* `theorems/README.md` — the index extended with Parts IV–V, the
+  cross-reference map and the verification rows of T17–T20; the
+  next slots are T21 (v1.5, the cyclic quintic N = 11) and T22
+  (v1.6, the SNF spectra).
+* `README.md` — the badge, the tables and the citation records
+  updated to 20 monographs / 80 documents; roadmap v1.7 ticked
+  (delivered beyond the plan: T19 and T20 included).
+
+## [Unreleased] — roadmap v1.3 (N = 7/9 stands)
+
+### Added
+
+* **Roadmap v1.3 — Level N = 7 and N = 9 stands (the Hurwitz and
+  Macbeath rungs) with their own certificates.** New stands
+  `stand_n7` / `stand_n9` (menu item 2, items 4–5; keys `n7`/`n9` in
+  `reports/hodge_report.json`) certify the Fermat-level pipeline at
+  the first non-constructible rungs φ(n)/2 = 3: the conductor census
+  `15 = h₇` and `28 = 1 + 27` (two independent schemes), the cubic
+  exact layer of `b_Ch(7)` / `b_Ch(9)` and period spot-checks.
+* **The cubic exact layer** — pure integer arithmetic in
+  `Z[ζ]/(Φ_n)`: the elementary symmetric polynomials of the
+  conjugates `x_k = ζ^k + ζ^{−k}` are computed by polynomial
+  arithmetic reduced modulo Φ₇ = x⁶+…+x+1 and Φ₉ = x⁶+x³+1 and must
+  collapse to the Vieta integers `(−1, −2, 1)` and `(0, −3, −1)`;
+  the minimal cubics `x³+x²−2x−1` (N=7) and `x³−3x+1` (N=9) are
+  verified irreducible over GF(2). New API: `CYC_CUBICS`,
+  `cyc_exact_layer`, `bch_cardano`, `_minpoly_irreducible_gf2`.
+* **Cardano closed forms for the casus irreducibilis** —
+  `b_Ch(7) = 7/6 − (∛(7(1+3√−3)/54) + ∛(7(1−3√−3)/54))/2`,
+  `b_Ch(9) = 1 − (∛((−1+√−3)/2) + ∛((−1−√−3)/2))/2`, evaluated
+  through principal complex cube roots and compared against mpmath
+  `cos` (threshold 1e-25, measured margins ≈1e-35); the designer
+  (menu item 5) and the batch `bch` run type now cover n = 7/9.
+* **Certificates I and J** — the N = 7 and N = 9 rung certificates
+  (census + Vieta + GF(2) + Cardano + the π/7, π/9 phase anchors);
+  `CERT_FUNCS` now spans A–J.
+* **The protocol gained the new rungs**: V1 (census), V2/V3 (closed
+  vs tanh–sinh + phases), V4 (equivariance), V6 (reflection) and V7
+  (completeness) now loop over N = 7, 9, 15, 30 (V2: 90 tests;
+  V7 certifies ranks 15/28/91/140). V5/V8/V9 stay anchored at the
+  flagship stand N = 15/30.
+* **Baseline extension** — `results/baseline_v1_v9.json` carries the
+  N = 7/9 census tables and the new `V13_cyc` block (Vieta integers,
+  cubics, GF(2) verdicts); `--check-baseline` recomputes all of them.
+* 13 new pytest tests (53 total): the census tables of N = 7/9, the
+  exact Vieta collapse, GF(2) irreducibility, the Cardano layer, the
+  new stands and certificates, the extended baseline.
+* **DOCX editions of the standalone theorem monographs** — every
+  theorem folder now ships `monograph_RU.docx` and `monograph_EN.docx`
+  alongside the PDFs: 16 theorems × 2 languages = **64 documents**.
+  Generated from the same LaTeX sources by the new
+  `scripts/build_theorem_docx.py` (pandoc + a styled reference
+  template): native Word equations (OMML), the uniform six-block
+  scheme, styled protocol boxes (summary / protocol data /
+  verification) and RU/EN document metadata. The collection therefore
+  grows together with the proofs — T17 (certificate I) and T18
+  (certificate J) will arrive as the same four-format package
+  (roadmap v1.7).
+
+### Fixed
+
+* **README** — the display formula of the termination certificate
+  used `\operatorname{lcm}`, a macro GitHub's math renderer does not
+  allow (the block failed as «The following macros are not allowed:
+  operatorname»); replaced by `\mathrm{lcm}`.
+* **README** — the ladder table (§4), the certificate table (§5),
+  the protocol record (§6), §2.2 and the architecture diagram now
+  include the N = 7/9 rungs; the roadmap (§17) is rewritten with the
+  completed history compressed and the new plan v1.5–v1.7/v2.0.
+* **Interface/documentation sync of the v1.3 additions** — the
+  interactive menu (RU/EN) now names the N = 7/9 stands and the full
+  A–J certificate range; the README badge (A–J 10/10), the
+  certificate table (rows I and J), the §7 menu box, the glossary,
+  the BibTeX note and §10 (the theorem-monograph collection, now
+  64 PDF/DOCX documents) reflect all new proofs.
+
+## [Unreleased] — roadmap v1.2 + v1.4
+
+### Added
+
+* **Roadmap v1.2 — radical arithmetic for `b_Ch(15)` and `b_Ch(30)`
+  inside the designer** (menu item 5): the braking constants now ship
+  with closed radical forms — `b_Ch(15) = (7 − √5 − √(30−6√5))/8`,
+  `b_Ch(30) = (9 − √5 − √(30+6√5))/8` — each certified by two
+  layers. The exact layer runs on pure integer arithmetic in the
+  biquadratic tower `Z[√5][√(30∓6√5)]`: the radical satisfies its
+  monic quartic minimal polynomial exactly (`x⁴−x³−4x²+4x+1` for
+  N=15, `x⁴+x³−4x²−4x+1` for N=30) and the quartic is irreducible
+  over GF(2). The numeric layer compares the closed form against
+  mpmath `cos` at the working dps (threshold 1e-25, measured margins
+  ≈1e-34). New API: `bch_closed`, `bch_numeric`, `bch_exact_layer`,
+  `BCH_RADICALS`.
+* **Roadmap v1.4 — batch experiment mode**: `python3 laboratory.py
+  --batch scenario.json [--batch-out FILE]` runs a scripted queue of
+  designer experiments — `period`, `census`, `cm`, `flow`, `bch`,
+  `omega` — and writes a combined JSON verdict (default
+  `reports/batch_report.json`) with a per-run verdict, the
+  `ALL PASS` / `FAIL` summary and the scenario dps. The queue is
+  deterministic and crash-hardened: a malformed run is recorded as a
+  failure and never kills the batch. Exit codes mirror the verdict:
+  `0` ALL PASS, `1` failures present, `2` malformed scenario file.
+  The designer (menu item 7) accepts the same scenario
+  interactively; a ready scenario ships as
+  [`examples/batch_smoke.json`](examples/batch_smoke.json).
+* **`scripts/set_doi.sh`** — one-command registration of the minted
+  Zenodo DOI: rewrites the README badge and the `identifiers` block
+  of `CITATION.cff`; the concept DOI is added via
+  `CONCEPT_DOI=10.5281/zenodo.<ID>`.
+* 10 new pytest tests (40 total): the exact b_Ch certificate, the
+  known minimal quartics, the batch queue (ALL PASS, FAIL,
+  crash-hardening, scenario dps).
+
+### Fixed
+
+* **README** — the DOI badge carried the placeholder
+  `10.5281/zenodo.XXXXXX` and linked to the «DOI NOT FOUND» page at
+  doi.org (no Zenodo record exists yet). The badge is now a neutral
+  «pending Zenodo mint» state linking to §15; once the record is
+  minted, `scripts/set_doi.sh` installs the real DOI in one command.
+* `reports/` — reference artifacts regenerated with v1.1.2 (the
+  committed copies were stale v1.1.0 runs with a vacuous `V7` entry).
+
+## [1.1.2] — 2026-09-22
+
+### Fixed
+
+* **`verification/fortran/verify_hodge.f90`** — the file did not
+  compile with gfortran ≥ 8, so the CI "Fortran verification" step
+  failed on every run (`Error: Type mismatch in argument …; passed
+  INTEGER(4) to INTEGER(8)`): twelve call sites passed default-kind
+  integer expressions into `integer(int64)` dummies. The literals in
+  the Klein / SNF / ladder / K3 / genus checks now carry the `_int64`
+  suffix, `tstar` converts its reduced dimensions with
+  `int(…, int64)` before calling `lcm64`, and `isqrt` computes its
+  seed in double precision. 24 checks, all pass.
+* **`verification/julia/verify_hodge.jl`** — the script had never run
+  to completion: Base Julia has no `gamma` (it lives in the external
+  SpecialFunctions.jl), so the first period check crashed with
+  `UndefVarError: gamma not defined`. Log-Γ is now evaluated
+  self-containedly by the Stirling series with argument shifting,
+  with the Bernoulli numbers from the exact `Rational{BigInt}`
+  recurrence. Two soft-scope bugs made the `worst`/`ph_dev`/`eq`
+  accumulators local to their loops, so the corresponding checks
+  compared the untouched global 0.0 — vacuous passes; the
+  accumulators are now declared `global`. The tanh–sinh quadrature
+  at 41 nodes was far from its 1e-25 threshold (measured worst
+  1.2e-7); the grid 2·125+1 nodes, h = 0.048 brings the worst case
+  down to 5.8e-35. 14 checks, all pass (Julia 1.11).
+* **`verification/lean/HodgeLaboratory.lean`** — the panel could not
+  elaborate at all under the advertised "Lean 4 kernel only, no
+  Mathlib" setup: it used the Mathlib notations `ℕ`/`ℤ` as the types,
+  which plain core Lean does not equip with arithmetic instances —
+  dozens of `failed to synthesize OfNat ℕ …` errors on essentially
+  every line.  All type ascriptions now use the core names `Nat` /
+  `Int`, and the panel is kernel-checked end-to-end (Lean 4.21,
+  exit 0).  Additionally the g = 1 even theta-characteristic example
+  asserted `2^1·(2^1+1) = 3`, a false proposition (2·3 = 6) that the
+  kernel rejects; it now verifies the correct `2^0·(2^1+1) = 3`,
+  matching the closed formula 2^(g−1)(2^g+1) used by every other
+  stack.
+* **`.github/workflows/ci.yml`** — actions bumped past the Node 20
+  deprecation (`checkout@v4` → `v7`, `setup-python@v5` → `v7`,
+  `upload-artifact@v4` → `v7`) and the runner is pinned to
+  `ubuntu-24.04` ahead of the ubuntu-latest → Ubuntu 26 migration
+  (announced for October 2026), silencing the three warnings and
+  three notices shown on every run.
+
+### Added
+
+* regression test for the Lean g = 1 Arf count (29 → 30 pytest
+  tests).
+
+## [1.1.1] — 2026-09-22
+
+### Fixed
+
+* **`verification/lean/HodgeLaboratory.lean`** — the even
+  theta-characteristic count for g = 2 verified the wrong proposition
+  `2^0·(2^2+1) = 5`; the closed formula and every other stack (C,
+  Rust, the pytest Arf enumeration) give **2^1·(2^2+1) = 10**. The
+  Lean panel now verifies the correct identity; a bare duplicate of
+  the g = 3 check was removed.
+* **`laboratory.py` — multilingual runner** ignored the exit code of
+  the compiled backends, so a backend whose self-checks failed was
+  still printed as `PASS`. The runner now reports `FAIL (exit code N)`,
+  records the verdict in the results collector, and `--run multi`
+  exits `1` when any present backend fails — as
+  `verification/README.md` always claimed ("CI reads the exit codes").
+* **`laboratory.py` — experiment designer** crashed with an unhandled
+  `ValueError` on malformed numeric input (e.g. `xy zw` instead of two
+  integers), taking down the whole interactive menu. New
+  `ask_pair()` helper warns and keeps the default instead; the t*
+  designer item additionally validates W, H, a, b ≥ 1 (a zero step
+  previously produced a meaningless or crashing lcm).
+* **`laboratory.py` — `ask_int()`** printed the fixed message "Enter
+  an integer from 20 to 120" for every prompt regardless of the
+  prompt's actual range; the message now reflects the real [lo, hi]
+  bounds in both languages.
+* **`laboratory.py` — baseline cross-check** contained the tautology
+  `(36, 28) == (36, 28)`, so the E8 Arf counts were never actually
+  recomputed. `--check-baseline` now performs the genuine full
+  enumeration of the 64 quadratic forms on (ℤ/2)⁶, compares it with
+  the closed formulas, and cross-checks both against the frozen
+  baseline; the binary-code (1,1)-walk closure is likewise verified
+  against the baseline's `visited = 48`.
+* **`laboratory.py` — plot tile T8** relied on a loop variable leaked
+  from an earlier tile to pick its level; the DFT tile now sets its
+  level explicitly (N = 15).
+* **`laboratory.py` — `--run reports`** wrote the reports twice (once
+  as the selected block, once unconditionally); the duplicate write
+  is removed.
+* **`scripts/github_push_termux.sh`** embedded the GitHub token into
+  the origin remote URL, persisting it in plain text in
+  `.git/config` — contradicting the script's own security note. The
+  remote URL is now token-free (and scrubbed if an older version left
+  a token behind); the token is passed only via a one-shot push URL
+  that lives in memory.
+* **`verification/fortran/verify_hodge.f90`** — removed unused
+  variables in `sum_census` (warned about by `-Wall`).
+* **`pyproject.toml`** — added the missing `[build-system]` section
+  and `py-modules = ["laboratory"]`, so `pip install .` now works.
+
+### Added
+
+* six README figures in `docs/assets/` — the hero banner and the
+  census, phase-lattice, reflection-ladder, genus, residuals and DFT
+  tiles rendered from the laboratory's own plotting pipeline;
+* regression tests (24 → 29): designer-input hardening, the
+  range-correct `ask_int` message, the multilingual runner's
+  fail/pass verdicts, and the Lean g = 2 Arf count;
+* README badge anchors fixed (`#5-…`, `#6-…`, `#8-…` slugs) so the
+  Protocol/Certificates/Verification badges actually scroll to their
+  sections.
+
+## [1.1.0] — 2026-09-22
+
+### Fixed (verification correctness)
+
+* **`verification/julia/verify_hodge.jl`**
+  * added the missing `using Printf` — the script previously crashed
+    with `UndefVarError` on the first `@sprintf`;
+  * fixed the Klein check sign: `105^3 ÷ 343 == -3375` was always
+    false (the quotient is `+3375`); the identity now checks
+    `j = −105³/343 = −3375 = −15³` and `|Δ|·|j| = 105³`;
+  * `setprecision(BigFloat, 70)` set 70 **bits** (~21 decimal digits)
+    while the thresholds demanded 1e-60 — the precision is now
+    **240 bits (~72 digits)** so every threshold is genuinely
+    reachable;
+  * the independent quadrature integrated the wrong interval
+    (tanh–sinh nodes covered u ∈ [−0.67, 0.67] instead of [0, 1]);
+    it now maps t ↦ (1 + tanh(π/2·sinh t))/2 onto [0, 1] with 41
+    double-exponential nodes;
+  * all transcendental constants now use `big(π)` at working
+    precision instead of 16-digit `Float64` promotion.
+* **`verification/fortran/verify_hodge.f90`** — same Klein sign bug:
+  `105**3/343` was compared against `−3375` and always failed; the
+  program exited `1`. Fixed and documented.
+* **`laboratory.py`**
+  * **V5 chain integrity** was vacuous: the two telescoping sums used
+    identical terms `(a1, b1) == (a2, b2)` and cancelled identically,
+    so the check proved `0 == 0`. V5 now computes the genuine orbit
+    sum Σ_k P(k, k) = (Ω/N)·Σ_k ζ^{k(a+b)}, which must vanish for
+    a+b ≢ 0 (mod N) and equal Ω for the positive control a+b = N;
+  * **torus stand** contained a tautology `(π/n)⁴ − (π/n)⁴ < 1e-15`
+    that verified nothing; replaced by real properties (strict
+    monotonicity of the spin-phase family, the δ<1 ⇒ δ_eff<γ
+    constraint for N ≥ 4, 2^(2g) = 4 spin structures, and an
+    independent 40-digit mpmath recomputation of Δ_Ch);
+  * **Klein stand** had dead code (an unused lambda, a `pass` loop,
+    a bogus `p2` immediately overwritten); the stand now verifies
+    the exact identity Δ·j = c₄³ and the discriminant −7 of the
+    quadratic factor;
+  * **errata E8 stand** claimed "full enumeration" but used closed
+    formulas; it now performs a genuine enumeration of all 2^(2g)
+    quadratic forms for g = 1..3 (`arf_enumeration`) and validates
+    the closed formulas against it;
+  * **binary code stand** computed `friction`/`edges` that were never
+    verified and printed unconditional `ok()` lines for the
+    reference totals; the stand now verifies t* = 48 by the exact
+    E4 formula, the 48-cell closure of the (1,1) walk, and the
+    48+212+432+114 = 806 consistency, labelling the monograph
+    reference constants honestly;
+  * `main_menu` toggled the language with `LANG = 'en' if LANG == 'ru'`
+    without a `global LANG` declaration — pressing **L** crashed with
+    `UnboundLocalError`;
+  * `gcc` backend put `-lm` **before** the source file, which breaks
+    symbol resolution on strict linkers; the flag order is fixed and
+    build artifacts now go to a private temporary directory instead
+    of the repository root;
+  * `--dps` had no bounds validation on the CLI (the menu did);
+  * the dead first loop in `show_menu` was removed;
+  * plot tile T6 used stale residual constants that contradicted the
+    baseline JSON (V8/V9); the tile now matches
+    `results/baseline_v1_v9.json` exactly.
+* **`verification/c/verify_hodge.c`** — removed the dead `while`
+  fragment in `census_d` and the unused `line_index`; split the
+  misleading combined Klein check into six exact identities; added
+  the full N=30 h_d table, the g(7), g(4) genera and the
+  t*(12,12,4,6) termination case (38 checks now).
+* **`verification/rust/verify_hodge.rs`** — replaced `static mut` +
+  `unsafe` counters with `AtomicU32` (compiles warning-free on the
+  2024 edition); removed the unused `std::cmp` import and the wasted
+  conductor computation; added the h(30,6), h(30,10) and sign-correct
+  Klein checks.
+* **`verification/lean/HodgeLaboratory.lean`** — replaced the
+  misleading "i⁴ = 1" integer example and the artificial
+  `432 < 114 + 400` proposition with honest, kernel-checked
+  statements; all comments translated to English.
+
+### Added
+
+* `--version`, `--check-baseline` (cross-check of the exact integer
+  layer against `results/baseline_v1_v9.json`), validated `--dps`;
+* pytest suite `tests/test_laboratory.py` — 24 tests covering the
+  census schemes, period identities, V5 orbit sums, the exact K3
+  rank, Arf enumeration, termination walks and the baseline;
+* CI workflow now runs ruff, the pytest suite, the baseline
+  cross-check and the C/Fortran/Rust backends on every push;
+* community files: `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`,
+  `SECURITY.md`, `SUPPORT.md`, issue/PR templates, `FUNDING.yml`;
+* Zenodo metadata (`.zenodo.json`) with ORCID for automated DOI
+  minting on release;
+* `scripts/termux_setup.sh` — one-command environment bootstrap for
+  Android/Termux;
+* English-only documentation set; the Russian monographs (PDF/DOCX/
+  LaTeX, unified and per-theorem) remain the authoritative research
+  texts in both languages.
+
+### Changed
+
+* Documentation translated to English and substantially expanded;
+  the bilingual interactive interface (RU/EN) of the laboratory is
+  preserved as a feature;
+* type hints and English docstrings throughout `laboratory.py`;
+* `--run all` no longer short-circuits: a failing block never hides
+  the verdict of the remaining blocks.
+
+## [1.0.0] — 2026-09-21
+
+* Initial public release: unified monograph (RU/EN × PDF/DOCX),
+  16 standalone theorem monographs (RU/EN), the single-file
+  laboratory with the V1–V9 protocol, stands and certificates A–H,
+  five-language verification stack and the Lean 4 kernel panel.
+
+[1.1.2]: https://github.com/wild8highlander/hodge-laboratory/releases/tag/v1.1.2
+[1.1.1]: https://github.com/wild8highlander/hodge-laboratory/releases/tag/v1.1.1
+[1.1.0]: https://github.com/wild8highlander/hodge-laboratory/releases/tag/v1.1.0
+[1.0.0]: https://github.com/wild8highlander/hodge-laboratory/releases/tag/v1.0.0

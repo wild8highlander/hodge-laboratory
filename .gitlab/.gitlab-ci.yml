@@ -1,0 +1,313 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# HODGE LABORATORY — GitLab CI/CD · Verification Suite
+# ═══════════════════════════════════════════════════════════════════════════
+# Mirrors and extends the GitHub Actions workflows (ci.yml / pages.yml) for
+# the GitLab mirror.  One-command provisioning of the surrounding project
+# settings is described in GITLAB_SETUP.md (see push_to_gitlab.sh).
+#
+# Stages:   lint → test → verify → build → security → pages → release
+#
+# Pipelines:
+#   · push / MR  — full verification matrix (Python 3.10–3.12 × protocol,
+#     pytest with coverage + JUnit, batch smoke, C, Rust, Julia, Fortran,
+#     Lean 4 kernel, ruff, SAST, Secret Detection, Code Quality)
+#   · schedule   — nightly extras: protocol WITH plots, polyglot 5-language
+#     run, pip-audit
+#   · tag v*     — full matrix again + GitLab Release assembled from
+#     CHANGELOG.md
+# ═══════════════════════════════════════════════════════════════════════════
+
+workflow:
+  rules:
+    # Nightly / custom schedules first, so they are never skipped
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_COMMIT_TAG
+    # Branch has an open MR → the MR pipeline covers it, no duplicate
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
+stages:
+  - lint
+  - test
+  - verify
+  - build
+  - security
+  - pages
+  - release
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  GIT_DEPTH: "50"
+  # Keep the analyzers away from generated binaries and document trees
+  SAST_EXCLUDED_PATHS: "monograph,theorems,docs,reports,results"
+  SECRET_DETECTION_HISTORICAL_SCAN: "false"
+
+default:
+  image: python:3.12-slim
+  interruptible: true
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+
+include:
+  # GitLab built-in security & quality analyzers (run in the "test" stage)
+  - template: Jobs/SAST.gitlab-ci.yml
+  - template: Jobs/Secret-Detection.gitlab-ci.yml
+  - template: Jobs/Code-Quality.gitlab-ci.yml
+
+# ════════════════════════════════════ lint ═════════════════════════════════
+
+ruff:
+  stage: lint
+  image: python:3.12-slim
+  script:
+    - pip install --upgrade pip
+    - pip install ruff
+    - ruff check laboratory.py tests/
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - when: on_success
+
+# ═══════════════════════════════════ test ══════════════════════════════════
+
+# Protocol V1–V9 + stands + certificates + baseline cross-check,
+# across the whole supported Python range (mirrors GH Actions "protocol").
+protocol:
+  stage: test
+  image: python:${PYTHON_VERSION}-slim
+  timeout: 30m
+  parallel:
+    matrix:
+      - PYTHON_VERSION: ["3.10", "3.11", "3.12"]
+  script:
+    - pip install --upgrade pip
+    - pip install mpmath numpy matplotlib
+    - python3 laboratory.py --lang en --run all --no-plots
+    - python3 laboratory.py --lang en --check-baseline
+  artifacts:
+    when: always
+    paths:
+      - reports/
+    expire_in: 1 week
+
+# Unit tests with JUnit report (GitLab test widget) and code coverage
+# (parsed for the coverage badge).
+pytest:
+  stage: test
+  image: python:3.12-slim
+  timeout: 30m
+  script:
+    - pip install --upgrade pip
+    - pip install -r requirements.txt pytest pytest-cov
+    - pytest tests/ --junitxml=reports/junit.xml
+        --cov=laboratory --cov-report=term --cov-report=xml
+  coverage: '/TOTAL\s+.*?(\d+%)$/'
+  artifacts:
+    when: always
+    paths:
+      - reports/
+    reports:
+      junit: reports/junit.xml
+    expire_in: 1 week
+
+# One-command batch smoke scenario shipped in examples/
+smoke-batch:
+  stage: test
+  image: python:3.12-slim
+  timeout: 30m
+  script:
+    - pip install --upgrade pip
+    - pip install mpmath numpy matplotlib
+    - python3 laboratory.py --lang en --batch examples/batch_smoke.json
+        --batch-out reports/batch_smoke_out.json --no-plots
+    - echo "Batch smoke verdict stored in reports/batch_smoke_out.json"
+  artifacts:
+    when: always
+    paths:
+      - reports/
+    expire_in: 1 week
+
+# ═══════════════════════════════════ verify ════════════════════════════════
+
+# C — exact rank census over Q = 20
+verify:c:
+  stage: verify
+  image: gcc:14
+  timeout: 15m
+  script:
+    - gcc -O2 -Wall -Wextra -o verify_hodge_c verification/c/verify_hodge.c -lm
+    - ./verify_hodge_c
+
+# Fortran — high-precision period identities
+verify:fortran:
+  stage: verify
+  image: ubuntu:24.04
+  timeout: 15m
+  script:
+    - apt-get update -qq
+    - apt-get install -y -qq --no-install-recommends gfortran > /dev/null
+    - gfortran -O2 -o verify_hodge_f verification/fortran/verify_hodge.f90
+    - ./verify_hodge_f
+
+# Rust — exact integer layer
+verify:rust:
+  stage: verify
+  image: rust:1-slim
+  timeout: 15m
+  script:
+    - rustc -O -o verify_hodge_rs verification/rust/verify_hodge.rs
+    - ./verify_hodge_rs
+
+# Julia — 240-bit BigFloat periods and censuses
+verify:julia:
+  stage: verify
+  image: julia:1.10
+  timeout: 30m
+  script:
+    - julia verification/julia/verify_hodge.jl
+
+# Lean 4 — machine-checked exact integer identities by the kernel.
+# Pure core (no Mathlib) → `lean HodgeLaboratory.lean` is enough.
+# The elan toolchain is cached between pipeline runs.
+verify:lean:
+  stage: verify
+  image: ubuntu:24.04
+  timeout: 45m
+  variables:
+    ELAN_HOME: "$CI_PROJECT_DIR/.elan"
+  cache:
+    key: lean4-toolchain
+    policy: pull-push
+    paths:
+      - .elan/
+  script:
+    - apt-get update -qq
+    - apt-get install -y -qq --no-install-recommends curl ca-certificates > /dev/null
+    - if [ ! -x "$ELAN_HOME/bin/lean" ]; then
+        curl -sSfL https://elan.lean-lang.org/elan-init.sh | sh -s -- -y --default-toolchain stable;
+      fi
+    - "$ELAN_HOME/bin/lean --version"
+    - cd verification/lean && "$ELAN_HOME/bin/lean" HodgeLaboratory.lean
+
+# Nightly: the aggregated polyglot hub (Python + C + Rust + Go + Julia)
+nightly:polyglot:
+  stage: verify
+  image: ubuntu:24.04
+  timeout: 30m
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+  script:
+    - apt-get update -qq
+    - apt-get install -y -qq --no-install-recommends build-essential python3 rustc go > /dev/null
+    - ./polyglot/run_all.sh
+
+# Nightly: full protocol WITH the 600-dpi plots (CI pushes run --no-plots)
+nightly:protocol-with-plots:
+  stage: verify
+  image: python:3.12-slim
+  timeout: 60m
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+  script:
+    - pip install --upgrade pip
+    - pip install mpmath numpy matplotlib
+    - python3 laboratory.py --lang en --run all
+  artifacts:
+    when: always
+    paths:
+      - reports/
+    expire_in: 1 month
+
+# ═══════════════════════════════════ build ═════════════════════════════════
+
+# Build the distributable package from pyproject.toml and prove the wheel
+# imports cleanly.
+build:sdist-wheel:
+  stage: build
+  image: python:3.12-slim
+  timeout: 15m
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - pip install --upgrade pip build
+    - python -m build --sdist --wheel .
+    - pip install dist/*.whl
+    - python3 -c "import laboratory; print('wheel import OK, version', laboratory.__version__)"
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+
+# ══════════════════════════════════ security ═══════════════════════════════
+
+# Dependency audit of the declared runtime requirements.
+# Runs on every default-branch push and on the nightly schedule;
+# --strict fails the job when a known vulnerability is reported.
+security:pip-audit:
+  stage: security
+  image: python:3.12-slim
+  timeout: 15m
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - pip install --upgrade pip pip-audit
+    - pip install -r requirements.txt
+    - pip-audit -r requirements.txt --strict
+
+# ═══════════════════════════════════ pages ═════════════════════════════════
+
+# Static landing (docs/index.html + assets) published to GitLab Pages:
+# https://wild8highlander1.gitlab.io/hodge-laboratory/
+pages:
+  stage: pages
+  image: alpine:3.20
+  timeout: 10m
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - mkdir -p public
+    - cp -r docs/. public/
+    - echo "Deployed from commit $CI_COMMIT_SHA at $(date -u +'%Y-%m-%dT%H:%M:%SZ')" > public/DEPLOY_INFO.txt
+  artifacts:
+    paths:
+      - public
+
+# ══════════════════════════════════ release ════════════════════════════════
+
+# Tag v* → full verification matrix above + GitLab Release whose notes are
+# extracted from CHANGELOG.md (section "## [x.y.z]" matching the tag).
+release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  timeout: 10m
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v\d+/'
+  script:
+    - |
+      VER="${CI_COMMIT_TAG#v}"
+      NOTES="release_notes.md"
+      awk -v ver="$VER" '
+        $0 ~ "^## \\[" ver "\\]" { found = 1; next }
+        found && $0 ~ /^## /     { exit }
+        found                    { print }
+      ' CHANGELOG.md > "$NOTES"
+      if [ ! -s "$NOTES" ]; then
+        echo "Release $CI_COMMIT_TAG — see CHANGELOG.md for the full changelog." > "$NOTES"
+      fi
+      echo "──────── release notes ────────"
+      cat "$NOTES"
+      echo "───────────────────────────────"
+    - |
+      release-cli create \
+        --name "Hodge Laboratory $CI_COMMIT_TAG" \
+        --tag-name "$CI_COMMIT_TAG" \
+        --description "$(cat release_notes.md)" \
+        --assets-link "{\"name\":\"Landing (GitLab Pages)\",\"url\":\"https://wild8highlander1.gitlab.io/hodge-laboratory/\"}" \
+        --assets-link "{\"name\":\"CHANGELOG\",\"url\":\"$CI_PROJECT_URL/-/blob/main/CHANGELOG.md\"}"

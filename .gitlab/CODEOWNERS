@@ -1,0 +1,33 @@
+# CODEOWNERS — GitLab merge-request approval routing
+#
+# Every change needs the review of the project owner. Sections mirror the
+# laboratory layout: the exact-integer core and the result artifacts must
+# never drift without explicit approval.
+
+*                                           @wild8highlander1
+
+# Core
+/laboratory.py                              @wild8highlander1
+/tests/                                     @wild8highlander1
+/verification/                              @wild8highlander1
+/polyglot/                                  @wild8highlander1
+
+# Results and reproducibility artifacts — highest sensitivity
+/results/                                   @wild8highlander1
+/reports/                                   @wild8highlander1
+/examples/                                  @wild8highlander1
+
+# Theorem monographs and certificates
+/theorems/                                  @wild8highlander1
+/monograph/                                 @wild8highlander1
+
+# Web suite
+/web/                                       @wild8highlander1
+/docs/                                      @wild8highlander1
+
+# Infrastructure — CI/CD, templates, release automation
+/.gitlab-ci.yml                             @wild8highlander1
+/.gitlab/                                   @wild8highlander1
+/CODEOWNERS                                 @wild8highlander1
+/GITLAB_SETUP.md                            @wild8highlander1
+/scripts/                                   @wild8highlander1
