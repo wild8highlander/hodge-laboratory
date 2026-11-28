@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hodge Laboratory — каталог визуальных ассетов (51)</title>
+<style>
+  :root{
+    --bg:#0d1117;--panel:#131a2c;--panel2:#162032;--grid:#2c3a5e;
+    --txt:#c9d6f2;--sub:#8fa3cf;--cyan:#22d3ee;--purple:#e879f9;
+    --orange:#de6b48;--blue:#4b8bbe;--gold:#f0c674;--green:#3fd16b;--gray:#5871a3;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.5 'Segoe UI',Helvetica,Arial,sans-serif}
+  .wrap{max-width:1200px;margin:0 auto;padding:clamp(12px,3vw,28px)}
+  header{border-bottom:1px solid var(--grid);padding-bottom:16px;margin-bottom:18px}
+  h1{font-size:clamp(1.35rem,4.5vw,2rem);margin:0 0 6px;letter-spacing:.02em}
+  header p{margin:0;color:var(--sub);font-size:clamp(.85rem,2.5vw,1rem)}
+  .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .stat{background:var(--panel);border:1px solid var(--grid);border-radius:10px;padding:6px 12px;font-size:.85rem}
+  .stat b{color:var(--gold)}
+  .bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0}
+  .chip{background:var(--panel);border:1px solid var(--grid);color:var(--sub);border-radius:999px;
+    padding:7px 14px;font-size:.85rem;cursor:pointer;transition:all .15s}
+  .chip:hover{color:var(--txt);border-color:var(--gray)}
+  .chip.on{background:#0f2231;border-color:var(--cyan);color:var(--cyan)}
+  input[type=search]{flex:1;min-width:200px;background:var(--panel);border:1px solid var(--grid);
+    color:var(--txt);border-radius:10px;padding:10px 14px;font-size:.95rem;outline:none}
+  input[type=search]:focus{border-color:var(--cyan)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  @media(max-width:400px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--grid);border-radius:12px;overflow:hidden;
+    cursor:pointer;transition:transform .12s,border-color .12s;display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-2px);border-color:var(--gray)}
+  .prev{background:#0b1220;display:flex;align-items:center;justify-content:center;
+    height:170px;overflow:hidden;padding:8px}
+  .prev img{max-width:100%;max-height:100%;object-fit:contain}
+  .meta{padding:10px 12px;border-top:1px solid var(--grid)}
+  .meta .nm{font-weight:600;font-size:.92rem;color:var(--txt);word-break:break-all}
+  .meta .ds{color:var(--sub);font-size:.8rem;margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;
+    -webkit-box-orient:vertical;overflow:hidden}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+  .tag{font-size:.68rem;border-radius:999px;padding:2px 8px;border:1px solid var(--grid);color:var(--gray)}
+  .tag.gif{color:var(--purple);border-color:var(--purple)}
+  .tag.chart{color:var(--cyan);border-color:var(--cyan)}
+  .tag.banner{color:var(--gold);border-color:var(--gold)}
+  .tag.avatar{color:var(--orange);border-color:var(--orange)}
+  .tag.b2,.tag.b3,.tag.b4{color:var(--green);border-color:var(--green)}
+  .empty{color:var(--sub);text-align:center;padding:40px 0;grid-column:1/-1}
+  dialog{background:var(--panel);color:var(--txt);border:1px solid var(--grid);border-radius:14px;
+    max-width:min(880px,94vw);padding:14px}
+  dialog::backdrop{background:rgba(5,8,16,.82)}
+  dialog img{max-width:100%;max-height:62vh;object-fit:contain;display:block;margin:0 auto;
+    background:#0b1220;border-radius:10px;padding:10px}
+  dialog .big{margin:10px 0 4px;font-size:1.05rem;font-weight:700}
+  dialog .full{color:var(--sub);font-size:.9rem}
+  dialog .path{font:.78rem 'Consolas',monospace;color:var(--gray);margin-top:6px;word-break:break-all}
+  dialog .close{float:right;background:none;border:1px solid var(--grid);color:var(--sub);
+    border-radius:8px;padding:4px 10px;cursor:pointer}
+  footer{color:var(--gray);font-size:.8rem;margin-top:26px;border-top:1px solid var(--grid);padding-top:12px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🎞 Каталог визуальных ассетов — Hodge Laboratory</h1>
+    <p>51 ассет папки <code>verification/assets/</code>: анимации, графики, баннеры, аватары.
+       Каждый сгенерирован кодом из перепроверенных чисел; ни один не нарисован руками.
+       Клик по карточке — крупный просмотр.</p>
+    <div class="stats">
+      <span class="stat">GIF-анимации: <b id="n-gif">0</b></span>
+      <span class="stat">Графики PNG: <b id="n-chart">0</b></span>
+      <span class="stat">Баннеры SVG: <b id="n-banner">0</b></span>
+      <span class="stat">Аватары SVG: <b id="n-avatar">0</b></span>
+    </div>
+  </header>
+  <div class="bar">
+    <button class="chip on" data-f="all">Все</button>
+    <button class="chip" data-f="gif">GIF</button>
+    <button class="chip" data-f="chart">Графики</button>
+    <button class="chip" data-f="banner">Баннеры</button>
+    <button class="chip" data-f="avatar">Аватары</button>
+    <input id="q" type="search" placeholder="поиск: K3, Мёбиус, SNF, Арф, род, точность…" aria-label="поиск ассетов">
+  </div>
+  <div class="grid" id="g"></div>
+  <dialog id="lb">
+    <button class="close" onclick="lb.close()">✕ закрыть</button>
+    <img id="lb-img" alt="">
+    <div class="big" id="lb-title"></div>
+    <div class="full" id="lb-desc"></div>
+    <div class="path" id="lb-path"></div>
+  </dialog>
+  <footer>Hodge Laboratory · verification/assets · каталог самодостаточен (HTML+CSS+JS, без внешних зависимостей) ·
+  страницы README папки — ../README.md</footer>
+</div>
+<script>
+const A=[
+/* ── GIF-анимации (21) ── */
+{f:"gifs/verification_run.gif",t:"Запуск шести стеков",d:"Сеанс verification_run: PYTHON 9 · LEAN 52 · JULIA 14 · FORTRAN 24 · C 38 · RUST 32 — реальные счётчики, агрегат exit 0.",k:"клеверационн run стеки",b:1},
+{f:"gifs/census_bars.gif",t:"Гонка ценза N=30",d:"Столбцы h(d) растут по проводникам, сумма добирается до 406 = 2·g(30).",k:"census ценз проводник",b:1},
+{f:"gifs/k3_rank_elimination.gif",t:"K3: точная элиминация 49×49",d:"Настоящий Гаусс–Жордан над ℚ на реальной матрице, пивот за пивотом; счётчик ранга 0→20; финал — mod-профиль (18 при p=2, 20 при p=3,5,7,101).",k:"K3 rank элиминация ранг",b:2},
+{f:"gifs/mobius_inversion.gif",t:"Инверсия Мёбиуса",d:"Таблица делителей N=30 заполняется со всеми членами μ(d/e)·c(e); шесть вёдер h(d); Σ = 406.",k:"mobius мёбиус инверсия ценз",b:2},
+{f:"gifs/reflection_ladder.gif",t:"Лестница Γ-рефлексии",d:"14 точек k=1..14 с живыми остатками, измеренными mpmath при 50 dps (~e−50 при пороге 1e−30).",k:"reflection гамма рефлексия",b:2},
+{f:"gifs/tanhsinh_nodes.gif",t:"Узлы tanh–sinh",d:"Равномерная τ-сетка перетекает в кластеризацию у концов отрезка: K=125, h=0.048, floor ≤ 5.8e−35.",k:"tanh sinh квадратура узлы",b:2},
+{f:"gifs/ci_timeline.gif",t:"CI-агрегация",d:"Контракт агрегации: шесть дорожек со штампами exit 0; любой не-ноль роняет сборку.",k:"ci continuous exit",b:2},
+{f:"gifs/arf_grid.gif",t:"Решётка Арфа (g=3)",d:"64 квадратичных уточнения открываются клетка за клеткой: 36 чётных + 28 нечётных.",k:"arf тета уточнения",b:2},
+{f:"gifs/fermat_ladder.gif",t:"Лестница родов",d:"Кривая g(N) = (N−1)(N−2)/2 рисуется по градусам; точки 3 · 15 · 91 · 406 вспыхивают.",k:"fermat род genus",b:2},
+{f:"gifs/snf_product.gif",t:"SNF-произведение",d:"Восемь инвариантных факторов падают в копилку: произведение растёт до 1 265 625 = 3⁴·5⁶ = 1125².",k:"snf smith дискриминант",b:2},
+{f:"gifs/klein_chain.gif",t:"Цепь Клейна",d:"Шесть целых тождеств зажигаются по очереди: 105³ → 343·3375 → −3375 → −15³ → −7³ → −7.",k:"klein клейн тождества",b:2},
+{f:"gifs/phase_wheel.gif",t:"Колесо фаз",d:"arg P = 2π(ra+sb)/15 на окружности 15-х корней из единицы; отклонение < 1e−25.",k:"phase фаза корни",b:2},
+{f:"gifs/v1v9_protocol.gif",t:"Протокол V1–V9",d:"Девять стадий master_hodge.py с настоящими порогами: V2 1e−30 · V3 1e−25 · V7 rank 91/91 · V9 1e−100.",k:"v1 v9 протокол стадии",b:3},
+{f:"gifs/adaptive_tanhsinh.gif",t:"Адаптивный tanh–sinh",d:"h → h/2 до сходимости: оценка ошибки падает двойной экспонентой до 1e−90 @ prec=100.",k:"adaptive адаптив сходимость",b:3},
+{f:"gifs/k3_gram3d.gif",t:"Грам-матрица 7×7 в 3D",d:"Вращающийся 3D-барчарт: шесть прямых с self −2, пересечения 0/1, дифференциал h с h·h = +4.",k:"gram грам 3d матрица",b:3},
+{f:"gifs/conductor_lattice.gif",t:"Решётка делителей N=30",d:"Граф делимости раскрывается узел за узлом с μ, c и h; Σ h = 406.",k:"lattice решётка делители",b:3},
+{f:"gifs/precision_timeline.gif",t:"Хроника точности",d:"От бага 70 бит через 240-битные golden значения к floor 5.8e−35, рекорду 1e−100 и адаптиву 1e−90.",k:"precision точность бит",b:3},
+{f:"gifs/mutation_map.gif",t:"Карта мутаций",d:"Каждая правдоподобная ошибка вспыхивает с проверками, которые её ловят (таблица c/README §12).",k:"mutation мутация покрытие",b:3},
+{f:"gifs/radical_tower.gif",t:"Башня радикалов",d:"b_Ch(15)/b_Ch(30): ℚ → ℚ(√5) → β=√(30∓6√5) → x → b; 4⁴P(x)≡0, GF(2)-неприводимость, rel < 1e−30 @ prec=50.",k:"radical башня черч church",b:4},
+{f:"gifs/lean_tactics.gif",t:"Lean-тактики вживую",d:"Настоящее доказательство genus_eq_tri: have h1 → unfold → rw → omega; следствия 91 · 406 · 15 · 3.",k:"lean тактики тактик",b:4},
+{f:"gifs/stack_race.gif",t:"Гонка шести стеков",d:"Одна строка-счётчик: 9 · 52 · 14 · 24 · 38 · 32 к своим целям — 169/169, exit 0.",k:"race гонка счётчик",b:4},
+/* ── Графики (13) ── */
+{f:"charts/census_conductors.png",t:"Ценз по проводникам",d:"h_d для N=7/15/30 с уровнями родов; суммы совпадают с 2g.",k:"census ценз",b:1},
+{f:"charts/k3_gram_heatmap.png",t:"Тепловая карта K3 49×49",d:"Полная Грам-матрица: самопересечения −2, встречи 0/1, блок h; ранг 20 перепроверяется при генерации.",k:"k3 heatmap тепловая",b:1},
+{f:"charts/precision_ladder.png",t:"Лестница точности",d:"Пороги приёма против задокументированных достижений: 1e−30 → 5.8e−35 → 1e−100.",k:"precision точность",b:1},
+{f:"charts/arf_counts.png",t:"Счёты Арфа",d:"Чётные/нечётные θ-характеристики для g=1..4: 2^{g−1}(2^g±1): 3+1, 10+6, 36+28, 136+120.",k:"arf арф тета",b:2},
+{f:"charts/genus_ladder.png",t:"Лестница родов",d:"Кривая (N−1)(N−2)/2 и четыре стендовых точки золотом.",k:"genus род лестница",b:2},
+{f:"charts/k3_modp_ranks.png",t:"Mod-p профиль K3",d:"Ранг 18 при p=2 и 20 при p=3,5,7,101 — вырождение как отпечаток disc = 64.",k:"mod p ранг вырождение",b:2},
+{f:"charts/census_cumulative.png",t:"Лестницы накопления",d:"Бегущая Σ h_d по проводникам до рода для стендов 7, 15, 30.",k:"census накопление",b:2},
+{f:"charts/coverage_matrix.png",t:"Матрица покрытия 41×6",d:"Кто что проверяет: ✓ точные · ≈ аналитические · · не слой этого стека.",k:"coverage покрытие стеки",b:2},
+{f:"charts/mobius_values.png",t:"μ(1..30)",d:"Топливо цензовой машины: +1 зелёным, −1 оранжевым, 0 серым; делители 30 — золотом.",k:"mobius мёбиус",b:2},
+{f:"charts/identity_magnitudes.png",t:"Размах тождеств",d:"От 3 до 1 265 625 в log-шкале — числовой диапазон, который держат панели i128.",k:"magnitudes размах величины",b:2},
+{f:"charts/census_tree.png",t:"Решётка делителей 30",d:"Граф делимости с μ, c и h на каждом узле — весь мир ценза.",k:"tree дерево делители",b:3},
+{f:"charts/phase_table.png",t:"Таблица фаз",d:"(r+s) mod 15 для (a,b)=(1,1): фазовый закон как картинка.",k:"phase фаза таблица",b:3},
+{f:"charts/snf_ladder.png",t:"SNF-лестница",d:"Делимостная лестница 1|1|5|5|15|15|15|15 и произведение 1125².",k:"snf лестница",b:3},
+/* ── Баннеры (11) ── */
+{f:"banners/hero_verification.svg",t:"Герой-баннер папки",d:"Визитная карточка verification/: тождества, стеки, 0 аксиом.",k:"hero герой шапка",b:1},
+{f:"banners/lean_kernel.svg",t:"Баннер Lean-ядра",d:"40 теорем + 12 примеров, ядро проверяет каждое.",k:"lean ядро kernel",b:1},
+{f:"banners/banner_python.svg",t:"Баннер Python",d:"Референсный стек: V1–V9, int·Fraction, mpmath 35–70 dps.",k:"python референс",b:2},
+{f:"banners/banner_c.svg",t:"Баннер C",d:"Рангер: точные дроби, 38 проверок.",k:"c рангер",b:1},
+{f:"banners/banner_rust.svg",t:"Баннер Rust",d:"Страж: i128-безопасность, 32 проверки.",k:"rust страж",b:1},
+{f:"banners/banner_fortran.svg",t:"Баннер Fortran",d:"Ветеран: дисциплина int64, 24 проверки.",k:"fortran ветеран",b:1},
+{f:"banners/banner_julia.svg",t:"Баннер Julia",d:"Аналитик: BigFloat 240 бит, 14 проверок.",k:"julia аналитик",b:1},
+{f:"banners/klein_rosette.svg",t:"Розетка Клейна",d:"Гептаграмма {7/3} — 7-кратная симметрия квартики; |PSL(2,7)| = 168.",k:"klein розетка гептаграмма",b:2},
+{f:"banners/mu_strip.svg",t:"Лента μ",d:"μ(1..30) полосой: +1/−1/0 и золотые точки делителей 30.",k:"mu лента мёбиус",b:2},
+{f:"banners/v1v9_pipeline.svg",t:"Пайплайн V1–V9",d:"Девять стадий с порогами — статичный компаньон GIF.",k:"v1 v9 пайплайн",b:3},
+{f:"banners/snf_chain.svg",t:"Цепь SNF",d:"Восемь факторов и стрелки делимости; произведение 1125².",k:"snf цепь",b:3},
+/* ── Аватары (6) ── */
+{f:"avatars/avatar_verification.svg",t:"Аватар VERIFICATION",d:"Обложка-нонфикшн папки; семилепестковая розетка Ферма.",k:"аватар обложка",b:1},
+{f:"avatars/avatar_lean.svg",t:"Аватар THE KERNEL",d:"Ядро — судья всех тождеств.",k:"аватар lean ядро",b:1},
+{f:"avatars/avatar_c.svg",t:"Аватар THE RANKER",d:"C: точные дроби и ранги.",k:"аватар c рангер",b:2},
+{f:"avatars/avatar_rust.svg",t:"Аватар THE GUARD",d:"Rust: i128-страж бюджетов.",k:"аватар rust страж",b:2},
+{f:"avatars/avatar_fortran.svg",t:"Аватар THE VETERAN",d:"Fortran: int64-дисциплина.",k:"аватар fortran ветеран",b:2},
+{f:"avatars/avatar_julia.svg",t:"Аватар THE ANALYST",d:"Julia: BigFloat-аналитик.",k:"аватар julia аналитик",b:2},
+];
+const TYPE=f=>f.startsWith("gifs/")?"gif":f.startsWith("charts/")?"chart":
+            f.startsWith("banners/")?"banner":"avatar";
+const BT={1:"батч 1",2:"батч 2",3:"батч 3",4:"батч 4"};
+const g=document.getElementById("g"),q=document.getElementById("q"),lb=document.getElementById("lb");
+let flt="all";
+const cards=A.map(a=>({...a,ty:TYPE(a.f)}));
+["gif","chart","banner","avatar"].forEach(t=>
+  document.getElementById("n-"+t).textContent=cards.filter(c=>c.ty===t).length);
+function draw(){
+  const s=q.value.trim().toLowerCase();
+  const show=cards.filter(c=>(flt==="all"||c.ty===flt)&&
+    (!s||c.t.toLowerCase().includes(s)||c.d.toLowerCase().includes(s)||c.f.toLowerCase().includes(s)||(c.k||"").includes(s)));
+  g.innerHTML=show.length?"":'<div class="empty">Ничего не найдено — попробуйте другой запрос.</div>';
+  show.forEach(c=>{
+    const el=document.createElement("div");el.className="card";
+    el.innerHTML=`<div class="prev"><img loading="lazy" src="${c.f}" alt="${c.t}"></div>
+      <div class="meta"><div class="nm">${c.t}</div><div class="ds">${c.d}</div>
+      <div class="tags"><span class="tag ${c.ty}">${c.ty.toUpperCase()}</span>
+      <span class="tag b${c.b}">${BT[c.b]}</span><span class="tag">${c.f.split("/").pop()}</span></div></div>`;
+    el.onclick=()=>{lb.querySelector("#lb-img").src=c.f;
+      lb.querySelector("#lb-title").textContent=c.t;
+      lb.querySelector("#lb-desc").textContent=c.d;
+      lb.querySelector("#lb-path").textContent="verification/assets/"+c.f;
+      lb.showModal();};
+    g.appendChild(el);
+  });
+}
+document.querySelectorAll(".chip").forEach(ch=>ch.onclick=()=>{
+  document.querySelectorAll(".chip").forEach(x=>x.classList.remove("on"));
+  ch.classList.add("on");flt=ch.dataset.f;draw();});
+q.oninput=draw;
+lb.addEventListener("click",e=>{if(e.target===lb)lb.close()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")lb.close()});
+draw();
+</script>
+</body>
+</html>

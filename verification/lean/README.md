@@ -301,7 +301,11 @@ quote it.
 </details>
 
 <details>
-<summary><b>⭐ <code>theorem genus_eq_tri (N) : genus N = tri (N - 1)</code> — THE GENUS THEOREM</b></summary>
+<summary><b>⭐ <code>theorem genus_eq_tri (N) : genus N = tri (N - 1)</code> — THE GENUS THEOREM</b></summary><div align="center">
+<img src="../assets/gifs/lean_tactics.gif" width="80%" alt="Animated GIF: the real tactic chain of genus_eq_tri - have h1, unfold genus, rw, omega - closing with the four corollaries 91, 406, 15, 3">
+</div>
+
+
 
 | | |
 |:---|:---|

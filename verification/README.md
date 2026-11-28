@@ -88,7 +88,15 @@ one another — they are six independent witnesses interviewed about the same ev
 
 The argument has three independent axes, and every axis is fully covered:
 
-1. **Different arithmetic engines.**<div align="center">
+1. **Different arithmetic engines.**
+
+<div align="center">
+<img src="assets/gifs/stack_race.gif" width="88%" alt="Animated GIF: one counter line - the six stacks race to their targets 9, 52, 14, 24, 38, 32, all land together, ALL GREEN 169/169 exit 0">
+</div>
+
+
+
+<div align="center">
 <table><tr>
 <td><img src="assets/avatars/avatar_verification.svg" width="120"><br><sub>VERIFICATION</sub></td>
 <td><img src="assets/avatars/avatar_lean.svg" width="120"><br><sub>THE KERNEL</sub></td>
@@ -787,7 +795,15 @@ relatively, at nine points `(a, b) ∈ {(1,1), (1,2), (2,3)} × (r, s) ∈ {(0,0
 
 <div align="center">
 <img src="assets/charts/phase_table.png" width="60%" alt="The 15x15 addition table (r+s) mod 15: the phase law as a picture, every cell an exact phase the quadrature lands on">
-<p><sub>The phase law as a picture — (r + s) mod 15, the exact phases the quadrature must land on.</sub></p>
+<p><sub>
+
+<div align="center">
+<img src="assets/gifs/radical_tower.gif" width="76%" alt="Animated GIF: the radical tower of b_Ch(15) and b_Ch(30) — Q, Q(sqrt5), beta = sqrt(30∓6sqrt5), x, b; the exact layer 4^4 P(x) = 0, GF(2)-irreducibility, rel < 1e-30 at prec=50">
+<p><sub>The radical tower of the b_Ch coefficients (master tasks T05/T19) — exact layer over ℤ[√5][√D],
+numeric layer at prec = 50, threshold 1e−30.</sub></p>
+</div>
+
+The phase law as a picture — (r + s) mod 15, the exact phases the quadrature must land on.</sub></p>
 </div>
 
 <img src="assets/gifs/phase_wheel.gif" width="62%" alt="Animated GIF: the circle of 15th roots of unity with the phase-law arc sweeping through the (r, s) combinations">
@@ -1626,7 +1642,21 @@ every name, claim and threshold lifted straight from the source files:
 | [`gifs/mutation_map.gif`](assets/gifs/mutation_map.gif) | what breaks what | the six mutation rows of the C panel |
 | [`charts/phase_table.png`](assets/charts/phase_table.png) | (r+s) mod 15 as a table | the exact phases, < 1e-25 |
 | [`charts/snf_ladder.png`](assets/charts/snf_ladder.png) | the divisibility staircase | 1·1·5·5·15·15·15·15 = 1125² |
-| [`banners/snf_chain.svg`](assets/banners/snf_chain.svg) | the chain, static | same |
+
+
+### 🗂 The interactive catalog
+
+**[assets/catalog.html](assets/catalog.html)** — a self-contained page (HTML+CSS+JS, no
+dependencies) listing all **52 visual assets** with live previews, type filters
+(GIF / charts / banners / avatars), full-text search and a click-to-zoom lightbox.
+Open it from the repo or anywhere you copy the `assets/` folder.
+
+Batch 4 adds the last three animations:
+[`gifs/radical_tower.gif`](assets/gifs/radical_tower.gif) (the b_Ch radical tower, exact
+data from master tasks T05/T19), [`gifs/lean_tactics.gif`](assets/gifs/lean_tactics.gif)
+(the real tactic chain of `genus_eq_tri` with the corollaries 91 · 406 · 15 · 3) and
+[`gifs/stack_race.gif`](assets/gifs/stack_race.gif) (the six counters in one line,
+169/169).| [`banners/snf_chain.svg`](assets/banners/snf_chain.svg) | the chain, static | same |
 
 
 ---
