@@ -2,7 +2,11 @@
 
 <div align="center">
 
-<img src="../assets/banners/banner_c.svg" width="100%" alt="C stack banner: 38 checks, long long + hand-rolled Frac arithmetic, exit codes 0/1">
+<img src="../assets/banners/banner_c.svg"<table><tr>
+<td><img src="../assets/avatars/avatar_c.svg" width="110"><br><sub>THE RANKER</sub></td>
+<td><img src="../assets/banners/banner_c.svg" width="520"></td>
+</tr></table>
+ width="100%" alt="C stack banner: 38 checks, long long + hand-rolled Frac arithmetic, exit codes 0/1">
 
 [![checks](https://img.shields.io/badge/panel_checks-38-22D3EE?style=flat-square)](#5-the-38-checks--the-complete-list)
 [![K3 rank](https://img.shields.io/badge/K3_rank_over_%E2%84%9A-20_·_exact_β³-F0C674?style=flat-square)](#6-the-deep-dive--the-k3-rank-by-exact-rational-elimination)
@@ -180,6 +184,12 @@ panel *runs* it at N = 7, 15, 30. Proof and computation, same triangle.
 
 ## 6. The deep dive — the K3 rank by exact rational elimination
 
+<div align="center">
+<img src="../assets/gifs/k3_rank_elimination.gif" width="82%" alt="Animated GIF: the exact Gauss-Jordan elimination on the real 49x49 K3 matrix, pivot by pivot, the rank counter climbing 0 to 20, ending with the mod-p fingerprint">
+</div>
+
+
+
 The flagship. The 48 lines of the Fermat quartic surface `x⁴+y⁴+z⁴+w⁴ = 0` form
 three families of 16; indexed by `l = 16·f + 4·a + b`. The Gram matrix gets its
 entries from pure combinatorics (line 57):
@@ -263,7 +273,12 @@ literally the pivot count. The result — **20** — matches the signature readi
 </details>
 
 <details>
-<summary><b>Why exact and not float? The 2-primary fingerprint</b></summary>
+<summary><b>Why exact and not float?<div align="center">
+<img src="../assets/charts/k3_modp_ranks.png" width="70%" alt="Bar chart of the K3 matrix rank mod p: 18 at p=2, 20 at p=3,5,7,101, with the rank-over-Q line at 20">
+<p><sub>The mod-p profile — the eliminator's fingerprint, recomputed independently.</sub></p>
+</div>
+
+ The 2-primary fingerprint</b></summary>
 
 The rank over ℚ is 20, but the rank **mod 2** is 18 — the matrix degenerates at
 the prime 2 (the diagonal −2 ≡ 0, two extra relations appear), which is exactly

@@ -2,7 +2,11 @@
 
 <div align="center">
 
-<img src="../assets/banners/banner_julia.svg" width="100%" alt="Julia stack banner: 14 checks, BigFloat 240-bit, closed forms vs tanh–sinh quadrature">
+<img src="../assets/banners/banner_julia.svg"<table><tr>
+<td><img src="../assets/avatars/avatar_julia.svg" width="110"><br><sub>THE ANALYST</sub></td>
+<td><img src="../assets/banners/banner_julia.svg" width="520"></td>
+</tr></table>
+ width="100%" alt="Julia stack banner: 14 checks, BigFloat 240-bit, closed forms vs tanh–sinh quadrature">
 
 [![checks](https://img.shields.io/badge/panel_checks-14-E879F9?style=flat-square)](#5-the-14-checks--the-complete-list)
 [![precision](https://img.shields.io/badge/BigFloat-240_bit_≈_72_digits-E879F9?style=flat-square)](#6-the-deep-dive--precision-without-external-packages)
@@ -313,6 +317,12 @@ upgrade path.
 
 ### 9.1 — the closed period form and its independent witness
 
+<div align="center">
+<img src="../assets/gifs/tanhsinh_nodes.gif" width="76%" alt="Animated GIF: the tanh-sinh node clustering — the uniform tau grid flows into the endpoint-clustered u grid">
+</div>
+
+
+
 The Fermat curve's period integrals reduce to the beta-type closed form, and the
 panel's core is the *disagreement test* between two evaluation strategies:
 
@@ -333,6 +343,16 @@ The [precision-ladder chart](../assets/charts/precision_ladder.png) places the
 threshold against the documented achievements.
 
 ### 9.2 — the three analytic laws
+
+<div align="center">
+<img src="../assets/gifs/reflection_ladder.gif" width="76%" alt="Animated GIF: the 14 reflection points with live residuals measured at 50 decimal digits">
+</div>
+
+<div align="center">
+<img src="../assets/gifs/phase_wheel.gif" width="58%" alt="Animated GIF: the phase-law arc sweeping the circle of 15th roots of unity">
+</div>
+
+
 
 **The phase law.** The argument of the quadrature result must equal the
 *discrete* phase `2π(ra + sb mod N)/N` — for four combinations, to 1e-25. The

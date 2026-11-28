@@ -224,6 +224,12 @@ it in fifteen lines of loops.
 
 ## 5. §A — the genus of the Fermat curve
 
+<div align="center">
+<img src="../assets/charts/genus_ladder.png" width="72%" alt="The genus ladder: (N-1)(N-2)/2 with the stand points the kernel computes">
+</div>
+
+
+
 > **The section in one sentence:** for *every* N, the genus
 > `g(N) = (N−1)(N−2)/2` equals the triangular number `1 + 2 + … + (N−2)` — proved
 > by induction on the triangular identity, with the four stand values (91, 406,
@@ -536,6 +542,12 @@ boundary). One `exact` term — the fuel architecture pays its first dividend.
 
 ### 7.3 · C3 — the Möbius function
 
+<div align="center">
+<img src="../assets/charts/mobius_values.png" width="82%" alt="mu(n) for n = 1..30: the function C3 defines and the kernel computes on demand">
+</div>
+
+
+
 <details>
 <summary><b>📦 <code>def muF / def mu</code> — μ with fuel</b></summary>
 
@@ -675,6 +687,12 @@ list lemmas do the work.
 </details>
 
 ### 7.7 · C7 — the master identity `census_master`
+
+<div align="center">
+<img src="../assets/gifs/mobius_inversion.gif" width="78%" alt="Animated GIF: the inversion table of stand N=30 filling in — exactly what census_master proves and the censusSum examples compute">
+</div>
+
+
 
 <details>
 <summary><b>📦 <code>def cInt (e) / def censusSum (d)</code> — the census from the inversion formula</b></summary>

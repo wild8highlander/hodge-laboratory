@@ -88,7 +88,19 @@ one another — they are six independent witnesses interviewed about the same ev
 
 The argument has three independent axes, and every axis is fully covered:
 
-1. **Different arithmetic engines.** Python builds exact rationals from `Fraction`
+1. **Different arithmetic engines.**<div align="center">
+<table><tr>
+<td><img src="assets/avatars/avatar_verification.svg" width="120"><br><sub>VERIFICATION</sub></td>
+<td><img src="assets/avatars/avatar_lean.svg" width="120"><br><sub>THE KERNEL</sub></td>
+<td><img src="assets/avatars/avatar_c.svg" width="120"><br><sub>THE RANKER</sub></td>
+<td><img src="assets/avatars/avatar_rust.svg" width="120"><br><sub>THE GUARD</sub></td>
+<td><img src="assets/avatars/avatar_fortran.svg" width="120"><br><sub>THE VETERAN</sub></td>
+<td><img src="assets/avatars/avatar_julia.svg" width="120"><br><sub>THE ANALYST</sub></td>
+</tr></table>
+<p><sub>The emblem set — six book-cover avatars, one per stack (usable as repo/organization avatars).</sub></p>
+</div>
+
+ Python builds exact rationals from `Fraction`
    and unbounded `int`; C multiplies `long long` and reduces pairs `(p, q)` by hand;
    Rust sits on `i128` with atomic counters; Fortran works in strict `integer(int64)`;
    Julia elevates everything to 240-bit `BigFloat`; Lean does not *compute* in the
@@ -152,7 +164,16 @@ as a first-class citizen. The ids are stable: console lines, CI logs and the mas
 | `G-04` | genus of the degree-4 Fermat curve (the K3 quartic) | **3** | Python · C · Lean | [T01](../theorems/T01_genus_fermat/) |
 
 <details>
-<summary><b>Why the genus is a triangular number — the three independent readings</b></summary>
+<summary><b>Why the genus is a triangular number<div align="center">
+<img src="assets/charts/genus_ladder.png" width="80%" alt="The genus curve (N-1)(N-2)/2 with the four stand points 3, 15, 91, 406 marked in gold">
+<p><sub>The ladder of genera — the triangular curve with the four stand points.</sub></p>
+</div>
+
+<div align="center">
+<img src="assets/gifs/fermat_ladder.gif" width="78%" alt="Animated GIF: the genus curve is drawn degree by degree, then the four stand points pop in — g(4)=3, g(7)=15, g(15)=91, g(30)=406">
+</div>
+
+ — the three independent readings</b></summary>
 
 1. **The degree formula.** A smooth plane curve of degree `N` has genus
    `(N−1)(N−2)/2`; for the Fermat curve smoothness is immediate (the partial
@@ -188,12 +209,32 @@ as a first-class citizen. The ids are stable: console lines, CI logs and the mas
 | `C-h30` | h(30) | **276** | all six | [T20](../theorems/T20_conductor_census/) |
 
 <div align="center">
-<img src="assets/charts/census_conductors.png" width="92%" alt="Bar charts of the exact h_d values for stands N=15 (1, 6, 84 — summing to 91) and N=30 (1, 6, 9, 30, 84, 276 — summing to 406), with the genus level marked">
+<img src="assets/charts/census_conductors.png"<div align="center">
+<img src="assets/charts/census_cumulative.png" width="94%" alt="Three staircases: the running sum of h_d climbing conductor by conductor to the genus for stands 7, 15, 30">
+<p><sub>The census as a staircase — conductor by conductor up to the genus (stands 7, 15, 30).</sub></p>
+</div>
+
+<div align="center">
+<img src="assets/gifs/mobius_inversion.gif" width="82%" alt="Animated GIF: the Mobius inversion table of stand N=30 fills in row by row, each h(d) bucket accumulating its mu-weighted terms, ending with the master identity sum 406">
+</div>
+
+ width="92%" alt="Bar charts of the exact h_d values for stands N=15 (1, 6, 84 — summing to 91) and N=30 (1, 6, 9, 30, 84, 276 — summing to 406), with the genus level marked">
 <p><sub>The two census tables as exact bar charts — the gold dashed line is the genus each sum must land on.</sub></p>
 </div>
 
 <details>
-<summary><b>The generating rule — where each h_d comes from (Möbius inversion)</b></summary>
+<summary><b>The generating rule — where each h_d comes from<div align="center">
+<img src="assets/charts/mobius_values.png" width="86%" alt="Bar chart of mu(n) for n = 1..30: green +1, orange -1, gray 0, with the divisors of 30 marked">
+<p><sub>μ(1) … μ(30) — the arithmetic engine the inversion runs on; 
+
+<div align="center">
+<img src="assets/banners/mu_strip.svg" width="88%" alt="The Mobius strip: mu(n) for n = 1..30 as a vertical-bar strip, green +1, orange -1, gray dashes 0, gold dots over the divisors of 30">
+</div>
+
+the gold markers are the stand's divisors.</sub></p>
+</div>
+
+ (Möbius inversion)</b></summary>
 
 The genus numbers c(e) = (e−1)(e−2)/2 and the census values h(d) form a Möbius pair:
 
@@ -226,6 +267,12 @@ above are then `decide`-checked corollaries. See the
 
 ### 2.3 The stand discriminant and the SNF type
 
+<div align="center">
+<img src="assets/gifs/snf_product.gif" width="72%" alt="Animated GIF: the eight SNF invariant factors drop in one by one, the running product grows to 1265625 and meets the prime-power form 3^4*5^6">
+</div>
+
+
+
 | id | statement | value | checked by | monograph |
 |:--|:---|:--|:---|:---|
 | `D-fac` | discriminant of the stand lattice | **3⁴·5⁶ = 81·15625** | Python · Julia · Rust · C · Fortran | [T22](../theorems/T22_snf_spectra/) |
@@ -237,6 +284,12 @@ above are then `decide`-checked corollaries. See the
 
 ### 2.4 The Klein quartic integers
 
+<div align="center">
+<img src="assets/banners/klein_rosette.svg" width="86%" alt="The Klein rosette: a heptagram connecting every third vertex of a regular heptagon — the 7-fold symmetry of the Klein quartic, |PSL(2,7)| = 168">
+</div>
+
+
+
 | id | statement | value | checked by | monograph |
 |:--|:---|:--|:---|:---|
 | `K-c4` | c₄³ of the Klein quartic | **105³ = 1 157 625** | C · Rust · Python | [T16](../theorems/T16_certificate_h_klein/) |
@@ -246,6 +299,12 @@ above are then `decide`-checked corollaries. See the
 | `K-dv` | disc of v² + 7v + 14 | **49 − 56 = −7** | C · Python | [T16](../theorems/T16_certificate_h_klein/) |
 
 ### 2.5 The Arf census of theta-characteristics (errata E8)
+
+<div align="center">
+<img src="assets/gifs/arf_grid.gif" width="72%" alt="Animated GIF: a grid of 64 quadratic refinements at g=3 reveals cell by cell, 36 cyan even and 28 orange odd, with live counters">
+</div>
+
+
 
 > Even theta-characteristics: **2^{g−1}(2^g + 1)**; odd: **2^{g−1}(2^g − 1)**;
 > together always **2^{2g}**.
@@ -311,7 +370,16 @@ accidentally losing a 2-primary summand.
 <div align="center">
 
 ```text
-91 · 406 · 15 · 3        genera (N = 15, 30, 7, 4)
+91 · 406 · 15 · 3<div align="center">
+<img src="assets/charts/identity_magnitudes.png" width="80%" alt="Log-scale bar chart of every identity value from 3 to 1265625">
+<p><sub>The numeric span of the identity set — six orders of magnitude, all exact.</sub></p>
+</div>
+
+<div align="center">
+<img src="assets/gifs/klein_chain.gif" width="72%" alt="Animated GIF: the six Klein integer identities light up one by one, ending at disc(v^2+7v+14) = -7">
+</div>
+
+        genera (N = 15, 30, 7, 4)
 1+6+84 = 91              census N=15        1+6+9+30+84+276 = 406   census N=30
 3⁴·5⁶ = 1265625 = 1125²  stand discriminant (1,1,5,5,15,15,15,15) → product = disc
 105³ = 343·3375          Klein c₄³ · j = −3375 = −15³ · Δ = −7³ · disc(v²+7v+14) = −7
@@ -436,6 +504,12 @@ trusts, what it checks, what its output looks like, and where its deep-dive chap
 lives. The check counts are exact and are asserted by CI.
 
 ### 4.0 🐍 Python 3 — the reference stack
+
+<div align="center">
+<img src="assets/banners/banner_python.svg" width="100%" alt="Python 3 reference stack banner: V1-V9 protocol, int and Fraction arithmetic, mpmath 35-70 dps">
+</div>
+
+
 
 | | |
 |:---|:---|
@@ -627,6 +701,11 @@ sequenceDiagram
     CC-->>LAB: exit 0 · 38 PASS · K3 rank 20
     LAB->>RS: ./vh (rustc build)
     RS-->>LAB: exit 0 · 32 PASS
+
+<div align="center">
+<img src="assets/gifs/ci_timeline.gif" width="86%" alt="Animated GIF: the CI aggregation — six lanes run staggered, each lands an exit-0 stamp, the aggregate lane turns fully green">
+</div>
+
     Note over LAB: any exit ≠ 0 → aggregate exit 1, CI stops
 ```
 
@@ -671,7 +750,19 @@ relatively, at nine points `(a, b) ∈ {(1,1), (1,2), (2,3)} × (r, s) ∈ {(0,0
 | **orbit sums (Python)** | Σ_k P(k, k) vanishes unless a + b ≡ 0 (mod N) | positive control a + b = N → Ω | — |
 
 <div align="center">
-<img src="assets/charts/precision_ladder.png" width="88%" alt="Horizontal log-scale chart: acceptance thresholds of the Julia panel (1e-25, 1e-25, 1e-30, 1e-30) vs documented achievements (5.8e-35 tanh-sinh, 3.9e-36 Python, 1e-36 Stirling)">
+<img src="assets/charts/precision_ladder.png"<div align="center">
+<img src="assets/gifs/tanhsinh_nodes.gif" width="78%" alt="Animated GIF: the uniform tau grid flows into the endpoint-clustered u grid of the tanh-sinh map, with the panel constants K=125, h=0.048">
+</div>
+
+<div align="center">
+<img src="assets/gifs/reflection_ladder.gif" width="78%" alt="Animated GIF: the 14 reflection-ladder points appear one by one, each with its real residual computed at 50 dps, all under the 1e-30 threshold">
+</div>
+
+<div align="center">
+<img src="assets/gifs/phase_wheel.gif" width="62%" alt="Animated GIF: the circle of 15th roots of unity with the phase-law arc sweeping through the (r, s) combinations">
+</div>
+
+ width="88%" alt="Horizontal log-scale chart: acceptance thresholds of the Julia panel (1e-25, 1e-25, 1e-30, 1e-30) vs documented achievements (5.8e-35 tanh-sinh, 3.9e-36 Python, 1e-36 Stirling)">
 <p><sub>The precision ladder: acceptance thresholds (violet) against documented achievements (green) — the panel never sets a threshold it cannot honestly reach.</sub></p>
 </div>
 
@@ -1398,7 +1489,12 @@ disc(v²+7v+14), g(4)) — the remaining 32 cover every identity group.<br>
 </sub>
 
 <details>
-<summary><b>How to read the matrix honestly (what — does and does not mean)</b></summary>
+<summary><b>How to read the matrix honestly<div align="center">
+<img src="assets/charts/coverage_matrix.png" width="72%" alt="The full coverage matrix as a heatmap: 41 identity rows x 6 stacks, cyan exact checks, violet analytic, dark = not this stack's layer">
+<p><sub>The matrix as a picture — one glance shows the division of epistemic labor.</sub></p>
+</div>
+
+ (what — does and does not mean)</b></summary>
 
 A `—` is *not* a gap in coverage: it is a deliberate division of labor. The K3 rank
 lives only where exact rational elimination is implemented (C, Rust, Python) —
@@ -1438,6 +1534,49 @@ All animated SVGs respect `prefers-reduced-motion: reduce` — the animation is
 switched off and the fully-drawn static state is shown. All charts render their
 numbers from recomputation (the K3 generator re-derives rank 20 and *asserts* it
 before drawing), so an asset cannot silently disagree with the identity set.
+
+### 🎬 The motion & data gallery (batch 2)
+
+Twelve animations and six more charts — every one generated from the same
+recomputed numbers, none hand-drawn:
+
+| asset | what it animates/plots | the exact numbers inside |
+|:---|:---|:---|
+| [`gifs/k3_rank_elimination.gif`](assets/gifs/k3_rank_elimination.gif) | the **real** exact Gauss–Jordan on the 49×49 matrix, pivot by pivot | rank counter 0→20, the true pivot sequence, the mod-p fingerprint on the final frame |
+| [`gifs/mobius_inversion.gif`](assets/gifs/mobius_inversion.gif) | the inversion table of stand N=30 filling in | every μ(d/e)·c(e) term, all six h(d) buckets, Σ = 406 |
+| [`gifs/reflection_ladder.gif`](assets/gifs/reflection_ladder.gif) | the 14 reflection points with live residuals | residuals **measured live with mpmath at 50 dps** (~e−50, threshold 1e−30) |
+| [`gifs/tanhsinh_nodes.gif`](assets/gifs/tanhsinh_nodes.gif) | the double-exponential node clustering | K = 125, h = 0.048, measured floor ≤ 5.8e−35 |
+| [`gifs/ci_timeline.gif`](assets/gifs/ci_timeline.gif) | the aggregation contract as a CI run | six lanes, real check counts, exit-0 stamps |
+| [`gifs/arf_grid.gif`](assets/gifs/arf_grid.gif) | 64 quadratic refinements split by Arf | 36 even + 28 odd (counts exact; cell arrangement illustrative) |
+| [`gifs/fermat_ladder.gif`](assets/gifs/fermat_ladder.gif) | the genus curve with the stand points popping | 3 · 15 · 91 · 406 |
+| [`gifs/snf_product.gif`](assets/gifs/snf_product.gif) | the eight invariant factors multiplying out | running product 1 → … → 1 265 625 = 3⁴·5⁶ = 1125² |
+| [`gifs/klein_chain.gif`](assets/gifs/klein_chain.gif) | the six Klein identities lighting up | 105³ → 343·3375 → −3375 → −15³ → −7³ → −7 |
+| [`gifs/phase_wheel.gif`](assets/gifs/phase_wheel.gif) | the phase law on the circle of 15th roots | arg P = 2π(ra+sb)/15, deviation < 1e−25 |
+| [`charts/genus_ladder.png`](assets/charts/genus_ladder.png) | the genus curve + stand points | the triangular formula |
+| [`charts/k3_modp_ranks.png`](assets/charts/k3_modp_ranks.png) | the mod-p rank profile | 18 at p = 2; 20 at p = 3, 5, 7, 101 (recomputed with a mod-p Gauss) |
+| [`charts/census_cumulative.png`](assets/charts/census_cumulative.png) | the census staircases | running Σ h_d → g for N = 7, 15, 30 |
+| [`charts/coverage_matrix.png`](assets/charts/coverage_matrix.png) | the whole coverage matrix as a heatmap | 41 rows × 6 stacks |
+| [`charts/mobius_values.png`](assets/charts/mobius_values.png) | μ(1…30) | the census machine's fuel |
+| [`charts/identity_magnitudes.png`](assets/charts/identity_magnitudes.png) | the numeric span of the identity set | 3 … 1 265 625, log scale |
+
+Plus the emblem set: four new book-cover avatars
+([avatar_c](assets/avatars/avatar_c.svg) · [avatar_rust](assets/avatars/avatar_rust.svg) ·
+[avatar_fortran](assets/avatars/avatar_fortran.svg) · [avatar_julia](assets/avatars/avatar_julia.svg)),
+the [Python banner](assets/banners/banner_python.svg), the
+[Klein rosette](assets/banners/klein_rosette.svg) (the heptagram of the Klein
+quartic, |PSL(2,7)| = 168) and the [μ strip](assets/banners/mu_strip.svg).
+
+<div align="center">
+<table><tr>
+<td><img src="assets/avatars/avatar_c.svg" width="90"></td>
+<td><img src="assets/avatars/avatar_rust.svg" width="90"></td>
+<td><img src="assets/avatars/avatar_fortran.svg" width="90"></td>
+<td><img src="assets/avatars/avatar_julia.svg" width="90"></td>
+</tr><tr>
+<sub>THE RANKER</sub><sub>THE GUARD</sub><sub>THE VETERAN</sub><sub>THE ANALYST</sub>
+</tr></table>
+</div>
+
 
 ---
 

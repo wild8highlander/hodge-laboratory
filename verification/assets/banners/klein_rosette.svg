@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 420" width="880" height="420" role="img" aria-labelledby="krT krD">
+  <title id="krT">The Klein rosette — the heptagram of the Klein quartic</title>
+  <desc id="krD">A seven-pointed heptagram connecting every third vertex of a regular heptagon: the 7-fold symmetry of the Klein quartic, whose automorphism group PSL(2,7) has order 168.</desc>
+  <defs>
+    <radialGradient id="kbg" cx="0.5" cy="0.5" r="0.85">
+      <stop offset="0" stop-color="#141B2E"/><stop offset="1" stop-color="#0A0E18"/>
+    </radialGradient>
+    <style>
+      .glow{animation:gp 3.2s ease-in-out infinite}
+      @keyframes gp{0%,100%{opacity:1}50%{opacity:.5}}
+      @media (prefers-reduced-motion: reduce){.glow{animation:none}}
+    </style>
+  </defs>
+  <rect width="880" height="420" fill="url(#kbg)"/>
+  <rect x="1.5" y="1.5" width="877" height="417" fill="none" stroke="#2C3A5E" stroke-width="1.5" rx="14"/>
+  <circle cx="440" cy="210" r="176" fill="none" stroke="#F0C674" stroke-opacity="0.25" stroke-width="1"/>
+  <line x1="440.0" y1="60.0" x2="505.1" y2="345.1" stroke="#F0C674" stroke-opacity="0.75" stroke-width="1.4"/><line x1="557.3" y1="116.5" x2="374.9" y2="345.1" stroke="#F0C674" stroke-opacity="0.75" stroke-width="1.4"/><line x1="586.2" y1="243.4" x2="293.8" y2="243.4" stroke="#F0C674" stroke-opacity="0.75" stroke-width="1.4"/><line x1="505.1" y1="345.1" x2="322.7" y2="116.5" stroke="#F0C674" stroke-opacity="0.75" stroke-width="1.4"/><line x1="374.9" y1="345.1" x2="440.0" y2="60.0" stroke="#F0C674" stroke-opacity="0.75" stroke-width="1.4"/><line x1="293.8" y1="243.4" x2="557.3" y2="116.5" stroke="#F0C674" stroke-opacity="0.75" stroke-width="1.4"/><line x1="322.7" y1="116.5" x2="586.2" y2="243.4" stroke="#F0C674" stroke-opacity="0.75" stroke-width="1.4"/>
+  <circle cx="440.0" cy="60.0" r="5" fill="#0D1117" stroke="#F0C674" stroke-width="1.6"/><circle cx="557.3" cy="116.5" r="5" fill="#0D1117" stroke="#F0C674" stroke-width="1.6"/><circle cx="586.2" cy="243.4" r="5" fill="#0D1117" stroke="#F0C674" stroke-width="1.6"/><circle cx="505.1" cy="345.1" r="5" fill="#0D1117" stroke="#F0C674" stroke-width="1.6"/><circle cx="374.9" cy="345.1" r="5" fill="#0D1117" stroke="#F0C674" stroke-width="1.6"/><circle cx="293.8" cy="243.4" r="5" fill="#0D1117" stroke="#F0C674" stroke-width="1.6"/><circle cx="322.7" cy="116.5" r="5" fill="#0D1117" stroke="#F0C674" stroke-width="1.6"/>
+  <circle class="glow" cx="440" cy="210" r="9" fill="#F0C674"/>
+  <text x="440" y="392" text-anchor="middle" style="font:13px Georgia,serif;letter-spacing:.16em" fill="#8FA3CF">the 7-fold symmetry of the Klein quartic ·  | PSL(2,7) | = 168 = 3 × 7 × 8 · j = −3375</text>
+  <text x="440" y="46" text-anchor="middle" style="font:15px Georgia,serif;letter-spacing:.34em" fill="#F0C674">✦ KLEIN ✦</text>
+</svg>

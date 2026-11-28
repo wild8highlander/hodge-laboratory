@@ -2,7 +2,11 @@
 
 <div align="center">
 
-<img src="../assets/banners/banner_fortran.svg" width="100%" alt="Fortran stack banner: 24 checks, integer(int64) arithmetic, ISO_FORTRAN_ENV only">
+<img src="../assets/banners/banner_fortran.svg"<table><tr>
+<td><img src="../assets/avatars/avatar_fortran.svg" width="110"><br><sub>THE VETERAN</sub></td>
+<td><img src="../assets/banners/banner_fortran.svg" width="520"></td>
+</tr></table>
+ width="100%" alt="Fortran stack banner: 24 checks, integer(int64) arithmetic, ISO_FORTRAN_ENV only">
 
 [![checks](https://img.shields.io/badge/panel_checks-24-8FA3CF?style=flat-square)](#5-the-24-checks--the-complete-list)
 [![standard](https://img.shields.io/badge/standard-Fortran_2008_·_free_form-8FA3CF?style=flat-square)](#3-build--run)
@@ -269,6 +273,12 @@ that verified the original generation of lattice computations.
 ## 9. The mathematics behind every group
 
 ### 9.1 — the census family (checks 1–7)
+
+<div align="center">
+<img src="../assets/charts/census_cumulative.png" width="92%" alt="The census staircases for stands 7, 15, 30 climbing to the genus">
+</div>
+
+
 
 The Fortran triangle loop is the strictest transcription of the character
 definition in the folder — explicit DO-loops with inclusive bounds:

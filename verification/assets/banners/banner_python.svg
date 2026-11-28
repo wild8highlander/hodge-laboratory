@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 220" width="880" height="220" role="img" aria-labelledby="bT bD">
+  <title id="bT">PYTHON 3 · THE REFERENCE verification stack</title>
+  <desc id="bD">Banner of the PYTHON 3 · THE REFERENCE verification stack: the stack the other five independently re-derive</desc>
+  <defs>
+    <linearGradient id="gbg2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0D1117"/><stop offset="1" stop-color="#131A2C"/>
+    </linearGradient>
+    <style>
+      .nm{font:700 46px 'Segoe UI',Helvetica,Arial,sans-serif}
+      .bar{animation:pulse 2.6s ease-in-out infinite}
+      .s0 .bar{animation:pulse 2.6s ease-in-out infinite;animation-delay:0.00s}
+      .s1 .bar{animation:pulse 2.6s ease-in-out infinite;animation-delay:0.30s}
+      .s2 .bar{animation:pulse 2.6s ease-in-out infinite;animation-delay:0.60s}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+      @media (prefers-reduced-motion: reduce){.bar{animation:none}}
+    </style>
+  </defs>
+  <rect width="880" height="220" fill="url(#gbg2)"/>
+  <rect x="1.5" y="1.5" width="877" height="217" fill="none" stroke="#2C3A5E" stroke-width="1.5" rx="14"/>
+  <rect x="0" y="0" width="880" height="4" fill="#4B8BBE" rx="2"/>
+  <g transform="translate(64,110)">
+    <circle r="44" fill="#162032" stroke="#4B8BBE" stroke-width="2"/>
+    <text y="15" text-anchor="middle" style="font:700 34px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#4B8BBE">Py</text>
+  </g>
+  <text x="140" y="102" class="nm" fill="#E8EEFA">PYTHON 3 · THE REFERENCE</text>
+  <text x="140" y="130" style="font:14px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#8FA3CF">the stack the other five independently re-derive</text>
+  <text x="700" y="102" text-anchor="end" style="font:13px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">python3 laboratory.py --run all</text>
+    <g class="stat s0">
+      <rect class="bar" x="44" y="152" width="184" height="4" rx="2" fill="#4B8BBE"/>
+      <rect x="44" y="152" width="184" height="44" rx="9" fill="#162032" stroke="#2C3A5E" stroke-width="1"/>
+      <text x="136" y="172" text-anchor="middle" style="font:10.5px 'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.14em" fill="#5871A3">PROTOCOL</text>
+      <text x="136" y="190" text-anchor="middle" style="font:600 13px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">V1–V9 · 9 stages</text>
+    </g>
+    <g class="stat s1">
+      <rect class="bar" x="244" y="152" width="184" height="4" rx="2" fill="#4B8BBE"/>
+      <rect x="244" y="152" width="184" height="44" rx="9" fill="#162032" stroke="#2C3A5E" stroke-width="1"/>
+      <text x="336" y="172" text-anchor="middle" style="font:10.5px 'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.14em" fill="#5871A3">ARITHMETIC</text>
+      <text x="336" y="190" text-anchor="middle" style="font:600 13px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">int · Fraction</text>
+    </g>
+    <g class="stat s2">
+      <rect class="bar" x="444" y="152" width="184" height="4" rx="2" fill="#4B8BBE"/>
+      <rect x="444" y="152" width="184" height="44" rx="9" fill="#162032" stroke="#2C3A5E" stroke-width="1"/>
+      <text x="536" y="172" text-anchor="middle" style="font:10.5px 'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:.14em" fill="#5871A3">ANALYTIC</text>
+      <text x="536" y="190" text-anchor="middle" style="font:600 13px 'SFMono-Regular',Consolas,'Liberation Mono',monospace" fill="#4B8BBE">mpmath 35–70 dps</text>
+    </g>
+</svg>

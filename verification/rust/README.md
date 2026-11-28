@@ -2,7 +2,11 @@
 
 <div align="center">
 
-<img src="../assets/banners/banner_rust.svg" width="100%" alt="Rust stack banner: 32 checks, i128 arithmetic with exact (p,q) fractions, atomic verdict counters">
+<img src="../assets/banners/banner_rust.svg"<table><tr>
+<td><img src="../assets/avatars/avatar_rust.svg" width="110"><br><sub>THE GUARD</sub></td>
+<td><img src="../assets/banners/banner_rust.svg" width="520"></td>
+</tr></table>
+ width="100%" alt="Rust stack banner: 32 checks, i128 arithmetic with exact (p,q) fractions, atomic verdict counters">
 
 [![checks](https://img.shields.io/badge/panel_checks-32-DE6B48?style=flat-square)](#5-the-32-checks--the-complete-list)
 [![arithmetic](https://img.shields.io/badge/arithmetic-i128_·_overflow--impossible-DE6B48?style=flat-square)](#7-the-i128-budget--why-overflow-cannot-happen)
@@ -233,6 +237,13 @@ entry-by-entry.
 ---
 
 ## 7. The i128 budget — why overflow cannot happen
+
+<div align="center">
+<img src="../assets/charts/identity_magnitudes.png" width="82%" alt="Log-scale chart of every identity value the panels handle, from 3 to 1265625">
+<p><sub>The numeric span the budget covers — six orders of magnitude, all exact.</sub></p>
+</div>
+
+
 
 Every intermediate of the panel, worst case:
 
