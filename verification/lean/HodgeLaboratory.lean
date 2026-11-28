@@ -544,7 +544,7 @@ theorem sumTo_tail (f : Nat → Int) :
 
 /-- Reindexing a sum over multiples of `p`:
     Σ_{d ≤ k, p ∣ d} G(d/p) = Σ_{e ≤ k/p} G(e). -/
-theorem sumTo_mul_div (p : Nat) (G : Nat → Int) (hp : 2 ≤ p) :
+theorem sumTo_mul_div (p : Nat) (G : Nat → Int) (hp : 1 ≤ p) :
     ∀ k, sumTo (fun d => if p ∣ d then G (d / p) else 0) k = sumTo G (k / p) := by
   intro k
   induction k with
@@ -841,25 +841,223 @@ theorem sumTo_fubini (F : Nat → Nat → Int) (N : Nat) :
     omega
 
 
-/- The column-sum lemma `inner_eq` (inner(e) = c(N) at e = N, 0 else)
-   and the final assembly  censusSum N = cInt N  are the continuation
-   point: the divisor-reindexing lemma and the case analysis on
-   e ∣ N / e = N are drafted in the accompanying notes.                -/
+/-- Sum with only one surviving term: if `f` vanishes strictly below
+    `n`, the finite sum is the last term itself. -/
+theorem sumTo_last (f : Nat → Int) (n : Nat) (h : ∀ d, d < n → f d = 0) :
+    sumTo f n = f n := by
+  rcases n with _ | m
+  · rw [sumTo_zero]
+  · rw [sumTo_succ, sumTo_head_zero _ m (fun d hd => h d (by omega))]
+    omega
 
+/-- The inner column sum of the census triangle: for `0 < N` it is
+    `c(N)` at `e = N` and `0` at every other `e`. -/
+theorem inner_eq (N e : Nat) (hpos : 0 < N) :
+    sumTo (fun d => if e ≤ d ∧ d ∣ N ∧ e ∣ d then mu (d / e) * cInt e else 0) N
+      = if e = N then cInt N else 0 := by
+  by_cases he0 : e = 0
+  · subst he0
+    have hz : ∀ d, d ≤ N →
+        (if 0 ≤ d ∧ d ∣ N ∧ 0 ∣ d then mu (d / 0) * cInt 0 else 0) = 0 := by
+      intro d hd
+      rw [Nat.div_zero, mu_zero]
+      split <;> simp [cInt]
+    rw [sumTo_head_zero _ N hz, if_neg (show ¬(0 = N) from by omega)]
+  · by_cases heN : e ∣ N
+    · rcases Nat.lt_or_ge e N with hlt | heq
+      · -- e < N, e ∣ N: reindex to the key sum at N / e ≥ 2
+        have hge2 : 2 ≤ N / e := by
+          have hmN : e * (N / e) = N := Nat.mul_div_cancel' heN
+          rcases Nat.lt_or_ge (N / e) 2 with h2 | h2
+          · rcases Nat.eq_zero_or_pos (N / e) with h0 | hp0
+            · rw [h0] at hmN; rw [Nat.mul_zero] at hmN; omega
+            · have h1' : N / e = 1 := by omega
+              rw [h1'] at hmN; rw [Nat.mul_one] at hmN; omega
+          · exact h2
+        have hcanc : ∀ d, e ∣ d → (d / e ∣ N / e ↔ d ∣ N) := by
+          intro d hed
+          have heN' : e * (N / e) = N := Nat.mul_div_cancel' heN
+          have hde : e * (d / e) = d := Nat.mul_div_cancel' hed
+          constructor
+          · intro h
+            obtain ⟨j, hj⟩ := h
+            have h1 : e * (N / e) = e * ((d / e) * j) :=
+              congrArg (fun x => e * x) hj
+            have h2 : e * ((d / e) * j) = d * j :=
+              (Nat.mul_assoc e (d / e) j).symm.trans (congrArg (fun x => x * j) hde)
+            exact ⟨j, heN'.symm.trans (h1.trans h2)⟩
+          · intro h
+            obtain ⟨j, hj⟩ := h
+            have h1 : e * (N / e) = e * ((d / e) * j) :=
+              (heN'.trans hj).trans
+                ((congrArg (fun x => x * j) hde.symm).trans
+                  (Nat.mul_assoc e (d / e) j))
+            exact ⟨j, Nat.mul_left_cancel (by omega) h1⟩
+        have hcongr : sumTo
+              (fun d => if e ≤ d ∧ d ∣ N ∧ e ∣ d then mu (d / e) * cInt e else 0) N
+            = sumTo
+              (fun d => if e ∣ d then
+                  (if (d / e) ∣ N / e then mu (d / e) else 0) else 0) N * cInt e := by
+          rw [← sumTo_smul]
+          apply sumTo_congr
+          intro d hd
+          by_cases hd0 : d = 0
+          · subst hd0
+            rw [if_neg (fun hc => by have := hc.1; omega),
+              if_pos (Nat.dvd_zero e),
+              if_neg (fun hc => by
+                rw [Nat.zero_div] at hc
+                have := Nat.zero_dvd.1 hc
+                omega)]
+            simp
+          · by_cases hed : e ∣ d
+            · by_cases hdN : d ∣ N
+              · have hle : e ≤ d := by
+                  have hde : e * (d / e) = d := Nat.mul_div_cancel' hed
+                  have hdp1 : 1 ≤ d / e := by
+                    rcases Nat.eq_zero_or_pos (d / e) with h0 | hp0
+                    · rw [h0] at hde; rw [Nat.mul_zero] at hde; omega
+                    · exact hp0
+                  have h2d := Nat.mul_le_mul_left e hdp1
+                  rw [Nat.mul_one] at h2d
+                  omega
+                rw [if_pos (by exact ⟨hle, hdN, hed⟩), if_pos hed,
+                  if_pos ((hcanc d hed).2 hdN)]
+              · rw [if_neg (by intro hc; exact hdN hc.2.1), if_pos hed,
+                  if_neg (fun hc : (d / e) ∣ N / e => hdN ((hcanc d hed).1 hc))]
+                simp
+            · rw [if_neg (by intro hc; exact hed hc.2.2), if_neg hed]
+              simp
+        have hkey0 : sumTo (fun j => if j ∣ N / e then mu j else 0) (N / e) = 0 := by
+          rw [sum_mu_divisors (N / e), if_neg (show ¬(N / e = 1) from by omega)]
+        have hre : sumTo
+              (fun d => if e ∣ d then
+                  (if (d / e) ∣ N / e then mu (d / e) else 0) else 0) N
+            = sumTo (fun j => if j ∣ N / e then mu j else 0) (N / e) :=
+            sumTo_mul_div e (fun j => if j ∣ N / e then mu j else 0) (by omega) N
+        rw [hcongr, hre, hkey0, if_neg (show ¬(e = N) from by omega)]
+        omega
+      · -- e = N: the single surviving term is d = N itself
+        have hNe : e = N := Nat.le_antisymm (Nat.le_of_dvd hpos heN) heq
+        rw [hNe, if_pos rfl]
+        have hlast := sumTo_last
+          (fun d => if N ≤ d ∧ d ∣ N ∧ N ∣ d then mu (d / N) * cInt N else 0) N
+          (fun d hd => by rw [if_neg (fun hc => by have := hc.1; omega)])
+        rw [hlast]
+        show (if N ≤ N ∧ N ∣ N ∧ N ∣ N then mu (N / N) * cInt N else 0) = cInt N
+        rw [if_pos (by exact ⟨Nat.le_refl N, Nat.dvd_refl N, Nat.dvd_refl N⟩),
+          Nat.div_self (by omega), mu_one]
+        omega
+    · -- e ∤ N: every term vanishes
+      have hz0 : ∀ d, d ≤ N →
+          (if e ≤ d ∧ d ∣ N ∧ e ∣ d then mu (d / e) * cInt e else 0) = 0 := by
+        intro d hd
+        by_cases hdc : d ∣ N
+        · by_cases hed : e ∣ d
+          · exact absurd (Nat.dvd_trans hed hdc) heN
+          · rw [if_neg (by intro hc; exact hed hc.2.2)]
+        · rw [if_neg (by intro hc; exact hdc hc.2.1)]
+      rw [sumTo_head_zero _ N hz0,
+        if_neg (fun hc => heN (by rw [hc]; exact Nat.dvd_refl N))]
 
-/- ═══ Certification  ═══
+/-- The total census of the stand `N`: Σ_{d ∣ N} h(d), the sum of the
+    Möbius-inverted genus numbers over all divisors of `N`. -/
+def censusTotal (N : Nat) : Int :=
+  sumTo (fun d => if d ∣ N then censusSum d else 0) N
 
-   `#print axioms` confirms that every theorem above is checked by the
-   Lean kernel alone — the axiom list is empty for all of them (no
-   `sorry`, no `native_decide`, no `Classical.choice`):               -/
+/-- The master identity of Möbius inversion: the census values sum over
+    all divisors of `N` to the genus number `c(N)`. -/
+theorem census_master (N : Nat) : censusTotal N = cInt N := by
+  rcases Nat.eq_zero_or_pos N with h0 | hpos
+  · subst h0
+    unfold censusTotal censusSum
+    rw [sumTo_zero, sumTo_zero]
+    simp [cInt, mu_zero, Nat.zero_dvd]
+  · have hstep1 : censusTotal N
+        = sumTo (fun d => sumTo
+            (fun e => if d ∣ N ∧ e ∣ d then mu (d / e) * cInt e else 0) d) N := by
+      apply sumTo_congr
+      intro d hd
+      by_cases hdn : d ∣ N
+      · rw [if_pos hdn]
+        unfold censusSum
+        apply sumTo_congr
+        intro e he
+        by_cases hed : e ∣ d
+        · rw [if_pos hed, if_pos (by exact ⟨hdn, hed⟩)]
+        · rw [if_neg hed, if_neg (by intro hc; exact hed hc.2)]
+      · rw [if_neg hdn]
+        symm
+        rw [sumTo_head_zero _ d (fun e he => by
+          rw [if_neg (by intro hc; exact hdn hc.1)])]
+    have hfub : sumTo
+        (fun d => sumTo
+          (fun e => if d ∣ N ∧ e ∣ d then mu (d / e) * cInt e else 0) d) N
+      = sumTo (fun e => sumTo
+          (fun d => if e ≤ d then
+            (if d ∣ N ∧ e ∣ d then mu (d / e) * cInt e else 0) else 0) N) N :=
+      sumTo_fubini (fun d e => if d ∣ N ∧ e ∣ d then mu (d / e) * cInt e else 0) N
+    have houter : ∀ e, e ≤ N →
+        (sumTo (fun d => if e ≤ d then
+            (if d ∣ N ∧ e ∣ d then mu (d / e) * cInt e else 0) else 0) N)
+          = if e = N then cInt N else 0 := by
+      intro e he
+      rw [sumTo_congr
+            (fun d => if e ≤ d then
+                (if d ∣ N ∧ e ∣ d then mu (d / e) * cInt e else 0) else 0)
+            (fun d => if e ≤ d ∧ d ∣ N ∧ e ∣ d then mu (d / e) * cInt e else 0)
+            N (fun d hd => by
+              by_cases hle : e ≤ d
+              · rw [if_pos hle]
+                by_cases hdN : d ∣ N
+                · by_cases hed : e ∣ d
+                  · rw [if_pos (by exact ⟨hdN, hed⟩),
+                      if_pos (by exact ⟨hle, hdN, hed⟩)]
+                  · rw [if_neg (fun hc' => hed hc'.2),
+                      if_neg (by intro hc; exact hed hc.2.2)]
+                · rw [if_neg (fun hc' => hdN hc'.1),
+                    if_neg (by intro hc; exact hdN hc.2.1)]
+              · rw [if_neg hle, if_neg (by intro hc; exact hle hc.1)]),
+        inner_eq N e hpos]
+    rw [hstep1, hfub,
+      sumTo_congr
+        (fun e => sumTo (fun d => if e ≤ d then
+            (if d ∣ N ∧ e ∣ d then mu (d / e) * cInt e else 0) else 0) N)
+        (fun e => if e = N then cInt N else 0) N houter,
+      sumTo_last (fun e => if e = N then cInt N else 0) N (fun d hd => by
+        rw [if_neg (show ¬(d = N) from by omega)])]
+    simp
 
-#print axioms HodgeLaboratory.genus_eq_tri
-#print axioms HodgeLaboratory.two_genus
-#print axioms HodgeLaboratory.chars_length
-#print axioms HodgeLaboratory.chars_eq_two_genus
-#print axioms HodgeLaboratory.sum_mu_divisors
-#print axioms HodgeLaboratory.lpf_isPrime
-#print axioms HodgeLaboratory.mu_eq
-#print axioms HodgeLaboratory.sumTo_fubini
+/-- The total census of the stand `N` as a natural number (nonnegative
+    by the master identity, so `toNat` is faithful). -/
+def censusTotalNat (N : Nat) : Nat := (censusTotal N).toNat
+
+/-- The total census equals the genus number: the master identity
+    Σ_{d ∣ N} h(d) = c(N) plus nonnegativity of the `Int` census. -/
+theorem censusTotalNat_eq (N : Nat) : censusTotalNat N = genus N := by
+  unfold censusTotalNat
+  rw [census_master N]
+  have hnn : 0 ≤ cInt N := by
+    unfold cInt
+    exact Int.ofNat_nonneg _
+  have h1 := Int.toNat_of_nonneg (a := cInt N) hnn
+  have h2 : cInt N = (genus N : Int) := rfl
+  exact Int.natCast_inj.1 (h1.trans h2)
+
+/-- The individual census values of the stand divisors, computed by the
+    kernel from the Möbius definition: h(3) = 1, h(5) = 6, h(6) = 9,
+    h(10) = 30, h(15) = 84, h(30) = 276 — exactly the values verified in
+    the original stub; their divisor sums are 91 = c(15) and 406 = c(30)
+    by `census_master`. -/
+example : censusSum 3 = 1 := by decide
+example : censusSum 5 = 6 := by decide
+example : censusSum 6 = 9 := by decide
+example : censusSum 10 = 30 := by decide
+example : censusSum 15 = 84 := by decide
+example : censusSum 30 = 276 := by decide
+
+/-- The stands: the total census sums to the genus numbers. -/
+example : censusTotalNat 15 = 91 := by rw [censusTotalNat_eq]; rfl
+example : censusTotalNat 30 = 406 := by rw [censusTotalNat_eq]; rfl
 
 end HodgeLaboratory
