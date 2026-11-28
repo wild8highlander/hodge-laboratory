@@ -6,7 +6,7 @@
 
 ### ✦ THE KERNEL CHAPTER ✦
 
-**40 theorems · 12 machine-checked examples · 13 definitions · 0 axioms**
+**52 theorems · 29 machine-checked examples · 16 definitions · 0 sorry**
 
 [![Lean 4](https://img.shields.io/badge/toolchain-leanprover%2Flean4%3Av4.36.0-F0C674?style=flat-square)](#2-running-the-file)
 [![axioms](https://img.shields.io/badge/axioms-0_·_empty_list-3FD16B?style=flat-square)](#3-zero-axioms--what-that-literally-means)
@@ -27,7 +27,7 @@
 
 > **What this chapter is.** [`HodgeLaboratory.lean`](HodgeLaboratory.lean) is the one
 > file in the repository where nothing is *claimed* — everything is either a
-> definition or a proof. Its 40 theorems establish the two structural facts behind
+> definition or a proof. Its 52 theorems establish the two structural facts behind
 > the program's headline numbers — the **genus formula** and the **conductor census
 > with its Möbius inversion** — as general statements about *every* N, and its 12
 > examples nail the concrete stand values (91, 406, 1, 6, 9, 30, 84, 276) as
@@ -56,7 +56,7 @@
 | **9** | [Tactic inventory](#9-tactic-inventory) | what the file uses, and why |
 | **10** | [FAQ](#10-faq) | seven kernel-level questions |
 
-<sup>Count check: 6 + 6 + 28 = **40 theorems**; 4 + 8 = **12 examples**; 13
+<sup>Count check: 6 + 6 + 28 + 12 = **52 theorems**; 4 + 8 + 17 = **29 examples**; 16
 `def`s — the numbers in the badges are exact.</sup>
 
 ---
@@ -208,7 +208,7 @@ flowchart TB
     end
     A4 --> M["chars_eq_two_genus<br/>the two independent counts meet:<br/>2g = (N−1)(N−2)"]
     B4 --> M
-    C7 --> E["§8 — the 12 examples<br/>g = 91 · 406 · 15 · 3<br/>censusSum = 1 · 6 · 9 · 30 · 84 · 276<br/>censusTotalNat 15 = 91 · 30 = 406"]
+    C7 --> E["§8+§G — the 29 examples<br/>g = 91 · 406 · 15 · 3<br/>censusSum = 1 · 6 · 9 · 30 · 84 · 276<br/>condCount 30 d = 2·h(d) · protocol_30"]
     E --> EXIT["exit 0 — the kernel accepted everything"]
 ```
 
@@ -223,12 +223,6 @@ it in fifteen lines of loops.
 ---
 
 ## 5. §A — the genus of the Fermat curve
-
-<div align="center">
-<img src="../assets/charts/genus_ladder.png" width="72%" alt="The genus ladder: (N-1)(N-2)/2 with the stand points the kernel computes">
-</div>
-
-
 
 > **The section in one sentence:** for *every* N, the genus
 > `g(N) = (N−1)(N−2)/2` equals the triangular number `1 + 2 + … + (N−2)` — proved
@@ -301,11 +295,7 @@ quote it.
 </details>
 
 <details>
-<summary><b>⭐ <code>theorem genus_eq_tri (N) : genus N = tri (N - 1)</code> — THE GENUS THEOREM</b></summary><div align="center">
-<img src="../assets/gifs/lean_tactics.gif" width="80%" alt="Animated GIF: the real tactic chain of genus_eq_tri - have h1, unfold genus, rw, omega - closing with the four corollaries 91, 406, 15, 3">
-</div>
-
-
+<summary><b>⭐ <code>theorem genus_eq_tri (N) : genus N = tri (N - 1)</code> — THE GENUS THEOREM</b></summary>
 
 | | |
 |:---|:---|
@@ -546,12 +536,6 @@ boundary). One `exact` term — the fuel architecture pays its first dividend.
 
 ### 7.3 · C3 — the Möbius function
 
-<div align="center">
-<img src="../assets/charts/mobius_values.png" width="82%" alt="mu(n) for n = 1..30: the function C3 defines and the kernel computes on demand">
-</div>
-
-
-
 <details>
 <summary><b>📦 <code>def muF / def mu</code> — μ with fuel</b></summary>
 
@@ -692,12 +676,6 @@ list lemmas do the work.
 
 ### 7.7 · C7 — the master identity `census_master`
 
-<div align="center">
-<img src="../assets/gifs/mobius_inversion.gif" width="78%" alt="Animated GIF: the inversion table of stand N=30 filling in — exactly what census_master proves and the censusSum examples compute">
-</div>
-
-
-
 <details>
 <summary><b>📦 <code>def cInt (e) / def censusSum (d)</code> — the census from the inversion formula</b></summary>
 
@@ -817,11 +795,11 @@ witness.
 ```mermaid
 flowchart LR
     DEF["defs: genus · tri · lpfF · lpf<br/>muF · mu · sumTo · censusSum<br/>censusTotal · censusTotalNat"]
-    DEF --> THM["40 theorems<br/>(§A §B §C — all proved, all N)"]
+    DEF --> THM["52 theorems<br/>(§A §B §C §G §H — all proved, all N)"]
     THM --> EX1["genus examples<br/>rw + rfl"]
     THM --> EX2["censusSum examples<br/>decide — kernel computes μ"]
     THM --> EX3["censusTotalNat examples<br/>rw [censusTotalNat_eq] + rfl"]
-    EX1 & EX2 & EX3 --> OK["12/12 accepted<br/>exit 0"]
+    EX1 & EX2 & EX3 --> OK["29/29 accepted<br/>exit 0"]
 ```
 
 </div>
@@ -834,6 +812,46 @@ flowchart LR
 > with different arithmetic. Two proof systems, five languages, one number.
 
 ---
+
+### 8.1 §G — the protocol, fully connected
+
+Section §G is the capstone of the file: it wires the three layers — the
+closed genus formula (§A), the character census (§B), the executable Möbius
+machine (§C–§E) — into single statements, and certifies the stand bucket by
+bucket, in the kernel.
+
+**New definitions.** `conductor N a b = N / gcd(a, b, N)` — the level of the
+tower at which a character first appears — and `condCount N d`, the executable
+count of characters `(a, b)` with `1 ≤ a, b < N`, `a + b ≢ 0 (mod N)` and
+conductor exactly `d`: the Lean twin of the census tables the C/Python panels
+print.
+
+**General theorems:**
+
+| theorem | statement | proof |
+|:---|:---|:---|
+| `mu_prime` | `μ(p) = −1` for prime `p` | `lpf`-normal form + `Nat.dvd_antisymm` |
+| `censusSum_zero_small` | `h(d) = 0` for `d < 3` — the census starts at 3 | every term dies on `c(1) = c(2) = 0` |
+| `sumTo_single` | a finite sum with one surviving term is that term | `sumTo_tail` + `sumTo_last` |
+| `censusSum_prime` | `h(p) = c(p)` — inversion is invisible on primes | single-survivor + `mu_one` |
+| `grand_agreement` | characters = 2·total census · total census = genus · 2·genus = (N−1)(N−2) — one conjunction for all N | reuses `chars_eq_two_genus`, `censusTotalNat_eq`, `two_genus` |
+
+**The stand, certified.** The kernel computes `condCount 30 d` for every
+divisor and confirms the doubling law `condCount 30 d = 2·h(d)` — buckets
+2 · 12 · 18 · 60 · 168 · 552 at conductors 3 · 5 · 6 · 10 · 15 · 30, summing
+to 812 = `(chars 30).length`; the degenerate buckets are empty
+(`condCount 30 1 = 0`, `condCount 30 2 = 0`), and the same doubling holds for
+the stand N = 15. Then the whole protocol in one statement: `protocol_30` —
+the character count, all six conductor buckets, their sum back to 812, all six
+census values 1 · 6 · 9 · 30 · 84 · 276, the total 406 = 2·g(30), and twice
+the census meeting the character count — one `decide`, zero axioms. This is
+the Lean twin of `exit 0`.
+
+**The axiom audit.** The file ends with `#print axioms` for the flagship
+theorem of every section — `genus_eq_tri`, `chars_length`, `census_master`,
+`censusTotalNat_eq`, `mu_prime`, `censusSum_prime`, `grand_agreement`,
+`protocol_30`. Each prints *does not depend on any axioms*: the header's
+promise, checked by the reader rather than taken on faith.
 
 ## 9. Tactic inventory
 

@@ -30,7 +30,7 @@
   <rect x="1.5" y="1.5" width="877" height="377" fill="none" stroke="#F0C674" stroke-opacity="0.22" stroke-width="3" rx="14"/>
   <text x="440" y="66" text-anchor="middle" class="big" fill="#F0C674">LEAN 4 KERNEL</text>
   <text x="440" y="94" text-anchor="middle" style="font:14px 'Segoe UI',Helvetica,Arial,sans-serif" fill="#8FA3CF">the machine layer — proofs, not spot-checks</text>
-  <text x="440" y="132" text-anchor="middle" class="code" fill="#7EE787">40 theorems · 12 machine-checked examples · 0 axioms · 0 sorry</text>
+  <text x="440" y="132" text-anchor="middle" class="code" fill="#7EE787">52 theorems · 29 machine-checked examples · 0 sorry · 0 native_decide</text>
   <text x="440" y="160" text-anchor="middle" class="code" fill="#5871A3">leanprover/lean4:v4.36.0 · core only · no Mathlib · no native_decide</text>
   <line x1="80" y1="182" x2="800" y2="182" stroke="#22304E" stroke-width="1"/>
     <g class="st st0">

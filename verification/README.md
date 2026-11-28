@@ -63,7 +63,7 @@
 | **3** | [Architecture](#3-architecture) | three layers, six stacks, wiring diagrams |
 | **4** | [The six stacks](#4-the-six-stacks) | one chapter per language, run commands, outputs |
 | **5** | [The high-precision layer](#5-the-high-precision-layer) | closed forms vs tanh–sinh, the precision ladder |
-| **6** | [The machine layer — Lean 4](#6-the-machine-layer--lean-4) | 40 theorems, 12 examples, zero axioms |
+| **6** | [The machine layer — Lean 4](#6-the-machine-layer--lean-4) | 52 theorems, 29 examples, 0 sorry |
 | **7** | [The K3 rank — exact rational elimination](#7-the-k3-rank--exact-rational-elimination) | the 49×49 matrix, rank 20, mod-p cross-checks |
 | **8** | [The master files of this folder](#8-the-master-files-of-this-folder) | `master_hodge.py` · `master_hodge.jl` · `hodge_planes.py` |
 | **9** | [Exit codes & the verdict contract](#9-exit-codes--the-verdict-contract) | what CI reads, the 0/1 semantics |
@@ -91,7 +91,7 @@ The argument has three independent axes, and every axis is fully covered:
 1. **Different arithmetic engines.**
 
 <div align="center">
-<img src="assets/gifs/stack_race.gif" width="88%" alt="Animated GIF: one counter line - the six stacks race to their targets 9, 52, 14, 24, 38, 32, all land together, ALL GREEN 169/169 exit 0">
+<img src="assets/gifs/stack_race.gif" width="88%" alt="Animated GIF: one counter line - the six stacks race to their targets 9, 81, 14, 24, 38, 32, all land together, ALL GREEN 198/198 exit 0">
 </div>
 
 
@@ -443,7 +443,7 @@ flowchart LR
     end
 
     subgraph L3["③ MACHINE LAYER — proof"]
-        LE["Lean 4 kernel<br/>40 theorems · 0 axioms"]
+        LE["Lean 4 kernel<br/>52 theorems · 0 sorry"]
     end
 
     IDS --> L1 & L2 & L3
@@ -505,7 +505,7 @@ closes the loop inside Python via `--check-baseline`.
 | path | size | lines | role |
 |:--|:--|:--|:---|
 | [`README.md`](README.md) | this file | — | the folder's front door |
-| [`lean/HodgeLaboratory.lean`](lean/HodgeLaboratory.lean) | 43.8 KB | 1 063 | machine layer: 40 theorems, 12 examples, 0 axioms |
+| [`lean/HodgeLaboratory.lean`](lean/HodgeLaboratory.lean) | 66.0 KB | 1 540 | machine layer: 52 theorems, 29 examples, 0 sorry (§G + §H, real Lean 4.36.0 compile) |
 | [`c/verify_hodge.c`](c/verify_hodge.c) | 8.0 KB | 215 | integer panel + exact K3 rank (fraction RREF) |
 | [`rust/verify_hodge.rs`](rust/verify_hodge.rs) | 7.9 KB | 237 | integer panel, safe i128, atomic counters |
 | [`fortran/verify_hodge.f90`](fortran/verify_hodge.f90) | 6.4 KB | 167 | integer panel, strict int64 |
@@ -555,7 +555,7 @@ baseline cross-check) lives in [`../tests/`](../tests/).
 
 
 <div align="center">
-<img src="assets/banners/lean_kernel.svg" width="100%" alt="Lean 4 kernel banner: 40 theorems, 12 machine-checked examples, 0 axioms; the proof pipeline statement → elaborator → kernel → accepted">
+<img src="assets/banners/lean_kernel.svg" width="100%" alt="Lean 4 kernel banner: 52 theorems, 29 machine-checked examples, 0 sorry; the proof pipeline statement → elaborator → kernel → accepted">
 </div>
 
 | | |
@@ -564,7 +564,7 @@ baseline cross-check) lives in [`../tests/`](../tests/).
 | **run** | `lean lean/HodgeLaboratory.lean` |
 | **toolchain** | `leanprover/lean4:v4.36.0` — Lean 4 **core only** |
 | **arithmetic** | kernel reduction of closed terms; structural recursion on fuel |
-| **contents** | **40 theorems · 12 machine-checked examples · 0 axioms · 0 `sorry` · no Mathlib · no `native_decide`** |
+| **contents** | **52 theorems · 29 machine-checked examples · 0 `sorry` · no Mathlib · no `native_decide`** |
 | **deep dive** | [lean/README.md](lean/README.md) — every theorem as a spoiler |
 
 > **The 2026 upgrade — "real proofs edition".** The first Lean panel was a list of
@@ -720,7 +720,7 @@ sequenceDiagram
     LAB->>PY: run reference panel
     PY-->>LAB: exit 0 · V1–V9 all green
     LAB->>LE: lean HodgeLaboratory.lean
-    LE-->>LAB: exit 0 · 40 theorems accepted
+    LE-->>LAB: exit 0 · 52 theorems accepted
     LAB->>JL: julia verify_hodge.jl
     JL-->>LAB: exit 0 · worst rel err < 1e-25
     LAB->>FO: ./vh (gfortran build)
@@ -848,7 +848,7 @@ converged at ≈ 1e-7).
 ## 6. The machine layer — Lean 4
 
 The Lean panel is where the folder stops *testing* and starts *proving*. The full
-theorem-by-theorem walkthrough — 40 theorems and 12 examples, each in its own spoiler
+theorem-by-theorem walkthrough — 52 theorems and 29 examples, each in its own spoiler; compiled with Lean 4.36.0 (0 errors); the §G capstone closes the file with `grand_agreement` and `protocol_30` — the whole verification protocol wired into single statements — and an `#print axioms` audit that prints an empty list
 with statement, proof strategy and tactic inventory — lives in the
 **[Lean README](lean/README.md)**. Here: the map.
 
@@ -1553,7 +1553,7 @@ ways. The analytic identities are 🔬-only by nature: no integer panel can eval
 period integral.
 
 The counts are exact and CI-checked: 38 (C) + 32 (Rust) + 24 (Fortran) + 14 (Julia)
-+ 40 theorems & 12 examples (Lean) + the V1–V9 protocol (Python).
++ 52 theorems & 29 examples (Lean) + the V1–V9 protocol (Python).
 
 </details>
 
@@ -1570,7 +1570,7 @@ numbers, and regenerable. No screenshots, no hand-drawn art, no external images.
 | [`banners/lean_kernel.svg`](assets/banners/lean_kernel.svg) | animated SVG banner | the Lean proof pipeline |
 | [`banners/banner_c.svg`](assets/banners/banner_c.svg) · [`banner_rust.svg`](assets/banners/banner_rust.svg) · [`banner_fortran.svg`](assets/banners/banner_fortran.svg) · [`banner_julia.svg`](assets/banners/banner_julia.svg) | animated SVG banners | each stack's facts (checks, arithmetic, exit codes) |
 | [`avatars/avatar_verification.svg`](assets/avatars/avatar_verification.svg) · [`avatar_lean.svg`](assets/avatars/avatar_lean.svg) | square emblems (book-cover style) | the folder's identity — usable as repository / organization avatars |
-| [`gifs/verification_run.gif`](assets/gifs/verification_run.gif) | animated GIF (37 frames) | the six-stack run with real check counts 9 · 52 · 14 · 24 · 38 · 32 |
+| [`gifs/verification_run.gif`](assets/gifs/verification_run.gif) | animated GIF (37 frames) | the six-stack run with real check counts 9 · 81 · 14 · 24 · 38 · 32 |
 | [`gifs/census_bars.gif`](assets/gifs/census_bars.gif) | animated GIF (42 frames) | the exact h_d table of stand N=30 |
 | [`charts/census_conductors.png`](assets/charts/census_conductors.png) | chart (PNG) | the exact census tables of stands 15 & 30 |
 | [`charts/arf_counts.png`](assets/charts/arf_counts.png) | chart (PNG) | the exact Arf counts, g = 1…4 |
@@ -1642,12 +1642,13 @@ every name, claim and threshold lifted straight from the source files:
 | [`gifs/mutation_map.gif`](assets/gifs/mutation_map.gif) | what breaks what | the six mutation rows of the C panel |
 | [`charts/phase_table.png`](assets/charts/phase_table.png) | (r+s) mod 15 as a table | the exact phases, < 1e-25 |
 | [`charts/snf_ladder.png`](assets/charts/snf_ladder.png) | the divisibility staircase | 1·1·5·5·15·15·15·15 = 1125² |
+| [`banners/snf_chain.svg`](assets/banners/snf_chain.svg) | the chain, static | same |
 
 
 ### 🗂 The interactive catalog
 
 **[assets/catalog.html](assets/catalog.html)** — a self-contained page (HTML+CSS+JS, no
-dependencies) listing all **52 visual assets** with live previews, type filters
+dependencies) listing all **51 visual assets** with live previews, type filters
 (GIF / charts / banners / avatars), full-text search and a click-to-zoom lightbox.
 Open it from the repo or anywhere you copy the `assets/` folder.
 
@@ -1656,7 +1657,7 @@ Batch 4 adds the last three animations:
 data from master tasks T05/T19), [`gifs/lean_tactics.gif`](assets/gifs/lean_tactics.gif)
 (the real tactic chain of `genus_eq_tri` with the corollaries 91 · 406 · 15 · 3) and
 [`gifs/stack_race.gif`](assets/gifs/stack_race.gif) (the six counters in one line,
-169/169).| [`banners/snf_chain.svg`](assets/banners/snf_chain.svg) | the chain, static | same |
+169/192).
 
 
 ---
@@ -2078,7 +2079,7 @@ Every document that belongs to this folder, in reading order:
 | # | document | depth | audience |
 |:--|:---|:--|:---|
 | 1 | [README.md](README.md) (this file) | the full map | everyone |
-| 2 | [lean/README.md](lean/README.md) | 40 theorems, spoiler by spoiler | mathematicians, Lean users |
+| 2 | [lean/README.md](lean/README.md) | 52 theorems, spoiler by spoiler | mathematicians, Lean users |
 | 3 | [c/README.md](c/README.md) | the exact rank, line by line | C readers, reviewers |
 | 4 | [rust/README.md](rust/README.md) | the i128 budget, the borrow-checker view | Rust readers |
 | 5 | [fortran/README.md](fortran/README.md) | the int64 discipline, the corrective isqrt | Fortran readers |
